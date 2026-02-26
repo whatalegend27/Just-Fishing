@@ -1,3 +1,5 @@
+Fishing Mechanism
+
 I am responsible for the fishing mechanism, which is the primary way the player interacts with the game world. My feature will handle the physics of the hook as it sinks and the logic for catching fish and bringing them back up to the boat. 
 
 Fishing Physics and Movement 
