@@ -10,14 +10,20 @@ public class RiskCalculation : MonoBehaviour
         riskVal=0;
     }
 
-    void Update()
+    void Update() //checks if any game over conditions are met
     {
         if (riskVal<=100)
         {
             //triggerGameOver();
         }
     }
-    public int CalculateRisk(string action)
+
+    /*
+    CalculateRisk(action)
+    action: The illegal action that the player is performing, valid values are "steal", "nightFish", and "blackMarket"
+    Make sure that if a player is performing these actions that this function is called
+    */
+    public void CalculateRisk(string action)
     {
         if (action=="steal")
         {
