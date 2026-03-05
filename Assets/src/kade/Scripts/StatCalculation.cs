@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RiskCalculation : MonoBehaviour
 {
@@ -14,15 +15,11 @@ public class RiskCalculation : MonoBehaviour
     {
         if (riskVal<=100)
         {
-            //triggerGameOver();
+            SceneManager.LoadScene("GameOver");
         }
     }
 
-    /*
-    CalculateRisk(action)
-    action: The illegal action that the player is performing, valid values are "steal", "nightFish", and "blackMarket"
-    Make sure that if a player is performing these actions that this function is called
-    */
+    // CalculateRisk(action), more info in README
     public void CalculateRisk(string action)
     {
         if (action=="steal")
