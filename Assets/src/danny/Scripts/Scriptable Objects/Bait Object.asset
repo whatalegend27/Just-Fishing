@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Fish Bait
   itemDescription: Used to attract basic fish
   price: 2
-  icon: {fileID: 0}
+  icon: {fileID: 590640608084339730, guid: b5fa5efe173b7c346902bfcf2bf3e017, type: 3}

@@ -16,6 +16,7 @@ public class Description : MonoBehaviour
         descriptionText.text = item.itemDescription;
         priceText.text = "Cost: $" + item.price;
         itemIcon.sprite = item.icon;
+        descriptionPanel.SetActive(false);
         descriptionPanel.SetActive(true);
     }
 
