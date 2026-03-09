@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FishingHook : MonoBehaviour
+public partial class FishingHook : MonoBehaviour
 {
     [Header("Speeds")]
     public float sinkSpeed = 2f;
@@ -55,7 +55,6 @@ public class FishingHook : MonoBehaviour
             // If close to the surface, handle the diagonal "Homing"
             if (distanceToSurface < 3f)
             {
-                // Move toward 0 (the boat) but allow player to nudge it
                 newX = Mathf.MoveTowards(newX, 0, (moveSpeed * 0.5f) * Time.deltaTime);
                 newX += h * (moveSpeed * 0.5f) * Time.deltaTime;
             }
@@ -70,14 +69,19 @@ public class FishingHook : MonoBehaviour
                 newY = surfaceLevel;
                 newX = 0; 
                 isReadyToCast = true;
-                if (hasCaughtFish) CollectFish();
+                
+                if (hasCaughtFish) 
+                {
+                    CollectFish();
+                }
             }
         }
         else 
         {
             newX += h * moveSpeed * Time.deltaTime;
 
-            if (!hasCaughtFish && newY > maxDepth)
+            // Only sink if we aren't already at max depth
+            if (newY > maxDepth)
             {
                 newY -= sinkSpeed * Time.deltaTime;
             }
@@ -87,26 +91,43 @@ public class FishingHook : MonoBehaviour
         newX = Mathf.Clamp(newX, leftBorder, rightBorder);
         newY = Mathf.Clamp(newY, maxDepth, surfaceLevel);
         transform.position = new Vector3(newX, newY, transform.position.z);
-
-        if (hasCaughtFish && caughtFishTransform != null)
-        {
-            caughtFishTransform.position = transform.position;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Only catch if we don't have a fish yet and the target is tagged "Fish"
         if (!hasCaughtFish && collision.CompareTag("Fish"))
         {
             hasCaughtFish = true;
             caughtFishTransform = collision.transform;
+
+            // 1. Disable teammate's FishMovement script so it stops fighting the hook
+            FishMovement movement = collision.GetComponent<FishMovement>();
+            if (movement != null) 
+            {
+                movement.enabled = false;
+            }
+
+            // 2. Parent the fish to the hook so it follows automatically
+            caughtFishTransform.SetParent(this.transform);
+
+            // 3. Snap fish to center of hook
+            caughtFishTransform.localPosition = Vector2.zero;
+
+            Debug.Log("Got one! Reeling in...");
         }
     }
 
     void CollectFish()
     {
-        if (caughtFishTransform != null) Destroy(caughtFishTransform.gameObject);
+        if (caughtFishTransform != null) 
+        {
+            // Here you could trigger a Score/Gold update
+            Destroy(caughtFishTransform.gameObject);
+        }
+        
         hasCaughtFish = false;
         caughtFishTransform = null;
+        Debug.Log("Fish secured. Ready for the next cast.");
     }
 }
