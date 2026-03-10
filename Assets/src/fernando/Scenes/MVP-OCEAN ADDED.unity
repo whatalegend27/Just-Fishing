@@ -131,7 +131,9 @@ GameObject:
   - component: {fileID: 74025572}
   - component: {fileID: 74025571}
   - component: {fileID: 74025570}
+  - component: {fileID: 74025575}
   - component: {fileID: 74025574}
+  - component: {fileID: 74025576}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Fish
@@ -153,9 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishMovement
   speed: 2
   directionChangeTime: 2
-  minX: -4
-  maxX: 4
-  minY: -10
+  minX: -3
+  maxX: 3
+  minY: -6
   maxY: -4
 --- !u!70 &74025571
 CapsuleCollider2D:
@@ -280,7 +282,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac62fe61d75b4d039f345c2bd7f5a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AchievmentDisplay
-  achievementUI: {fileID: 0}
+  achievementUI: {fileID: 905089270}
+--- !u!114 &74025575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74025569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b33c6166c8c7476780fc251211c3a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishCatchTrigger
+--- !u!114 &74025576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74025569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739f9effc6f494667b5fc0aa99c351d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fish
+  fishName: Silver-Fish
 --- !u!1 &298668565
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +911,7 @@ Transform:
   m_GameObject: {fileID: 905089270}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.39, z: 0}
+  m_LocalPosition: {x: 0, y: -4.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -968,6 +995,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6003340674565235770, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
   m_PrefabInstance: {fileID: 758434622}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1403416008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1403416010}
+  - component: {fileID: 1403416009}
+  m_Layer: 0
+  m_Name: FishDBManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1403416009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403416008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b026f6317392b45f49268d8da4151a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishDatabaseManager
+  fishDatabase:
+  - fishName: Silver-Fish
+    fishKnown: 0
+--- !u!4 &1403416010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403416008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.92107, y: -1.19674, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1500430450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2450550158803091587, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
@@ -1310,8 +1384,8 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1499008077
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
@@ -1415,3 +1489,4 @@ SceneRoots:
   - {fileID: 298668566}
   - {fileID: 74025573}
   - {fileID: 905089271}
+  - {fileID: 1403416010}
