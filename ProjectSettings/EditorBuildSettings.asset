@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/src/isabella/Scenes/MVP-DemoAddition.unity
     guid: 34244bd2f3272fc46a3a7854c55d9b61
+  - enabled: 1
+    path: Assets/prefabs/kade/Scenes/GameOver.unity
+    guid: 6a13b2672a45ffe55889a6a7bf0a7407
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

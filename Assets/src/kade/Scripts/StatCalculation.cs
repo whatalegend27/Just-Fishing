@@ -1,6 +1,45 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// --- Decorator Pattern ---
+
+public interface IStatCalculator
+{
+    int Calculate(int currentValue);
+}
+
+public class BaseStatCalculator : IStatCalculator
+{
+    public int Calculate(int currentValue) => currentValue;
+}
+
+public abstract class StatCalculatorDecorator : IStatCalculator
+{
+    protected IStatCalculator inner;
+    public StatCalculatorDecorator(IStatCalculator inner) { this.inner = inner; }
+    public abstract int Calculate(int currentValue);
+}
+
+public class StealRiskDecorator : StatCalculatorDecorator
+{
+    public StealRiskDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 5;
+}
+
+public class NightFishRiskDecorator : StatCalculatorDecorator
+{
+    public NightFishRiskDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 10;
+}
+
+public class BlackMarketRiskDecorator : StatCalculatorDecorator
+{
+    public BlackMarketRiskDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 5;
+}
+
+// --- MonoBehaviours ---
+
 public class PlayerStats : MonoBehaviour
 {
 
@@ -33,24 +72,21 @@ public class ArrestStats: MonoBehaviour
         if (riskVal>=100)
         {
             ps.gameOver=true;
+            riskVal=0;
         }
     }
 
     // CalculateRisk(action), more info in README
     public void CalculateRisk(string action)
     {
-        if (action=="steal")
+        IStatCalculator calculator = new BaseStatCalculator();
+        switch (action)
         {
-            riskVal=riskVal+5;
+            case "steal":       calculator = new StealRiskDecorator(calculator); break;
+            case "nightFish":   calculator = new NightFishRiskDecorator(calculator); break;
+            case "blackMarket": calculator = new BlackMarketRiskDecorator(calculator); break;
         }
-        if (action=="nightFish")
-        {
-            riskVal=riskVal+10;
-        }
-        if (action=="blackMarket")
-        {
-            riskVal=riskVal+5;
-        }
+        riskVal = calculator.Calculate(riskVal);
     }
 }
 
