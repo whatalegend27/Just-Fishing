@@ -9,6 +9,7 @@ public class DescriptionUI : MonoBehaviour
     public TextMeshProUGUI priceText;
     public GameObject descriptionPanel;
     public Image itemIcon;
+    private ItemScript currentItem;
 
     public void ShowDetails(ItemScript item)
     {
@@ -17,10 +18,16 @@ public class DescriptionUI : MonoBehaviour
         priceText.text = "Cost: $" + item.price;
         itemIcon.sprite = item.icon;
         descriptionPanel.SetActive(true);
+        currentItem = item;
     }
 
     public void exitButton()
     {
         descriptionPanel.SetActive(false);
+    }
+
+    public void buyButton()
+    {
+        InventoryManager.Instance.AddItem(currentItem);
     }
 }
