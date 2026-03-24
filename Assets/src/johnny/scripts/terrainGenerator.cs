@@ -8,10 +8,6 @@ public class terrainGenerator : MonoBehaviour
     [Tooltip("The difficulty set by the player, influencing the terrain complexity.")]
     [SerializeField] private int playerDifficulty = 1; // Default difficulty level (0: BC, 1: Casual, 2: Hard)
 
-    [Header("Terrain Generation Settings")]
-    [SerializeField] private int numRocks = 10; // Number of rocks to generate
-    [SerializeField] private GameObject rockPrefab; // Prefab for the rocks
-
     private void Start()
     {
         float globalDifficulty = CalculateDifficulty();
@@ -83,11 +79,6 @@ public class terrainGenerator : MonoBehaviour
             Debug.Log("Difficulty is zero or negative. No terrain will be generated.");
             return;
         }
-        else if (rockPrefab == null)
-        {
-            Debug.LogError("Rock prefab is not assigned. Aborting terrain generation.");
-            return;
-        }
 
         int minRocks = 0;
         int maxRocks = Mathf.FloorToInt(difficulty * 10f);
@@ -117,9 +108,6 @@ public class terrainGenerator : MonoBehaviour
             } while (occupiedLocations.Contains(newLocation));
 
             occupiedLocations.Add(newLocation);
-
-            Vector3 spawnPosition = new Vector3(newLocation.x, newLocation.y, 0f);
-            Instantiate(rockPrefab, spawnPosition, Quaternion.identity);
         }
 
         boatController boat = FindAnyObjectByType<boatController>();
