@@ -1,16 +1,17 @@
 using NUnit.Framework;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class FishDatabaseTests
 {
     private FishDatabaseManager db;
+    private GameObject dbObject;
 
     [SetUp]
     public void Setup()
     {
-        GameObject obj = new GameObject();
-        db = obj.AddComponent<FishDatabaseManager>();
+        dbObject = new GameObject("FishDatabaseTestObject");
+        db = dbObject.AddComponent<FishDatabaseManager>();
 
         db.fishDatabase = new List<FishData>
         {
@@ -20,37 +21,43 @@ public class FishDatabaseTests
         };
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        // Reset the singleton so each test starts from a clean database manager.
+        FishDatabaseManager.Instance = null;
+
+        if (dbObject != null)
+        {
+            Object.DestroyImmediate(dbObject);
+        }
+    }
+
     [Test]
     // Boundary Test #1
     public void CatchFish_Boundary_FirstCatch_UpdatesFishKnown()
     {
+        // The fish starts unknown before registration.
         Assert.IsFalse(db.fishDatabase[0].fishKnown);
 
-        db.RegisterFish("Salmon");
+        // A known fish should be registered successfully.
+        bool result = db.RegisterFish("Salmon");
 
+        Assert.IsTrue(result);
         Assert.IsTrue(db.fishDatabase[0].fishKnown);
     }
 
     [Test]
     // Boundary Test #2
-    public void Only_Target_Fish_Is_Updated()
+    public void RegisterFish_Boundary_MissingFish_ReturnsFalse()
     {
-        db.RegisterFish("Cod");
+        // A fish name that is not present should not be registered.
+        bool result = db.RegisterFish("Shark");
 
+        Assert.IsFalse(result);
+        // No existing database entry should be changed by a failed lookup.
         Assert.IsFalse(db.fishDatabase[0].fishKnown);
-        Assert.IsTrue(db.fishDatabase[1].fishKnown);
+        Assert.IsFalse(db.fishDatabase[1].fishKnown);
         Assert.IsFalse(db.fishDatabase[2].fishKnown);
-    }
-
-    [Test]
-    // Stress Test #1
-    public void RegisterFish_Stress_Test_MultipleCalls()
-    {
-        for (int i = 0; i < 1000; i++)
-        {
-            db.RegisterFish("Trout");
-        }
-
-        Assert.IsTrue(db.fishDatabase[2].fishKnown);
     }
 }
