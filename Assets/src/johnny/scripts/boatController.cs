@@ -19,33 +19,42 @@ public class boatController : MonoBehaviour
     }
   }
 
-  IEnumerator DriftRoutine()
-  {
-    while (isBoatActive)
+    // Public for testing purposes, but could be private in the final version
+    public Vector2 CalculateDriftOffset(Vector2 startPosition)
     {
-      yield return new WaitForSeconds(timeBetweenDrifts);
+        Vector2 driftOffset;
+        Vector2 proposedPosition;
+        int failsafe = 0;
 
-      Vector2 newPosition;
-      int failsafe = 0;
+        do
+        {
+            float driftX = Random.Range(-2f, 2f);
+            float driftY = Random.Range(-2f, 2f);
+            driftOffset = new Vector2(driftX, driftY);
+            
+            proposedPosition = startPosition + driftOffset;
+            
+            failsafe++;
+            if (failsafe > 100) break;
 
-      do
-      {
-        float driftX = Random.Range(-2f, 2f);
-        float driftY = Random.Range(-2f, 2f);
+        } while (proposedPosition.x < -20f || proposedPosition.x > 20f || proposedPosition.y < -20f || proposedPosition.y > 20f);
 
-        newPosition = currentPosition + new Vector2(driftX, driftY);
-
-        failsafe++;
-        if (failsafe > 100) break;
-
-      } while (newPosition.x < -20f || newPosition.x > 20f || newPosition.y < -20f || newPosition.y > 20f);
-
-      currentPosition = newPosition;
-      transform.position = new Vector3(currentPosition.x, currentPosition.y, 0f);
-
-      CheckForCollisions();
+        return driftOffset;
     }
-  }
+
+    IEnumerator DriftRoutine()
+    {
+        while (isBoatActive)
+        {
+            yield return new WaitForSeconds(timeBetweenDrifts);
+
+            Vector2 driftAmount = CalculateDriftOffset(currentPosition);
+            currentPosition += driftAmount;
+            
+            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0f);
+            CheckForCollisions();
+        }
+    }
 
   private void CheckForCollisions()
   {

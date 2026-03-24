@@ -14,6 +14,11 @@ public class terrainGenerator : MonoBehaviour
         GenerateTerrain(globalDifficulty);
     }
 
+    public float CalculateRandomDifficultyModifier()
+    {
+        return Random.Range(0.00f, 0.25f);
+    }
+
     private float CalculateDifficulty()
     {
         // Base difficulty multiplier
@@ -64,7 +69,7 @@ public class terrainGenerator : MonoBehaviour
         Debug.Log("Player difficulty level: " + playerDifficulty);
         Debug.Log("Calculated difficulty multiplier: " + difficultyMultiplier);
         
-        float randomMultiplier = Random.Range(1.0f, 4.0f); // Random multiplier between 1 and 3
+        float randomMultiplier = CalculateRandomDifficultyModifier();
         difficultyMultiplier *= randomMultiplier; // Apply random multiplier to add variability
         Debug.Log("Random multiplier applied: " + randomMultiplier);
         Debug.Log("Final difficulty multiplier: " + difficultyMultiplier);
@@ -107,7 +112,6 @@ public class terrainGenerator : MonoBehaviour
 
             } while (occupiedLocations.Contains(newLocation));
 
-            occupiedLocations.Add(newLocation);
         }
 
         boatController boat = FindAnyObjectByType<boatController>();

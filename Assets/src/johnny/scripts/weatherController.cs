@@ -18,10 +18,9 @@ public class weatherController : MonoBehaviour
         ChangeWeather();
     }
 
-    public void ChangeWeather()
+    // Public for testing purposes, but could be private in the final version
+    public string DetermineWeather()
     {
-
-        // Randomly select a new weather condition
         float randomWeather = Random.Range(0.0f, 1.0f);
         float cumulativeProbability = 0.0f;
 
@@ -30,11 +29,15 @@ public class weatherController : MonoBehaviour
             cumulativeProbability += kvp.Value;
             if (randomWeather <= cumulativeProbability)
             {
-                currentWeather = kvp.Key;
-                break;
+                return kvp.Key;
             }
         }
+        return "Sunny"; // Fallback
+    }
 
+    public void ChangeWeather()
+    {
+        currentWeather = DetermineWeather();
         Debug.Log("Weather changed to: " + currentWeather);
     }
 }
