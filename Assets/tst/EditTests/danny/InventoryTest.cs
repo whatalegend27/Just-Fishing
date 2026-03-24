@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-//Boundary Test 1
+//Boundary Test 1 - Tests inventory to see if items can be bought when full
 public class InventoryTest
 {
     [TestCase(8, true)]
@@ -27,5 +27,24 @@ public class InventoryTest
         InventoryManager.ResetInstance();
         Object.DestroyImmediate(go);
     }
-    
+
+    //Second Boundary Test - Tests if a null value can be added into the inventory
+    [Test]
+    public void AddItem_WhenItemIsNull_DoesNotCorruptInventory()
+    {
+        GameObject go = new GameObject("GameManagers");
+        InventoryManager inventoryManager = go.AddComponent<InventoryManager>();
+        inventoryManager.Awake();
+
+        inventoryManager.AddItem(null);
+
+        int filled = 0;
+        foreach (var slot in inventoryManager.slots)
+            if (slot.item != null) filled++;
+
+        Assert.AreEqual(0, filled, "Null item should not be added to inventory.");
+
+        InventoryManager.ResetInstance();
+        Object.DestroyImmediate(go);
+    }
 }

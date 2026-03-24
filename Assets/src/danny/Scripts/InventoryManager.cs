@@ -15,6 +15,10 @@ public class InventoryManager : MonoBehaviour
 
     public bool AddItem(ItemScript item)
     {
+        if (item == null)
+        {
+            return false;
+        }
         for (int i = 0; i < INVENTORY_SIZE; i++)
         {
             if (slots[i].item == null)
