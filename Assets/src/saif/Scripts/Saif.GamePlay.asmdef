@@ -1,0 +1,16 @@
+{
+    "name": "Saif.GamePlay",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1c28753ffa8494d62918b9fc50f07ab7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
