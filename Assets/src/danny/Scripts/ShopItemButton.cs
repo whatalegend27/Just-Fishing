@@ -14,7 +14,9 @@ public class ShopItemButton : MonoBehaviour
             iconImage.sprite = itemData.icon;
         }
 
-        GetComponent<Button>().onClick.AddListener(OnClick);
+        Button btn = GetComponent<Button>();
+        if (btn != null)
+            btn.onClick.AddListener(OnClick);
     }
 
     void OnClick()
