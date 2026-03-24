@@ -1,21 +1,38 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RiskCalculation : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
+
+    public bool gameOver;
+    void Start()
+    {
+        gameOver=false;
+    }
+
+    void Update() //checks if any game over conditions are met
+    {
+        if (gameOver==true)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+}
+
+public class ArrestStats: MonoBehaviour
+{
+    public PlayerStats ps;
     public int riskVal;
-    public int hungerVal;
-    public int exhaustionVal;
     void Start()
     {
         riskVal=0;
     }
 
-    void Update() //checks if any game over conditions are met
+    void Update()
     {
-        if (riskVal<=100)
+        if (riskVal>=100)
         {
-            SceneManager.LoadScene("GameOver");
+            ps.gameOver=true;
         }
     }
 
@@ -34,5 +51,31 @@ public class RiskCalculation : MonoBehaviour
         {
             riskVal=riskVal+5;
         }
+    }
+}
+
+public class HealthStats: MonoBehaviour
+{
+    public int hungerVal;
+    public int exhaustionVal;
+    public PlayerStats ps;
+
+    void Start()
+    {
+        hungerVal=100;
+        exhaustionVal=100;
+    }
+
+    void Update()
+    {
+        if (hungerVal<=0 || exhaustionVal<=0)
+        {
+            ps.gameOver=true;
+        }
+    }
+
+    public void CalculateHunger()
+    {
+        
     }
 }

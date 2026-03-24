@@ -4,6 +4,21 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/src/isabella/Scenes/MainMenu.unity
+    guid: 997424a0675f6e540a71b2758ddb946c
+  - enabled: 0
+    path: Assets/src/isabella/Scenes/Shop.unity
+    guid: d79e6dda52e8c154a9b24c63da856575
+  - enabled: 0
+    path: Assets/src/fernando/Scenes/AchievementSystem.unity
+    guid: 080e6a52b6ca0484db4c5ca98b7f521d
+  - enabled: 0
+    path: Assets/src/isabella/Scenes/MVP-DemoAddition.unity
+    guid: 34244bd2f3272fc46a3a7854c55d9b61
+  - enabled: 1
+    path: Assets/src/danny/Scenes/Shop.unity
+    guid: f708272042359954ca02c43b8023ecb0
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

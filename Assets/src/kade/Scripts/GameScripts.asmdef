@@ -1,0 +1,6 @@
+{
+	"name": "GameScripts",
+	"references": [
+		"Unity.TextMeshPro"
+	]
+}

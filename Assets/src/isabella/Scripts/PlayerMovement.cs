@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
-
+    public GameObject[] Toolboxes;
+    public GameObject TbToShow;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Vector2 movement;
 
     private Vector2 screenBounds;
@@ -16,19 +18,47 @@ public class PlayerMovement : MonoBehaviour
     private float playerHalfWidth;
 
     private float xPosLastFrame;
+    private bool TBActive = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         playerHalfWidth = spriteRenderer.bounds.extents.x;
+        foreach(GameObject tb in Toolboxes)
+        {
+            tb.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
-        ClampMovement();
-        FlipCharacterX();
+        if ((!TBActive)){
+            HandleMovement();
+            ClampMovement();
+            FlipCharacterX();
+        }
+        HandleToolbox();
+    }
+
+    void HandleToolbox()
+    {
+        if (!TBActive && Input.GetKeyDown(KeyCode.T)){
+            foreach(GameObject tb in Toolboxes)
+                {
+                    tb.SetActive(false);
+                }
+            TbToShow.SetActive(true);
+            TBActive = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            foreach(GameObject tb in Toolboxes)
+            {
+                tb.SetActive(false);
+            }
+            TBActive = false;
+        }
     }
 
     void FlipCharacterX(){
