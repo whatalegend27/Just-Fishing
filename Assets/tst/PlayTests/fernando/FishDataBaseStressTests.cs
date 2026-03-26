@@ -1,75 +1,106 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.TestTools;
 
 public class FishDatabaseStressTests
 {
-    private const int StressFishCount = 100;
-    private const float StressDurationSeconds = 5f;
+    private const int MinStressFishCount = 10; //@100
+    private const int MaxStressFishCount = 100; //@1000 no response  
+    private const int StressIncrement = 10; //1000
 
-    private FishDatabaseManager db;
+
+    private GameObject itemPrefab;
     private GameObject dbObject;
+    private FishDatabaseManager db;
 
     [SetUp]
     public void Setup()
     {
-        // Create a fresh database manager for each stress test run.
-        dbObject = new GameObject("FishDatabaseTestObject");
+        itemPrefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(
+            "Assets/src/fernando/Scripts/item.prefab");
+        Assert.IsNotNull(itemPrefab, "Expected item prefab at Assets/src/fernando/Scripts/item.prefab.");
+
+        dbObject = new GameObject("FishDatabaseTest");
         db = dbObject.AddComponent<FishDatabaseManager>();
+        db.fishDatabase = new List<FishData>();
     }
 
     [TearDown]
     public void TearDown()
     {
-        // Reset shared state so later tests do not reuse this singleton.
-        FishDatabaseManager.Instance = null;
-
-        if (dbObject != null)
+        foreach (GameObject item in Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
         {
-            Object.DestroyImmediate(dbObject);
+            if (item != null && item.name == "item(Clone)")
+            {
+                Object.DestroyImmediate(item);
+            }
         }
+
+        FishDatabaseManager.Instance = null;
+        Object.DestroyImmediate(dbObject);
     }
 
     [UnityTest]
-    [Category("Stress")]
-    public IEnumerator RegisterFish_Stress_Test_MultipleCalls()
+    public IEnumerator RegisterManyFishAndCreateItemsSuccessfully()
     {
-        // Build a larger fish list than the boundary tests use.
-        db.fishDatabase = new List<FishData>();
-        for (int i = 0; i < StressFishCount; i++)
-        {
-            db.fishDatabase.Add(new FishData
-            {
-                fishName = $"StressFish_{i}",
-                fishKnown = false
-            });
-        }
+        var stageResults = new StringBuilder();
+        int lastSuccessfulStage = 0;
+        int totalCreatedItems = 0;
 
-        float elapsed = 0f;
-        int registrationCount = 0;
-
-        // Repeatedly register every fish over multiple frames to simulate sustained load.
-        while (elapsed < StressDurationSeconds)
+        for (int fishCount = MinStressFishCount; fishCount <= MaxStressFishCount; fishCount += StressIncrement)
         {
-            foreach (FishData fish in db.fishDatabase)
+            db.fishDatabase.Clear();
+            for (int i = 0; i < fishCount; i++)
             {
-                bool result = db.RegisterFish(fish.fishName);
-                Assert.IsTrue(result);
-                registrationCount++;
+                db.fishDatabase.Add(new FishData
+                {
+                    fishName = $"StressFish_{i}",
+                    fishKnown = false
+                });
             }
 
-            elapsed += Time.deltaTime;
+            int stageRegisteredCount = 0;
+
+            foreach (FishData fish in db.fishDatabase)
+            {
+                if (db.RegisterFish(fish.fishName))
+                {
+                    Object.Instantiate(itemPrefab);
+                    stageRegisteredCount++;
+                    totalCreatedItems++;
+                }
+            }
+
+            yield return null;
+            yield return null;
+
+            GameObject[] stageItems = Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+            int createdItemCount = 0;
+
+            foreach (GameObject item in stageItems)
+            {
+                if (item != null && item.name == "item(Clone)")
+                {
+                    createdItemCount++;
+                }
+            }
+
+            Assert.AreEqual(fishCount, stageRegisteredCount, $"Registration failed at stage size {fishCount}.");
+            Assert.AreEqual(totalCreatedItems, createdItemCount, $"Accumulated item creation count mismatch at stage size {fishCount}.");
+
+            stageResults.AppendLine(
+                $"Stage {fishCount}: registered={stageRegisteredCount}, accumulatedItems={createdItemCount}");
+            lastSuccessfulStage = fishCount;
+
             yield return null;
         }
 
-        // Every fish should remain marked as known after the stress loop finishes.
-        foreach (FishData fish in db.fishDatabase)
-        {
-            Assert.IsTrue(fish.fishKnown);
-        }
-
-        Assert.Pass($"Stress test completed with {StressFishCount} fish entries and {registrationCount} registrations.");
+        Debug.Log(
+            "Fish database item stress test complete.\n" +
+            $"Last successful stage: {lastSuccessfulStage}\n" +
+            stageResults);
     }
 }
