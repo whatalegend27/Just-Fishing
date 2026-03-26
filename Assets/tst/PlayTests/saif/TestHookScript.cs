@@ -15,15 +15,16 @@ public class TestHookScript
         var hook = hookObj.AddComponent<FishingHook>();
         
         // --- REFLECTION UNLOCKS ---
-        // We need to set the hook to: isReadyToCast = false AND isReeling = false
-        // This simulates the hook being "In the water" and "Sinking"
         System.Type hookType = typeof(FishingHook);
         
+        // Set isReadyToCast = false (Hook is in the water)
         FieldInfo readyField = hookType.GetField("isReadyToCast", BindingFlags.NonPublic | BindingFlags.Instance);
         readyField.SetValue(hook, false);
 
-        FieldInfo reelingField = hookType.GetField("isReeling", BindingFlags.NonPublic | BindingFlags.Instance);
-        reelingField.SetValue(hook, false);
+        // Set canReel = false (Simulating the hook sinking, waiting for Space release)
+        // This matches your new "KeyUp" gate logic
+        FieldInfo reelField = hookType.GetField("canReel", BindingFlags.NonPublic | BindingFlags.Instance);
+        reelField.SetValue(hook, false);
 
         // Add 2D Physics so it can actually collide
         hookObj.AddComponent<BoxCollider2D>().isTrigger = true;
@@ -54,8 +55,7 @@ public class TestHookScript
         // 5. Validation
         int caughtCount = hook.transform.childCount;
         
-        // If your code works, the first fish caught sets hasCaughtFish = true, 
-        // preventing the other 49 from attaching.
+        // Ensure only 1 fish is parented to the hook
         Assert.AreEqual(1, caughtCount, $"Multi-catch Bug: {caughtCount} fish caught instead of 1!");
 
         Debug.Log("<b>TEST COMPLETED: Hook only caught one fish.</b>");
