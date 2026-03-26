@@ -18,27 +18,34 @@ public class TestHorizontalBoundary
         hook.leftBorder = -8f;
         hook.rightBorder = 8f;
 
-        // Use Reflection to set 'isReadyToCast' to false so the script runs
-        FieldInfo field = typeof(FishingHook).GetField("isReadyToCast", BindingFlags.NonPublic | BindingFlags.Instance);
-        field.SetValue(hook, false); 
+        // --- NEW REFLECTION LOGIC ---
+        System.Type hookType = typeof(FishingHook);
+        
+        // Set isReadyToCast to false (Hook is in the water)
+        FieldInfo readyField = hookType.GetField("isReadyToCast", BindingFlags.NonPublic | BindingFlags.Instance);
+        readyField.SetValue(hook, false); 
+
+        // Set isReeling to false (Hook is sinking/moving normally)
+        FieldInfo reelingField = hookType.GetField("isReeling", BindingFlags.NonPublic | BindingFlags.Instance);
+        reelingField.SetValue(hook, false);
 
         Debug.Log("<b>[TEST] Starting Horizontal Boundary Validation</b>");
 
         // 2. Test Right Side
-        // We move it to 15. Your FishingHook script should immediately pull it back to 8.
+        // Force position to 15. The script should clamp it to 8.
         hook.transform.position = new Vector3(15f, 0, 0);
-        yield return new WaitForFixedUpdate(); // Give the script 1 frame to react
+        yield return new WaitForFixedUpdate(); 
         
-        Assert.AreEqual(8f, hook.transform.position.x, "Hook did not snap back to Right Border (8)!");
+        Assert.AreEqual(8f, hook.transform.position.x, "Hook failed to snap to Right Border (8)!");
 
         // 3. Test Left Side
-        // We move it to -15. Your script should pull it back to -8.
+        // Force position to -15. The script should clamp it to -8.
         hook.transform.position = new Vector3(-15f, 0, 0);
         yield return new WaitForFixedUpdate();
         
-        Assert.AreEqual(-8f, hook.transform.position.x, "Hook did not snap back to Left Border (-8)!");
+        Assert.AreEqual(-8f, hook.transform.position.x, "Hook failed to snap to Left Border (-8)!");
 
-        Debug.Log("<b>TEST COMPLETED: Boundaries are solid.</b>");
+        Debug.Log("<b>TEST COMPLETED: Horizontal boundaries are solid.</b>");
 
         // 4. Cleanup
         Object.Destroy(hookObj);
