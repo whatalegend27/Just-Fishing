@@ -21,7 +21,7 @@ namespace Saif.GamePlay
 
         private bool hasCaughtFish = false;
         private bool isReadyToCast = true;
-        private bool isReeling = false;
+        private bool canReel = false;  // only true after Space is released post-cast
         private Transform caughtFishTransform;
 
         void Update()
@@ -33,36 +33,35 @@ namespace Saif.GamePlay
                 line.SetPosition(1, transform.position);
             }
 
-            // 2. Cast OR Reel using Space (if/else if to keep states separate)
+            // 2. Cast
             if (isReadyToCast && Input.GetKeyDown(KeyCode.Space))
             {
-                // CAST: launch the hook into the water
                 isReadyToCast = false;
-                isReeling = false;
+                canReel = false; // reeling locked until Space is released
                 return;
             }
-            else if (!isReadyToCast && !isReeling && Input.GetKeyDown(KeyCode.Space))
-            {
-                // REEL: player pressed Space while hook is in water
-                isReeling = true;
-            }
 
-            // Still waiting to cast — nothing else to do
             if (isReadyToCast) return;
 
-            // 3. Inputs
+            // 3. Unlock reeling only after player fully releases Space after casting
+            if (!canReel && Input.GetKeyUp(KeyCode.Space))
+            {
+                canReel = true;
+            }
+
+            // 4. Inputs
             float h = Input.GetAxis("Horizontal");
             float newX = transform.position.x;
             float newY = transform.position.y;
 
-            // 4. Movement Logic
-            if (isReeling)
+            // 5. Movement Logic
+            if (canReel && Input.GetKey(KeyCode.Space))
             {
+                // HOLD Space to reel up
                 newY += reelSpeed * Time.deltaTime;
 
                 float distanceToSurface = surfaceLevel - newY;
 
-                // If close to the surface, handle the diagonal "Homing"
                 if (distanceToSurface < 3f)
                 {
                     newX = Mathf.MoveTowards(newX, 0, (moveSpeed * 0.5f) * Time.deltaTime);
@@ -73,13 +72,12 @@ namespace Saif.GamePlay
                     newX += h * moveSpeed * Time.deltaTime;
                 }
 
-                // Reset when home
                 if (newY >= surfaceLevel)
                 {
                     newY = surfaceLevel;
                     newX = 0;
                     isReadyToCast = true;
-                    isReeling = false;
+                    canReel = false;
 
                     if (hasCaughtFish)
                     {
@@ -89,7 +87,7 @@ namespace Saif.GamePlay
             }
             else
             {
-                // Hook is sinking — player can move it horizontally
+                // Sinking — player can move horizontally
                 newX += h * moveSpeed * Time.deltaTime;
 
                 if (newY > maxDepth)
@@ -134,7 +132,7 @@ namespace Saif.GamePlay
             hasCaughtFish = false;
             caughtFishTransform = null;
             isReadyToCast = true;
-            isReeling = false;
+            canReel = false;
         }
     }
 }
