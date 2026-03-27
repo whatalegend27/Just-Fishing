@@ -4,11 +4,17 @@ public class SpriteSwitcher : MonoBehaviour
 {
     public GameObject[] Toolboxes;
     public GameObject TbToShow;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public Color hoverColor = Color.gray;
+    private Color originalColor;
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -24,4 +30,7 @@ public class SpriteSwitcher : MonoBehaviour
         }
         TbToShow.SetActive(true);
     }
+
+    void OnMouseEnter() => spriteRenderer.color = hoverColor;
+    void OnMouseExit() => spriteRenderer.color = originalColor;
 }
