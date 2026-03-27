@@ -55,5 +55,8 @@ TagManager:
   - name: Boat
     uniqueID: 2795959219
     locked: 0
+  - name: Toolbox
+    uniqueID: 3305310737
+    locked: 0
   m_RenderingLayers:
   - Default
