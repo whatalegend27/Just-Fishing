@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 1befa37931ad347eab60d28755086ae3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - line: {instanceID: 0}
+  - rodTip: {instanceID: 0}
+  - playerAnimator: {fileID: 621163668176052440, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

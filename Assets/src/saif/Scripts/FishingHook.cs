@@ -19,10 +19,26 @@ namespace Saif.GamePlay
         public LineRenderer line;
         public Transform rodTip;
 
+        private Animator playerAnimator;
         private bool hasCaughtFish = false;
         private bool isReadyToCast = true;
-        private bool canReel = false;  // only true after Space is released post-cast
+        private bool canReel = false;
         private Transform caughtFishTransform;
+
+        void Start()
+        {
+            // Find the player in the scene automatically using the Player tag
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                playerAnimator = player.GetComponent<Animator>();
+            }
+
+            if (playerAnimator == null)
+            {
+                Debug.LogError("FishingHook: Could not find player Animator! Make sure the player is tagged as Player");
+            }
+        }
 
         void Update()
         {
@@ -33,28 +49,39 @@ namespace Saif.GamePlay
                 line.SetPosition(1, transform.position);
             }
 
-            // 2. Cast
+            // 2. Check if fishing animation is active
+            bool isCasting = playerAnimator != null && playerAnimator.GetBool("IsCasting");
+            if (!isCasting)
+            {
+                if (!isReadyToCast)
+                {
+                    ResetHook();
+                }
+                return;
+            }
+
+            // 3. Cast
             if (isReadyToCast && Input.GetKeyDown(KeyCode.Space))
             {
                 isReadyToCast = false;
-                canReel = false; // reeling locked until Space is released
+                canReel = false;
                 return;
             }
 
             if (isReadyToCast) return;
 
-            // 3. Unlock reeling only after player fully releases Space after casting
+            // 4. Unlock reeling only after Space is fully released after casting
             if (!canReel && Input.GetKeyUp(KeyCode.Space))
             {
                 canReel = true;
             }
 
-            // 4. Inputs
+            // 5. Inputs
             float h = Input.GetAxis("Horizontal");
             float newX = transform.position.x;
             float newY = transform.position.y;
 
-            // 5. Movement Logic
+            // 6. Movement Logic
             if (canReel && Input.GetKey(KeyCode.Space))
             {
                 // HOLD Space to reel up
@@ -100,6 +127,22 @@ namespace Saif.GamePlay
             newX = Mathf.Clamp(newX, leftBorder, rightBorder);
             newY = Mathf.Clamp(newY, maxDepth, surfaceLevel);
             transform.position = new Vector3(newX, newY, transform.position.z);
+        }
+
+        void ResetHook()
+        {
+            if (rodTip != null)
+                transform.position = new Vector3(0, surfaceLevel, transform.position.z);
+
+            hasCaughtFish = false;
+            isReadyToCast = true;
+            canReel = false;
+
+            if (caughtFishTransform != null)
+            {
+                caughtFishTransform.SetParent(null);
+                caughtFishTransform = null;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
