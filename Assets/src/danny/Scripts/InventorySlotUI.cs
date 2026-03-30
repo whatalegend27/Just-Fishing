@@ -17,7 +17,6 @@ public class InventorySlotUI : MonoBehaviour
         } else
         {
             quantityText.enabled = true;
-            image.enabled = true;
             quantityText.text = slots.quantity.ToString();
             image.sprite = slots.item.icon;
         }
