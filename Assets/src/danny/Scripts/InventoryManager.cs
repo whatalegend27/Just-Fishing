@@ -13,6 +13,26 @@ public class InventoryManager : MonoBehaviour
 
     public static void ResetInstance() => Instance = null;
 
+    public void Awake()
+    {
+        //Creation of singleton so only one inventory exists
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        for (int i = 0; i < INVENTORY_SIZE; i++)
+        {
+            slots[i] = new InventorySlotData();
+        }
+    }
+
+    void Update()
+    {
+        toggleMenu();
+    }
+
     public bool AddItem(ItemScript item)
     {
         if (item == null)
@@ -30,24 +50,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return false;
-    }
-    public void Awake()
-    {
-        //Creation of singleton so only one inventory exists
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-        for (int i = 0; i < INVENTORY_SIZE; i++)
-        {
-            slots[i] = new InventorySlotData();
-        }
-    }
-    void Update()
-    {
-        toggleMenu();
     }
 
     void toggleMenu()
