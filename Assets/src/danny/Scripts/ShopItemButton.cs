@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ShopItemButton : MonoBehaviour
 {
     public ItemScript itemData;
-    public Description displayUI;
+    public DescriptionUI displayUI;
     public Image iconImage;
 
     void Start()
@@ -14,7 +14,9 @@ public class ShopItemButton : MonoBehaviour
             iconImage.sprite = itemData.icon;
         }
 
-        GetComponent<Button>().onClick.AddListener(OnClick);
+        Button btn = GetComponent<Button>();
+        if (btn != null)
+            btn.onClick.AddListener(OnClick);
     }
 
     void OnClick()

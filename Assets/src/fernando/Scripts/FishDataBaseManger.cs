@@ -20,15 +20,19 @@ public class FishDatabaseManager : MonoBehaviour
         }
     }
 
-    public void RegisterFish(string fishName)
+    public bool RegisterFish(string fishName)
     {
         for (int i = 0; i < fishDatabase.Count; i++)
         {
             if (fishDatabase[i].fishName == fishName)
             {
+                // Mark the matching fish as discovered and report success.
                 fishDatabase[i].fishKnown = true;
-                return;
+                return true;
             }
         }
+
+        // The requested fish name was not found in the database.
+        return false;
     }
 }

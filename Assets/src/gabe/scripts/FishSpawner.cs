@@ -4,8 +4,7 @@ using UnityEngine;
 public class FishSpawner : MonoBehaviour
 {
     [Header("Fish Setup")]
-    public GameObject fishPrefab;
-    public List<Sprite> fishSprites;
+    public List<GameObject> fishPrefabs;
     public int numberToSpawn = 10;
 
     [Header("Spawn Bounds")]
@@ -21,6 +20,12 @@ public class FishSpawner : MonoBehaviour
 
     void SpawnFish()
     {
+        if (fishPrefabs == null || fishPrefabs.Count == 0)
+        {
+            Debug.LogWarning("No fish prefabs assigned in FishSpawner.");
+            return;
+        }
+
         for (int i = 0; i < numberToSpawn; i++)
         {
             Vector2 spawnPos = new Vector2(
@@ -28,17 +33,13 @@ public class FishSpawner : MonoBehaviour
                 Random.Range(minY, maxY)
             );
 
-            GameObject fish = Instantiate(fishPrefab, spawnPos, Quaternion.identity);
+            // Pick prefab
+            GameObject selectedPrefab = fishPrefabs[Random.Range(0, fishPrefabs.Count)];
 
-            if (fishSprites.Count > 0)
-            {
-                SpriteRenderer sr = fish.GetComponent<SpriteRenderer>();
-                if (sr != null)
-                {
-                    sr.sprite = fishSprites[Random.Range(0, fishSprites.Count)];
-                }
-            }
+            // Spawn prefab
+            GameObject fish = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
 
+            // Set movement bounds
             FishMovement movement = fish.GetComponent<FishMovement>();
             if (movement != null)
             {
@@ -50,8 +51,10 @@ public class FishSpawner : MonoBehaviour
         }
     }
 
+
     void OnDrawGizmosSelected()
     {
+        //Show where fish can spawn when in editor, no affect on game
         Gizmos.color = Color.cyan;
         Vector3 center = new Vector3((minX + maxX) / 2f, (minY + maxY) / 2f, 0f);
         Vector3 size = new Vector3(maxX - minX, maxY - minY, 0f);
