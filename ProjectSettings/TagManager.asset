@@ -52,8 +52,14 @@ TagManager:
   - name: Player
     uniqueID: 3720869473
     locked: 0
+  - name: Fish
+    uniqueID: 3392538623
+    locked: 0
   - name: Boat
     uniqueID: 2795959219
+    locked: 0
+  - name: Toolbox
+    uniqueID: 3305310737
     locked: 0
   m_RenderingLayers:
   - Default

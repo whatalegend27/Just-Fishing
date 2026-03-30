@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   sceneToLoad: MVP-DemoAddition
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  hoverColor: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 0}
 --- !u!1 &72368539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7219979601095303355, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7219979601095303355, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_SortingLayerID
@@ -1173,6 +1173,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4818930771875093913, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1645616273}
     - targetCorrespondingSourceObject: {fileID: 3725395412770452054, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 49696234}
@@ -2060,6 +2063,7 @@ MonoBehaviour:
   - {fileID: 1099310486}
   - {fileID: 1918441431}
   TbToShow: {fileID: 1669367678}
+  TBActive: 0
 --- !u!1 &1363851138
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2414,25 @@ RectTransform:
   m_AnchoredPosition: {x: -87, y: -60}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1645616269 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4818930771875093913, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+  m_PrefabInstance: {fileID: 446890308}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1645616273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1645616269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cab0a6a2811a84c97cd462da8c4fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Isabella_GameScripts::SceneChanger
+  sceneToLoad: Home
+  hoverColor: {r: 0.06132078, g: 0.052354064, b: 0.052354064, a: 0}
 --- !u!1 &1663259133
 GameObject:
   m_ObjectHideFlags: 0
