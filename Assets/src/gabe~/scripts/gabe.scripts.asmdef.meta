@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/src/gabe~/scripts/gabe.scripts.asmdef.meta
 guid: 1c28753ffa8494d62918b9fc50f07ab7
+=======
+guid: a1f3122ecaad78b43a7d15d6389ac74b
+>>>>>>> 5dbcb46 (Add files via upload):Assets/src/gabe/scripts/gabe.scripts.asmdef.meta
 AssemblyDefinitionImporter:
   externalObjects: {}
   userData: 
