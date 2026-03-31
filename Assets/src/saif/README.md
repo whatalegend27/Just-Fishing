@@ -26,3 +26,15 @@ Action Steps 
 
 	5- Synchronize the movement logic so it works across different platforms like VR and Mobile.
 
+Hook Controls:
+
+	Space (Tap): Cast the hook from the rod tip into the water.
+
+	Space (Hold): Reel the hook back up toward the surface. 
+
+	A/D or Left/Right Arrows: Move the hook horizontally while underwater.
+
+
+
+	
+
