@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/src/fernando/Scenes/Sun.unity.meta
 guid: 0929cce364c734f41ac70851a1d8ba12
 DefaultImporter:
+========
+guid: a1f3122ecaad78b43a7d15d6389ac74b
+AssemblyDefinitionImporter:
+>>>>>>>> main:Assets/src/gabe/scripts/gabe.scripts.asmdef.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

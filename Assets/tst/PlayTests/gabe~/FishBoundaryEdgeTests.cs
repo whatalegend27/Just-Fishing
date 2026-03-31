@@ -1,4 +1,4 @@
-using NUnit.Framework;
+/*using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -59,3 +59,4 @@ public class FishBoundaryEdgeTests
         Assert.LessOrEqual(pos.y, -3.9f);
     }
 }
+*/

@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
 
-[TestFixture]
-[Category("Boundary")]
 public class riskTest
 {
     [Test]
