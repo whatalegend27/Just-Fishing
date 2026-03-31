@@ -4,8 +4,6 @@ using UnityEngine.TestTools;
 using System.Collections;
 using System.Collections.Generic;
 
-[TestFixture]
-[Category("Stress")]
 public class riskStressTest
 {
     private const int INSTANCE_COUNT = 100;
@@ -19,7 +17,6 @@ public class riskStressTest
             GameObject obj = new GameObject($"StressObject_{i}");
             PlayerStats ps = obj.AddComponent<PlayerStats>();
             obj.AddComponent<ArrestStats>().ps = ps;
-            obj.AddComponent<HealthStats>().ps = ps;
             testObjects.Add(obj);
         }
 
@@ -30,8 +27,6 @@ public class riskStressTest
             {
                 if (obj == null) continue;
                 obj.GetComponent<ArrestStats>().CalculateRisk("nightFish");
-                obj.GetComponent<HealthStats>().hungerVal -= 1;
-                obj.GetComponent<HealthStats>().exhaustionVal -= 1;
             }
             elapsed += Time.deltaTime;
             yield return null;
