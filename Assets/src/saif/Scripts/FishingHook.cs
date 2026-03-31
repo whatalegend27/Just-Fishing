@@ -152,11 +152,11 @@ namespace Saif.GamePlay
                 hasCaughtFish = true;
                 caughtFishTransform = collision.transform;
 
-                FishMovement movement = collision.GetComponent<FishMovement>();
+                /*FishMovement movement = collision.GetComponent<FishMovement>();
                 if (movement != null)
                 {
                     movement.enabled = false;
-                }
+                }*/
 
                 caughtFishTransform.SetParent(this.transform);
                 caughtFishTransform.localPosition = Vector2.zero;
