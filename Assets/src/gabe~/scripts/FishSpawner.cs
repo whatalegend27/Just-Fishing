@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:Assets/src/gabe~/scripts/FishSpawner.cs
 <<<<<<< HEAD:Assets/src/gabe~/scripts/FishSpawner.cs
+=======
+>>>>>>> 1baa399 (Removing Gabe's broken code)
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,6 +62,7 @@ public class FishSpawner : MonoBehaviour
         Vector3 size = new Vector3(maxX - minX, maxY - minY, 0f);
         Gizmos.DrawWireCube(center, size);
     }
+<<<<<<< HEAD
 =======
 using System.Collections.Generic;
 using UnityEngine;
@@ -184,4 +188,6 @@ public class FishSpawner : MonoBehaviour
         Gizmos.DrawWireCube(center, size);
     }
 >>>>>>> f0b5967 (Add files via upload):Assets/src/gabe/scripts/FishSpawner.cs
+=======
+>>>>>>> 1baa399 (Removing Gabe's broken code)
 }
