@@ -38,6 +38,36 @@ public class BlackMarketRiskDecorator : StatCalculatorDecorator
     public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 5;
 }
 
+public class EatHungerDecorator : StatCalculatorDecorator
+{
+    public EatHungerDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 20;
+}
+
+public class TimeHungerDecorator : StatCalculatorDecorator
+{
+    public TimeHungerDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) - 5;
+}
+
+public class RestExhaustionDecorator : StatCalculatorDecorator
+{
+    public RestExhaustionDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 20;
+}
+
+public class FishExhaustionDecorator : StatCalculatorDecorator
+{
+    public FishExhaustionDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) - 5;
+}
+
+public class StealExhaustionDecorator : StatCalculatorDecorator
+{
+    public StealExhaustionDecorator(IStatCalculator inner) : base(inner) {}
+    public override int Calculate(int currentValue) => inner.Calculate(currentValue) - 10;
+}
+
 // --- MonoBehaviours ---
 
 public class PlayerStats : MonoBehaviour
@@ -110,8 +140,28 @@ public class HealthStats: MonoBehaviour
         }
     }
 
-    public void CalculateHunger()
+    // CalculateHunger(action), valid values: "eat", "time"
+    public void CalculateHunger(string action)
     {
-        
+        IStatCalculator calculator = new BaseStatCalculator();
+        switch (action)
+        {
+            case "eat":  calculator = new EatHungerDecorator(calculator); break;
+            case "time": calculator = new TimeHungerDecorator(calculator); break;
+        }
+        hungerVal = Mathf.Clamp(calculator.Calculate(hungerVal), 0, 100);
+    }
+
+    // CalculateExhaustion(action), valid values: "rest", "fish", "steal"
+    public void CalculateExhaustion(string action)
+    {
+        IStatCalculator calculator = new BaseStatCalculator();
+        switch (action)
+        {
+            case "rest":  calculator = new RestExhaustionDecorator(calculator); break;
+            case "fish":  calculator = new FishExhaustionDecorator(calculator); break;
+            case "steal": calculator = new StealExhaustionDecorator(calculator); break;
+        }
+        exhaustionVal = Mathf.Clamp(calculator.Calculate(exhaustionVal), 0, 100);
     }
 }
