@@ -140,6 +140,10 @@ namespace Saif.GamePlay
 
             if (caughtFishTransform != null)
             {
+                // Re-enable their movement before letting go
+                MonoBehaviour movement = caughtFishTransform.GetComponent("FishMovement") as MonoBehaviour;
+                if (movement != null) movement.enabled = true;
+
                 caughtFishTransform.SetParent(null);
                 caughtFishTransform = null;
             }
@@ -152,14 +156,16 @@ namespace Saif.GamePlay
                 hasCaughtFish = true;
                 caughtFishTransform = collision.transform;
 
-                /*FishMovement movement = collision.GetComponent<FishMovement>();
+                // FIX: Use string-based lookup to avoid Namespace/Assembly errors
+                // This finds the script even if it's in a different folder/namespace
+                Component movement = collision.GetComponent("FishMovement");
                 if (movement != null)
                 {
-                    movement.enabled = false;
-                }*/
+                    (movement as MonoBehaviour).enabled = false;
+                }
 
                 caughtFishTransform.SetParent(this.transform);
-                caughtFishTransform.localPosition = Vector2.zero;
+                caughtFishTransform.localPosition = Vector3.zero;
 
                 Debug.Log("Got one! Reeling in...");
             }
