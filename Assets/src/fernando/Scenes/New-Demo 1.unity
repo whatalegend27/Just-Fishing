@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cab0a6a2811a84c97cd462da8c4fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
-  sceneToLoad: MVP-DemoAddition
+  sceneToLoad: New-Demo 1
   hoverColor: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 0}
 --- !u!114 &1690344667
 MonoBehaviour:
