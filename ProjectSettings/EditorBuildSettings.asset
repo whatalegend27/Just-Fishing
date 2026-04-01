@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/src/fernando/Scenes/Home.unity
     guid: e8ec73759850f4693b47fcce513a7500
   - enabled: 1
-    path: Assets/src/isabella/Scenes/Home.unity
-    guid: 620dd00e48324d344a87b30813fb14c9
+    path: Assets/src/saif/Scenes/Fishing_Mechanism.unity
+    guid: 7d333ab5231e14c5aa2ce73d9d0515b0
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
