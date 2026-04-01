@@ -4,6 +4,9 @@ namespace Saif.GamePlay
 {
     public class FishingHook : MonoBehaviour
     {
+        [Header("TESTING - Check this to test without a player")]
+        public bool debugMode = false; 
+
         [Header("Speeds")]
         public float sinkSpeed = 2f;
         public float moveSpeed = 5f;
@@ -27,40 +30,51 @@ namespace Saif.GamePlay
 
         void Start()
         {
-            // Find the player in the scene automatically using the Player tag
-            GameObject player = GameObject.FindWithTag("Player");
-            if (player != null)
-            {
-                playerAnimator = player.GetComponent<Animator>();
-            }
+            if (!debugMode) FindPlayerReference();
+        }
 
+        private void FindPlayerReference()
+        {
+            GameObject playerObj = GameObject.Find("Player");
+            if (playerObj != null) playerAnimator = playerObj.GetComponent<Animator>();
+            
             if (playerAnimator == null)
             {
-                Debug.LogError("FishingHook: Could not find player Animator! Make sure the player is tagged as Player");
+                // Fallback scan for any animator with the right parameter
+                Animator[] anims = Object.FindObjectsByType<Animator>(FindObjectsSortMode.None);
+                foreach (Animator a in anims)
+                {
+                    foreach (var param in a.parameters)
+                    {
+                        if (param.name == "IsCasting") { playerAnimator = a; return; }
+                    }
+                }
             }
         }
 
         void Update()
         {
-            // 1. Draw the Line
+            // 1. Draw Line (Only if we have a rodTip assigned)
             if (line != null && rodTip != null)
             {
                 line.SetPosition(0, rodTip.position);
                 line.SetPosition(1, transform.position);
             }
 
-            // 2. Check if fishing animation is active
-            bool isCasting = playerAnimator != null && playerAnimator.GetBool("IsCasting");
+            // 2. The Toggle Logic
+            bool isCasting = debugMode; // If debugging, we are always "casting"
+            if (!debugMode && playerAnimator != null)
+            {
+                isCasting = playerAnimator.GetBool("IsCasting");
+            }
+
             if (!isCasting)
             {
-                if (!isReadyToCast)
-                {
-                    ResetHook();
-                }
+                if (!isReadyToCast) ResetHook();
                 return;
             }
 
-            // 3. Cast
+            // 3. Cast (Press Space to start sinking)
             if (isReadyToCast && Input.GetKeyDown(KeyCode.Space))
             {
                 isReadyToCast = false;
@@ -70,60 +84,35 @@ namespace Saif.GamePlay
 
             if (isReadyToCast) return;
 
-            // 4. Unlock reeling only after Space is fully released after casting
-            if (!canReel && Input.GetKeyUp(KeyCode.Space))
-            {
-                canReel = true;
-            }
+            // 4. Movement & Physics
+            if (!canReel && Input.GetKeyUp(KeyCode.Space)) canReel = true;
 
-            // 5. Inputs
             float h = Input.GetAxis("Horizontal");
             float newX = transform.position.x;
             float newY = transform.position.y;
 
-            // 6. Movement Logic
             if (canReel && Input.GetKey(KeyCode.Space))
             {
-                // HOLD Space to reel up
                 newY += reelSpeed * Time.deltaTime;
-
-                float distanceToSurface = surfaceLevel - newY;
-
-                if (distanceToSurface < 3f)
+                if (surfaceLevel - newY < 3f)
                 {
                     newX = Mathf.MoveTowards(newX, 0, (moveSpeed * 0.5f) * Time.deltaTime);
                     newX += h * (moveSpeed * 0.5f) * Time.deltaTime;
                 }
-                else
-                {
-                    newX += h * moveSpeed * Time.deltaTime;
-                }
+                else newX += h * moveSpeed * Time.deltaTime;
 
                 if (newY >= surfaceLevel)
                 {
-                    newY = surfaceLevel;
-                    newX = 0;
-                    isReadyToCast = true;
-                    canReel = false;
-
-                    if (hasCaughtFish)
-                    {
-                        CollectFish();
-                    }
+                    if (hasCaughtFish) CollectFish();
+                    ResetHook();
                 }
             }
             else
             {
-                // Sinking — player can move horizontally
                 newX += h * moveSpeed * Time.deltaTime;
-
-                if (newY > maxDepth)
-                {
-                    newY -= sinkSpeed * Time.deltaTime;
-                }
+                if (newY > maxDepth) newY -= sinkSpeed * Time.deltaTime;
             }
 
-            // Final Position Clamp
             newX = Mathf.Clamp(newX, leftBorder, rightBorder);
             newY = Mathf.Clamp(newY, maxDepth, surfaceLevel);
             transform.position = new Vector3(newX, newY, transform.position.z);
@@ -131,8 +120,9 @@ namespace Saif.GamePlay
 
         void ResetHook()
         {
-            if (rodTip != null)
-                transform.position = new Vector3(0, surfaceLevel, transform.position.z);
+            // In debug mode, don't fly back to a missing rod tip
+            if (rodTip != null) transform.position = rodTip.position;
+            else if (debugMode) transform.position = new Vector3(0, surfaceLevel, 0);
 
             hasCaughtFish = false;
             isReadyToCast = true;
@@ -140,10 +130,8 @@ namespace Saif.GamePlay
 
             if (caughtFishTransform != null)
             {
-                // Re-enable their movement before letting go
-                MonoBehaviour movement = caughtFishTransform.GetComponent("FishMovement") as MonoBehaviour;
-                if (movement != null) movement.enabled = true;
-
+                Component movement = caughtFishTransform.GetComponent("FishMovement");
+                if (movement != null) (movement as MonoBehaviour).enabled = true;
                 caughtFishTransform.SetParent(null);
                 caughtFishTransform = null;
             }
@@ -155,33 +143,18 @@ namespace Saif.GamePlay
             {
                 hasCaughtFish = true;
                 caughtFishTransform = collision.transform;
-
-                // FIX: Use string-based lookup to avoid Namespace/Assembly errors
-                // This finds the script even if it's in a different folder/namespace
                 Component movement = collision.GetComponent("FishMovement");
-                if (movement != null)
-                {
-                    (movement as MonoBehaviour).enabled = false;
-                }
-
+                if (movement != null) (movement as MonoBehaviour).enabled = false;
                 caughtFishTransform.SetParent(this.transform);
                 caughtFishTransform.localPosition = Vector3.zero;
-
-                Debug.Log("Got one! Reeling in...");
             }
         }
 
         void CollectFish()
         {
-            if (caughtFishTransform != null)
-            {
-                Destroy(caughtFishTransform.gameObject);
-            }
-
+            if (caughtFishTransform != null) Destroy(caughtFishTransform.gameObject);
             hasCaughtFish = false;
             caughtFishTransform = null;
-            isReadyToCast = true;
-            canReel = false;
         }
     }
 }
