@@ -6,6 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+  - enabled: 1
     path: Assets/src/isabella/Scenes/MainMenu.unity
     guid: 997424a0675f6e540a71b2758ddb946c
   - enabled: 1
