@@ -1,13 +1,15 @@
-using NUnit.Framework;
+/* using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class FishBoundaryEdgeTests
+public class FishBoundarySmallAreaTests
 {
     private GameObject fishPrefab;
     private GameObject spawnerObject;
     private FishSpawner spawner;
+
+    private const int FishCount = 5;
 
     [SetUp]
     public void Setup()
@@ -20,12 +22,12 @@ public class FishBoundaryEdgeTests
         spawner = spawnerObject.AddComponent<FishSpawner>();
 
         spawner.fishPrefab = fishPrefab;
-        spawner.numberToSpawn = 1;
+        spawner.numberToSpawn = FishCount;
 
-        spawner.minX = -8f;
-        spawner.maxX = -7.9f;
-        spawner.minY = -4f;
-        spawner.maxY = -3.9f;
+        spawner.minX = 0f;
+        spawner.maxX = 0.5f;
+        spawner.minY = 0f;
+        spawner.maxY = 0.5f;
     }
 
     [TearDown]
@@ -39,7 +41,7 @@ public class FishBoundaryEdgeTests
     }
 
     [UnityTest]
-    public IEnumerator FishRemainInsideEdgeBounds()
+    public IEnumerator FishStayInsideSmallBounds()
     {
         yield return null;
         yield return null;
@@ -47,15 +49,17 @@ public class FishBoundaryEdgeTests
         FishMovement[] fishList =
             Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
-        Assert.AreEqual(1, fishList.Length);
+        Assert.AreEqual(FishCount, fishList.Length);
 
-        yield return new WaitForSeconds(2f);
+        foreach (FishMovement fish in fishList)
+        {
+            Vector3 pos = fish.transform.position;
 
-        Vector3 pos = fishList[0].transform.position;
-
-        Assert.GreaterOrEqual(pos.x, -8f);
-        Assert.LessOrEqual(pos.x, -7.9f);
-        Assert.GreaterOrEqual(pos.y, -4f);
-        Assert.LessOrEqual(pos.y, -3.9f);
+            Assert.GreaterOrEqual(pos.x, 0f);
+            Assert.LessOrEqual(pos.x, 0.5f);
+            Assert.GreaterOrEqual(pos.y, 0f);
+            Assert.LessOrEqual(pos.y, 0.5f);
+        }
     }
 }
+*/

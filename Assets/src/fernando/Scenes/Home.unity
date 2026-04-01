@@ -626,10 +626,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7171521427038834093, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
-      propertyPath: sceneToLoad
-      value: New-Demo 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7203526144071014490, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_Layer
       value: 0
