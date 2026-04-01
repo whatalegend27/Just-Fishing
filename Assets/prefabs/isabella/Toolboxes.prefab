@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8117482082383463679}
   - component: {fileID: 5148453701270725483}
   - component: {fileID: 6778471345248642951}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InventoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,6 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -170,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2320844813016912504}
   - component: {fileID: 3606367561257859935}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TB_Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,6 +247,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3752912830150453779, guid: cec5d7dd9b11bc64ca828964c1fe2786, type: 3}
@@ -267,7 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8005600528638094927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Toolboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,7 +309,7 @@ GameObject:
   - component: {fileID: 1546148425687278411}
   - component: {fileID: 4634410398107996545}
   - component: {fileID: 5763685522827271997}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,6 +377,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -467,7 +470,7 @@ GameObject:
   - component: {fileID: 8945906001094990272}
   - component: {fileID: 2913468358014429085}
   - component: {fileID: 1559857202154775363}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FishCatalogIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,6 +538,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -620,7 +624,7 @@ GameObject:
   - component: {fileID: 773543673917395218}
   - component: {fileID: 1757992115949230284}
   - component: {fileID: 1057857060169221090}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SettingsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -688,6 +692,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -780,7 +785,7 @@ GameObject:
   - component: {fileID: 254888000891031378}
   - component: {fileID: 9089626902480617485}
   - component: {fileID: 625182731167588921}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -848,6 +853,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -940,7 +946,7 @@ GameObject:
   - component: {fileID: 5423383898653391379}
   - component: {fileID: 648684599613992952}
   - component: {fileID: 972850744896925528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InventoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,6 +1014,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -1098,7 +1105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6992950309042565658}
   - component: {fileID: 2384734894309040220}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HungerBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,6 +1174,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -1189,7 +1197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4173701272394913634}
   - component: {fileID: 7548283357183231644}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1258,6 +1266,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2463405218643842583, guid: 5e2762e2f930bf24d9f53f7c9f34eda1, type: 3}
@@ -1282,7 +1291,7 @@ GameObject:
   - component: {fileID: 2670127467256508343}
   - component: {fileID: 1467424200166174120}
   - component: {fileID: 6736125157791101419}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1350,6 +1359,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -1442,7 +1452,7 @@ GameObject:
   - component: {fileID: 2534454639952992390}
   - component: {fileID: 7260092482930221100}
   - component: {fileID: 823073192831378550}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1510,6 +1520,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -1600,7 +1611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8560868394068219562}
   - component: {fileID: 6165978669511318934}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1669,6 +1680,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -1693,7 +1705,7 @@ GameObject:
   - component: {fileID: 307966714353512281}
   - component: {fileID: 5714260900222884116}
   - component: {fileID: 2094737239162408722}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FishCatalogIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1761,6 +1773,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -1846,7 +1859,7 @@ GameObject:
   - component: {fileID: 4082297728644111540}
   - component: {fileID: 8239786981742574516}
   - component: {fileID: 459412667232618471}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UserIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1914,6 +1927,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -2006,7 +2020,7 @@ GameObject:
   - component: {fileID: 8979669186278797694}
   - component: {fileID: 70942592638556834}
   - component: {fileID: 915859421685102947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InventoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2074,6 +2088,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -2164,7 +2179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1325751116387910344}
   - component: {fileID: 572794344962849106}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: TB_UserStats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2250,6 +2265,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 6efcad44313b58a42b386ba2994f51bc, type: 3}
@@ -2274,7 +2290,7 @@ GameObject:
   - component: {fileID: 4022407804038704532}
   - component: {fileID: 8673286281901929256}
   - component: {fileID: 4092295390692645561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InventoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2342,6 +2358,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -2434,7 +2451,7 @@ GameObject:
   - component: {fileID: 6505795850454853212}
   - component: {fileID: 2116769105691852282}
   - component: {fileID: 5459712719133402216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2502,6 +2519,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -2592,7 +2610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8781021668582860460}
   - component: {fileID: 3719049160275808601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TB_Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2672,6 +2690,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3752912830150453779, guid: cec5d7dd9b11bc64ca828964c1fe2786, type: 3}
@@ -2694,7 +2713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2218175937292442809}
   - component: {fileID: 7313493991984733300}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FLBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2763,6 +2782,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -2787,7 +2807,7 @@ GameObject:
   - component: {fileID: 1957920714745198746}
   - component: {fileID: 3065674215881425261}
   - component: {fileID: 3329371177413615814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BT_Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2855,6 +2875,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -2940,7 +2961,7 @@ GameObject:
   - component: {fileID: 2161622367070061081}
   - component: {fileID: 2002620312161898230}
   - component: {fileID: 2809016042291248953}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UserIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3008,6 +3029,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -3098,7 +3120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9120463001733235758}
   - component: {fileID: 1775357979829719213}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IdleNikoli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3167,6 +3189,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5106187503225981072, guid: 9741b85924a2b5e44bd5a08ed1a5b9b3, type: 3}
@@ -3189,7 +3212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5034647844112767834}
   - component: {fileID: 691627753859504247}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FLBar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3258,6 +3281,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -3282,7 +3306,7 @@ GameObject:
   - component: {fileID: 6644891235755750856}
   - component: {fileID: 8082283397214173586}
   - component: {fileID: 8576660529669090770}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpgraderIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3350,6 +3374,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -3440,7 +3465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8904286596119597834}
   - component: {fileID: 1615220876140007271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FLBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3509,6 +3534,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -3533,7 +3559,7 @@ GameObject:
   - component: {fileID: 7291274893574376580}
   - component: {fileID: 7256923159925919947}
   - component: {fileID: 6808060827852996007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3601,6 +3627,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -3693,7 +3720,7 @@ GameObject:
   - component: {fileID: 3916068278962883569}
   - component: {fileID: 4796576988943715118}
   - component: {fileID: 6394266415444720136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpgraderIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3761,6 +3788,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -3851,7 +3879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1340952354465785238}
   - component: {fileID: 5127953825846095553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TB_Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3927,6 +3955,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3752912830150453779, guid: cec5d7dd9b11bc64ca828964c1fe2786, type: 3}
@@ -3951,7 +3980,7 @@ GameObject:
   - component: {fileID: 2275705250116707256}
   - component: {fileID: 4294912789204493074}
   - component: {fileID: 7171521427038834093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BT_Dock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4019,6 +4048,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -4102,7 +4132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671636370849091920}
   - component: {fileID: 5136862070379163653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RiskBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4171,6 +4201,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -4195,7 +4226,7 @@ GameObject:
   - component: {fileID: 4336624595772084572}
   - component: {fileID: 4670802558564483609}
   - component: {fileID: 7949551318710729377}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FishCatalogIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4263,6 +4294,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -4346,7 +4378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1031629799616961909}
   - component: {fileID: 6399399294052285392}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FLBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4415,6 +4447,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -4439,7 +4472,7 @@ GameObject:
   - component: {fileID: 2792234877261768339}
   - component: {fileID: 4744601235628850358}
   - component: {fileID: 3781091493536258764}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SettingsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4507,6 +4540,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -4597,7 +4631,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3374659307796808955}
   - component: {fileID: 272047118886141300}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TB_Upgrader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4673,6 +4707,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3752912830150453779, guid: cec5d7dd9b11bc64ca828964c1fe2786, type: 3}
@@ -4697,7 +4732,7 @@ GameObject:
   - component: {fileID: 7219979601095303355}
   - component: {fileID: 8408836201877364020}
   - component: {fileID: 8492526555155772072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BT_Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4765,6 +4800,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -4850,7 +4886,7 @@ GameObject:
   - component: {fileID: 6803691551603981421}
   - component: {fileID: 3318002225814400958}
   - component: {fileID: 7205014137828347689}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpgraderIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4918,6 +4954,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -5008,7 +5045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3957146229234851663}
   - component: {fileID: 5666207921442942099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FLBar (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5077,6 +5114,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -5101,7 +5139,7 @@ GameObject:
   - component: {fileID: 4638217041951950256}
   - component: {fileID: 7191550084193153205}
   - component: {fileID: 5377833035777270342}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UserIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5169,6 +5207,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -5261,7 +5300,7 @@ GameObject:
   - component: {fileID: 5585628700095742598}
   - component: {fileID: 5113820035051204944}
   - component: {fileID: 6801570844514514705}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FishCatalogIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5329,6 +5368,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -5414,7 +5454,7 @@ GameObject:
   - component: {fileID: 3806515494191361595}
   - component: {fileID: 7698500035451989751}
   - component: {fileID: 4837931154031103145}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpgraderIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5482,6 +5522,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -5574,7 +5615,7 @@ GameObject:
   - component: {fileID: 7952666478884415641}
   - component: {fileID: 691489145605925826}
   - component: {fileID: 6619932245595638159}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InventoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5642,6 +5683,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -5734,7 +5776,7 @@ GameObject:
   - component: {fileID: 3504147760874971159}
   - component: {fileID: 5625214935897473966}
   - component: {fileID: 1054635315805091488}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5802,6 +5844,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -5892,7 +5935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7920679463691866695}
   - component: {fileID: 2592189614698181215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FLBar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5961,6 +6004,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8957324059118975939, guid: 5e88ae931fb115347ac5ccaa87055eb0, type: 3}
@@ -5983,7 +6027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5812482473400843982}
   - component: {fileID: 8103543275126886345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TB_MoneyAlloc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6059,6 +6103,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
   m_SortingLayer: 6
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3752912830150453779, guid: cec5d7dd9b11bc64ca828964c1fe2786, type: 3}
@@ -6083,7 +6128,7 @@ GameObject:
   - component: {fileID: 5767143614992480042}
   - component: {fileID: 2047267118606304057}
   - component: {fileID: 7843223635225210945}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6151,6 +6196,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -6243,7 +6289,7 @@ GameObject:
   - component: {fileID: 2665738233966784064}
   - component: {fileID: 4861927802695309778}
   - component: {fileID: 4873824083048025537}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FishCatalogIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6311,6 +6357,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -6396,7 +6443,7 @@ GameObject:
   - component: {fileID: 6248117529101994197}
   - component: {fileID: 5679450877376140143}
   - component: {fileID: 1813271705584793682}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UserIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6464,6 +6511,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -6556,7 +6604,7 @@ GameObject:
   - component: {fileID: 2239579081059527006}
   - component: {fileID: 6722966795933467497}
   - component: {fileID: 7483033460173618933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SettingsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6624,6 +6672,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -6716,7 +6765,7 @@ GameObject:
   - component: {fileID: 5831680799367340109}
   - component: {fileID: 1313326470984219603}
   - component: {fileID: 3727585381519726293}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpgraderIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6784,6 +6833,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -6876,7 +6926,7 @@ GameObject:
   - component: {fileID: 2029208509881060461}
   - component: {fileID: 9083722316943716953}
   - component: {fileID: 493276539621529268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InventoryIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6944,6 +6994,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -7036,7 +7087,7 @@ GameObject:
   - component: {fileID: 7097475141920558348}
   - component: {fileID: 6497583170164527726}
   - component: {fileID: 3184502219708487682}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SettingsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7104,6 +7155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -7196,7 +7248,7 @@ GameObject:
   - component: {fileID: 7024267322815957179}
   - component: {fileID: 7977205336303694873}
   - component: {fileID: 4240101506576272299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SettingsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7264,6 +7316,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -7356,7 +7409,7 @@ GameObject:
   - component: {fileID: 2268914294410625914}
   - component: {fileID: 2953821523504610928}
   - component: {fileID: 4311871223848449782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FishCatalogIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7424,6 +7477,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -7509,7 +7563,7 @@ GameObject:
   - component: {fileID: 3938459782587389451}
   - component: {fileID: 202612521024230671}
   - component: {fileID: 6426393535305228095}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SettingsIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7577,6 +7631,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -7669,7 +7724,7 @@ GameObject:
   - component: {fileID: 8502148723653670234}
   - component: {fileID: 6793681923016379121}
   - component: {fileID: 8259100897125946285}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7737,6 +7792,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -7829,7 +7885,7 @@ GameObject:
   - component: {fileID: 6194934610121113436}
   - component: {fileID: 7618248289753617133}
   - component: {fileID: 4771534677741228743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpgraderIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7897,6 +7953,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -7989,7 +8046,7 @@ GameObject:
   - component: {fileID: 2274610259734481006}
   - component: {fileID: 926302019968799227}
   - component: {fileID: 1278606707545641447}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8057,6 +8114,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -8149,7 +8207,7 @@ GameObject:
   - component: {fileID: 4043983989569485894}
   - component: {fileID: 4695554758138855335}
   - component: {fileID: 7380558020467525421}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UserIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8217,6 +8275,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -8309,7 +8368,7 @@ GameObject:
   - component: {fileID: 6860514446579071346}
   - component: {fileID: 6687013575946594692}
   - component: {fileID: 8525157410666977965}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8377,6 +8436,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -8469,7 +8529,7 @@ GameObject:
   - component: {fileID: 2711423193192078657}
   - component: {fileID: 64035039220208559}
   - component: {fileID: 5164545501549771108}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UserIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8537,6 +8597,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -8629,7 +8690,7 @@ GameObject:
   - component: {fileID: 4997072287548387455}
   - component: {fileID: 944208454897297929}
   - component: {fileID: 4652761904285415657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoneyIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8697,6 +8758,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -989656559
+  m_SortingLayer: 6
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
