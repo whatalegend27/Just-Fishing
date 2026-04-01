@@ -19,22 +19,39 @@ namespace Saif.GamePlay
         public float rightBorder = 8f;
 
         [Header("Rod Tip Offset - Tweak these to align with rod tip")]
-        public Vector3 rodTipOffset = new Vector3(0.15f, 0.35f, 0f);
+        public Vector3 rodTipOffset = new Vector3(0.44f, 0f, 0f);
 
+        [Header("Animation Delay")]
+        [Tooltip("How long to wait after X is pressed before showing the hook. Adjust to match cast animation length.")]
+        public float castAnimationDelay = 0.5f;
+
+        [Header("References")]
+        public LineRenderer line;
+        public SpriteRenderer hookSprite; // drag the hook's SpriteRenderer here in inspector
+
+        // Player references — found automatically at runtime
         private Animator playerAnimator;
         private SpriteRenderer playerSprite;
         private Transform playerTransform;
 
-        public LineRenderer line;
-
+        // State
         private bool hasCaughtFish = false;
         private bool isReadyToCast = true;
         private bool canReel = false;
+        private bool animationDelayDone = false;
+        private float castingTimer = 0f;
         private Transform caughtFishTransform;
+
+        // Starting position used by debug mode as the "rod tip"
+        private Vector3 debugStartPosition;
 
         void Start()
         {
-            FindPlayerReference();
+            debugStartPosition = transform.position;
+            SetVisuals(false); // hide everything at start
+
+            if (!debugMode)
+                FindPlayerReference();
         }
 
         private void FindPlayerReference()
@@ -45,31 +62,31 @@ namespace Saif.GamePlay
                 playerTransform = playerObj.transform;
                 playerAnimator = playerObj.GetComponent<Animator>();
                 playerSprite = playerObj.GetComponent<SpriteRenderer>();
+                return;
             }
 
             // Fallback — scan all animators for IsCasting parameter
-            if (playerAnimator == null)
+            Animator[] anims = Object.FindObjectsByType<Animator>(FindObjectsSortMode.None);
+            foreach (Animator a in anims)
             {
-                Animator[] anims = Object.FindObjectsByType<Animator>(FindObjectsSortMode.None);
-                foreach (Animator a in anims)
+                foreach (var param in a.parameters)
                 {
-                    foreach (var param in a.parameters)
+                    if (param.name == "IsCasting")
                     {
-                        if (param.name == "IsCasting")
-                        {
-                            playerAnimator = a;
-                            playerTransform = a.transform;
-                            playerSprite = a.GetComponent<SpriteRenderer>();
-                            return;
-                        }
+                        playerAnimator = a;
+                        playerTransform = a.transform;
+                        playerSprite = a.GetComponent<SpriteRenderer>();
+                        return;
                     }
                 }
             }
+
+            Debug.LogWarning("FishingHook: Could not find player with IsCasting parameter!");
         }
 
-        // Returns the rod tip position in world space, flipping X when player faces left
         private Vector3 GetRodTipWorldPos()
         {
+            if (debugMode) return debugStartPosition;
             if (playerTransform == null) return transform.position;
             float direction = (playerSprite != null && playerSprite.flipX) ? -1f : 1f;
             Vector3 offset = new Vector3(rodTipOffset.x * direction, rodTipOffset.y, rodTipOffset.z);
@@ -78,53 +95,96 @@ namespace Saif.GamePlay
 
         void LateUpdate()
         {
-            // 1. Check if fishing animation is active
-            bool isCasting = debugMode || (playerAnimator != null && playerAnimator.GetBool("IsCasting"));
+            if (debugMode)
+                HandleDebugMode();
+            else
+                HandleNormalMode();
+        }
 
-            if (!isCasting)
-            {
-                if (!isReadyToCast) ResetHook();
-                SetLineVisible(false);
-                return;
-            }
+        // ─── DEBUG MODE ──────────────────────────────────────────────────────────────
+        private void HandleDebugMode()
+        {
+            Vector3 rodTipPos = debugStartPosition;
 
-            // 2. Get rod tip every frame
-            Vector3 rodTipPos = GetRodTipWorldPos();
-
-            // 3. Before casting, hook sits on rod tip
             if (isReadyToCast)
             {
                 transform.position = rodTipPos;
-                SetLineVisible(false); // line hidden until cast
+                SetVisuals(false);
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     isReadyToCast = false;
                     canReel = false;
-                    SetLineVisible(true); // show line when cast
+                    SetVisuals(true);
                 }
+                return;
+            }
+
+            UpdateLine(rodTipPos);
+            HandleFishingPhysics(rodTipPos);
+        }
+
+        // ─── NORMAL MODE ─────────────────────────────────────────────────────────────
+        private void HandleNormalMode()
+        {
+            bool isCasting = playerAnimator != null && playerAnimator.GetBool("IsCasting");
+
+            // Player stopped the animation — reset everything and hide
+            if (!isCasting)
+            {
+                ResetHook();
+                SetVisuals(false);
+                transform.position = GetRodTipWorldPos();
+                return;
+            }
+
+            // Animation just became active — start delay timer, keep hidden
+            if (!animationDelayDone)
+            {
+                castingTimer += Time.deltaTime;
+                transform.position = GetRodTipWorldPos();
+                SetVisuals(false);
+
+                if (castingTimer >= castAnimationDelay)
+                    animationDelayDone = true;
 
                 return;
             }
 
-            // 4. Draw line from rod tip to hook
-            if (line != null)
+            // Delay done — show hook at rod tip, wait for Space
+            Vector3 rodTipPos = GetRodTipWorldPos();
+
+            if (isReadyToCast)
             {
-                line.SetPosition(0, rodTipPos);
-                line.SetPosition(1, transform.position);
+                transform.position = rodTipPos;
+                SetVisuals(true);  // hook visible at rod tip
+                SetLineVisible(false); // but line stays hidden until cast
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    isReadyToCast = false;
+                    canReel = false;
+                    SetVisuals(true);
+                    SetLineVisible(true);
+                }
+                return;
             }
 
-            // 5. Unlock reel after Space is released post-cast
+            UpdateLine(rodTipPos);
+            HandleFishingPhysics(rodTipPos);
+        }
+
+        // ─── SHARED PHYSICS ──────────────────────────────────────────────────────────
+        private void HandleFishingPhysics(Vector3 rodTipPos)
+        {
             if (!canReel && Input.GetKeyUp(KeyCode.Space)) canReel = true;
 
             float h = Input.GetAxis("Horizontal");
             float newX = transform.position.x;
             float newY = transform.position.y;
 
-            // 6. Movement Logic
             if (canReel && Input.GetKey(KeyCode.Space))
             {
-                // Reel up and home toward rod tip X
                 newY += reelSpeed * Time.deltaTime;
 
                 if (surfaceLevel - newY < 3f)
@@ -146,7 +206,6 @@ namespace Saif.GamePlay
             }
             else
             {
-                // Sinking
                 newX += h * moveSpeed * Time.deltaTime;
                 if (newY > maxDepth) newY -= sinkSpeed * Time.deltaTime;
             }
@@ -156,20 +215,35 @@ namespace Saif.GamePlay
             transform.position = new Vector3(newX, newY, transform.position.z);
         }
 
+        private void UpdateLine(Vector3 rodTipPos)
+        {
+            if (line != null && line.enabled)
+            {
+                line.SetPosition(0, rodTipPos);
+                line.SetPosition(1, transform.position);
+            }
+        }
+
+        private void SetVisuals(bool visible)
+        {
+            if (hookSprite != null) hookSprite.enabled = visible;
+            if (line != null) line.enabled = visible;
+        }
+
         private void SetLineVisible(bool visible)
         {
             if (line != null) line.enabled = visible;
         }
 
+        // ─── RESET ───────────────────────────────────────────────────────────────────
         void ResetHook()
         {
             isReadyToCast = true;
             canReel = false;
             hasCaughtFish = false;
-            SetLineVisible(false);
-
-            if (playerTransform != null)
-                transform.position = GetRodTipWorldPos();
+            animationDelayDone = false;
+            castingTimer = 0f;
+            SetVisuals(false);
 
             if (caughtFishTransform != null)
             {
@@ -180,6 +254,7 @@ namespace Saif.GamePlay
             }
         }
 
+        // ─── FISH COLLISION ──────────────────────────────────────────────────────────
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!hasCaughtFish && collision.CompareTag("Fish"))
