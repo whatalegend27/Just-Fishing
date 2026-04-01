@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lure
   - Fish
+  - Job
   layers:
   - Default
   - TransparentFX
@@ -58,8 +59,14 @@ TagManager:
   - name: Boat
     uniqueID: 2795959219
     locked: 0
+  - name: Dialogue
+    uniqueID: 2390049529
+    locked: 0
   - name: Toolbox
     uniqueID: 3305310737
+    locked: 0
+  - name: News
+    uniqueID: 1117883217
     locked: 0
   m_RenderingLayers:
   - Default
