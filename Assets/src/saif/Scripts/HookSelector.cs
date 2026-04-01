@@ -6,7 +6,7 @@ namespace Saif.GamePlay
     {
         public GameObject smallHookPrefab;
         public GameObject heavyHookPrefab;
-        public Transform spawnPoint; // This is where the hook starts (the boat/rod tip)
+        public Transform spawnPoint;
         
         private GameObject currentHook;
 
@@ -22,15 +22,14 @@ namespace Saif.GamePlay
 
         void SpawnHook(GameObject hookPrefab)
         {
-            // Remove the old hook if there is one
+            // 1. Remove the old hook if there is one
             if (currentHook != null) 
                 Destroy(currentHook);
 
-            // Create the new hook at the spawn point
+            // 2. Create the new hook at the spawn point
             currentHook = Instantiate(hookPrefab, spawnPoint.position, Quaternion.identity);
-            
-            // Tell the hook where the rod tip is for the line
-            currentHook.GetComponent<FishingHook>().rodTip = spawnPoint;
+
+            // 3. No need to set rodTip anymore — FishingHook finds the player automatically
         }
     }
 }

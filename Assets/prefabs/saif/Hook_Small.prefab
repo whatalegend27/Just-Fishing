@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2491715541690674588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.77, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1befa37931ad347eab60d28755086ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingHook
+  debugMode: 0
   sinkSpeed: 3
   moveSpeed: 5
   reelSpeed: 7
@@ -114,8 +115,8 @@ MonoBehaviour:
   surfaceLevel: 1.77
   leftBorder: -3
   rightBorder: 3
+  rodTipOffset: {x: 0.44, y: 0, z: 0}
   line: {fileID: 6497673541299130137}
-  rodTip: {fileID: 0}
 --- !u!50 &3045230587651110080
 Rigidbody2D:
   serializedVersion: 5
