@@ -2,7 +2,7 @@
     "name": "Isabella_GameScripts",
     "rootNamespace": "",
     "references": [
-        ""
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
