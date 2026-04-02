@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 323344141}
   - component: {fileID: 323344143}
   - component: {fileID: 323344142}
+  - component: {fileID: 323344144}
   m_Layer: 5
   m_Name: DialogueText
   m_TagString: Untagged
@@ -385,8 +386,8 @@ MonoBehaviour:
     I already let them know that you would come in as soon as possible! The shop
     is on your map.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ee04d9053fa8de85ca402927d709dbd1, type: 2}
+  m_sharedMaterial: {fileID: -4359759907808012310, guid: ee04d9053fa8de85ca402927d709dbd1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -410,8 +411,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.5
-  m_fontSizeBase: 0.5
+  m_fontSize: 1
+  m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -463,6 +464,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323344140}
   m_CullTransparentMesh: 1
+--- !u!114 &323344144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323344140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ac0ed1efcb71d4191d6c0b650ea82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Isabella_GameScripts::TypewriterEffect
+  textComponent: {fileID: 323344142}
+  typingSpeed: 0.02
+  dialogueBox: {fileID: 332921832}
+  typeSound: {fileID: 8300000, guid: 07b1e019f3745eb429ac8c523686da2f, type: 3}
+  startTimeInClip: 11
+  audioPitch: 2
 --- !u!1 &332921832
 GameObject:
   m_ObjectHideFlags: 0
