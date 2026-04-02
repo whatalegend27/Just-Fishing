@@ -35,7 +35,7 @@ public class NewsToggle : MonoBehaviour, IPointerDownHandler
         Vector3 startPos = NewsToMove.transform.position;
         Vector3 targetPos = new Vector3(20, 20, 0);
 
-        float duration = 3f;
+        float duration = 2f;
         float time = 0f;
 
         while (time < duration)
