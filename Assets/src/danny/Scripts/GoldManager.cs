@@ -7,7 +7,7 @@ public class GoldManager : MonoBehaviour
 
     public static GoldManager Instance { get; private set; }
     public TextMeshProUGUI goldText;
-    public Animator animator;
+   // public Animator animator;
     public int playerGold = 10;
 
     void Awake()
@@ -60,14 +60,14 @@ public class GoldManager : MonoBehaviour
     //updates gold amount
     void UpdateUI()
     {
-        goldText.text = "$" + playerGold.ToString();
+        goldText.text = playerGold.ToString();
     }
 
     //turns gold text red for a sec and plays wiggle animation
     IEnumerator TurnRed()
     {
         goldText.color = Color.red;
-        animator.Play("TextWiggle", -1, 0f);
+       // animator.Play("TextWiggle", -1, 0f);
         yield return new WaitForSeconds(1f);
         goldText.color = Color.white;
     }
