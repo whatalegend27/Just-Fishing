@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        toggleMenu();
+        ToggleMenu();
     }
 
     public bool AddItem(ItemScript item)
@@ -52,7 +52,7 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    void toggleMenu()
+    void ToggleMenu()
     {
         if (Input.GetKeyDown(KeyCode.H) && !menuActive)
         {

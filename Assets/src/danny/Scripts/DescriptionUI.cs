@@ -28,6 +28,6 @@ public class DescriptionUI : MonoBehaviour
 
     public void buyButton()
     {
-        InventoryManager.Instance.AddItem(currentItem);
+        bool canBuy = GoldManager.Instance.BuyItem(currentItem);
     }
 }
