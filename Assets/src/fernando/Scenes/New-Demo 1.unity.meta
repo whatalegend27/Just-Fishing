@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/src/fernando/Scenes/New-Demo 1.unity.meta
 guid: 8e42024abbc594b99959d952ba6d61b2
+========
+guid: 902602a5712e648119ba2c0da78b7410
+folderAsset: yes
+>>>>>>>> main:Assets/tst/danny.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

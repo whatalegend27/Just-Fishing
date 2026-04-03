@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 828759082716694329}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,8 +132,6 @@ MonoBehaviour:
   speed: 3
   spriteRenderer: {fileID: 6066739135198862647}
   animator: {fileID: 621163668176052440}
-  Toolboxes: []
-  TbToShow: {fileID: 0}
 --- !u!61 &-5053726090015829903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,7 +170,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 1.04}
+    oldSize: {x: 0.32, y: 0.52}
     newSize: {x: 0.32, y: 0.52}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
