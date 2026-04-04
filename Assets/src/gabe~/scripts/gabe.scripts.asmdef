@@ -1,4 +1,8 @@
 {
+<<<<<<< HEAD:Assets/src/gabe~/scripts/gabe.scripts.asmdef
+	"name": "gabe.scripts"
+}
+=======
     "name": "gabe.scripts",
     "rootNamespace": "",
     "references": [
@@ -15,3 +19,4 @@
     "versionDefines": [],
     "noEngineReferences": false
 }
+>>>>>>> ad7fd67 (Add files via upload):Assets/src/gabe/scripts/gabe.scripts.asmdef

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/tst/isabella/EditTests/isabellaEditTests.asmdef.meta
 guid: e7938ec769dcd3e2ebe7739c1fdc35cb
 AssemblyDefinitionImporter:
+========
+guid: 5a01cdf9e6274435a8b934f8306800a8
+PrefabImporter:
+>>>>>>>> 7261be63e579a9efe042cb09a404bedea04e94a0:Assets/prefabs/fernando/BigBlue-Fish Variant.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

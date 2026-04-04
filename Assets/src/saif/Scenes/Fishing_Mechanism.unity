@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: rodTip
       value: 
       objectReference: {fileID: 1579530912}
+    - target: {fileID: 1135320649997480299, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+      propertyPath: debugMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2491715541690674588, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: m_Name
       value: Hook_Small
