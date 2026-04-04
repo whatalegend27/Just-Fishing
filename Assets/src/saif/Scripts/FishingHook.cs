@@ -7,6 +7,9 @@ namespace Saif.GamePlay
         [Header("TESTING - Check this to test without a player")]
         public bool debugMode = false;
 
+        [Header("Hook Type")]
+        public bool isHeavyHook = false;
+
         [Header("Speeds")]
         public float sinkSpeed = 2f;
         public float moveSpeed = 5f;
@@ -27,28 +30,31 @@ namespace Saif.GamePlay
 
         [Header("References")]
         public LineRenderer line;
-        public SpriteRenderer hookSprite; // drag the hook's SpriteRenderer here in inspector
+        public SpriteRenderer hookSprite;
 
-        // Player references — found automatically at runtime
+        [HideInInspector] public Vector3 debugSpawnOverride;
+
+        public bool IsHookCast => !isReadyToCast;
+
         private Animator playerAnimator;
         private SpriteRenderer playerSprite;
         private Transform playerTransform;
 
-        // State
         private bool hasCaughtFish = false;
         private bool isReadyToCast = true;
         private bool canReel = false;
         private bool animationDelayDone = false;
         private float castingTimer = 0f;
-        private Transform caughtFishTransform;
 
-        // Starting position used by debug mode as the "rod tip"
+        private Transform caughtFishTransform;
+        private Transform caughtFishTransform2;
+
         private Vector3 debugStartPosition;
 
         void Start()
         {
-            debugStartPosition = transform.position;
-            SetVisuals(false); // hide everything at start
+            debugStartPosition = (debugSpawnOverride != Vector3.zero) ? debugSpawnOverride : transform.position;
+            SetVisuals(false);
 
             if (!debugMode)
                 FindPlayerReference();
@@ -65,7 +71,6 @@ namespace Saif.GamePlay
                 return;
             }
 
-            // Fallback — scan all animators for IsCasting parameter
             Animator[] anims = Object.FindObjectsByType<Animator>(FindObjectsSortMode.None);
             foreach (Animator a in anims)
             {
@@ -129,7 +134,6 @@ namespace Saif.GamePlay
         {
             bool isCasting = playerAnimator != null && playerAnimator.GetBool("IsCasting");
 
-            // Player stopped the animation — reset everything and hide
             if (!isCasting)
             {
                 ResetHook();
@@ -138,7 +142,6 @@ namespace Saif.GamePlay
                 return;
             }
 
-            // Animation just became active — start delay timer, keep hidden
             if (!animationDelayDone)
             {
                 castingTimer += Time.deltaTime;
@@ -151,14 +154,13 @@ namespace Saif.GamePlay
                 return;
             }
 
-            // Delay done — show hook at rod tip, wait for Space
             Vector3 rodTipPos = GetRodTipWorldPos();
 
             if (isReadyToCast)
             {
                 transform.position = rodTipPos;
-                SetVisuals(true);  // hook visible at rod tip
-                SetLineVisible(false); // but line stays hidden until cast
+                SetVisuals(true);
+                SetLineVisible(false);
 
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -185,20 +187,22 @@ namespace Saif.GamePlay
 
             if (canReel && Input.GetKey(KeyCode.Space))
             {
+                // Reel up
                 newY += reelSpeed * Time.deltaTime;
 
-                if (surfaceLevel - newY < 3f)
-                {
-                    newX = Mathf.MoveTowards(newX, rodTipPos.x, (moveSpeed * 0.5f) * Time.deltaTime);
-                    newX += h * (moveSpeed * 0.5f) * Time.deltaTime;
-                }
-                else
-                {
-                    newX += h * moveSpeed * Time.deltaTime;
-                }
+                // Homing gets stronger the closer the hook is to the rod tip
+                // So player can move freely when deep but hook snaps home near surface
+                float distanceRatio = 1f - Mathf.Clamp01((rodTipPos.y - newY) / Mathf.Abs(maxDepth));
+                float homingStrength = Mathf.Lerp(0.5f, moveSpeed * 2f, distanceRatio);
+                newX = Mathf.MoveTowards(newX, rodTipPos.x, homingStrength * Time.deltaTime);
 
-                if (newY >= surfaceLevel)
+                // Player can still nudge horizontally but less influence near surface
+                newX += h * (moveSpeed * 0.5f) * (1f - distanceRatio * 0.8f) * Time.deltaTime;
+
+                // Hook reached rod tip — reset
+                if (newY >= rodTipPos.y)
                 {
+                    newY = rodTipPos.y;
                     if (hasCaughtFish) CollectFish();
                     ResetHook();
                     return;
@@ -206,12 +210,13 @@ namespace Saif.GamePlay
             }
             else
             {
+                // Sinking — full horizontal movement
                 newX += h * moveSpeed * Time.deltaTime;
                 if (newY > maxDepth) newY -= sinkSpeed * Time.deltaTime;
             }
 
             newX = Mathf.Clamp(newX, leftBorder, rightBorder);
-            newY = Mathf.Clamp(newY, maxDepth, surfaceLevel);
+            newY = Mathf.Clamp(newY, maxDepth, rodTipPos.y);
             transform.position = new Vector3(newX, newY, transform.position.z);
         }
 
@@ -235,6 +240,44 @@ namespace Saif.GamePlay
             if (line != null) line.enabled = visible;
         }
 
+        // ─── FISH COLLISION ──────────────────────────────────────────────────────────
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (!collision.CompareTag("Fish")) return;
+
+            if (!isHeavyHook)
+            {
+                if (caughtFishTransform == null)
+                {
+                    AttachFish(collision.transform, ref caughtFishTransform);
+                    hasCaughtFish = true;
+                }
+            }
+            else
+            {
+                if (caughtFishTransform == null)
+                {
+                    AttachFish(collision.transform, ref caughtFishTransform);
+                    hasCaughtFish = true;
+                }
+                else if (caughtFishTransform2 == null)
+                {
+                    AttachFish(collision.transform, ref caughtFishTransform2);
+                }
+            }
+        }
+
+        private void AttachFish(Transform fish, ref Transform slot)
+        {
+            slot = fish;
+            Component movement = fish.GetComponent("FishMovement");
+            if (movement != null) (movement as MonoBehaviour).enabled = false;
+            fish.SetParent(this.transform);
+            fish.localPosition = Vector3.zero;
+            fish.localRotation = Quaternion.identity;
+            Debug.Log("Fish Hooked!");
+        }
+
         // ─── RESET ───────────────────────────────────────────────────────────────────
         void ResetHook()
         {
@@ -252,28 +295,29 @@ namespace Saif.GamePlay
                 caughtFishTransform.SetParent(null);
                 caughtFishTransform = null;
             }
-        }
 
-        // ─── FISH COLLISION ──────────────────────────────────────────────────────────
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (!hasCaughtFish && collision.CompareTag("Fish"))
+            if (caughtFishTransform2 != null)
             {
-                hasCaughtFish = true;
-                caughtFishTransform = collision.transform;
-                Component movement = collision.GetComponent("FishMovement");
-                if (movement != null) (movement as MonoBehaviour).enabled = false;
-                caughtFishTransform.SetParent(this.transform);
-                caughtFishTransform.localPosition = Vector3.zero;
-                Debug.Log("Fish Hooked!");
+                Component movement = caughtFishTransform2.GetComponent("FishMovement");
+                if (movement != null) (movement as MonoBehaviour).enabled = true;
+                caughtFishTransform2.SetParent(null);
+                caughtFishTransform2 = null;
             }
         }
 
         void CollectFish()
         {
-            if (caughtFishTransform != null) Destroy(caughtFishTransform.gameObject);
+            if (caughtFishTransform != null)
+            {
+                Destroy(caughtFishTransform.gameObject);
+                caughtFishTransform = null;
+            }
+            if (caughtFishTransform2 != null)
+            {
+                Destroy(caughtFishTransform2.gameObject);
+                caughtFishTransform2 = null;
+            }
             hasCaughtFish = false;
-            caughtFishTransform = null;
         }
     }
 }
