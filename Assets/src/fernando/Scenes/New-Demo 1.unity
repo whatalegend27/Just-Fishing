@@ -1035,6 +1035,10 @@ PrefabInstance:
       value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 1135320649997480299, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+      propertyPath: isHeavyHook
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135320649997480299, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: rightBorder
       value: 4
       objectReference: {fileID: 0}
@@ -1045,6 +1049,10 @@ PrefabInstance:
     - target: {fileID: 2491715541690674588, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: m_Name
       value: Hook_Small
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491715541690674588, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6003340674565235770, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: m_LocalScale.x
@@ -1098,6 +1106,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6186213602563156308, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e71515c4eeec746e18c93a722347bb12, type: 3}
     - target: {fileID: 6186213602563156308, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: m_SortingLayer
       value: 3
