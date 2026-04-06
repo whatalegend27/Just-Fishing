@@ -36,6 +36,12 @@ namespace Saif.GamePlay
 
         public bool IsHookCast => !isReadyToCast;
 
+        // Mobile input state — set by UI buttons
+        private bool mobileSpaceHeld = false;
+        private bool mobileSpaceDown = false;
+        private bool mobileSpaceUp = false;
+        private float mobileHorizontal = 0f;
+
         private Animator playerAnimator;
         private SpriteRenderer playerSprite;
         private Transform playerTransform;
@@ -51,6 +57,36 @@ namespace Saif.GamePlay
 
         private Vector3 debugStartPosition;
 
+        // ─── UI BUTTON METHODS ───────────────────────────────────────────────────────
+
+        // Call this from the Cast/Reel button OnPointerDown
+        public void OnCastReelPress()
+        {
+            mobileSpaceDown = true;
+            mobileSpaceHeld = true;
+        }
+
+        // Call this from the Cast/Reel button OnPointerUp
+        public void OnCastReelRelease()
+        {
+            mobileSpaceHeld = false;
+            mobileSpaceUp = true;
+        }
+
+        // Call these from Left button OnPointerDown/OnPointerUp
+        public void OnLeftPress() { mobileHorizontal = -1f; }
+        public void OnLeftRelease() { if (mobileHorizontal < 0) mobileHorizontal = 0f; }
+
+        // Call these from Right button OnPointerDown/OnPointerUp
+        public void OnRightPress() { mobileHorizontal = 1f; }
+        public void OnRightRelease() { if (mobileHorizontal > 0) mobileHorizontal = 0f; }
+
+        // ─── INPUT HELPERS ───────────────────────────────────────────────────────────
+        private bool GetSpaceDown() => Input.GetKeyDown(KeyCode.Space) || mobileSpaceDown;
+        private bool GetSpaceHeld() => Input.GetKey(KeyCode.Space) || mobileSpaceHeld;
+        private bool GetSpaceUp() => Input.GetKeyUp(KeyCode.Space) || mobileSpaceUp;
+        private float GetHorizontal() => Input.GetAxis("Horizontal") + mobileHorizontal;
+
         void Start()
         {
             debugStartPosition = (debugSpawnOverride != Vector3.zero) ? debugSpawnOverride : transform.position;
@@ -58,6 +94,18 @@ namespace Saif.GamePlay
 
             if (!debugMode)
                 FindPlayerReference();
+        }
+
+        void LateUpdate()
+        {
+            if (debugMode)
+                HandleDebugMode();
+            else
+                HandleNormalMode();
+
+            // Reset one-frame mobile inputs at end of frame
+            mobileSpaceDown = false;
+            mobileSpaceUp = false;
         }
 
         private void FindPlayerReference()
@@ -98,14 +146,6 @@ namespace Saif.GamePlay
             return playerTransform.position + offset;
         }
 
-        void LateUpdate()
-        {
-            if (debugMode)
-                HandleDebugMode();
-            else
-                HandleNormalMode();
-        }
-
         // ─── DEBUG MODE ──────────────────────────────────────────────────────────────
         private void HandleDebugMode()
         {
@@ -116,7 +156,7 @@ namespace Saif.GamePlay
                 transform.position = rodTipPos;
                 SetVisuals(false);
 
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (GetSpaceDown())
                 {
                     isReadyToCast = false;
                     canReel = false;
@@ -162,7 +202,7 @@ namespace Saif.GamePlay
                 SetVisuals(true);
                 SetLineVisible(false);
 
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (GetSpaceDown())
                 {
                     isReadyToCast = false;
                     canReel = false;
@@ -179,27 +219,21 @@ namespace Saif.GamePlay
         // ─── SHARED PHYSICS ──────────────────────────────────────────────────────────
         private void HandleFishingPhysics(Vector3 rodTipPos)
         {
-            if (!canReel && Input.GetKeyUp(KeyCode.Space)) canReel = true;
+            if (!canReel && GetSpaceUp()) canReel = true;
 
-            float h = Input.GetAxis("Horizontal");
+            float h = GetHorizontal();
             float newX = transform.position.x;
             float newY = transform.position.y;
 
-            if (canReel && Input.GetKey(KeyCode.Space))
+            if (canReel && GetSpaceHeld())
             {
-                // Reel up
                 newY += reelSpeed * Time.deltaTime;
 
-                // Homing gets stronger the closer the hook is to the rod tip
-                // So player can move freely when deep but hook snaps home near surface
                 float distanceRatio = 1f - Mathf.Clamp01((rodTipPos.y - newY) / Mathf.Abs(maxDepth));
                 float homingStrength = Mathf.Lerp(0.5f, moveSpeed * 2f, distanceRatio);
                 newX = Mathf.MoveTowards(newX, rodTipPos.x, homingStrength * Time.deltaTime);
-
-                // Player can still nudge horizontally but less influence near surface
                 newX += h * (moveSpeed * 0.5f) * (1f - distanceRatio * 0.8f) * Time.deltaTime;
 
-                // Hook reached rod tip — reset
                 if (newY >= rodTipPos.y)
                 {
                     newY = rodTipPos.y;
@@ -210,7 +244,6 @@ namespace Saif.GamePlay
             }
             else
             {
-                // Sinking — full horizontal movement
                 newX += h * moveSpeed * Time.deltaTime;
                 if (newY > maxDepth) newY -= sinkSpeed * Time.deltaTime;
             }

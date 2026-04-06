@@ -21,24 +21,25 @@ namespace Saif.GamePlay
 
         void Update()
         {
-            // Only allow hook swap when hook is not cast
             if (Input.GetKeyDown(KeyCode.Z))
+                ToggleHook();
+        }
+
+        // Call this from the switch hook UI button
+        public void ToggleHook()
+        {
+            FishingHook hookScript = currentHook != null ? currentHook.GetComponent<FishingHook>() : null;
+            if (hookScript != null && hookScript.IsHookCast) return;
+
+            if (isHeavyHook)
             {
-                FishingHook hookScript = currentHook != null ? currentHook.GetComponent<FishingHook>() : null;
-
-                // Block swap if hook is currently cast
-                if (hookScript != null && hookScript.IsHookCast) return;
-
-                if (isHeavyHook)
-                {
-                    isHeavyHook = false;
-                    SpawnHook(smallHookPrefab);
-                }
-                else
-                {
-                    isHeavyHook = true;
-                    SpawnHook(heavyHookPrefab);
-                }
+                isHeavyHook = false;
+                SpawnHook(smallHookPrefab);
+            }
+            else
+            {
+                isHeavyHook = true;
+                SpawnHook(heavyHookPrefab);
             }
         }
 
@@ -65,7 +66,6 @@ namespace Saif.GamePlay
         {
             FishingHook hookScript = currentHook != null ? currentHook.GetComponent<FishingHook>() : null;
             if (hookScript != null && hookScript.IsHookCast) return;
-
             isHeavyHook = false;
             SpawnHook(smallHookPrefab);
         }
@@ -74,7 +74,6 @@ namespace Saif.GamePlay
         {
             FishingHook hookScript = currentHook != null ? currentHook.GetComponent<FishingHook>() : null;
             if (hookScript != null && hookScript.IsHookCast) return;
-
             isHeavyHook = true;
             SpawnHook(heavyHookPrefab);
         }
