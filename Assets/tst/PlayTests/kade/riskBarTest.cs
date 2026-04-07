@@ -1,77 +1,72 @@
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.TestTools;
 using System.Collections;
 
 public class riskBarTest
 {
-    private GameObject m_Root;
+    private GameObject  m_RiskBarFill;
+    private GameObject  m_StatsObj;
+    private GameObject  m_UpdaterObj;
     private ArrestStats m_ArrestStats;
     private HealthStats m_HealthStats;
-    private UIUpdater m_UIUpdater;
-    private RectTransform m_RiskBarFill;
+    private UIUpdater   m_UIUpdater;
 
     [SetUp]
     public void SetUp()
     {
         // Stats objects
-        GameObject statsObj = new GameObject("Stats");
-        PlayerStats ps      = statsObj.AddComponent<PlayerStats>();
-        m_ArrestStats       = statsObj.AddComponent<ArrestStats>();
+        m_StatsObj          = new GameObject("Stats");
+        PlayerStats ps      = m_StatsObj.AddComponent<PlayerStats>();
+        m_ArrestStats       = m_StatsObj.AddComponent<ArrestStats>();
         m_ArrestStats.ps    = ps;
-        m_HealthStats       = statsObj.AddComponent<HealthStats>();
+        m_HealthStats       = m_StatsObj.AddComponent<HealthStats>();
         m_HealthStats.ps    = ps;
 
-        // Risk bar fill rect
-        m_Root = new GameObject("RiskBarFill", typeof(RectTransform));
-        m_RiskBarFill = m_Root.GetComponent<RectTransform>();
-        m_RiskBarFill.sizeDelta = new Vector2(200f, 20f);
+        // 2D fill square
+        m_RiskBarFill = new GameObject("RiskBarFill");
+        m_RiskBarFill.transform.localScale = new Vector3(1f, 1f, 1f);
 
         // UIUpdater wired up
-        GameObject updaterObj   = new GameObject("UIUpdater");
-        m_UIUpdater             = updaterObj.AddComponent<UIUpdater>();
-        m_UIUpdater.arrestStats = m_ArrestStats;
-        m_UIUpdater.healthStats = m_HealthStats;
-        m_UIUpdater.riskBarFill      = m_RiskBarFill;
-        m_UIUpdater.riskBarMaxWidth  = 200f;
-        m_UIUpdater.healthBarMaxWidth = 200f;
-        m_UIUpdater.hungerBarMaxWidth = 200f;
+        m_UpdaterObj             = new GameObject("UIUpdater");
+        m_UIUpdater              = m_UpdaterObj.AddComponent<UIUpdater>();
+        m_UIUpdater.arrestStats  = m_ArrestStats;
+        m_UIUpdater.healthStats  = m_HealthStats;
+        m_UIUpdater.riskBarFill  = m_RiskBarFill.transform;
     }
 
     [TearDown]
     public void TearDown()
     {
-        Object.DestroyImmediate(m_Root);
-        Object.DestroyImmediate(m_UIUpdater.gameObject);
-        Object.DestroyImmediate(m_ArrestStats.gameObject);
+        Object.DestroyImmediate(m_RiskBarFill);
+        Object.DestroyImmediate(m_StatsObj);
+        Object.DestroyImmediate(m_UpdaterObj);
     }
 
-    // Risk starts at 0, bar fill width should be 0
+    // Risk starts at 0, bar scale should be 0
     [UnityTest]
     public IEnumerator RiskBar_StartsAtZero()
     {
-        yield return null; // let Start() run
+        yield return null;
 
-        Assert.AreEqual(0f, m_RiskBarFill.sizeDelta.x,
-            "Bar fill width should be 0 when risk is 0");
+        Assert.AreEqual(0f, m_RiskBarFill.transform.localScale.x,
+            "Bar scale should be 0 when risk is 0");
     }
 
-    // After one steal action (+5), bar should reflect 5% of max width
+    // After one steal (+5), scale should be 0.05
     [UnityTest]
     public IEnumerator RiskBar_UpdatesAfterSteal()
     {
-        yield return null; // Start()
+        yield return null;
 
         m_ArrestStats.CalculateRisk("steal");
-        yield return null; // Update()
+        yield return null;
 
-        float expected = 200f * (5f / 100f);
-        Assert.AreEqual(expected, m_RiskBarFill.sizeDelta.x, 0.01f,
-            "Bar fill should be 5% after one steal");
+        Assert.AreEqual(0.05f, m_RiskBarFill.transform.localScale.x, 0.001f,
+            "Bar scale should be 0.05 after one steal");
     }
 
-    // After one nightFish action (+10), bar should reflect 10%
+    // After one nightFish (+10), scale should be 0.10
     [UnityTest]
     public IEnumerator RiskBar_UpdatesAfterNightFish()
     {
@@ -80,12 +75,11 @@ public class riskBarTest
         m_ArrestStats.CalculateRisk("nightFish");
         yield return null;
 
-        float expected = 200f * (10f / 100f);
-        Assert.AreEqual(expected, m_RiskBarFill.sizeDelta.x, 0.01f,
-            "Bar fill should be 10% after one nightFish");
+        Assert.AreEqual(0.10f, m_RiskBarFill.transform.localScale.x, 0.001f,
+            "Bar scale should be 0.10 after one nightFish");
     }
 
-    // Multiple actions stack — steal(5) + nightFish(10) + blackMarket(5) = 20
+    // steal(5) + nightFish(10) + blackMarket(5) = 20, scale 0.20
     [UnityTest]
     public IEnumerator RiskBar_StacksMultipleActions()
     {
@@ -96,25 +90,23 @@ public class riskBarTest
         m_ArrestStats.CalculateRisk("blackMarket");
         yield return null;
 
-        float expected = 200f * (20f / 100f);
-        Assert.AreEqual(expected, m_RiskBarFill.sizeDelta.x, 0.01f,
-            "Bar fill should be 20% after steal + nightFish + blackMarket");
+        Assert.AreEqual(0.20f, m_RiskBarFill.transform.localScale.x, 0.001f,
+            "Bar scale should be 0.20 after steal + nightFish + blackMarket");
     }
 
-    // Risk reaching 100 triggers game over and resets to 0, bar should go back to 0
+    // 10x nightFish = 100 risk, game over resets to 0, bar should return to 0
     [UnityTest]
     public IEnumerator RiskBar_ResetsOnGameOver()
     {
         yield return null;
 
-        // 10 nightFish actions = 100 risk
         for (int i = 0; i < 10; i++)
             m_ArrestStats.CalculateRisk("nightFish");
 
-        yield return null; // ArrestStats.Update() fires game over and resets riskVal
-        yield return null; // UIUpdater.Update() catches the reset
+        yield return null;
+        yield return null;
 
-        Assert.AreEqual(0f, m_RiskBarFill.sizeDelta.x, 0.01f,
-            "Bar fill should return to 0 after game over resets risk");
+        Assert.AreEqual(0f, m_RiskBarFill.transform.localScale.x, 0.001f,
+            "Bar scale should return to 0 after game over resets risk");
     }
 }
