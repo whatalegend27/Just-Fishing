@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,28 +6,41 @@ public class NewsToggle : MonoBehaviour, IPointerDownHandler
 {
     public GameObject NewsToMove;
     public GameObject darkOverlay; 
-
     public GameObject dialogueBox;
+    public GameObject QuestionBox;
 
-    private SpriteRenderer spriteRenderer;
+    [Header("Show Once Setting")]
+    public string uniqueKey = "NewsSeen"; // SAME key for both sprites
 
     private bool isAnimating = false;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // 🚨 If already seen → hide immediately
+        if (PlayerPrefs.GetInt(uniqueKey, 0) == 1)
+        {
+            NewsToMove.SetActive(false);
+            // Optional: also hide overlay if needed
+            if (darkOverlay != null)
+                darkOverlay.SetActive(false);
+
+            return;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!isAnimating)
         {
+            QuestionBox.SetActive(false); // Hide question box if it's visible
             StartCoroutine(AnimateAndHide());
         }
     }
 
     IEnumerator AnimateAndHide()
     {
+        isAnimating = true;
+
         Vector3 startScale = NewsToMove.transform.localScale;
         Vector3 targetScale = new Vector3(2, 2, 2);
 
@@ -41,7 +53,6 @@ public class NewsToggle : MonoBehaviour, IPointerDownHandler
         while (time < duration)
         {
             time += Time.deltaTime;
-
             float t = time / duration;
 
             NewsToMove.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
@@ -50,13 +61,22 @@ public class NewsToggle : MonoBehaviour, IPointerDownHandler
             yield return null;
         }
 
-        // After animation finishes, turn it off
+        // Hide after animation
         NewsToMove.SetActive(false);
-        if (NewsToMove.tag == "Job")
-        {
-            darkOverlay.SetActive(false);
-            dialogueBox.SetActive(true);
-        }
-    }
 
+        // 🚨 Mark as seen FOREVER
+        PlayerPrefs.SetInt(uniqueKey, 1);
+        PlayerPrefs.Save();
+
+        if (NewsToMove.CompareTag("Job"))
+        {
+            if (darkOverlay != null)
+                darkOverlay.SetActive(false);
+
+            if (dialogueBox != null)
+                dialogueBox.SetActive(true);
+        }
+
+        isAnimating = false;
+    }
 }
