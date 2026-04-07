@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: gabe.scripts::FishSpawner
   fishPrefabs:
-  - {fileID: 5723280467758893714, guid: e26ad28ed69a547cfae840ed6e676abc, type: 3}
-  - {fileID: 8055077542705936230, guid: a6c95c988a5dd49049a3584e483abe4a, type: 3}
-  - {fileID: 1515415672991362442, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
-  - {fileID: 7499379569260034218, guid: daf024aa2b84049189249844e4e28fc3, type: 3}
-  - {fileID: 7841401340824021280, guid: ff561eb2bdfba4ccbb9626d732c4d2ae, type: 3}
-  - {fileID: 2832046032578932310, guid: 5a01cdf9e6274435a8b934f8306800a8, type: 3}
-  - {fileID: 6197948828034995748, guid: 903c6cb9dde6b497a85ad28e7f572534, type: 3}
+  - {fileID: 8004341632305014029, guid: 5f910a3105967450caecc53e0ea9ba0c, type: 3}
+  - {fileID: 6379815653743378181, guid: 9e956aa0143fd4006bf59a07289fea1c, type: 3}
+  - {fileID: 6246354574492916294, guid: 62ab4ce9e3d4a464296b71a6b205648f, type: 3}
+  - {fileID: 2131490529826775741, guid: 41c931431cedf49d3a1901a5d264300a, type: 3}
+  - {fileID: 3571274228405803464, guid: e55c3884b729f45c393aef4b47aff514, type: 3}
+  - {fileID: 5075388089767976463, guid: 7e8aabc4c224a4804983f724ff8a8bcf, type: 3}
   numberToSpawn: 10
   minX: -8
   maxX: 8
