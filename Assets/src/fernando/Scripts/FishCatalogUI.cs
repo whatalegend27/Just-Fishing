@@ -10,7 +10,7 @@ public class FishCatalogUI : MonoBehaviour
         public GameObject button;
     }
 
-    public List<FishButtonEntry> fishButtons;
+    [SerializeField] private List<FishButtonEntry> fishButtons;
 
     void Start()
     {

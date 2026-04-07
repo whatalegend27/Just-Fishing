@@ -202,16 +202,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 410371187}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 285320265}
+        m_TargetAssemblyTypeName: ToggleButton, Fernando.Game.Runtime
+        m_MethodName: OnFishButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SilverFish
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &17865470
@@ -860,6 +860,65 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &285320263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285320264}
+  - component: {fileID: 285320265}
+  m_Layer: 0
+  m_Name: Toggle Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &285320264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285320263}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1373026424}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &285320265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285320263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df572f19a7f504f8f8ce9784800b1fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fernando.Game.Runtime::ToggleButton
+  fishDisplays:
+  - fishName: CatFish
+    fishDisplay: {fileID: 187473429}
+  - fishName: OrangeFish
+    fishDisplay: {fileID: 1198977810}
+  - fishName: ButterflyFish
+    fishDisplay: {fileID: 1944708487}
+  - fishName: SkellyFish
+    fishDisplay: {fileID: 1935846233}
+  - fishName: SilverFish
+    fishDisplay: {fileID: 410371187}
+  - fishName: BigBruce
+    fishDisplay: {fileID: 586779408}
+  - fishName: Nemo
+    fishDisplay: {fileID: 411696001}
 --- !u!1 &355323002
 GameObject:
   m_ObjectHideFlags: 0
@@ -2269,16 +2328,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1198977810}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 285320265}
+        m_TargetAssemblyTypeName: ToggleButton, Fernando.Game.Runtime
+        m_MethodName: OnFishButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: OrangeFish
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &756853149
@@ -2584,16 +2643,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 586779408}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 285320265}
+        m_TargetAssemblyTypeName: ToggleButton, Fernando.Game.Runtime
+        m_MethodName: OnFishButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: BigBruce
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &865010719
@@ -3334,6 +3393,7 @@ GameObject:
   - component: {fileID: 1118468148}
   - component: {fileID: 1118468147}
   - component: {fileID: 1118468146}
+  - component: {fileID: 1118468149}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3391,6 +3451,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1118468149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118468145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df572f19a7f504f8f8ce9784800b1fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fernando.Game.Runtime::ToggleButton
+  fishDisplays: []
 --- !u!1 &1153895068
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,7 +3950,6 @@ GameObject:
   - component: {fileID: 1320286130}
   - component: {fileID: 1320286129}
   - component: {fileID: 1320286128}
-  - component: {fileID: 1320286131}
   m_Layer: 5
   m_Name: CatFishButton
   m_TagString: Untagged
@@ -3949,17 +4021,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 187473429}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 285320265}
+        m_TargetAssemblyTypeName: ToggleButton, Fernando.Game.Runtime
+        m_MethodName: OnFishButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
+          m_StringArgument: CatFish
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1320286129
 MonoBehaviour:
@@ -3999,19 +4071,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320286126}
   m_CullTransparentMesh: 1
---- !u!114 &1320286131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320286126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 739f9effc6f494667b5fc0aa99c351d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Fernando.Game.Runtime::Fish
-  fishName: x
 --- !u!1 &1373026423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4022,6 +4081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1373026424}
   - component: {fileID: 1373026425}
+  - component: {fileID: 1373026426}
   m_Layer: 0
   m_Name: Buttons
   m_TagString: Untagged
@@ -4042,6 +4102,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 285320264}
   - {fileID: 1320286127}
   - {fileID: 1959960790}
   - {fileID: 756853147}
@@ -4078,6 +4139,19 @@ MonoBehaviour:
     button: {fileID: 1963802114}
   - fishName: BigBruce
     button: {fileID: 865010716}
+--- !u!114 &1373026426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373026423}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df572f19a7f504f8f8ce9784800b1fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fernando.Game.Runtime::ToggleButton
+  fishDisplays: []
 --- !u!1 &1422960873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4756,16 +4830,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1944708487}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 285320265}
+        m_TargetAssemblyTypeName: ToggleButton, Fernando.Game.Runtime
+        m_MethodName: OnFishButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: ButterflyFish
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1531163735
@@ -5996,16 +6070,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 411696001}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 285320265}
+        m_TargetAssemblyTypeName: ToggleButton, Fernando.Game.Runtime
+        m_MethodName: OnFishButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Nemo
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1959960792
@@ -6129,16 +6203,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1935846233}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 285320265}
+        m_TargetAssemblyTypeName: ToggleButton, Fernando.Game.Runtime
+        m_MethodName: OnFishButtonClicked
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: SkellyFish
           m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1963802117

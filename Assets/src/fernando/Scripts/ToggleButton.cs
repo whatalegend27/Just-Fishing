@@ -3,53 +3,40 @@ using UnityEngine;
 
 public class ToggleButton : MonoBehaviour
 {
-    public GameObject catFish;
-    public GameObject nemoFish;
-    public GameObject orangeFish;
-    public GameObject butterflyFish;
-    public GameObject silverFish;
-    public GameObject skellyFish;
-    public GameObject bigbruceFish;
+    [System.Serializable]
+    public struct FishDisplayEntry
+    {
+        public string fishName;
+        public GameObject fishDisplay;
+    }
 
-    private List<GameObject> allFish;
+    [SerializeField] private List<FishDisplayEntry> fishDisplays;
+
     private GameObject currentFish;
 
     private void Start()
     {
-        allFish = new List<GameObject>
-        {
-            catFish, nemoFish, orangeFish, butterflyFish,
-            silverFish, skellyFish, bigbruceFish
-        };
-
-        // Hide all fish at start
-        foreach (GameObject fish in allFish)
-            if (fish != null) fish.SetActive(false);
+        foreach (FishDisplayEntry entry in fishDisplays)
+            if (entry.fishDisplay != null) entry.fishDisplay.SetActive(false);
     }
 
-    private void Show(GameObject fish)
+    public void OnFishButtonClicked(string fishName)
     {
-        // If clicking the same fish, hide it (toggle off)
-        if (currentFish == fish)
+        foreach (FishDisplayEntry entry in fishDisplays)
         {
-            fish.SetActive(false);
-            currentFish = null;
+            if (entry.fishName != fishName) continue;
+
+            if (currentFish == entry.fishDisplay)
+            {
+                entry.fishDisplay.SetActive(false);
+                currentFish = null;
+                return;
+            }
+
+            if (currentFish != null) currentFish.SetActive(false);
+            entry.fishDisplay.SetActive(true);
+            currentFish = entry.fishDisplay;
             return;
         }
-
-        // Hide current, show new
-        if (currentFish != null)
-            currentFish.SetActive(false);
-
-        fish.SetActive(true);
-        currentFish = fish;
     }
-
-    public void OnCatButtonClicked() => Show(catFish);
-    public void OnNemoButtonClicked() => Show(nemoFish);
-    public void OnOrangeButtonClicked() => Show(orangeFish);
-    public void OnButterflyButtonClicked() => Show(butterflyFish);
-    public void OnSilverButtonClicked() => Show(silverFish);
-    public void OnSkellyButtonClicked() => Show(skellyFish);
-    public void OnBigBruceButtonClicked() => Show(bigbruceFish);
 }
