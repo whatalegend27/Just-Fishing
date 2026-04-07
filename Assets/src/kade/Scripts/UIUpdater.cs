@@ -1,30 +1,39 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class UIUpdater : MonoBehaviour
 {
     public HealthStats healthStats;
     public ArrestStats arrestStats;
-    public UIDocument uiDoc;
 
-    private Label m_HungerLabel;
-    private Label m_ExhaustionLabel;
-    private Label m_RiskLabel;
+    [Header("Bar Fill Rectangles")]
+    public RectTransform healthBarFill;
+    public RectTransform hungerBarFill;
+    public RectTransform riskBarFill;
 
-    private int m_CachedHunger;
+    [Header("Bar Background Widths (pixels)")]
+    public float healthBarMaxWidth = 200f;
+    public float hungerBarMaxWidth = 200f;
+    public float riskBarMaxWidth   = 200f;
+
+    [Header("Labels (optional)")]
+    public Text healthLabel;
+    public Text hungerLabel;
+    public Text riskLabel;
+
     private int m_CachedExhaustion;
+    private int m_CachedHunger;
     private int m_CachedRisk;
 
     void Start()
     {
-        var root = uiDoc.rootVisualElement;
-        m_HungerLabel     = root.Q<Label>("HungerLabel");
-        m_ExhaustionLabel = root.Q<Label>("ExhaustionLabel");
-        m_RiskLabel       = root.Q<Label>("RiskLabel");
-
-        m_CachedHunger     = healthStats.hungerVal;
-        m_CachedExhaustion = healthStats.exhaustionVal;
-        m_CachedRisk       = arrestStats.riskVal;
+        if (healthStats != null)
+        {
+            m_CachedExhaustion = healthStats.healthVal;
+            m_CachedHunger     = healthStats.hungerVal;
+        }
+        if (arrestStats != null)
+            m_CachedRisk = arrestStats.riskVal;
 
         RefreshUI();
     }
@@ -33,17 +42,20 @@ public class UIUpdater : MonoBehaviour
     {
         bool changed = false;
 
-        if (healthStats.hungerVal != m_CachedHunger)
+        if (healthStats != null)
         {
-            m_CachedHunger = healthStats.hungerVal;
-            changed = true;
+            if (healthStats.healthVal != m_CachedExhaustion)
+            {
+                m_CachedExhaustion = healthStats.healthVal;
+                changed = true;
+            }
+            if (healthStats.hungerVal != m_CachedHunger)
+            {
+                m_CachedHunger = healthStats.hungerVal;
+                changed = true;
+            }
         }
-        if (healthStats.exhaustionVal != m_CachedExhaustion)
-        {
-            m_CachedExhaustion = healthStats.exhaustionVal;
-            changed = true;
-        }
-        if (arrestStats.riskVal != m_CachedRisk)
+        if (arrestStats != null && arrestStats.riskVal != m_CachedRisk)
         {
             m_CachedRisk = arrestStats.riskVal;
             changed = true;
@@ -55,11 +67,27 @@ public class UIUpdater : MonoBehaviour
 
     void RefreshUI()
     {
-        if (m_HungerLabel is not null)
-            m_HungerLabel.text = m_CachedHunger.ToString();
-        if (m_ExhaustionLabel is not null)
-            m_ExhaustionLabel.text = m_CachedExhaustion.ToString();
-        if (m_RiskLabel is not null)
-            m_RiskLabel.text = m_CachedRisk.ToString();
+        Debug.Log($"[UIUpdater] RefreshUI — health:{m_CachedExhaustion} hunger:{m_CachedHunger} risk:{m_CachedRisk}");
+        SetBar(healthBarFill, healthBarMaxWidth, healthLabel, m_CachedExhaustion);
+        SetBar(hungerBarFill, hungerBarMaxWidth, hungerLabel, m_CachedHunger);
+        SetBar(riskBarFill,   riskBarMaxWidth,   riskLabel,   m_CachedRisk);
+    }
+
+    void SetBar(RectTransform fill, float maxWidth, Text label, int value)
+    {
+        if (fill != null)
+        {
+            Vector2 size = fill.sizeDelta;
+            size.x = maxWidth * Mathf.Clamp01(value / 100f);
+            fill.sizeDelta = size;
+            Debug.Log($"[UIUpdater] SetBar — fill:{fill.name} width:{size.x} sizeDelta:{fill.sizeDelta}");
+        }
+        else
+        {
+            Debug.LogWarning("[UIUpdater] SetBar — fill RectTransform is null!");
+        }
+
+        if (label != null)
+            label.text = value.ToString();
     }
 }
