@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7959810003097245136}
-  - component: {fileID: 6879087867572201009}
+  - component: {fileID: 6968930051004431433}
   m_Layer: 0
   m_Name: FishDBManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6879087867572201009
+--- !u!114 &6968930051004431433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,19 +43,19 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b026f6317392b45f49268d8da4151a1a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FishDatabaseManager
+  m_EditorClassIdentifier: Fernando.Game.Runtime::FishDatabaseManager
   fishDatabase:
-  - fishName: Silver-Fish
-    fishKnown: 0
-  - fishName: Red-Fish
-    fishKnown: 0
-  - fishName: Sand-Fish
-    fishKnown: 0
-  - fishName: Blue-Fish
-    fishKnown: 0
-  - fishName: Skelly-Fish
-    fishKnown: 0
-  - fishName: Green-Fish
-    fishKnown: 0
-  - fishName: BigBlue-Fish
-    fishKnown: 0
+  - fishName: CatFish
+    fishKnown: 1
+  - fishName: Nemo
+    fishKnown: 1
+  - fishName: OrangeFish
+    fishKnown: 1
+  - fishName: Butterfly
+    fishKnown: 1
+  - fishName: SilverFish
+    fishKnown: 1
+  - fishName: SkellyFish
+    fishKnown: 1
+  - fishName: BigBruce
+    fishKnown: 1
