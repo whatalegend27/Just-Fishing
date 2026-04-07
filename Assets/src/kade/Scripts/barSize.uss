@@ -1,0 +1,7 @@
+:root {
+}
+
+.barSize {
+    width: 500px;
+    background-size: 500px 150px;
+}
