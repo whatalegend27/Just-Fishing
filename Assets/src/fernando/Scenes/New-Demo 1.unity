@@ -1563,55 +1563,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2170221928629739213, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
-      propertyPath: m_Name
-      value: TimeUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.53192
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.84423
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4564235751735235308, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+    - target: {fileID: 8534615281633384614, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9116877244454429362, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
+      propertyPath: m_Name
+      value: TimeUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fb27fe8e95bd9dc29b8a5e4253faf939, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
 --- !u!1 &1014830254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1944,7 +1944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -17.900024, y: 0.57}
+  m_AnchoredPosition: {x: -17.899902, y: 0.57}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1128228911
@@ -4509,7 +4509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -40.6, y: 104.70001}
+  m_AnchoredPosition: {x: -40.600098, y: 104.70001}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &2015142654
