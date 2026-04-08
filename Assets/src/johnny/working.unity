@@ -3324,10 +3324,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e72acb9c9109e040ae80f19d28e57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleToolbox
-<<<<<<< HEAD
-  scriptsToDisable: []
-=======
->>>>>>> isabella/working
   Toolboxes:
   - {fileID: 1053015090}
   - {fileID: 1690344672}
