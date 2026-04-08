@@ -1,37 +1,36 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class FishCatalogUI : MonoBehaviour
 {
-    public GameObject RT;
-    public GameObject RM;
-    public GameObject RB;
-    public GameObject LT;
+    [System.Serializable]
+    public struct FishButtonEntry
+    {
+        public string fishName;
+        public GameObject button;
+    }
 
-    public GameObject LM;
-    public GameObject LB;
-
+    [SerializeField] private List<FishButtonEntry> fishButtons;
 
     void Start()
     {
-        RT.SetActive(false);
-        RM.SetActive(false);
-        RM.SetActive(false);
-        LT.SetActive(false);
-        LM.SetActive(false);
-        LB.SetActive(false);
-
-        for (int i = 0; i < FishDatabaseManager.Instance.fishDatabase.Count; i++)
+        foreach (FishButtonEntry entry in fishButtons)
         {
-            FishData fish = FishDatabaseManager.Instance.fishDatabase[i];
+            if (entry.button == null) continue;
+            entry.button.SetActive(false);
+        }
 
-            if (fish.fishKnown)
+        foreach (FishData fish in FishDatabaseManager.Instance.fishDatabase)
+        {
+            if (!fish.fishKnown) continue;
+
+            foreach (FishButtonEntry entry in fishButtons)
             {
-                RT.SetActive(true);
-                RM.SetActive(true);
-                RM.SetActive(true);
-                LT.SetActive(true);
-                LM.SetActive(true);
-                LB.SetActive(true);
+                if (entry.fishName == fish.fishName && entry.button != null)
+                {
+                    entry.button.SetActive(true);
+                    break;
+                }
             }
         }
     }

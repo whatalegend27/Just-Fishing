@@ -7,6 +7,8 @@ TagManager:
   - Lure
   - Fish
   - Job
+  - SoundOn
+  - SoundOff
   layers:
   - Default
   - TransparentFX
