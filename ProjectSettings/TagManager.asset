@@ -52,6 +52,9 @@ TagManager:
   - name: Items
     uniqueID: 3935968625
     locked: 0
+  - name: Backgrounds-Fishing
+    uniqueID: 1937329473
+    locked: 0
   - name: Player
     uniqueID: 3720869473
     locked: 0
