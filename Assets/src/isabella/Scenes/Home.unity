@@ -2075,7 +2075,14 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 9597dcd (Add boat prefab back into mine and add changes)
+>>>>>>> isabella/working
 --- !u!1001 &1715275410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2226,7 +2233,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5663141980573793040, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
   m_PrefabInstance: {fileID: 1715275410}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 >>>>>>> 1abb98b (Add boat prefab back into mine and add changes)
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> a0a07d7 (Reverting to a safe commit)
+=======
+>>>>>>> 1abb98b (Add boat prefab back into mine and add changes)
+>>>>>>> 9597dcd (Add boat prefab back into mine and add changes)
+>>>>>>> isabella/working
 --- !u!1 &1971577852
 GameObject:
   m_ObjectHideFlags: 0

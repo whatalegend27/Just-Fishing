@@ -3035,8 +3035,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
-<<<<<<< HEAD
-=======
 --- !u!1 &2808159792033763842
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,7 +3278,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
->>>>>>> 1abb98b (Add boat prefab back into mine and add changes)
 --- !u!1 &2927841564375395804
 GameObject:
   m_ObjectHideFlags: 0
@@ -5675,7 +5672,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Isabella_GameScripts::AudioManager
   masterMixer: {fileID: 24100000, guid: 32715afafef64624aba99b139c75b745, type: 2}
   hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+<<<<<<< HEAD
 >>>>>>> 1abb98b (Add boat prefab back into mine and add changes)
+=======
+>>>>>>> isabella/working
 --- !u!1 &5486516812998973083
 GameObject:
   m_ObjectHideFlags: 0
@@ -6883,7 +6883,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Isabella_GameScripts::AudioManager
   masterMixer: {fileID: 24100000, guid: 32715afafef64624aba99b139c75b745, type: 2}
   hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+<<<<<<< HEAD
 >>>>>>> 1abb98b (Add boat prefab back into mine and add changes)
+=======
+>>>>>>> isabella/working
 --- !u!1 &6658275769243297308
 GameObject:
   m_ObjectHideFlags: 0
