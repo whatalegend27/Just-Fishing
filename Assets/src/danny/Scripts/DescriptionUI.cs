@@ -9,14 +9,15 @@ public class DescriptionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI priceText;
     [SerializeField] private GameObject descriptionPanel;
     [SerializeField] private Image itemIcon;
-    [SerializeField] private ItemScript currentItem;
+    private ItemScript currentItem;
 
+    //Displays scriptable objects info
     public void ShowDetails(ItemScript item)
     {
-        nameText.text = item.itemName;
-        descriptionText.text = item.itemDescription;
-        priceText.text = "Cost: $" + item.price;
-        itemIcon.sprite = item.icon;
+        nameText.text = item.ItemName;
+        descriptionText.text = item.getDescription();
+        priceText.text = "Cost: $" + item.Price;
+        itemIcon.sprite = item.Icon;
         descriptionPanel.SetActive(true);
         currentItem = item;
     }
@@ -28,6 +29,6 @@ public class DescriptionUI : MonoBehaviour
 
     public void buyButton()
     {
-        bool canBuy = GoldManager.Instance.BuyItem(currentItem);
+        GoldManager.Instance.BuyItem(currentItem); 
     }
 }

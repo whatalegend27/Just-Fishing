@@ -24,7 +24,7 @@ public class GoldManager : MonoBehaviour
     //checks if player has enough to buy
     bool CanAfford(ItemScript item)
     {
-        if (item.price <= playerGold)
+        if (item.Price <= playerGold)
         {
             return true;
         } else
@@ -38,7 +38,7 @@ public class GoldManager : MonoBehaviour
     {
         if (CanAfford(item))
         {
-            playerGold -= item.price;
+            playerGold -= item.Price;
             InventoryManager.Instance.AddItem(item);    //from InventoryManager
             UpdateUI();
             return true;
@@ -52,7 +52,7 @@ public class GoldManager : MonoBehaviour
     //sells item - adds money
     public void SellItem(ItemScript item)
     {
-        playerGold += item.price;
+        playerGold += item.Price;
         UpdateUI();
     }
 

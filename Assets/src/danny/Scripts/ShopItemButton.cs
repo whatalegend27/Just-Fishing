@@ -12,7 +12,7 @@ public class ShopItemButton : MonoBehaviour
     {
         if (itemData != null && iconImage != null)
         {
-            iconImage.sprite = itemData.icon;
+            iconImage.sprite = itemData.Icon;
         }
 
         Button btn = GetComponent<Button>();

@@ -3,7 +3,9 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
+    [SerializeField] private GameObject slotDescripton;
     bool menuActive = false;
+
 
     //prevents other scripts from writing into the inventory
     public static InventoryManager Instance { get; private set; }
@@ -65,6 +67,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventoryMenu.SetActive(false);
             menuActive = false;
+            slotDescripton.SetActive(false);
         }
     }
 }
