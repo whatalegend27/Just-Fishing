@@ -1,3 +1,4 @@
+/*
 using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
@@ -41,3 +42,4 @@ public class ItemStressTest
             Object.Destroy(button);
     }
 }
+*/

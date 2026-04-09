@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject inventoryMenu;
+    [SerializeField] private GameObject inventoryMenu;
+    [SerializeField] private GameObject slotDescripton;
     bool menuActive = false;
+
 
     //prevents other scripts from writing into the inventory
     public static InventoryManager Instance { get; private set; }
@@ -13,6 +15,7 @@ public class InventoryManager : MonoBehaviour
 
     public static void ResetInstance() => Instance = null;
 
+    //Initalizes each inventory slot to be empty
     public void Awake()
     {
         //Creation of singleton so only one inventory exists
@@ -33,6 +36,7 @@ public class InventoryManager : MonoBehaviour
         ToggleMenu();
     }
 
+    //adds item to inventory 
     public bool AddItem(ItemScript item)
     {
         if (item == null)
@@ -63,6 +67,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventoryMenu.SetActive(false);
             menuActive = false;
+            slotDescripton.SetActive(false);
         }
     }
 }

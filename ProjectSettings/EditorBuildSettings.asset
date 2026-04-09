@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/MVP_Scenes/New-Demo 1.unity
     guid: 1f535baf6666a834fb0e4326132aca9d
   - enabled: 1
-    path: Assets/MVP_Scenes/Shop.unity
-    guid: f42531a6c9196614295a23187c317229
+    path: Assets/src/danny/Scenes/Shop.unity
+    guid: f708272042359954ca02c43b8023ecb0
   - enabled: 1
     path: Assets/src/fernando/Scenes/Revamp Achievment System.unity
     guid: 3f2d73e981d62489d9808499f442c565

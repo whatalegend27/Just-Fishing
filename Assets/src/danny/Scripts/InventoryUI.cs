@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    public InventorySlotUI[] inventorySlotUI;
+    [SerializeField] private InventorySlotUI[] inventorySlotUI;
 
     void OnEnable()
     {
@@ -17,12 +17,13 @@ public class InventoryUI : MonoBehaviour
        InventoryManager.Instance.inventoryChanged -= Refresh;
     }
 
+    // Refreshs inventory slots to update items when something is added
     void Refresh()
     {
         int i =0;
         foreach (InventorySlotUI slots in inventorySlotUI)
         {
-            slots.SetUp(InventoryManager.Instance.slots[i]);
+            slots.SetUp(InventoryManager.Instance.slots[i]); //from InventorySlotUI
             i++;
         }
     }

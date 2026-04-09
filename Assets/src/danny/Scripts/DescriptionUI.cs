@@ -4,19 +4,20 @@ using UnityEngine.UI;
 
 public class DescriptionUI : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI priceText;
-    public GameObject descriptionPanel;
-    public Image itemIcon;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private GameObject descriptionPanel;
+    [SerializeField] private Image itemIcon;
     private ItemScript currentItem;
 
+    //Displays scriptable objects info
     public void ShowDetails(ItemScript item)
     {
-        nameText.text = item.itemName;
-        descriptionText.text = item.itemDescription;
-        priceText.text = "Cost: $" + item.price;
-        itemIcon.sprite = item.icon;
+        nameText.text = item.ItemName;
+        descriptionText.text = item.getDescription();
+        priceText.text = "Cost: $" + item.Price;
+        itemIcon.sprite = item.Icon;
         descriptionPanel.SetActive(true);
         currentItem = item;
     }
@@ -28,6 +29,6 @@ public class DescriptionUI : MonoBehaviour
 
     public void buyButton()
     {
-        bool canBuy = GoldManager.Instance.BuyItem(currentItem);
+        GoldManager.Instance.BuyItem(currentItem); 
     }
 }
