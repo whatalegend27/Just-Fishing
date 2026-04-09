@@ -133,7 +133,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6066739135198862647}
   animator: {fileID: 621163668176052440}
   Toolboxes: []
-  TbToShow: {fileID: 0}
+  TbToShow: {fileID: 4331811795281054474, guid: f3c638f9ae5041a418630861989ccf4c, type: 3}
 --- !u!61 &-5053726090015829903
 BoxCollider2D:
   m_ObjectHideFlags: 0

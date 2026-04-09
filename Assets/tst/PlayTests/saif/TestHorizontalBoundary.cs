@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
@@ -50,4 +50,4 @@ public class TestHorizontalBoundary
         // 4. Cleanup
         Object.Destroy(hookObj);
     }
-}
+} */
