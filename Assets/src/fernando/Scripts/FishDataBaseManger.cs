@@ -36,6 +36,7 @@ public class FishDatabaseManager : MonoBehaviour
             if (fishDatabase[i].fishName == fishName)
             {
                 fishDatabase[i].fishKnown = true;
+                fishDatabase[i].catchCount++;
                 return true;
             }
         }
