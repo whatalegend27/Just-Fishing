@@ -28,6 +28,10 @@ public class DayNightCycle : MonoBehaviour
     [Tooltip("Controls the height of the sun's arc throughout the day.")]
     [SerializeField] private AnimationCurve sunArcHeight;
 
+    [Header("Rain Settings")]
+    [Tooltip("The rain sound controller.")]
+    [SerializeField] private AudioSource rainSound;
+
     private weatherController weatherControllerScript;
     private GameObject cloudsFront;
     private GameObject cloudsBack;
@@ -42,6 +46,8 @@ public class DayNightCycle : MonoBehaviour
 
         cloudsFront = GameObject.Find("CloudsFront");
         cloudsBack = GameObject.Find("CloudsBack");
+        
+        if (rainSound != null) rainSound.volume = 0f; // Start with rain sound muted
         
     }
 
@@ -80,10 +86,13 @@ public class DayNightCycle : MonoBehaviour
             if (cloudsFront != null) cloudsFront.SetActive(false);
             if (cloudsBack != null) cloudsBack.SetActive(false);
 
+            
+
             if (rainRenderer != null && rainRenderer.emission.enabled == true)
             {
                 var emission = rainRenderer.emission;
-                emission.enabled = false;            
+                emission.enabled = false;        
+                if (rainSound != null) rainSound.volume = 0f;    
             }
         }
 
@@ -105,10 +114,11 @@ public class DayNightCycle : MonoBehaviour
             {
                 var emission = rainRenderer.emission;
                 emission.enabled = false;
+                rainSound.volume = 0f;
             }
         }
 
-        if (weatherControllerScript != null && weatherControllerScript.GetCurrentWeather() == "Rainy")
+        if (weatherControllerScript != null && (weatherControllerScript.GetCurrentWeather() == "Rainy" || weatherControllerScript.GetCurrentWeather() == "Stormy"))
         {
             // Darken the colors during rainy weather
             foreach (SpriteRenderer renderer in backgroundRenderers)
@@ -121,11 +131,15 @@ public class DayNightCycle : MonoBehaviour
             
             if (cloudsFront != null) cloudsFront.SetActive(true);
             if (cloudsBack != null) cloudsBack.SetActive(true);
+            
+            if (rainSound != null) rainSound.volume = 0.5f;
 
             if (rainRenderer != null && rainRenderer.emission.enabled == false)
             {
                 var emission = rainRenderer.emission;
                 emission.enabled = true;
+                rainSound.volume = 0.5f;
+
             }
 
         }
