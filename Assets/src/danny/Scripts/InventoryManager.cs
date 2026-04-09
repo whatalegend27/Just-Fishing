@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject inventoryMenu;
+    [SerializeField] private GameObject inventoryMenu;
     bool menuActive = false;
 
     //prevents other scripts from writing into the inventory
@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     public static void ResetInstance() => Instance = null;
 
+    //Initalizes each inventory slot to be empty
     public void Awake()
     {
         //Creation of singleton so only one inventory exists
@@ -33,6 +34,7 @@ public class InventoryManager : MonoBehaviour
         ToggleMenu();
     }
 
+    //adds item to inventory 
     public bool AddItem(ItemScript item)
     {
         if (item == null)

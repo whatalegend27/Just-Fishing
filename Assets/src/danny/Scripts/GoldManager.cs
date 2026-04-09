@@ -6,9 +6,8 @@ public class GoldManager : MonoBehaviour
 {
 
     public static GoldManager Instance { get; private set; }
-    public TextMeshProUGUI goldText;
-   // public Animator animator;
-    public int playerGold = 10;
+    [SerializeField] private TextMeshProUGUI goldText;
+    [SerializeField] private int playerGold = 10;
 
     void Awake()
     {
@@ -40,7 +39,7 @@ public class GoldManager : MonoBehaviour
         if (CanAfford(item))
         {
             playerGold -= item.price;
-            InventoryManager.Instance.AddItem(item);
+            InventoryManager.Instance.AddItem(item);    //from InventoryManager
             UpdateUI();
             return true;
         } else

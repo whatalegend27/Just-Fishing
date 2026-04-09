@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class DescriptionUI : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI priceText;
-    public GameObject descriptionPanel;
-    public Image itemIcon;
-    private ItemScript currentItem;
+    [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI priceText;
+    [SerializeField] private GameObject descriptionPanel;
+    [SerializeField] private Image itemIcon;
+    [SerializeField] private ItemScript currentItem;
 
     public void ShowDetails(ItemScript item)
     {

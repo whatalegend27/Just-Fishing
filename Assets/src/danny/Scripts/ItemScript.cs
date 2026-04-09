@@ -9,4 +9,19 @@ public class ItemScript : ScriptableObject
     [TextArea]public string itemDescription;
     public int price;
     public Sprite icon;
+
+    public virtual string getDescription()
+    {
+        return itemDescription;
+    }
 }
+
+// public class StackableItem : ItemScript
+// {
+//     int maxStack;
+
+//     public override string getDescription()
+//     {
+//         return itemDescription + "\nStacks up to:" + maxStack;
+//     }
+// }

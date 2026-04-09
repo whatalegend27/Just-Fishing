@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class ShopItemButton : MonoBehaviour
 {
-    public ItemScript itemData;
-    public DescriptionUI displayUI;
-    public Image iconImage;
+    [SerializeField] private ItemScript itemData;
+    [SerializeField] private DescriptionUI displayUI;
+    [SerializeField] private Image iconImage;
 
+    //Displays the image for the Scriptable Object
     void Start()
     {
         if (itemData != null && iconImage != null)
@@ -19,8 +20,9 @@ public class ShopItemButton : MonoBehaviour
             btn.onClick.AddListener(OnClick);
     }
 
+    //Displays Scriptable Objects item descriptions when clicked
     void OnClick()
     {
-        displayUI.ShowDetails(itemData);
+        displayUI.ShowDetails(itemData); //from DescriptionUI
     }
 }

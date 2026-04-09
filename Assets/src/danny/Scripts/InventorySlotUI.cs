@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class InventorySlotUI : MonoBehaviour
 {
-   public TextMeshProUGUI quantityText;
-   public Image image;
+   [SerializeField] private TextMeshProUGUI quantityText;
+   [SerializeField] private Image image;
 
+   //Displays the item picture in a inventory slot
    public void SetUp(InventorySlotData slots)
     {
         if (slots.item == null)
