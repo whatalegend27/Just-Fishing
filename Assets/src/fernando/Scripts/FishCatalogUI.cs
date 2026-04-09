@@ -12,6 +12,16 @@ public class FishCatalogUI : MonoBehaviour
 
     [SerializeField] private List<FishButtonEntry> fishButtons;
 
+    private void OnEnable()
+    {
+        FishDatabaseManager.OnFishRegistered += ShowButton;
+    }
+
+    private void OnDisable()
+    {
+        FishDatabaseManager.OnFishRegistered -= ShowButton;
+    }
+
     void Start()
     {
         foreach (FishButtonEntry entry in fishButtons)
@@ -31,6 +41,18 @@ public class FishCatalogUI : MonoBehaviour
                     entry.button.SetActive(true);
                     break;
                 }
+            }
+        }
+    }
+
+    private void ShowButton(string fishName)
+    {
+        foreach (FishButtonEntry entry in fishButtons)
+        {
+            if (entry.fishName == fishName && entry.button != null)
+            {
+                entry.button.SetActive(true);
+                break;
             }
         }
     }
