@@ -9,6 +9,10 @@ TagManager:
   - Job
   - AudioOn
   - AudioOff
+  - FightTxt
+  - FightBtn
+  - FlirtBtn
+  - InsultBtn
   layers:
   - Default
   - TransparentFX
