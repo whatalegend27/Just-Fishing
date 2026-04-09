@@ -12,6 +12,7 @@ public class FishCatchTrigger : MonoBehaviour
 
             if (fish != null)
             {
+                fish.catchCount++;
                 FishDatabaseManager.Instance.RegisterFish(fish.fishName);
             }
         }

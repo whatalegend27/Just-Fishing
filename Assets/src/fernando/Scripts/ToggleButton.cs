@@ -1,55 +1,81 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ToggleButton : MonoBehaviour
 {
-    public GameObject catFish;
-    public GameObject nemoFish;
-    public GameObject orangeFish;
-    public GameObject butterflyFish;
-    public GameObject silverFish;
-    public GameObject skellyFish;
-    public GameObject bigbruceFish;
+    [System.Serializable]
+    public struct FishDisplayEntry
+    {
+        public string fishName;
+        public GameObject fishDisplay;
+        public TextMeshProUGUI catchCountText;
+    }
 
-    private List<GameObject> allFish;
+    [SerializeField] private List<FishDisplayEntry> fishDisplays;
+
     private GameObject currentFish;
+
+    private void OnEnable()
+    {
+        FishDatabaseManager.OnFishRegistered += UpdateCatchCount;
+    }
+
+    private void OnDisable()
+    {
+        FishDatabaseManager.OnFishRegistered -= UpdateCatchCount;
+    }
 
     private void Start()
     {
-        allFish = new List<GameObject>
-        {
-            catFish, nemoFish, orangeFish, butterflyFish,
-            silverFish, skellyFish, bigbruceFish
-        };
-
-        // Hide all fish at start
-        foreach (GameObject fish in allFish)
-            if (fish != null) fish.SetActive(false);
+        foreach (FishDisplayEntry entry in fishDisplays)
+            if (entry.fishDisplay != null) entry.fishDisplay.SetActive(false);
     }
 
-    private void Show(GameObject fish)
+    private void UpdateCatchCount(string fishName)
     {
-        // If clicking the same fish, hide it (toggle off)
-        if (currentFish == fish)
+        if (currentFish == null) return;
+
+        foreach (FishDisplayEntry entry in fishDisplays)
         {
-            fish.SetActive(false);
-            currentFish = null;
+            if (entry.fishName != fishName) continue;
+            if (currentFish != entry.fishDisplay) return;
+
+            if (entry.catchCountText != null)
+            {
+                FishData data = FishDatabaseManager.Instance.fishDatabase.Find(f => f.fishName == fishName);
+                if (data != null)
+                    entry.catchCountText.text = "Times Caught: " + data.catchCount.ToString();
+            }
             return;
         }
-
-        // Hide current, show new
-        if (currentFish != null)
-            currentFish.SetActive(false);
-
-        fish.SetActive(true);
-        currentFish = fish;
     }
 
-    public void OnCatButtonClicked() => Show(catFish);
-    public void OnNemoButtonClicked() => Show(nemoFish);
-    public void OnOrangeButtonClicked() => Show(orangeFish);
-    public void OnButterflyButtonClicked() => Show(butterflyFish);
-    public void OnSilverButtonClicked() => Show(silverFish);
-    public void OnSkellyButtonClicked() => Show(skellyFish);
-    public void OnBigBruceButtonClicked() => Show(bigbruceFish);
+    public void OnFishButtonClicked(string fishName)
+    {
+        foreach (FishDisplayEntry entry in fishDisplays)
+        {
+            if (entry.fishName != fishName) continue;
+
+            if (currentFish == entry.fishDisplay)
+            {
+                entry.fishDisplay.SetActive(false);
+                currentFish = null;
+                return;
+            }
+
+            if (currentFish != null) currentFish.SetActive(false);
+            entry.fishDisplay.SetActive(true);
+            currentFish = entry.fishDisplay;
+
+            if (entry.catchCountText != null)
+            {
+                FishData data = FishDatabaseManager.Instance.fishDatabase.Find(f => f.fishName == fishName);
+                if (data != null)
+                    entry.catchCountText.text = "Times Caught: " + data.catchCount.ToString();
+            }
+
+            return;
+        }
+    }
 }
