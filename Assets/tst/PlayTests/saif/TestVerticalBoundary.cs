@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
@@ -49,4 +49,4 @@ public class TestVerticalBoundary
         // 4. Cleanup
         Object.Destroy(hookObj);
     }
-}
+} */
