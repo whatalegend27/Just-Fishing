@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7993542569173661912}
+  - component: {fileID: 4612699220916779634}
   m_Layer: 0
   m_Name: Rod_Tip
   m_TagString: Untagged
@@ -25,9 +26,25 @@ Transform:
   m_GameObject: {fileID: 8845875543930120886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: -1.44, y: -9.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4612699220916779634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845875543930120886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2455f38cf096c4cc3b50121f4a6599de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Saif.GamePlay::Saif.GamePlay.HookSelector
+  smallHookPrefab: {fileID: 2491715541690674588, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+  heavyHookPrefab: {fileID: 6237053374132703638, guid: bbe2656e3fc964e528aee64ed701c944, type: 3}
+  spawnPoint: {fileID: 7993542569173661912}
+  debugSpawnPoint: {fileID: 7993542569173661912}
