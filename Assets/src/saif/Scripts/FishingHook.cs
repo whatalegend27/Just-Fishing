@@ -284,6 +284,7 @@ namespace Saif.GamePlay
                 {
                     AttachFish(collision.transform, ref caughtFishTransform);
                     hasCaughtFish = true;
+                    Handheld.Vibrate();
                 }
             }
             else
@@ -292,10 +293,12 @@ namespace Saif.GamePlay
                 {
                     AttachFish(collision.transform, ref caughtFishTransform);
                     hasCaughtFish = true;
+                    Handheld.Vibrate();
                 }
                 else if (caughtFishTransform2 == null)
                 {
                     AttachFish(collision.transform, ref caughtFishTransform2);
+                    Handheld.Vibrate();
                 }
             }
         }
