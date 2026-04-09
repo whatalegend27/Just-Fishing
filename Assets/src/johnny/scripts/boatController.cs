@@ -8,6 +8,8 @@ public class boatController : MonoBehaviour
   public float timeBetweenDrifts = 5f; // Seconds
   public HashSet<Vector2> oceanRocksLocation; 
 
+  [SerializeField] private SpriteRenderer dialogueBoxRenderer;
+
   private Vector2 currentPosition;
 
   void Start()
@@ -63,9 +65,9 @@ public class boatController : MonoBehaviour
     if (oceanRocksLocation != null && oceanRocksLocation.Contains(roundedPosition))
     {
       Debug.Log("Boat hit a rock!");
+      // dialogueBoxRenderer.enabled = true; // Show dialogue box on collision
+      // 
       // boat.Destroy();
-      // player.LoseGame();
-      isBoatActive = false;
     }
   }
 }

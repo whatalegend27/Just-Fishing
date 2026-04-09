@@ -55,13 +55,16 @@ TagManager:
   - name: Backgrounds-Fishing
     uniqueID: 1937329473
     locked: 0
+  - name: BoatDecor
+    uniqueID: 3145811345
+    locked: 0
   - name: Player
     uniqueID: 3720869473
     locked: 0
   - name: Fish
     uniqueID: 3392538623
     locked: 0
-  - name: Boat
+  - name: BoatBody
     uniqueID: 2795959219
     locked: 0
   - name: Dialogue
