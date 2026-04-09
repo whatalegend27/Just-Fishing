@@ -16,10 +16,39 @@ public class ToggleButton : MonoBehaviour
 
     private GameObject currentFish;
 
+    private void OnEnable()
+    {
+        FishDatabaseManager.OnFishRegistered += UpdateCatchCount;
+    }
+
+    private void OnDisable()
+    {
+        FishDatabaseManager.OnFishRegistered -= UpdateCatchCount;
+    }
+
     private void Start()
     {
         foreach (FishDisplayEntry entry in fishDisplays)
             if (entry.fishDisplay != null) entry.fishDisplay.SetActive(false);
+    }
+
+    private void UpdateCatchCount(string fishName)
+    {
+        if (currentFish == null) return;
+
+        foreach (FishDisplayEntry entry in fishDisplays)
+        {
+            if (entry.fishName != fishName) continue;
+            if (currentFish != entry.fishDisplay) return;
+
+            if (entry.catchCountText != null)
+            {
+                FishData data = FishDatabaseManager.Instance.fishDatabase.Find(f => f.fishName == fishName);
+                if (data != null)
+                    entry.catchCountText.text = "Times Caught: " + data.catchCount.ToString();
+            }
+            return;
+        }
     }
 
     public void OnFishButtonClicked(string fishName)

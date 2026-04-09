@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class FishDatabaseManager : MonoBehaviour
 {
+    public static event Action<string> OnFishRegistered;
     public static FishDatabaseManager Instance;
 
     public List<FishData> fishDatabase = new List<FishData>
@@ -37,6 +39,7 @@ public class FishDatabaseManager : MonoBehaviour
             {
                 fishDatabase[i].fishKnown = true;
                 fishDatabase[i].catchCount++;
+                OnFishRegistered?.Invoke(fishName);
                 return true;
             }
         }
