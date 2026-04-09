@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ToggleButton : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ToggleButton : MonoBehaviour
     {
         public string fishName;
         public GameObject fishDisplay;
+        public TextMeshProUGUI catchCountText;
     }
 
     [SerializeField] private List<FishDisplayEntry> fishDisplays;
@@ -36,6 +38,14 @@ public class ToggleButton : MonoBehaviour
             if (currentFish != null) currentFish.SetActive(false);
             entry.fishDisplay.SetActive(true);
             currentFish = entry.fishDisplay;
+
+            if (entry.catchCountText != null)
+            {
+                FishData data = FishDatabaseManager.Instance.fishDatabase.Find(f => f.fishName == fishName);
+                if (data != null)
+                    entry.catchCountText.text = "Times Caught: " + data.catchCount.ToString();
+            }
+
             return;
         }
     }
