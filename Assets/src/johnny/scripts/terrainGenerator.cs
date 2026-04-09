@@ -31,7 +31,7 @@ public class terrainGenerator : MonoBehaviour
         }
 
         // Adjust difficulty based on weather conditions
-        switch (weatherControllerScript != null ? weatherControllerScript.currentWeather : "Sunny")
+        switch (weatherControllerScript != null ? weatherControllerScript.GetCurrentWeather() : "Sunny")
         {
             case "Sunny":
                 break; // No change for sunny weather
@@ -45,7 +45,7 @@ public class terrainGenerator : MonoBehaviour
                 difficultyMultiplier *= 2.0f; // Significantly increase difficulty for stormy weather
                 break;
             default:
-                Debug.LogWarning("Unknown weather condition: " + (weatherControllerScript != null ? weatherControllerScript.currentWeather : "NULL"));
+                Debug.LogWarning("Unknown weather condition: " + (weatherControllerScript != null ? weatherControllerScript.GetCurrentWeather() : "NULL"));
                 break;
         }
 
@@ -65,7 +65,7 @@ public class terrainGenerator : MonoBehaviour
                 break;
         }
 
-        Debug.Log("Weather condition: " + (weatherControllerScript != null ? weatherControllerScript.currentWeather : "NULL"));
+        Debug.Log("Weather condition: " + (weatherControllerScript != null ? weatherControllerScript.GetCurrentWeather() : "NULL"));
         Debug.Log("Player difficulty level: " + playerDifficulty);
         Debug.Log("Calculated difficulty multiplier: " + difficultyMultiplier);
         

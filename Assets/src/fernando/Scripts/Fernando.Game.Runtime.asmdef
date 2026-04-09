@@ -1,3 +1,6 @@
 {
-	"name": "Fernando.Game.Runtime"
+	"name": "Fernando.Game.Runtime",
+	"references": [
+		"Unity.TextMeshPro"
+	]
 }

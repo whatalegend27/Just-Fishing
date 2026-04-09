@@ -11,14 +11,17 @@ public class weatherController : MonoBehaviour
         { "Stormy", 0.1f }
     };
 
-    public string currentWeather;
+    [SerializeField] private string currentWeather = "Sunny"; // Default weather condition
 
     private void Start()
     {
         ChangeWeather();
     }
+    public string GetCurrentWeather()
+    {
+        return currentWeather;
+    }
 
-    // Public for testing purposes, but could be private in the final version
     public string DetermineWeather()
     {
         float randomWeather = Random.Range(0.0f, 1.0f);
@@ -32,7 +35,7 @@ public class weatherController : MonoBehaviour
                 return kvp.Key;
             }
         }
-        return "Sunny"; // Fallback
+        return "Sunny";
     }
 
     public void ChangeWeather()

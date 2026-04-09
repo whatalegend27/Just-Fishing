@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 2455f38cf096c4cc3b50121f4a6599de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - smallHookPrefab: {fileID: 2491715541690674588, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+  - heavyHookPrefab: {fileID: 2296957968605797903, guid: 7268dfa19e47b4348b1f1ddb951f3726, type: 3}
+  - spawnPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

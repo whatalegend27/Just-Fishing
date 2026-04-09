@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingHook
   debugMode: 0
+  isHeavyHook: 0
   sinkSpeed: 3
   moveSpeed: 5
   reelSpeed: 7
@@ -119,6 +120,7 @@ MonoBehaviour:
   castAnimationDelay: 0.5
   line: {fileID: 6497673541299130137}
   hookSprite: {fileID: 6186213602563156308}
+  debugSpawnOverride: {x: 0, y: 0, z: 0}
 --- !u!50 &3045230587651110080
 Rigidbody2D:
   serializedVersion: 5
