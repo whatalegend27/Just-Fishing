@@ -1,9 +1,10 @@
+using UnityEditor.Graphs;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
-    [SerializeField] private GameObject slotDescripton;
+    [SerializeField] private GameObject slotDescription;
     bool menuActive = false;
 
 
@@ -56,6 +57,21 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
+    //Removes item from inventory
+    public void RemoveItem(ItemScript item)
+    {
+        for (int i = 0; i < INVENTORY_SIZE; i++)
+        {
+            if(slots[i].item == item)
+            {
+                slots[i] = new InventorySlotData();
+                inventoryChanged?.Invoke();
+                slotDescription.SetActive(false);
+                return;
+            }
+        }
+    }
+
     void ToggleMenu()
     {
         if (Input.GetKeyDown(KeyCode.H) && !menuActive)
@@ -67,7 +83,7 @@ public class InventoryManager : MonoBehaviour
         {
             inventoryMenu.SetActive(false);
             menuActive = false;
-            slotDescripton.SetActive(false);
+            slotDescription.SetActive(false);
         }
     }
 }
