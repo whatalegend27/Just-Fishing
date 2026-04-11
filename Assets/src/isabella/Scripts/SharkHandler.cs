@@ -3,12 +3,37 @@ using UnityEngine;
 
 public class SharkHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //[SerializeField] private Animator animator;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject ChoiceDialogue;
+    [SerializeField] private GameObject FlirtDialogue;
+    [SerializeField] private GameObject InsultDialogue;
+    [SerializeField] private GameObject FightDialogue;
 
-    void OnMouseDown()
+    // Change this to a public void so the Button can see it
+    public void OnFlirtClicked()
     {
-        Console.WriteLine("Flirt was clicked!");
-        //animator.SetBool("IsBlushing", true);
+        if (animator != null)
+        {
+        animator.SetBool("IsBlushing", true);
+        }
+        ChoiceDialogue.SetActive(false);
+        FlirtDialogue.SetActive(true);
+    }
+
+    public void OnInsultClicked()
+    {
+        if (animator != null)
+        {
+            animator.SetBool("IsInsulted", true);
+        }
+        ChoiceDialogue.SetActive(false);
+        InsultDialogue.SetActive(true);
+    }
+
+    public void OnFightClicked()
+    {
+        ChoiceDialogue.SetActive(false);
+        FightDialogue.SetActive(true);
+        // You can add more logic here for the fight outcome
     }
 }
