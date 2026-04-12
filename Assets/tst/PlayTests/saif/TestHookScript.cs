@@ -1,68 +1,147 @@
-/*using UnityEngine;
-using UnityEngine.TestTools; 
-using NUnit.Framework;      
+using UnityEngine;
+using UnityEngine.TestTools;
+using NUnit.Framework;
 using System.Collections;
 using Saif.GamePlay;
 using System.Reflection;
 
-public class TestHookScript 
+public class TestHookScript
 {
-    [UnityTest] 
-    public IEnumerator TestHookStress()
+    private void SetPrivateField(FishingHook hook, string fieldName, object value)
     {
-        // 1. Setup Hook
+        FieldInfo field = typeof(FishingHook).GetField(fieldName,
+            BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.IsNotNull(field, $"Field '{fieldName}' not found!");
+        field.SetValue(hook, value);
+    }
+
+    private FishingHook CreateHook(bool heavy = false)
+    {
         GameObject hookObj = new GameObject("Hook");
-        var hook = hookObj.AddComponent<FishingHook>();
-        
-        // --- REFLECTION UNLOCKS ---
-        System.Type hookType = typeof(FishingHook);
-        
-        // Set isReadyToCast = false (Hook is in the water)
-        FieldInfo readyField = hookType.GetField("isReadyToCast", BindingFlags.NonPublic | BindingFlags.Instance);
-        readyField.SetValue(hook, false);
+        FishingHook hook = hookObj.AddComponent<FishingHook>();
+        hook.enabled = false;
 
-        // Set canReel = false (Simulating the hook sinking, waiting for Space release)
-        // This matches your new "KeyUp" gate logic
-        FieldInfo reelField = hookType.GetField("canReel", BindingFlags.NonPublic | BindingFlags.Instance);
-        reelField.SetValue(hook, false);
+        SetPrivateField(hook, "debugMode", true);
+        SetPrivateField(hook, "isReadyToCast", false);
+        SetPrivateField(hook, "canReel", false);
+        SetPrivateField(hook, "animationDelayDone", true);
+        hook.SetHookType(heavy);
 
-        // Add 2D Physics so it can actually collide
+        typeof(FishingHook)
+            .GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance)
+            .Invoke(hook, null);
+
+        hook.enabled = true;
         hookObj.AddComponent<BoxCollider2D>().isTrigger = true;
-        Rigidbody2D rb = hookObj.AddComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        hookObj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
-        // 2. Setup Fish Prefab (Cube base)
-        GameObject fishPrefab = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        fishPrefab.tag = "Fish";
-        Object.DestroyImmediate(fishPrefab.GetComponent<BoxCollider>());
+        return hook;
+    }
 
-        Debug.Log("<b>[TEST] Starting Hook Stress Validation (50 Fish)</b>");
+    // Destroys all GameObjects with a given name — cleans up stragglers between tests
+    private void DestroyAllNamed(string name)
+    {
+        foreach (GameObject obj in Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+            if (obj.name == name)
+                Object.DestroyImmediate(obj);
+    }
 
-        // 3. Action: Spawn 50 fish exactly on the hook
+    private GameObject SpawnFish(Vector3 position)
+    {
+        GameObject fish = new GameObject("Fish");
+        fish.tag = "Fish";
+        fish.transform.position = position;
+        fish.AddComponent<BoxCollider2D>().isTrigger = true;
+        fish.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        return fish;
+    }
+
+    // ─── TEST 1: SMALL HOOK STRESS ────────────────────────────────────────────────
+    [UnityTest]
+    public IEnumerator SmallHook_StressTest_OnlyCatchesOneFish()
+    {
+        FishingHook hook = CreateHook(heavy: false);
+
         for (int i = 0; i < 50; i++)
+            SpawnFish(hook.transform.position);
+
+        yield return new WaitForSeconds(0.5f);
+
+        int caughtCount = hook.transform.childCount;
+        Assert.AreEqual(1, caughtCount,
+            $"Small hook caught {caughtCount} fish instead of 1!");
+
+        Debug.Log("<b>[TEST 1] PASSED</b>");
+
+        // Use DestroyImmediate so nothing lingers into the next test
+        Object.DestroyImmediate(hook.gameObject);
+        DestroyAllNamed("Fish");
+    }
+
+    // ─── TEST 2: HEAVY HOOK STRESS ────────────────────────────────────────────────
+    [UnityTest]
+    public IEnumerator HeavyHook_StressTest_OnlyCatchesTwoFish()
+    {
+        FishingHook hook = CreateHook(heavy: true);
+
+        for (int i = 0; i < 50; i++)
+            SpawnFish(hook.transform.position);
+
+        yield return new WaitForSeconds(0.5f);
+
+        int caughtCount = hook.transform.childCount;
+        Assert.AreEqual(2, caughtCount,
+            $"Heavy hook caught {caughtCount} fish instead of 2!");
+
+        Debug.Log("<b>[TEST 2] PASSED</b>");
+
+        Object.DestroyImmediate(hook.gameObject);
+        DestroyAllNamed("Fish");
+    }
+
+    // ─── TEST 3: SMALL HOOK IGNORES NON-FISH OBJECTS ─────────────────────────────
+    [UnityTest]
+    public IEnumerator SmallHook_IgnoresNonFishObjects()
+    {
+        // Nuke any leftover Fish objects from previous tests before starting
+        DestroyAllNamed("Fish");
+
+        FishingHook hook = CreateHook(heavy: false);
+
+        for (int i = 0; i < 10; i++)
         {
-            GameObject f = Object.Instantiate(fishPrefab, hook.transform.position, Quaternion.identity);
-            f.tag = "Fish"; 
-            
-            f.AddComponent<BoxCollider2D>().isTrigger = true;
-            Rigidbody2D fishRb = f.AddComponent<Rigidbody2D>();
-            fishRb.bodyType = RigidbodyType2D.Kinematic;
+            GameObject obj = new GameObject("NotAFish");
+            obj.transform.position = hook.transform.position;
+            obj.AddComponent<BoxCollider2D>().isTrigger = true;
+            obj.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         }
 
-        // 4. Wait for physics processing
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.5f);
 
-        // 5. Validation
         int caughtCount = hook.transform.childCount;
-        
-        // Ensure only 1 fish is parented to the hook
-        Assert.AreEqual(1, caughtCount, $"Multi-catch Bug: {caughtCount} fish caught instead of 1!");
+        foreach (Transform child in hook.transform)
+            Debug.LogWarning($"Unexpected catch: '{child.name}' tag: '{child.tag}'");
 
-        Debug.Log("<b>TEST COMPLETED: Hook only caught one fish.</b>");
-        
-        // Cleanup
-        Object.Destroy(hookObj);
-        Object.Destroy(fishPrefab);
+        Assert.AreEqual(0, caughtCount,
+            $"Hook caught {caughtCount} non-fish objects!");
+
+        Debug.Log("<b>[TEST 3] PASSED</b>");
+        Object.DestroyImmediate(hook.gameObject);
+    }
+
+    // ─── TEST 4: ISHOOKCAST PROPERTY ─────────────────────────────────────────────
+    [UnityTest]
+    public IEnumerator Hook_IsHookCast_ReflectsState()
+    {
+        FishingHook hook = CreateHook(heavy: false);
+
+        Assert.IsTrue(hook.IsHookCast, "IsHookCast should be true when hook is cast!");
+
+        SetPrivateField(hook, "isReadyToCast", true);
+        Assert.IsFalse(hook.IsHookCast, "IsHookCast should be false when ready to cast!");
+
+        Debug.Log("<b>[TEST 4] PASSED</b>");
+        yield return null;
+        Object.DestroyImmediate(hook.gameObject);
     }
 }
-*/
