@@ -44,7 +44,7 @@ public class GoldManager : MonoBehaviour
             return true;
         } else
         {
-            StartCoroutine(TurnRed()); 
+            StartCoroutine(FlashColor(Color.red)); 
             return false;
         }
     }
@@ -52,8 +52,11 @@ public class GoldManager : MonoBehaviour
     //sells item - adds money
     public void SellItem(ItemScript item)
     {
+        InventoryManager.Instance.RemoveItem(item);
         playerGold += item.Price;
+        StartCoroutine(FlashColor(Color.green));
         UpdateUI();
+        
     }
 
     //updates gold amount
@@ -63,9 +66,9 @@ public class GoldManager : MonoBehaviour
     }
 
     //turns gold text red for a sec and plays wiggle animation
-    IEnumerator TurnRed()
+    IEnumerator FlashColor(Color color)
     {
-        goldText.color = Color.red;
+        goldText.color = color;
        // animator.Play("TextWiggle", -1, 0f);
         yield return new WaitForSeconds(1f);
         goldText.color = Color.white;
