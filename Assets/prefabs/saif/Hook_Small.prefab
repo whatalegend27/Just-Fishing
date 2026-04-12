@@ -109,8 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishingHook
   debugMode: 0
   isHeavyHook: 0
-  sinkSpeed: 3
-  moveSpeed: 5
+  sinkSpeed: 2
+  moveSpeed: 3
   reelSpeed: 7
   maxDepth: -10
   surfaceLevel: 1.77
@@ -257,8 +257,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.5377358, g: 0.3295672, b: 0.23082057, a: 1}
-      key1: {r: 0.5377358, g: 0.3295672, b: 0.23082057, a: 1}
+      key0: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+      key1: {r: 0.7, g: 0.7, b: 0.7, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

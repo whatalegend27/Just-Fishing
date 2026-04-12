@@ -1,4 +1,4 @@
-/* using UnityEngine;
+using UnityEngine;
 using UnityEngine.TestTools;
 using NUnit.Framework;
 using System.Collections;
@@ -7,46 +7,116 @@ using System.Reflection;
 
 public class TestVerticalBoundary
 {
-    [UnityTest]
-    public IEnumerator TestVerticalClamping()
+    private void SetPrivateField(FishingHook hook, string fieldName, object value)
     {
-        // 1. Setup
-        GameObject hookObj = new GameObject("Hook");
-        var hook = hookObj.AddComponent<FishingHook>();
-        hook.maxDepth = -10f;
-        hook.surfaceLevel = 0f;
-        hook.sinkSpeed = 0f; // Disable automatic sinking for the test
-
-        // --- UPDATED REFLECTION LOGIC ---
-        System.Type hookType = typeof(FishingHook);
-        
-        // Unlock logic: Hook is in the water (not on the boat)
-        FieldInfo readyField = hookType.GetField("isReadyToCast", BindingFlags.NonPublic | BindingFlags.Instance);
-        readyField.SetValue(hook, false); 
-
-        // Set canReel to false (Hook is in the "sinking" logic path)
-        FieldInfo reelField = hookType.GetField("canReel", BindingFlags.NonPublic | BindingFlags.Instance);
-        reelField.SetValue(hook, false);
-
-        Debug.Log("<b>[TEST] Starting Vertical Boundary Validation</b>");
-
-        // 2. Max Depth Case (Floor)
-        // Force it to -20. The script should clamp it back to -10.
-        hook.transform.position = new Vector3(0, -20f, 0);
-        yield return new WaitForFixedUpdate();
-        
-        Assert.GreaterOrEqual(hook.transform.position.y, hook.maxDepth, "Hook is below the seafloor limit!");
-
-        // 3. Surface Case (Ceiling)
-        // Force it to +10. The script should clamp it back to 0.
-        hook.transform.position = new Vector3(0, 10f, 0);
-        yield return new WaitForFixedUpdate();
-        
-        Assert.LessOrEqual(hook.transform.position.y, hook.surfaceLevel, "Hook is above the water surface!");
-
-        Debug.Log("<b>TEST COMPLETED: Vertical limits are locked.</b>");
-
-        // 4. Cleanup
-        Object.Destroy(hookObj);
+        FieldInfo field = typeof(FishingHook).GetField(fieldName,
+            BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.IsNotNull(field, $"Field '{fieldName}' not found!");
+        field.SetValue(hook, value);
     }
-} */
+
+    private FishingHook CreateHook(float sinkSpeed = 0f)
+    {
+        GameObject hookObj = new GameObject("Hook");
+        FishingHook hook = hookObj.AddComponent<FishingHook>();
+        hook.enabled = false;
+
+        SetPrivateField(hook, "debugMode", true);
+        SetPrivateField(hook, "maxDepth", -10f);
+        SetPrivateField(hook, "surfaceLevel", 1.77f);
+        SetPrivateField(hook, "sinkSpeed", sinkSpeed);
+        SetPrivateField(hook, "isReadyToCast", false);
+        SetPrivateField(hook, "canReel", false);
+        SetPrivateField(hook, "animationDelayDone", true);
+
+        typeof(FishingHook)
+            .GetMethod("Start", BindingFlags.NonPublic | BindingFlags.Instance)
+            .Invoke(hook, null);
+
+        hook.enabled = true;
+        return hook;
+    }
+
+    // ─── TEST 1: MAX DEPTH CLAMP ──────────────────────────────────────────────────
+    [UnityTest]
+    public IEnumerator Hook_ClampsToMaxDepth()
+    {
+        FishingHook hook = CreateHook();
+        yield return null; // let LateUpdate register the component first
+
+        hook.transform.position = new Vector3(0f, -20f, 0f);
+        SetPrivateField(hook, "isReadyToCast", false);
+        yield return null;
+
+        Assert.GreaterOrEqual(hook.transform.position.y, -10f,
+            $"Hook below seafloor — Y: {hook.transform.position.y}");
+
+        Debug.Log("<b>[TEST 1] PASSED</b>");
+        Object.DestroyImmediate(hook.gameObject);
+    }
+
+    // ─── TEST 2: SURFACE CLAMP ────────────────────────────────────────────────────
+    [UnityTest]
+    public IEnumerator Hook_ClampsToSurface()
+    {
+        FishingHook hook = CreateHook();
+        yield return null; // let LateUpdate register the component first
+
+        hook.transform.position = new Vector3(0f, 10f, 0f);
+        SetPrivateField(hook, "isReadyToCast", false);
+        yield return null;
+
+        Assert.LessOrEqual(hook.transform.position.y, 0f,
+            $"Hook above surface — Y: {hook.transform.position.y}");
+
+        Debug.Log("<b>[TEST 2] PASSED</b>");
+        Object.DestroyImmediate(hook.gameObject);
+    }
+
+    // ─── TEST 3: STAYS WITHIN BOUNDS OVER TIME ────────────────────────────────────
+    [UnityTest]
+    public IEnumerator Hook_StaysWithinVerticalBoundsOverTime()
+    {
+        FishingHook hook = CreateHook();
+        yield return null; // let LateUpdate register the component first
+
+        hook.transform.position = new Vector3(0f, -50f, 0f);
+        SetPrivateField(hook, "isReadyToCast", false);
+
+        for (int i = 0; i < 10; i++)
+        {
+            yield return null;
+            Assert.GreaterOrEqual(hook.transform.position.y, -10f,
+                $"Frame {i + 1}: Hook below seafloor — Y: {hook.transform.position.y}");
+        }
+
+        Debug.Log("<b>[TEST 3] PASSED</b>");
+        Object.DestroyImmediate(hook.gameObject);
+    }
+
+    // ─── TEST 4: SINKS TO MAX DEPTH AND STOPS ────────────────────────────────────
+    [UnityTest]
+    public IEnumerator Hook_SinksToMaxDepthAndStops()
+    {
+        FishingHook hook = CreateHook(sinkSpeed: 20f);
+        yield return null; // let LateUpdate register the component first
+
+        hook.transform.position = new Vector3(0f, 0f, 0f);
+        SetPrivateField(hook, "isReadyToCast", false);
+
+        float elapsed = 0f;
+        while (elapsed < 2f)
+        {
+            yield return null;
+            elapsed += Time.deltaTime;
+            Assert.GreaterOrEqual(hook.transform.position.y, -10f,
+                $"Hook sank below maxDepth — Y: {hook.transform.position.y}!");
+        }
+
+        Assert.AreEqual(-10f, hook.transform.position.y, 0.1f,
+            $"Hook didn't reach maxDepth — Y: {hook.transform.position.y}");
+
+        Debug.Log("<b>[TEST 4] PASSED</b>");
+        Object.DestroyImmediate(hook.gameObject);
+    }
+}
