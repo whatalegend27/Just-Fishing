@@ -26,6 +26,7 @@ public class InventoryManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         for (int i = 0; i < INVENTORY_SIZE; i++)
         {
             slots[i] = new InventorySlotData();
