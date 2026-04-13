@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9122850716419791005}
   - component: {fileID: 7386509837638992552}
-  - component: {fileID: 8311041546761495751}
   - component: {fileID: 3707198688803629716}
   - component: {fileID: 1765030249369495357}
   - component: {fileID: 2325375141864423753}
+  - component: {fileID: -78892518706941883}
   m_Layer: 0
   m_Name: Hook_Big
   m_TagString: Lure
@@ -95,32 +95,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &8311041546761495751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6237053374132703638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1befa37931ad347eab60d28755086ae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FishingHook
-  debugMode: 0
-  isHeavyHook: 0
-  sinkSpeed: 2
-  moveSpeed: 3
-  reelSpeed: 7
-  maxDepth: -10
-  surfaceLevel: 1.77
-  leftBorder: -3
-  rightBorder: 3
-  rodTipOffset: {x: 0.44, y: 0, z: 0}
-  castAnimationDelay: 0.5
-  line: {fileID: 2325375141864423753}
-  hookSprite: {fileID: 7386509837638992552}
-  debugSpawnOverride: {x: 0, y: 0, z: 0}
 --- !u!50 &3707198688803629716
 Rigidbody2D:
   serializedVersion: 5
@@ -295,3 +269,29 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-78892518706941883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6237053374132703638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d0999bfa3774d8a81acec9af101a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Saif.GamePlay::Saif.GamePlay.HeavyHook
+  debugMode: 0
+  isHeavyHook: 0
+  sinkSpeed: 2
+  moveSpeed: 3
+  reelSpeed: 7
+  maxDepth: -10
+  surfaceLevel: 1.77
+  leftBorder: -3
+  rightBorder: 3
+  rodTipOffset: {x: 0.44, y: 0, z: 0}
+  castAnimationDelay: 0.5
+  line: {fileID: 2325375141864423753}
+  hookSprite: {fileID: 7386509837638992552}
+  debugSpawnOverride: {x: 0, y: 0, z: 0}
