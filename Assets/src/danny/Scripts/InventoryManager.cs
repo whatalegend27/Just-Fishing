@@ -74,12 +74,12 @@ public class InventoryManager : MonoBehaviour
 
     void ToggleMenu()
     {
-        if (Input.GetKeyDown(KeyCode.H) && !menuActive)
+        if (Input.GetKeyDown(KeyCode.T) && !menuActive)
         {
             inventoryMenu.SetActive(true);
             menuActive = true;
         }
-        else if (Input.GetKeyDown(KeyCode.H) && menuActive)
+        else if (Input.GetKeyDown(KeyCode.T) && menuActive)
         {
             inventoryMenu.SetActive(false);
             menuActive = false;

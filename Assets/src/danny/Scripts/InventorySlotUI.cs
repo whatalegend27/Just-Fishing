@@ -26,9 +26,9 @@ public class InventorySlotUI : MonoBehaviour
         else
         {
             currentItem = slots.item;
-            quantityText.enabled = true;
-            quantityText.text = slots.quantity.ToString();
-            image.sprite = slots.item.Icon;
+          //  quantityText.enabled = true;
+          //  quantityText.text = slots.quantity.ToString();
+            image.sprite = currentItem.Icon;
 
             //activates sell button panel when player clicks on time
             Button btn = GetComponent<Button>();
