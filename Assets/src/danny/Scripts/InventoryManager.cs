@@ -4,7 +4,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
-    [SerializeField] private GameObject slotDescription;
+    [SerializeField] private GameObject inventoryDescription;
     bool menuActive = false;
 
 
@@ -26,6 +26,7 @@ public class InventoryManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         for (int i = 0; i < INVENTORY_SIZE; i++)
         {
             slots[i] = new InventorySlotData();
@@ -66,7 +67,7 @@ public class InventoryManager : MonoBehaviour
             {
                 slots[i] = new InventorySlotData();
                 inventoryChanged?.Invoke();
-                slotDescription.SetActive(false);
+                inventoryDescription.SetActive(false);
                 return;
             }
         }
@@ -74,16 +75,16 @@ public class InventoryManager : MonoBehaviour
 
     void ToggleMenu()
     {
-        if (Input.GetKeyDown(KeyCode.H) && !menuActive)
+        if (Input.GetKeyDown(KeyCode.T) && !menuActive)
         {
             inventoryMenu.SetActive(true);
             menuActive = true;
         }
-        else if (Input.GetKeyDown(KeyCode.H) && menuActive)
+        else if (Input.GetKeyDown(KeyCode.T) && menuActive)
         {
             inventoryMenu.SetActive(false);
             menuActive = false;
-            slotDescription.SetActive(false);
+            inventoryDescription.SetActive(false);
         }
     }
 }

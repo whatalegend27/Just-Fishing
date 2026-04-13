@@ -18,6 +18,7 @@ public class GoldManager : MonoBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         UpdateUI();
     }
 
