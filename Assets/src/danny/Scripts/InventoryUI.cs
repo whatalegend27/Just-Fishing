@@ -4,7 +4,7 @@ using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private InventorySlotUI[] inventorySlotUI;
-    [SerializeField] private GameObject slotDescription;
+    //[SerializeField] private GameObject slotDescription;
     private bool menuActive = false;
 
     void OnEnable()

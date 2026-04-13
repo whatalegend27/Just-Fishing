@@ -505,9 +505,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 1964647087}
   image: {fileID: 230222421}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!1 &254159669 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2390513168528332157, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
@@ -1529,7 +1530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
   inventoryMenu: {fileID: 1244339650}
-  slotDescription: {fileID: 1715689944}
+  inventoryDescription: {fileID: 1715689944}
   slots:
   - item: {fileID: 0}
     quantity: 0
@@ -2003,9 +2004,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 1210384546}
   image: {fileID: 1084358677}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!114 &1084358676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2857,7 +2859,6 @@ MonoBehaviour:
   - {fileID: 1559928501}
   - {fileID: 1475138952}
   - {fileID: 2138848440}
-  slotDescription: {fileID: 1715689944}
 --- !u!1 &1277277980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2912,9 +2913,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 475242001}
   image: {fileID: 1277277984}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!114 &1277277983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3826,9 +3828,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 1704840876}
   image: {fileID: 1475138954}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!114 &1475138953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4223,9 +4226,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 1123914712}
   image: {fileID: 1559928503}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!114 &1559928502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4815,9 +4819,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 1461314330}
   image: {fileID: 1718111388}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!114 &1718111387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5443,9 +5448,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 1713184875}
   image: {fileID: 2034869546}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!1 &2037910928 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2604203072139907012, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
@@ -5738,9 +5744,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 1480276544}
   image: {fileID: 2081665329}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!114 &2081665328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5988,9 +5995,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventorySlotUI
   quantityText: {fileID: 713547879}
   image: {fileID: 2138848442}
-  slotDescription: {fileID: 1715689944}
   sellButton: {fileID: 1476935419}
   sellPrice: {fileID: 1294264681}
+  slotDescription: {fileID: 1715689944}
+  slotImage: {fileID: 1219017933}
 --- !u!114 &2138848441
 MonoBehaviour:
   m_ObjectHideFlags: 0
