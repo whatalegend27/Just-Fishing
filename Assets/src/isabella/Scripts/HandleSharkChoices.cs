@@ -1,30 +1,26 @@
 using UnityEngine;
 
+// This script manages the visibility of fight, flirt, and insult buttons, as well as the corresponding dialogues based on player choices in the shark encounter.
 public class HandleSharkChoices : MonoBehaviour
 {
-    [SerializeField] private GameObject FightBtn;
-    [SerializeField] private GameObject FlirtBtn;
-    [SerializeField] private GameObject InsultBtn;
+    [SerializeField] private GameObject fightBtn;
+    [SerializeField] private GameObject flirtBtn;
+    [SerializeField] private GameObject insultBtn;
 
-    [SerializeField] private GameObject ChoiceDialogue;
-    [SerializeField] private GameObject FlirtDialogue;
-    [SerializeField] private GameObject InsultDialogue;
-    [SerializeField] private GameObject FightDialogue;
+    [SerializeField] private GameObject choiceDialogue;
+    [SerializeField] private GameObject flirtDialogue;
+    [SerializeField] private GameObject insultDialogue;
+    [SerializeField] private GameObject fightDialogue;
 
-    void Start()
+    void Start() // Initialize by hiding all buttons and dialogues
     {
-        FightBtn.SetActive(false);
-        FlirtBtn.SetActive(false);
-        InsultBtn.SetActive(false);
-        ChoiceDialogue.SetActive(true);
-        FlirtDialogue.SetActive(false);
-        InsultDialogue.SetActive(false);
-        FightDialogue.SetActive(false);
+        fightBtn.SetActive(false);
+        flirtBtn.SetActive(false);
+        insultBtn.SetActive(false);
+        choiceDialogue.SetActive(true);
+        flirtDialogue.SetActive(false);
+        insultDialogue.SetActive(false);
+        fightDialogue.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

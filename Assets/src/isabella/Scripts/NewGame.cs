@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// This script handles the functionality of the "New Game" button, resetting player preferences and loading the specified scene.
 public class NewGamer : MonoBehaviour
 {
-    [Header("Settings")]
-    public string sceneToLoad;
-    public Color hoverColor = Color.gray;
+    [Header("Scene Settings")]
+    [SerializeField] private string sceneToLoad;
+    private Color hoverColor = Color.gray;
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
 
+    // Get the SpriteRenderer component and store the original color for hover effects
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -32,7 +34,7 @@ public class NewGamer : MonoBehaviour
         }
     }
 
-    // Optional: Visual feedback so you know the raycast is working
+    // Hover effects for the button
     void OnMouseEnter() => spriteRenderer.color = hoverColor;
     void OnMouseExit() => spriteRenderer.color = originalColor;
 }

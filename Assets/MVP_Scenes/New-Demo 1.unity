@@ -3542,7 +3542,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleToolbox
   scriptsToDisable: []
-  Toolboxes:
+  tbShow: {fileID: 1053015090}
+  toolboxes:
   - {fileID: 1053015090}
   - {fileID: 1690344672}
   - {fileID: 1690344671}
@@ -3550,8 +3551,7 @@ MonoBehaviour:
   - {fileID: 1690344669}
   - {fileID: 1690344668}
   - {fileID: 1677726551}
-  TbToShow: {fileID: 1053015090}
-  TBActive: 0
+  tbActive: 0
 --- !u!114 &1708945430
 MonoBehaviour:
   m_ObjectHideFlags: 0

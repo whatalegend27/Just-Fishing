@@ -4223,7 +4223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::AudioManager
   masterMixer: {fileID: 24100000, guid: 6726bd2df61d3b745855c9180ea76dc4, type: 2}
-  hoverColor: {r: 0.20647918, g: 0.5471698, b: 0.29309547, a: 1}
 --- !u!1 &3334182137886370792
 GameObject:
   m_ObjectHideFlags: 0
@@ -6141,6 +6140,7 @@ GameObject:
   - component: {fileID: 8319351384977118877}
   - component: {fileID: 2671170928972412319}
   - component: {fileID: 7017531552773784853}
+  - component: {fileID: 5759568213385307437}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -6269,6 +6269,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5759568213385307437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876029435516322146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db98130f0f5faaf499b54e96dec855eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Isabella_GameScripts::ExitGame
 --- !u!1 &4989492689387718615
 GameObject:
   m_ObjectHideFlags: 0
@@ -8100,7 +8112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::AudioManager
   masterMixer: {fileID: 24100000, guid: 6726bd2df61d3b745855c9180ea76dc4, type: 2}
-  hoverColor: {r: 0.6367924, g: 0.17421679, b: 0.17421679, a: 1}
 --- !u!1 &6658275769243297308
 GameObject:
   m_ObjectHideFlags: 0

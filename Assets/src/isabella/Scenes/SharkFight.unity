@@ -400,11 +400,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Isabella_GameScripts::FightTypewriter
   textComponent: {fileID: 496130980}
   dialogueBox: {fileID: 388641757}
+  choiceDialogue: {fileID: 2144885730}
   typeSound: {fileID: 8300000, guid: 07b1e019f3745eb429ac8c523686da2f, type: 3}
-  FightBtn: {fileID: 721827503}
-  FlirtBtn: {fileID: 1869489284}
-  InsultBtn: {fileID: 713623857}
-  ChoiceDialogue: {fileID: 2144885730}
+  fightBtn: {fileID: 721827503}
+  flirtBtn: {fileID: 1869489284}
+  insultBtn: {fileID: 713623857}
   animator: {fileID: 859069398}
 --- !u!114 &496130980
 MonoBehaviour:
@@ -1176,11 +1176,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Isabella_GameScripts::FightTypewriter
   textComponent: {fileID: 814393724}
   dialogueBox: {fileID: 2144885730}
+  choiceDialogue: {fileID: 2144885730}
   typeSound: {fileID: 8300000, guid: 07b1e019f3745eb429ac8c523686da2f, type: 3}
-  FightBtn: {fileID: 721827503}
-  FlirtBtn: {fileID: 713623857}
-  InsultBtn: {fileID: 1869489284}
-  ChoiceDialogue: {fileID: 2144885730}
+  fightBtn: {fileID: 721827503}
+  flirtBtn: {fileID: 1869489284}
+  insultBtn: {fileID: 713623857}
   animator: {fileID: 859069398}
 --- !u!1 &859069397
 GameObject:
@@ -1898,11 +1898,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Isabella_GameScripts::FightTypewriter
   textComponent: {fileID: 1747333164}
   dialogueBox: {fileID: 1693239440}
+  choiceDialogue: {fileID: 2144885730}
   typeSound: {fileID: 8300000, guid: 07b1e019f3745eb429ac8c523686da2f, type: 3}
-  FightBtn: {fileID: 721827503}
-  FlirtBtn: {fileID: 1869489284}
-  InsultBtn: {fileID: 713623857}
-  ChoiceDialogue: {fileID: 2144885730}
+  fightBtn: {fileID: 721827503}
+  flirtBtn: {fileID: 1869489284}
+  insultBtn: {fileID: 713623857}
   animator: {fileID: 859069398}
 --- !u!114 &1747333164
 MonoBehaviour:
@@ -2057,11 +2057,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Isabella_GameScripts::FightTypewriter
   textComponent: {fileID: 1787475761}
   dialogueBox: {fileID: 1533032213}
+  choiceDialogue: {fileID: 2144885730}
   typeSound: {fileID: 8300000, guid: 07b1e019f3745eb429ac8c523686da2f, type: 3}
-  FightBtn: {fileID: 721827503}
-  FlirtBtn: {fileID: 1869489284}
-  InsultBtn: {fileID: 713623857}
-  ChoiceDialogue: {fileID: 2144885730}
+  fightBtn: {fileID: 721827503}
+  flirtBtn: {fileID: 1869489284}
+  insultBtn: {fileID: 713623857}
   animator: {fileID: 859069398}
 --- !u!114 &1787475761
 MonoBehaviour:
