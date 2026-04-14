@@ -4,16 +4,17 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
     [SerializeField] private GameObject inventoryDescription;
-    bool menuActive = false;
+    private bool menuActive = false;
 
 
-    //prevents other scripts from writing into the inventory
+    //prevents other scripts from writing into the inventory - public to allow other scripts to access
     public static InventoryManager Instance { get; private set; }
-    public const int INVENTORY_SIZE = 9;
-    public InventorySlotData[] slots = new InventorySlotData[INVENTORY_SIZE];
     public event System.Action inventoryChanged;
 
-    public static void ResetInstance() => Instance = null;
+    private const int INVENTORY_SIZE = 9;
+    public InventorySlotData[] slots = new InventorySlotData[INVENTORY_SIZE];
+
+    //public static void ResetInstance() => Instance = null;
 
     //Initalizes each inventory slot to be empty
     public void Awake()
@@ -62,7 +63,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < INVENTORY_SIZE; i++)
         {
-            if(slots[i].item == item)
+            if (slots[i].item == item)
             {
                 slots[i] = new InventorySlotData();
                 inventoryChanged?.Invoke();

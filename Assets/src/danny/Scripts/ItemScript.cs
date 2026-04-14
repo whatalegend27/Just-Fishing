@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemScript : ScriptableObject
 {
     [SerializeField] private string itemName;
-    [SerializeField] [TextArea] public string itemDescription;
+    [SerializeField] [TextArea] private string itemDescription;
     [SerializeField] private int price;
     [SerializeField] private Sprite icon;
 
@@ -13,7 +13,7 @@ public class ItemScript : ScriptableObject
     public int Price => price;
     public Sprite Icon => icon;
 
-    public virtual string getDescription()
+    public string getDescription()
     {
         return itemDescription;
     }

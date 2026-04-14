@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using JetBrains.Annotations;
+using UnityEditor.Graphs;
 
 public class InventorySlotUI : MonoBehaviour
 {
