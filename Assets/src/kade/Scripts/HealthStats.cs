@@ -2,53 +2,76 @@ using UnityEngine;
 
 public class HealthStats : MonoBehaviour
 {
-    public int healthVal;
-    public int hungerVal;
-    public PlayerStats ps;
-    public inGameTime gameTime;
+   public int healthVal;
+   public int hungerVal;
+   public PlayerStats ps;
+   public inGameTime gameTime;
 
-    private int m_LastHour;
+   private int mLastHour;
 
-    void Start()
-    {
-        healthVal = 100;
-        hungerVal = 100;
-        m_LastHour = gameTime != null ? gameTime.hours : -1;
-    }
+   // Initializes health and hunger and subscribes to the new day event
+   void Start()
+   {
+      healthVal = 100;
+      hungerVal = 100;
+      mLastHour = gameTime != null ? gameTime.hours : -1;
 
-    void Update()
-    {
-        if (hungerVal <= 0 || healthVal <= 0)
-            ps.gameOver = true;
+      if ( gameTime != null )
+      {
+         gameTime.OnNewDay += onNewDay;
+      }
+   }
 
-        // Reset health at 6:00 (new day)
-        if (gameTime != null && gameTime.hours == 6 && m_LastHour != 6)
-            healthVal = 100;
+   // Unsubscribes from the new day event on destroy
+   void OnDestroy()
+   {
+      if ( gameTime != null )
+      {
+         gameTime.OnNewDay -= onNewDay;
+      }
+   }
 
-        if (gameTime != null)
-            m_LastHour = gameTime.hours;
-    }
+   // Resets health to full at the start of a new day
+   private void onNewDay()
+   {
+      healthVal = 100;
+   }
 
-    // CalculateHealth(action), valid values: "hurt"
-    public void CalculateHealth(string action)
-    {
-        IStatCalculator calculator = new BaseStatCalculator();
-        switch (action)
-        {
-            case "hurt": calculator = new HurtHealthDecorator(calculator); break;
-        }
-        healthVal = Mathf.Clamp(calculator.Calculate(healthVal), 0, 100);
-    }
+   // Triggers game over if hunger or health reaches zero
+   void Update()
+   {
+      if ( hungerVal <= 0 || healthVal <= 0 )
+      {
+         ps.gameOver = true;
+      }
+   }
 
-    // CalculateHunger(action), valid values: "eat", "time"
-    public void CalculateHunger(string action)
-    {
-        IStatCalculator calculator = new BaseStatCalculator();
-        switch (action)
-        {
-            case "eat":  calculator = new EatHungerDecorator(calculator); break;
-            case "time": calculator = new TimeHungerDecorator(calculator); break;
-        }
-        hungerVal = Mathf.Clamp(calculator.Calculate(hungerVal), 0, 100);
-    }
+   /* Calculates health based on the given action.
+      Valid values: "hurt" */
+   public void calculateHealth( string action )
+   {
+      IStatCalculator calculator = new BaseStatCalculator();
+
+      switch ( action )
+      {
+         case "hurt": calculator = new HurtHealthDecorator( calculator ); break;
+      }
+
+      healthVal = Mathf.Clamp( calculator.calculate( healthVal ), 0, 100 );
+   }
+
+   /* Calculates hunger based on the given action.
+      Valid values: "eat", "time" */
+   public void calculateHunger( string action )
+   {
+      IStatCalculator calculator = new BaseStatCalculator();
+
+      switch ( action )
+      {
+         case "eat":  calculator = new EatHungerDecorator( calculator ); break;
+         case "time": calculator = new TimeHungerDecorator( calculator ); break;
+      }
+
+      hungerVal = Mathf.Clamp( calculator.calculate( hungerVal ), 0, 100 );
+   }
 }

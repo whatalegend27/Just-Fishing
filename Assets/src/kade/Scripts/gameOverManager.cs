@@ -3,9 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class gameOverManager : MonoBehaviour
 {
-    public void LoadMainMenu()
-    {
-        Debug.Log("[gameOverManager] LoadMainMenu called");
-        SceneManager.LoadScene("MainMenu");
-    }
+   // Loads the main menu scene when called
+   public void loadMainMenu()
+   {
+      Debug.Log( "[gameOverManager] loadMainMenu called" );
+      SceneManager.LoadScene( "MainMenu" );
+   }
 }
