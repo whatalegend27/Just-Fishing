@@ -5,6 +5,7 @@ public class gameOverManager : MonoBehaviour
 {
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("Main-Menu");
+        Debug.Log("[gameOverManager] LoadMainMenu called");
+        SceneManager.LoadScene("MainMenu");
     }
 }
