@@ -3,8 +3,10 @@ using UnityEngine.UI;
 
 public class UIUpdater : MonoBehaviour
 {
+    [Header("Stats")]
     public HealthStats healthStats;
     public ArrestStats arrestStats;
+    public PlayerLevel playerLevel;
 
     [Header("Bar GameObjects (2D squares in scene)")]
     public Transform healthBarFill;
@@ -15,6 +17,10 @@ public class UIUpdater : MonoBehaviour
     public Text healthLabel;
     public Text hungerLabel;
     public Text riskLabel;
+
+    [Header("Level Blocks")]
+    // Assign all 6 rectangles in order in the Inspector
+    public Transform[] levelBlocks;
 
     private int m_CachedHealth;
     private int m_CachedHunger;
@@ -38,16 +44,26 @@ public class UIUpdater : MonoBehaviour
         if (arrestStats != null)
             m_CachedRisk = arrestStats.riskVal;
 
+        if (playerLevel != null)
+        {
+            playerLevel.OnLevelUp += HandleLevelUp;
+            RefreshBlocks(playerLevel.level);
+        }
+
         RefreshUI();
     }
 
-    // Records the bar's left edge, original localScale.x, and original world width
+    void OnDestroy()
+    {
+        if (playerLevel != null)
+            playerLevel.OnLevelUp -= HandleLevelUp;
+    }
+
     void CacheBarOrigin(Transform fill, out float leftEdge, out float originalScaleX, out float worldWidth)
     {
         if (fill != null)
         {
             originalScaleX = fill.localScale.x;
-            // Use the renderer bounds to get true world width
             Renderer r = fill.GetComponent<Renderer>();
             worldWidth = r != null ? r.bounds.size.x : originalScaleX;
             leftEdge   = fill.position.x - worldWidth / 2f;
@@ -100,12 +116,10 @@ public class UIUpdater : MonoBehaviour
         {
             float t = Mathf.Clamp01(value / 100f);
 
-            // Scale proportionally from the original scale
             Vector3 s = fill.localScale;
             s.x = originalScaleX * t;
             fill.localScale = s;
 
-            // Pin the left edge by shifting position right as bar shrinks
             Vector3 p = fill.position;
             p.x = leftEdge + worldWidth * t / 2f;
             fill.position = p;
@@ -113,5 +127,22 @@ public class UIUpdater : MonoBehaviour
 
         if (label != null)
             label.text = value.ToString();
+    }
+
+    void HandleLevelUp(int newLevel)
+    {
+        RefreshBlocks(newLevel);
+    }
+
+    void RefreshBlocks(int currentLevel)
+    {
+        for (int i = 0; i < levelBlocks.Length; i++)
+        {
+            if (levelBlocks[i] == null) continue;
+
+            Vector3 s = levelBlocks[i].localScale;
+            s.x = i < currentLevel ? 1f : 0f;
+            levelBlocks[i].localScale = s;
+        }
     }
 }
