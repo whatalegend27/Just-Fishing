@@ -26,7 +26,7 @@ public class riskStressTest
             foreach (GameObject obj in testObjects)
             {
                 if (obj == null) continue;
-                obj.GetComponent<ArrestStats>().CalculateRisk("nightFish");
+                obj.GetComponent<ArrestStats>().calculateRisk("nightFish");
             }
             elapsed += Time.deltaTime;
             yield return null;

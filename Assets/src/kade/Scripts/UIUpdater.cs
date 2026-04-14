@@ -3,146 +3,166 @@ using UnityEngine.UI;
 
 public class UIUpdater : MonoBehaviour
 {
-    [Header("Stats")]
-    public HealthStats healthStats;
-    public ArrestStats arrestStats;
-    public PlayerLevel playerLevel;
+   [Header( "Stats" )]
+   public HealthStats healthStats;
+   public ArrestStats arrestStats;
+   public PlayerLevel playerLevel;
 
-    [Header("Bar GameObjects (2D squares in scene)")]
-    public Transform healthBarFill;
-    public Transform hungerBarFill;
-    public Transform riskBarFill;
+   [Header( "Bar GameObjects (2D squares in scene)" )]
+   public Transform healthBarFill;
+   public Transform hungerBarFill;
+   public Transform riskBarFill;
 
-    [Header("Labels (optional)")]
-    public Text healthLabel;
-    public Text hungerLabel;
-    public Text riskLabel;
+   [Header( "Labels (optional)" )]
+   public Text healthLabel;
+   public Text hungerLabel;
+   public Text riskLabel;
 
-    [Header("Level Blocks")]
-    // Assign all 6 rectangles in order in the Inspector
-    public Transform[] levelBlocks;
+   [Header( "Level Blocks" )]
+   // Assign all 6 rectangles in order in the Inspector
+   public Transform[] levelBlocks;
 
-    private int m_CachedHealth;
-    private int m_CachedHunger;
-    private int m_CachedRisk;
+   private int mCachedHealth;
+   private int mCachedHunger;
+   private int mCachedRisk;
 
-    private float m_HealthBarLeft, m_HealthBarScaleX, m_HealthBarWorldWidth;
-    private float m_HungerBarLeft, m_HungerBarScaleX, m_HungerBarWorldWidth;
-    private float m_RiskBarLeft,   m_RiskBarScaleX,   m_RiskBarWorldWidth;
+   private float mHealthBarLeft, mHealthBarScaleX, mHealthBarWorldWidth;
+   private float mHungerBarLeft, mHungerBarScaleX, mHungerBarWorldWidth;
+   private float mRiskBarLeft,   mRiskBarScaleX,   mRiskBarWorldWidth;
 
-    void Start()
-    {
-        CacheBarOrigin(healthBarFill, out m_HealthBarLeft, out m_HealthBarScaleX, out m_HealthBarWorldWidth);
-        CacheBarOrigin(hungerBarFill, out m_HungerBarLeft, out m_HungerBarScaleX, out m_HungerBarWorldWidth);
-        CacheBarOrigin(riskBarFill,   out m_RiskBarLeft,   out m_RiskBarScaleX,   out m_RiskBarWorldWidth);
+   // Caches bar origins and initial stat values, subscribes to level up event
+   void Start()
+   {
+      cacheBarOrigin( healthBarFill, out mHealthBarLeft, out mHealthBarScaleX, out mHealthBarWorldWidth );
+      cacheBarOrigin( hungerBarFill, out mHungerBarLeft, out mHungerBarScaleX, out mHungerBarWorldWidth );
+      cacheBarOrigin( riskBarFill,   out mRiskBarLeft,   out mRiskBarScaleX,   out mRiskBarWorldWidth );
 
-        if (healthStats != null)
-        {
-            m_CachedHealth = healthStats.healthVal;
-            m_CachedHunger = healthStats.hungerVal;
-        }
-        if (arrestStats != null)
-            m_CachedRisk = arrestStats.riskVal;
+      if ( healthStats != null )
+      {
+         mCachedHealth = healthStats.healthVal;
+         mCachedHunger = healthStats.hungerVal;
+      }
 
-        if (playerLevel != null)
-        {
-            playerLevel.OnLevelUp += HandleLevelUp;
-            RefreshBlocks(playerLevel.level);
-        }
+      if ( arrestStats != null )
+      {
+         mCachedRisk = arrestStats.riskVal;
+      }
 
-        RefreshUI();
-    }
+      if ( playerLevel != null )
+      {
+         playerLevel.OnLevelUp += handleLevelUp;
+         refreshBlocks( playerLevel.level );
+      }
 
-    void OnDestroy()
-    {
-        if (playerLevel != null)
-            playerLevel.OnLevelUp -= HandleLevelUp;
-    }
+      refreshUI();
+   }
 
-    void CacheBarOrigin(Transform fill, out float leftEdge, out float originalScaleX, out float worldWidth)
-    {
-        if (fill != null)
-        {
-            originalScaleX = fill.localScale.x;
-            Renderer r = fill.GetComponent<Renderer>();
-            worldWidth = r != null ? r.bounds.size.x : originalScaleX;
-            leftEdge   = fill.position.x - worldWidth / 2f;
-        }
-        else
-        {
-            originalScaleX = 1f;
-            worldWidth     = 1f;
-            leftEdge       = 0f;
-        }
-    }
+   // Unsubscribes from level up event on destroy
+   void OnDestroy()
+   {
+      if ( playerLevel != null )
+      {
+         playerLevel.OnLevelUp -= handleLevelUp;
+      }
+   }
 
-    void Update()
-    {
-        bool changed = false;
+   /* Records the bar's left edge, original localScale.x, and original world width.
+      Used to pin the left edge when scaling. */
+   void cacheBarOrigin( Transform fill, out float leftEdge, out float originalScaleX, out float worldWidth )
+   {
+      if ( fill != null )
+      {
+         originalScaleX = fill.localScale.x;
+         Renderer r = fill.GetComponent<Renderer>();
+         worldWidth = r != null ? r.bounds.size.x : originalScaleX;
+         leftEdge   = fill.position.x - worldWidth / 2f;
+      }
+      else
+      {
+         originalScaleX = 1f;
+         worldWidth     = 1f;
+         leftEdge       = 0f;
+      }
+   }
 
-        if (healthStats != null)
-        {
-            if (healthStats.healthVal != m_CachedHealth)
-            {
-                m_CachedHealth = healthStats.healthVal;
-                changed = true;
-            }
-            if (healthStats.hungerVal != m_CachedHunger)
-            {
-                m_CachedHunger = healthStats.hungerVal;
-                changed = true;
-            }
-        }
-        if (arrestStats != null && arrestStats.riskVal != m_CachedRisk)
-        {
-            m_CachedRisk = arrestStats.riskVal;
+   // Checks for stat changes each frame and refreshes UI if any are found
+   void Update()
+   {
+      bool changed = false;
+
+      if ( healthStats != null )
+      {
+         if ( healthStats.healthVal != mCachedHealth )
+         {
+            mCachedHealth = healthStats.healthVal;
             changed = true;
-        }
+         }
 
-        if (changed)
-            RefreshUI();
-    }
+         if ( healthStats.hungerVal != mCachedHunger )
+         {
+            mCachedHunger = healthStats.hungerVal;
+            changed = true;
+         }
+      }
 
-    void RefreshUI()
-    {
-        SetBar(healthBarFill, m_HealthBarLeft, m_HealthBarScaleX, m_HealthBarWorldWidth, healthLabel, m_CachedHealth);
-        SetBar(hungerBarFill, m_HungerBarLeft, m_HungerBarScaleX, m_HungerBarWorldWidth, hungerLabel, m_CachedHunger);
-        SetBar(riskBarFill,   m_RiskBarLeft,   m_RiskBarScaleX,   m_RiskBarWorldWidth,   riskLabel,   m_CachedRisk);
-    }
+      if ( arrestStats != null && arrestStats.riskVal != mCachedRisk )
+      {
+         mCachedRisk = arrestStats.riskVal;
+         changed = true;
+      }
 
-    void SetBar(Transform fill, float leftEdge, float originalScaleX, float worldWidth, Text label, int value)
-    {
-        if (fill != null)
-        {
-            float t = Mathf.Clamp01(value / 100f);
+      if ( changed )
+      {
+         refreshUI();
+      }
+   }
 
-            Vector3 s = fill.localScale;
-            s.x = originalScaleX * t;
-            fill.localScale = s;
+   // Refreshes all three stat bars
+   void refreshUI()
+   {
+      setBar( healthBarFill, mHealthBarLeft, mHealthBarScaleX, mHealthBarWorldWidth, healthLabel, mCachedHealth );
+      setBar( hungerBarFill, mHungerBarLeft, mHungerBarScaleX, mHungerBarWorldWidth, hungerLabel, mCachedHunger );
+      setBar( riskBarFill,   mRiskBarLeft,   mRiskBarScaleX,   mRiskBarWorldWidth,   riskLabel,   mCachedRisk );
+   }
 
-            Vector3 p = fill.position;
-            p.x = leftEdge + worldWidth * t / 2f;
-            fill.position = p;
-        }
+   // Scales the fill rect and pins its left edge based on the stat value
+   void setBar( Transform fill, float leftEdge, float originalScaleX, float worldWidth, Text label, int value )
+   {
+      if ( fill != null )
+      {
+         float t = Mathf.Clamp01( value / 100f );
 
-        if (label != null)
-            label.text = value.ToString();
-    }
+         Vector3 s = fill.localScale;
+         s.x = originalScaleX * t;
+         fill.localScale = s;
 
-    void HandleLevelUp(int newLevel)
-    {
-        RefreshBlocks(newLevel);
-    }
+         Vector3 p = fill.position;
+         p.x = leftEdge + worldWidth * t / 2f;
+         fill.position = p;
+      }
 
-    void RefreshBlocks(int currentLevel)
-    {
-        for (int i = 0; i < levelBlocks.Length; i++)
-        {
-            if (levelBlocks[i] == null) continue;
+      if ( label != null )
+      {
+         label.text = value.ToString();
+      }
+   }
 
-            Vector3 s = levelBlocks[i].localScale;
-            s.x = i < currentLevel ? 1f : 0f;
-            levelBlocks[i].localScale = s;
-        }
-    }
+   // Fills level blocks up to the current level
+   void handleLevelUp( int newLevel )
+   {
+      refreshBlocks( newLevel );
+   }
+
+   // Sets each block to filled or empty based on current level
+   void refreshBlocks( int currentLevel )
+   {
+      for ( int i = 0 ; i < levelBlocks.Length ; i++ )
+      {
+         if ( levelBlocks[i] == null ) continue;
+
+         Vector3 s = levelBlocks[i].localScale;
+         s.x = i < currentLevel ? 1f : 0f;
+         levelBlocks[i].localScale = s;
+      }
+   }
 }

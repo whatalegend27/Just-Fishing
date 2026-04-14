@@ -3,18 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    public bool gameOver;
+   public bool gameOver;
 
-    void Start()
-    {
-        gameOver = false;
-    }
+   // Initializes game over state to false
+   void Start()
+   {
+      gameOver = false;
+   }
 
-    void Update()
-    {
-        if (gameOver == true)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-    }
+   // Loads the game over scene if game over condition is met
+   void Update()
+   {
+      if ( gameOver == true )
+      {
+         SceneManager.LoadScene( "GameOver" );
+      }
+   }
 }
