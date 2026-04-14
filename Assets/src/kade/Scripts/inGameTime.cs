@@ -64,6 +64,17 @@ public class inGameTime : MonoBehaviour
       updateUI();
    }
 
+   // Increments the day by 1 and fires the OnNewDay event
+   public void incrementDay()
+   {
+      day++;
+      hours = 6;
+      minutes = 0;
+      mNewDayTriggered = true;
+      OnNewDay?.Invoke();
+      updateUI();
+   }
+
    // Updates the time and day text in the UI
    private void updateUI()
    {
