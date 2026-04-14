@@ -3,31 +3,33 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// This script handles the typewriter effect for fight, flirt, and insult dialogues in the shark encounter, as well as managing button visibility and animations based on player interactions.
 public class FightTypewriter : MonoBehaviour, IPointerDownHandler
 {
+    [Header("Text Settings")]
     [SerializeField] private TMP_Text textComponent;
-    private float typingSpeed = 0.05f;
     [SerializeField] private GameObject dialogueBox; 
+    [SerializeField] private GameObject choiceDialogue;
+
 
     [Header("Audio")]
     [SerializeField] private AudioClip typeSound; 
-    private float startTimeInClip = 8f; 
-    [Range(0.1f, 3f)] 
-    private float audioPitch = 1.0f; // New public variable to control speed
-    
-    private AudioSource audioSource; 
-    private string fullText;
-    private bool isAnimating = false;
-    private bool isFinished = false;
 
-    [SerializeField] private GameObject FightBtn;
-    [SerializeField] private GameObject FlirtBtn;
-    [SerializeField] private GameObject InsultBtn;
-    [SerializeField] private GameObject ChoiceDialogue;
+    [Header("Fight Buttons")]
+    [SerializeField] private GameObject fightBtn;
+    [SerializeField] private GameObject flirtBtn;
+    [SerializeField] private GameObject insultBtn;
+
+    [Header("Animation Settings")]
     [SerializeField] private Animator animator;
 
+    private AudioSource audioSource; 
+    private string fullText;
+    private bool isAnimating, isFinished = false;
 
-    private void Awake()
+
+    // Initialize variables and set up audio source
+    private void Awake() 
     {
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
@@ -44,19 +46,20 @@ public class FightTypewriter : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    // Handle pointer down events
+    public void OnPointerDown(PointerEventData eventData) 
     {
         if (isFinished && textComponent.tag == "FightTxt")
         {
-            FightBtn.SetActive(true);
-            FlirtBtn.SetActive(true);
-            InsultBtn.SetActive(true);
+            fightBtn.SetActive(true);
+            flirtBtn.SetActive(true);
+            insultBtn.SetActive(true);
             return; 
         }
         else if (isFinished)
         {
             dialogueBox.SetActive(false);
-            ChoiceDialogue.SetActive(true);
+            choiceDialogue.SetActive(true);
             animator.SetBool("ReturnTxt", true);
             if (textComponent.tag == "FlirtTxt")
             {
@@ -67,9 +70,9 @@ public class FightTypewriter : MonoBehaviour, IPointerDownHandler
                 animator.SetBool("IsInsulted", false);
             }
             animator.SetBool("ReturnTxt", true);
-            FightBtn.SetActive(false);
-            FlirtBtn.SetActive(false);
-            InsultBtn.SetActive(false);
+            fightBtn.SetActive(false);
+            flirtBtn.SetActive(false);
+            insultBtn.SetActive(false);
         }
 
         if (!isAnimating && !isFinished)
@@ -78,6 +81,7 @@ public class FightTypewriter : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    // Coroutine to animate text typing and play sound
     private IEnumerator TypeText()
     {
         isAnimating = true;
@@ -87,10 +91,10 @@ public class FightTypewriter : MonoBehaviour, IPointerDownHandler
         if (typeSound != null)
         {
             audioSource.clip = typeSound;
-            audioSource.time = startTimeInClip;
+            audioSource.time = 8f;
             
             // Set the speed of the sound before playing
-            audioSource.pitch = audioPitch; 
+            audioSource.pitch = 1.0f; 
             
             audioSource.Play();
         }
@@ -98,7 +102,7 @@ public class FightTypewriter : MonoBehaviour, IPointerDownHandler
         for (int i = 0; i < fullText.Length; i++)
         {
             textComponent.text += fullText[i];
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSeconds(0.3f);
         }
 
         audioSource.Stop();
@@ -107,6 +111,7 @@ public class FightTypewriter : MonoBehaviour, IPointerDownHandler
         isFinished = true;
     }
 
+    // Reset the typewriter when enabled
     private void OnEnable()
     {
         isFinished = false;

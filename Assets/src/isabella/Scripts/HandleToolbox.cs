@@ -1,35 +1,34 @@
-using System.Collections; 
-using System.Collections.Generic; 
 using UnityEngine; 
 
+// This script manages the toolbox UI and disables gameplay scripts when the toolbox is active.
 public class HandleToolbox : MonoBehaviour {
-     public MonoBehaviour[] scriptsToDisable;
-      public GameObject[] Toolboxes; 
-      public GameObject TbToShow; 
-      public bool TBActive = false; // 👈 make public for testing 
+      [Header("Toolbox Settings")]
+      [SerializeField] public GameObject tbShow; 
+      public GameObject[] toolboxes; 
+      public bool tbActive = false; 
       void Start() { 
-        foreach(GameObject tb in Toolboxes) { 
+        foreach(GameObject tb in toolboxes) { 
             tb.SetActive(false); 
         }
     } 
         
+        //If T is pressed, toggle the toolbox and disable/enable gameplay scripts accordingly
         void Update() { 
             if (Input.GetKeyDown(KeyCode.T)) { 
-                ToggleToolbox(); // 👈 use new method 
+                ToggleToolbox(); 
             } 
         } 
+
+        // New method to toggle the toolbox and manage script states
         public void ToggleToolbox() { 
-            TBActive = !TBActive; 
-            foreach (GameObject tb in Toolboxes) { 
+            tbActive = !tbActive; 
+            foreach (GameObject tb in toolboxes) { 
                 tb.SetActive(false); 
             } 
-            if (TBActive && TbToShow != null) {
-                 TbToShow.SetActive(true); 
-            } // ✅ Disable/enable gameplay scripts 
-            foreach (MonoBehaviour script in scriptsToDisable) {
-                 script.enabled = !TBActive; 
-            } // ✅ Optional: pause the game 
+            if (tbActive && tbShow != null) {
+                 tbShow.SetActive(true); 
+            } // Disable/enable gameplay scripts 
             
-            Time.timeScale = TBActive ? 0f : 1f;       
+            Time.timeScale = tbActive ? 0f : 1f;       
         } 
 }

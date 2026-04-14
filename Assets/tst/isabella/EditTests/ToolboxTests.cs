@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
+
 public class ToolboxTests //Class to handle all of the toolbox feature testing
 {
     private HandleToolbox toolbox;
@@ -11,14 +12,14 @@ public class ToolboxTests //Class to handle all of the toolbox feature testing
         GameObject obj = new GameObject();
         toolbox = obj.AddComponent<HandleToolbox>();
 
-        toolbox.Toolboxes = new GameObject[]
+        toolbox.toolboxes = new GameObject[]
         {
             new GameObject(),
             new GameObject(),
             new GameObject()
         };
 
-        toolbox.TbToShow = toolbox.Toolboxes[0]; //start at index 0 toolbox
+        toolbox.tbShow = toolbox.toolboxes[0]; //start at index 0 toolbox
     }
 
     [Test]
@@ -26,13 +27,13 @@ public class ToolboxTests //Class to handle all of the toolbox feature testing
     //Correctly done if the toolbox correctly closes and opens when called. (LEAVING NO OPEN TOOLBOXES).
     public void Toggle_Boundary_OpenClose() 
     {
-        Assert.IsFalse(toolbox.TBActive);
+        Assert.IsFalse(toolbox.tbActive);
 
         toolbox.ToggleToolbox();
-        Assert.IsTrue(toolbox.TBActive);
+        Assert.IsTrue(toolbox.tbActive);
 
         toolbox.ToggleToolbox();
-        Assert.IsFalse(toolbox.TBActive);
+        Assert.IsFalse(toolbox.tbActive);
     } //Break point: the toolbox doesn't open or close when called to do so.
 
     [Test]
@@ -43,7 +44,7 @@ public class ToolboxTests //Class to handle all of the toolbox feature testing
         toolbox.ToggleToolbox();
 
         int activeCount = 0;
-        foreach (GameObject tb in toolbox.Toolboxes) //Go through all toolbox instances
+        foreach (GameObject tb in toolbox.toolboxes) //Go through all toolbox instances
         {
             if (tb.activeSelf) 
             {
@@ -64,6 +65,6 @@ public class ToolboxTests //Class to handle all of the toolbox feature testing
             toolbox.ToggleToolbox();
         }
 
-        Assert.IsFalse(toolbox.TBActive);
+        Assert.IsFalse(toolbox.tbActive);
     } //Break point: Even number of toggles = open toolbox, Odd number of toggles = closed toolbox.
 }

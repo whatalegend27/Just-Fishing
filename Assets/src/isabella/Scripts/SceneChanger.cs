@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// This script should be attached to any GameObject with a Collider2D component that you want to act as a button for changing scenes.
 public class SceneChanger : MonoBehaviour
 {
-    [Header("Settings")]
-    public string sceneToLoad;
-    public Color hoverColor = Color.gray;
+    [Header("Scene Settings")]
+    [SerializeField]private string sceneToLoad;
+    private Color hoverColor = Color.gray;
     private Color originalColor;
     private SpriteRenderer spriteRenderer;
 
@@ -28,7 +29,7 @@ public class SceneChanger : MonoBehaviour
         }
     }
 
-    // Optional: Visual feedback so you know the raycast is working
+    // Hover effect for the button
     void OnMouseEnter() => spriteRenderer.color = hoverColor;
     void OnMouseExit() => spriteRenderer.color = originalColor;
 }
