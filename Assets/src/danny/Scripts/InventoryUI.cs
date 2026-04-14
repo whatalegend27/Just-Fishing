@@ -9,6 +9,8 @@ public class InventoryUI : MonoBehaviour
 
     void OnEnable()
     {
+        if (InventoryManager.Instance == null) return;
+        Debug.Log(InventoryManager.Instance);
         //calls singleton using Instance and the inventoryChanged signal. Calls Refresh when ui is enabled
         InventoryManager.Instance.inventoryChanged += Refresh;
         Refresh();
