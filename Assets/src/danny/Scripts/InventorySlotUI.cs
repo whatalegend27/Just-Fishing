@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using JetBrains.Annotations;
-using UnityEditor.Graphs;
 
 public class InventorySlotUI : MonoBehaviour
 {
@@ -30,6 +29,7 @@ public class InventorySlotUI : MonoBehaviour
         }
         else
         {
+            quantityText.enabled = false;
             currentItem = slots.item;
           //  quantityText.enabled = true;
           //  quantityText.text = slots.quantity.ToString();
