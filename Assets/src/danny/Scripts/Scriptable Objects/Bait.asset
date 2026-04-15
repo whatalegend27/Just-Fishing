@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d234356792f11e439804c359b65fe1f, type: 3}
-  m_Name: Bait Object
-  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
-  itemName: Fish Bait
-  itemDescription: Used to attract basic fish
+  m_Script: {fileID: 11500000, guid: 399c1a620dfd78147b35fc1ce06158f8, type: 3}
+  m_Name: Bait
+  m_EditorClassIdentifier: DannyScripts::StackableItem
+  itemName: Bait
+  itemDescription: Attracts common fish
   price: 2
   icon: {fileID: 590640608084339730, guid: b5fa5efe173b7c346902bfcf2bf3e017, type: 3}

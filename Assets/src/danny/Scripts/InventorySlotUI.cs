@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using JetBrains.Annotations;
-using UnityEditor.Graphs;
+
 
 public class InventorySlotUI : MonoBehaviour
 {
@@ -27,24 +27,33 @@ public class InventorySlotUI : MonoBehaviour
             quantityText.text = "";
             image.sprite = null;
             image.color = new Color(0.8f, 0.8f, 0.8f);
+            return;
         }
-        else
-        {
-            currentItem = slots.item;
-          //  quantityText.enabled = true;
-          //  quantityText.text = slots.quantity.ToString();
-            image.sprite = currentItem.Icon;
-            
+        currentItem = slots.item;
 
-            //activates sell button panel when player clicks on time
-            Button btn = GetComponent<Button>();
-            if (btn != null)
-            {
-                btn.onClick.RemoveAllListeners();
-                btn.onClick.AddListener(OnClick);
-            }
+        if (!currentItem.CanStack())
+        {
+            quantityText.enabled = false;
         }
+
+        if (currentItem.CanStack())
+        {
+            quantityText.enabled = true;
+            quantityText.text = slots.quantity.ToString();
+        }
+
+        image.sprite = currentItem.Icon;
+        //activates sell button panel when player clicks on time
+        Button btn = GetComponent<Button>();
+        if (btn != null)
+        {
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(OnClick);
+        }
+
     }
+
+
 
     //sets sell button panel to be true
     void OnClick()

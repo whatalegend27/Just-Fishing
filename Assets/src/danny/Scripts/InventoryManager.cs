@@ -1,23 +1,25 @@
-using UnityEditor.Graphs;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryMenu;
     [SerializeField] private GameObject inventoryDescription;
-    bool menuActive = false;
+    private bool menuActive = false;
 
 
-    //prevents other scripts from writing into the inventory
+    //prevents other scripts from writing into the inventory - public to allow other scripts to access
     public static InventoryManager Instance { get; private set; }
-    public const int INVENTORY_SIZE = 9;
-    public InventorySlotData[] slots = new InventorySlotData[INVENTORY_SIZE];
     public event System.Action inventoryChanged;
+    private const int INVENTORY_SIZE = 9;
+    public InventorySlotData[] slots = new InventorySlotData[INVENTORY_SIZE];
 
-    public static void ResetInstance() => Instance = null;
+
+
+
+    //public static void ResetInstance() => Instance = null;
 
     //Initalizes each inventory slot to be empty
-    public void Awake()
+    private void Awake()
     {
         //Creation of singleton so only one inventory exists
         if (Instance != null && Instance != this)
@@ -33,18 +35,30 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        ToggleMenu();
-    }
-
     //adds item to inventory 
     public bool AddItem(ItemScript item)
     {
+        //checks to see if no item
         if (item == null)
         {
             return false;
         }
+
+        //if item can stack, see if its in inventory already and increase
+        if (item.CanStack())
+        {
+            for (int i = 0; i < INVENTORY_SIZE; i++)
+            {
+                if (slots[i].item != null && slots[i].item.name == item.name)
+                {
+                    slots[i].quantity++;
+                    inventoryChanged?.Invoke();
+                    return true;
+                }
+            }
+        }
+
+        //if item isn't in inventory or can't stack, add first into inventory where empty
         for (int i = 0; i < INVENTORY_SIZE; i++)
         {
             if (slots[i].item == null)
@@ -63,7 +77,19 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < INVENTORY_SIZE; i++)
         {
-            if(slots[i].item == item)
+
+            if (item.CanStack())
+            {
+                //finds stackable item in inventory and not last quantity
+                if (slots[i].item == item && slots[i].quantity > 1)
+                {
+                    slots[i].quantity--;
+                    inventoryChanged?.Invoke();
+                    return;
+                }
+            }
+                //removes non-stackable/last quantity out of inventory
+            if (slots[i].item == item)
             {
                 slots[i] = new InventorySlotData();
                 inventoryChanged?.Invoke();
@@ -71,6 +97,12 @@ public class InventoryManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+
+    void Update()
+    {
+        ToggleMenu();
     }
 
     void ToggleMenu()
@@ -87,5 +119,7 @@ public class InventoryManager : MonoBehaviour
             inventoryDescription.SetActive(false);
         }
     }
+
 }
+
 

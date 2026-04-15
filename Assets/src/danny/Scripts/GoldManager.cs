@@ -1,15 +1,17 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using System;
 
 public class GoldManager : MonoBehaviour
 {
 
     public static GoldManager Instance { get; private set; }
     [SerializeField] private TextMeshProUGUI goldText;
-    [SerializeField] private int playerGold = 10;
+    [SerializeField] private int playerGold = 100;
+    private bool canAddIn;
 
-    void Awake()
+    private void Awake()
     {
         //singleton creation so only one gold manager exists
         if (Instance != null && Instance != this)
@@ -28,7 +30,8 @@ public class GoldManager : MonoBehaviour
         if (item.Price <= playerGold)
         {
             return true;
-        } else
+        }
+        else
         {
             return false;
         }
@@ -39,13 +42,22 @@ public class GoldManager : MonoBehaviour
     {
         if (CanAfford(item))
         {
-            playerGold -= item.Price;
-            InventoryManager.Instance.AddItem(item);    //from InventoryManager
-            UpdateUI();
-            return true;
-        } else
+            canAddIn = InventoryManager.Instance.AddItem(item);    //from InventoryManager
+            if (canAddIn == false)
+            {
+                Debug.Log("Inventory full");
+                return false;
+            }
+            else
+            {
+                playerGold -= item.Price;
+                UpdateUI();
+                return true;
+            }
+        }
+        else
         {
-            StartCoroutine(FlashColor(Color.red)); 
+            StartCoroutine(FlashColor(Color.red));
             return false;
         }
     }
@@ -57,7 +69,7 @@ public class GoldManager : MonoBehaviour
         playerGold += item.Price;
         StartCoroutine(FlashColor(Color.green));
         UpdateUI();
-        
+
     }
 
     //updates gold amount
@@ -70,7 +82,7 @@ public class GoldManager : MonoBehaviour
     IEnumerator FlashColor(Color color)
     {
         goldText.color = color;
-       // animator.Play("TextWiggle", -1, 0f);
+
         yield return new WaitForSeconds(1f);
         goldText.color = Color.white;
     }

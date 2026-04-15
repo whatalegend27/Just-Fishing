@@ -15,7 +15,7 @@ public class DescriptionUI : MonoBehaviour
     public void ShowDetails(ItemScript item)
     {
         nameText.text = item.ItemName;
-        descriptionText.text = item.getDescription();
+        descriptionText.text = item.ItemDescription;
         priceText.text = "Cost: $" + item.Price;
         itemIcon.sprite = item.Icon;
         descriptionPanel.SetActive(true);
