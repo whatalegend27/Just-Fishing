@@ -3289,7 +3289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2019947f02ac434429289803f921765d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  inventoryMenu: {fileID: 3701418164394267860}
+  inventoryTB: {fileID: 0}
   inventoryDescription: {fileID: 7670933354857530605}
 --- !u!114 &8959141423715092753
 MonoBehaviour:

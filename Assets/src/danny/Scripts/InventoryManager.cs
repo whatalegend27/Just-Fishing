@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryMenu;
+    [SerializeField] private GameObject inventoryTB;
     [SerializeField] private GameObject inventoryDescription;
-    private bool menuActive = false;
 
 
     //prevents other scripts from writing into the inventory - public to allow other scripts to access
@@ -44,12 +43,14 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
 
+        ItemScript currentItem = item;
+
         //if item can stack, see if its in inventory already and increase
-        if (item.CanStack())
+        if (currentItem.CanStack())
         {
             for (int i = 0; i < INVENTORY_SIZE; i++)
             {
-                if (slots[i].item != null && slots[i].item.name == item.name)
+                if (slots[i].item != null && slots[i].item.name == currentItem.name)
                 {
                     slots[i].quantity++;
                     inventoryChanged?.Invoke();
@@ -63,7 +64,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (slots[i].item == null)
             {
-                slots[i].item = item;
+                slots[i].item = currentItem;
                 slots[i].quantity = 1;
                 inventoryChanged?.Invoke();  //gives out signal for other methods to use. ? means to only give out signal if something is listening
                 return true;
@@ -88,7 +89,7 @@ public class InventoryManager : MonoBehaviour
                     return;
                 }
             }
-                //removes non-stackable/last quantity out of inventory
+            //removes non-stackable/last quantity out of inventory
             if (slots[i].item == item)
             {
                 slots[i] = new InventorySlotData();
@@ -107,19 +108,17 @@ public class InventoryManager : MonoBehaviour
 
     void ToggleMenu()
     {
-        if (Input.GetKeyDown(KeyCode.T) && !menuActive)
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            inventoryMenu.SetActive(true);
-            menuActive = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.T) && menuActive)
-        {
-            inventoryMenu.SetActive(false);
-            menuActive = false;
-            inventoryDescription.SetActive(false);
+            bool isActive = inventoryTB.activeSelf;
+            inventoryTB.SetActive(!isActive); // just flip whatever state it's actually in
+
+            if (isActive) // was open, now closing
+            {
+                inventoryDescription.SetActive(false);
+            }
         }
     }
-
 }
 
 
