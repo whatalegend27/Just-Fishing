@@ -1,13 +1,12 @@
 using NUnit.Framework;
 using UnityEngine;
 
-
-public class ToolboxTests //Class to handle all of the toolbox feature testing
+public class ToolboxTests
 {
     private HandleToolbox toolbox;
 
     [SetUp]
-    public void Setup() //Setup the toolbox and call the HandleToolbox script.
+    public void Setup()
     {
         GameObject obj = new GameObject();
         toolbox = obj.AddComponent<HandleToolbox>();
@@ -19,52 +18,52 @@ public class ToolboxTests //Class to handle all of the toolbox feature testing
             new GameObject()
         };
 
-        toolbox.tbShow = toolbox.toolboxes[0]; //start at index 0 toolbox
+        toolbox.tbShow = toolbox.toolboxes[0];
+
+        // Initialize to Gameplay state
+        toolbox.SetGameplayState();
     }
 
     [Test]
-    //Boundary Test #1
-    //Correctly done if the toolbox correctly closes and opens when called. (LEAVING NO OPEN TOOLBOXES).
-    public void Toggle_Boundary_OpenClose() 
+    public void StateTransition_GameplayToToolbox()
     {
-        Assert.IsFalse(toolbox.tbActive);
+        // Assert initial state
+        Assert.IsInstanceOf<GameplayState>(toolbox.GetCurrentState());
 
-        toolbox.ToggleToolbox();
-        Assert.IsTrue(toolbox.tbActive);
+        // Act
+        toolbox.SetToolboxState();
 
-        toolbox.ToggleToolbox();
-        Assert.IsFalse(toolbox.tbActive);
-    } //Break point: the toolbox doesn't open or close when called to do so.
+        // Assert
+        Assert.IsInstanceOf<ToolboxState>(toolbox.GetCurrentState());
+        Assert.AreEqual(0f, Time.timeScale);
+    }
 
     [Test]
-    //Boundary Test #2
-    // Correctly done if only one toolbox instance appears at a time.
-    public void Only_One_Toolbox_Active()
+    public void Only_One_Toolbox_Active_In_Toolbox_State()
     {
-        toolbox.ToggleToolbox();
+        toolbox.SetToolboxState();
 
         int activeCount = 0;
-        foreach (GameObject tb in toolbox.toolboxes) //Go through all toolbox instances
+        foreach (GameObject tb in toolbox.toolboxes)
         {
-            if (tb.activeSelf) 
-            {
-                activeCount++;
-            }
+            if (tb.activeSelf) activeCount++;
         }
 
         Assert.AreEqual(1, activeCount);
-    } //Break point: More than one toolbox is active at the same time.
+    }
 
     [Test]
-    //Stress Test #1
-    //Correctly done if the toolbox can open and close over 1000 times correctly. (Even numbers = closed, Odd numbers = open).
-    public void Toggle_Stress_Test()
+    public void Stress_Test_State_Toggling()
     {
         for (int i = 0; i < 1000; i++)
         {
-            toolbox.ToggleToolbox();
+            if (toolbox.GetCurrentState() is GameplayState)
+                toolbox.SetToolboxState();
+            else
+                toolbox.SetGameplayState();
         }
 
-        Assert.IsFalse(toolbox.tbActive);
-    } //Break point: Even number of toggles = open toolbox, Odd number of toggles = closed toolbox.
+        Assert.IsInstanceOf<GameplayState>(toolbox.GetCurrentState());
+        Assert.AreEqual(1f, Time.timeScale);
+    }
 }

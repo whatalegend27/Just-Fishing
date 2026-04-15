@@ -15,6 +15,7 @@ TagManager:
   - InsultBtn
   - FlirtTxt
   - InsultTxt
+  - Toolbox
   layers:
   - Default
   - TransparentFX
