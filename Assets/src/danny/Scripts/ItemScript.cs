@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemScript : ScriptableObject
 {
     [SerializeField] private string itemName;
-    [SerializeField] [TextArea] private string itemDescription;
+    [SerializeField][TextArea] private string itemDescription;
     [SerializeField] private int price;
     [SerializeField] private Sprite icon;
 
@@ -14,17 +14,9 @@ public class ItemScript : ScriptableObject
     public Sprite Icon => icon;
     public string ItemDescription => itemDescription;
 
+    // public bool CanStack()
     public virtual bool CanStack()
     {
         return false;
-    }
-}
-
-[CreateAssetMenu(fileName = "StackableItem", menuName = "Scriptable Objects/Stackable Item")]
-public class StackableItem : ItemScript
-{
-    public override bool CanStack()
-    {
-        return true;
     }
 }
