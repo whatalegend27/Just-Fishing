@@ -2,5 +2,5 @@
 public class InventorySlotData
 {
     public ItemScript item;
-    public int quantity;
+    public int quantity = 0;
 }

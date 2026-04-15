@@ -12,19 +12,19 @@ public class ItemScript : ScriptableObject
     public string ItemName => itemName;
     public int Price => price;
     public Sprite Icon => icon;
+    public string ItemDescription => itemDescription;
 
-    public string getDescription()
+    public virtual bool CanStack()
     {
-        return itemDescription;
+        return false;
     }
 }
 
-// public class StackableItem : ItemScript
-// {
-//     int maxStack;
-
-//     public override string getDescription()
-//     {
-//         return itemDescription + "\nStacks up to:" + maxStack;
-//     }
-// }
+[CreateAssetMenu(fileName = "StackableItem", menuName = "Scriptable Objects/Stackable Item")]
+public class StackableItem : ItemScript
+{
+    public override bool CanStack()
+    {
+        return true;
+    }
+}
