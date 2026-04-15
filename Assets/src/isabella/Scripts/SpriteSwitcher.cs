@@ -3,7 +3,7 @@ using UnityEngine;
 public class SpriteSwitcher : MonoBehaviour
 {
     [Header("Toolbox Settings")]
-    [SerializeField] private GameObject[] toolboxes;
+    private GameObject[] toolboxes;
     [SerializeField] private GameObject tbShow;
 
     private Color hoverColor = Color.gray;
@@ -11,6 +11,11 @@ public class SpriteSwitcher : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     // Get the SpriteRenderer component and store the original color for hover effects.
+
+    void Awake()
+    {
+        toolboxes = GameObject.FindGameObjectsWithTag("Toolbox");
+    }
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

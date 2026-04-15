@@ -1,40 +1,17 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-// This script handles the functionality of the "New Game" button, resetting player preferences and loading the specified scene.
-public class NewGamer : MonoBehaviour
+// Inherit from SceneChanger instead of MonoBehaviour
+public class NewGame : SceneChanger 
 {
-    [Header("Scene Settings")]
-    [SerializeField] private string sceneToLoad;
-    private Color hoverColor = Color.gray;
-    private Color originalColor;
-    private SpriteRenderer spriteRenderer;
-
-    // Get the SpriteRenderer component and store the original color for hover effects
-    void Start()
+    // When the mouse clicks this object, the program looks for the most specific version of OnMouseDown in the hierarchy.
+    public override void OnMouseDown()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-    }
-
-    // This runs when the mouse clicks the collider
-    void OnMouseDown()
-    {
+        // Perform the unique logic for a New Game
         PlayerPrefs.DeleteKey("NewsSeen");
         PlayerPrefs.Save();
+        Debug.Log("PlayerPrefs reset for New Game.");
 
-        Debug.Log("After reset: " + PlayerPrefs.GetInt("NewsSeen", 0));
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("No scene name entered on " + gameObject.name);
-        }
+        // Call the base version to handle the actual scene transition
+        base.OnMouseDown(); 
     }
-
-    // Hover effects for the button
-    void OnMouseEnter() => spriteRenderer.color = hoverColor;
-    void OnMouseExit() => spriteRenderer.color = originalColor;
 }

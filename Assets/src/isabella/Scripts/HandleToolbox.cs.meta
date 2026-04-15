@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - TbToShow: {fileID: 390112332033408115, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+  - tbShow: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

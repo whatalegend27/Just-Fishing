@@ -588,13 +588,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d09927cecc354c4b894160afadc8b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::HandleSharkChoices
-  FightBtn: {fileID: 721827503}
-  FlirtBtn: {fileID: 713623857}
-  InsultBtn: {fileID: 1869489284}
-  ChoiceDialogue: {fileID: 2144885730}
-  FlirtDialogue: {fileID: 1693239440}
-  InsultDialogue: {fileID: 1533032213}
-  FightDialogue: {fileID: 388641757}
+  fightBtn: {fileID: 721827503}
+  flirtBtn: {fileID: 1869489284}
+  insultBtn: {fileID: 713623857}
+  choiceDialogue: {fileID: 2144885730}
+  flirtDialogue: {fileID: 1693239440}
+  insultDialogue: {fileID: 1533032213}
+  fightDialogue: {fileID: 388641757}
 --- !u!1 &713623857
 GameObject:
   m_ObjectHideFlags: 0

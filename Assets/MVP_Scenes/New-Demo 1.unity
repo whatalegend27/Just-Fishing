@@ -1870,11 +1870,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &1677726551 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2044670504115886169, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
-  m_PrefabInstance: {fileID: 1690344663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1684367371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2924,6 +2919,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6025529513133967991, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+      propertyPath: tbShow
+      value: 
+      objectReference: {fileID: 1690344669}
     - target: {fileID: 6048895662953177243, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3470,7 +3469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   sceneToLoad: New-Demo 1
-  hoverColor: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 0}
+  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!114 &1690344667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3484,7 +3483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SceneChanger
   sceneToLoad: Home
-  hoverColor: {r: 0.06132078, g: 0.052354064, b: 0.052354064, a: 0}
+  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &1690344668 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 284421725259338119, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
@@ -3521,7 +3520,6 @@ GameObject:
   - component: {fileID: 1708945432}
   - component: {fileID: 1708945431}
   - component: {fileID: 1708945430}
-  - component: {fileID: 1708945429}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -3529,29 +3527,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1708945429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708945428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e72acb9c9109e040ae80f19d28e57c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HandleToolbox
-  scriptsToDisable: []
-  tbShow: {fileID: 1053015090}
-  toolboxes:
-  - {fileID: 1053015090}
-  - {fileID: 1690344672}
-  - {fileID: 1690344671}
-  - {fileID: 1690344670}
-  - {fileID: 1690344669}
-  - {fileID: 1690344668}
-  - {fileID: 1677726551}
-  tbActive: 0
 --- !u!114 &1708945430
 MonoBehaviour:
   m_ObjectHideFlags: 0

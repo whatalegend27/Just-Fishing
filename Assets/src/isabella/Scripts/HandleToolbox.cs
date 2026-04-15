@@ -1,34 +1,53 @@
-using UnityEngine; 
+using UnityEngine;
 
-// This script manages the toolbox UI and disables gameplay scripts when the toolbox is active.
-public class HandleToolbox : MonoBehaviour {
-      [Header("Toolbox Settings")]
-      [SerializeField] public GameObject tbShow; 
-      public GameObject[] toolboxes; 
-      public bool tbActive = false; 
-      void Start() { 
-        foreach(GameObject tb in toolboxes) { 
-            tb.SetActive(false); 
+public class HandleToolbox : MonoBehaviour
+{
+    [Header("Toolbox Settings")]
+    public GameObject tbShow;
+    public GameObject[] toolboxes;
+
+    private IToolboxState currentState;
+
+    // Reuse instances (important for consistency)
+    private IToolboxState gameplayState = new GameplayState();
+    private IToolboxState toolboxState = new ToolboxState();
+
+    void Start()
+    {
+        toolboxes = GameObject.FindGameObjectsWithTag("Toolbox");
+        SetState(gameplayState);
+        foreach (GameObject toolbox in toolboxes){
+            toolbox.SetActive(false);
         }
-    } 
-        
-        //If T is pressed, toggle the toolbox and disable/enable gameplay scripts accordingly
-        void Update() { 
-            if (Input.GetKeyDown(KeyCode.T)) { 
-                ToggleToolbox(); 
-            } 
-        } 
+    }
 
-        // New method to toggle the toolbox and manage script states
-        public void ToggleToolbox() { 
-            tbActive = !tbActive; 
-            foreach (GameObject tb in toolboxes) { 
-                tb.SetActive(false); 
-            } 
-            if (tbActive && tbShow != null) {
-                 tbShow.SetActive(true); 
-            } // Disable/enable gameplay scripts 
-            
-            Time.timeScale = tbActive ? 0f : 1f;       
-        } 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (currentState is GameplayState)
+                SetState(toolboxState);
+            else
+                SetState(gameplayState);
+        }
+    }
+
+    public void SetState(IToolboxState newState)
+    {
+        if (currentState == newState) return;
+
+        currentState?.Exit(this);
+        currentState = newState;
+        currentState.Enter(this);
+    }
+
+    // 👇 REQUIRED for testing
+    public IToolboxState GetCurrentState()
+    {
+        return currentState;
+    }
+
+    // 👇 Optional helpers (nice for tests / clarity)
+    public void SetGameplayState() => SetState(gameplayState);
+    public void SetToolboxState() => SetState(toolboxState);
 }
