@@ -39,7 +39,7 @@ public class FishDatabaseStressTests
             }
         }
 
-        FishDatabaseManager.Instance = null;
+        FishDatabaseManager.ResetInstance();
         Object.DestroyImmediate(dbObject);
     }
 

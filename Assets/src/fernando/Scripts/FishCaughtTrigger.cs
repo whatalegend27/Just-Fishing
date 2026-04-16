@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class FishCatchTrigger : MonoBehaviour
 {
-
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Lure"))
@@ -12,8 +10,7 @@ public class FishCatchTrigger : MonoBehaviour
 
             if (fish != null)
             {
-                fish.catchCount++;
-                FishDatabaseManager.Instance.RegisterFish(fish.fishName);
+                FishDatabaseManager.Instance.RegisterFish(fish.FishName);
             }
         }
     }

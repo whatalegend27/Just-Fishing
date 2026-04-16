@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &77043843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3663462540030147091, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+  m_PrefabInstance: {fileID: 114374805}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &77043844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1340952354465785238, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
@@ -3269,10 +3274,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inventory
       objectReference: {fileID: 0}
-    - target: {fileID: 3591182889760110955, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5068396340096345966, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3318,22 +3319,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763496415856533406, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -3480,10 +3465,6 @@ PrefabInstance:
     - target: {fileID: 8742926076485924301, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8848162835634275563, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3529,6 +3510,10 @@ PrefabInstance:
       propertyPath: goldText
       value: 
       objectReference: {fileID: 690897729}
+    - target: {fileID: 9046782611977293724, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: inventoryTB
+      value: 
+      objectReference: {fileID: 77043843}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
