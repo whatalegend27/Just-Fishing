@@ -1,22 +1,29 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class terrainGenerator : MonoBehaviour
+public class TerrainGenerator : MonoBehaviour
 {
-    [SerializeField] private weatherController weatherControllerScript; // Reference to the weather controller script
+    [SerializeField] private WeatherController weatherControllerScript; // Reference to the weather controller script
         
     [Tooltip("The difficulty set by the player, influencing the terrain complexity.")]
-    [SerializeField] private int playerDifficulty = 1; // Default difficulty level (0: BC, 1: Casual, 2: Hard)
+    [SerializeField] private int playerDifficulty = 1; // Default difficulty level (0: BC, 1: Normal)
 
-    private void Start()
+    public static TerrainGenerator Instance { get; private set; }
+
+    private void Awake()
     {
+        // Implement singleton pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         float globalDifficulty = CalculateDifficulty();
-        GenerateTerrain(globalDifficulty);
     }
 
     public float CalculateRandomDifficultyModifier()
     {
-        return Random.Range(0.00f, 0.25f);
+        return Random.Range(0.8f, 1.2f);
     }
 
     private float CalculateDifficulty()
@@ -26,7 +33,7 @@ public class terrainGenerator : MonoBehaviour
 
         if (playerDifficulty == 0)
         {
-            Debug.Log("Player is in BC difficulty level. No terrain generation will occur.");
+            Debug.Log("Player is in BC mode. No terrain generation will occur.");
             return 0.0f; // Return zero difficulty for BC level
         }
 
@@ -76,49 +83,5 @@ public class terrainGenerator : MonoBehaviour
 
         return difficultyMultiplier;
     }
-
-    private void GenerateTerrain(float difficulty)
-    {
-        if (difficulty <= 0.0f)
-        {
-            Debug.Log("Difficulty is zero or negative. No terrain will be generated.");
-            return;
-        }
-
-        int minRocks = 0;
-        int maxRocks = Mathf.FloorToInt(difficulty * 10f);
-        int numRocksToSpawn = Random.Range(minRocks, maxRocks + 1);
-
-        HashSet<Vector2> occupiedLocations = new HashSet<Vector2>();
-
-        for (int i = 0; i < numRocksToSpawn; i++)
-        {
-            Vector2 newLocation;
-            int failsafe = 0;
-
-            do
-            {
-                float x = Mathf.Round(Random.Range(-20f, 20f));
-                float y = Mathf.Round(Random.Range(-20f, 20f));
-                
-                newLocation = new Vector2(x, y);
-                
-                failsafe++;
-                if (failsafe > 1000) 
-                {
-                    Debug.LogWarning("Could not find an empty spot for the rock!");
-                    break; 
-                }
-
-            } while (occupiedLocations.Contains(newLocation));
-
-        }
-
-        boatController boat = FindAnyObjectByType<boatController>();
-
-        if (boat != null) boat.oceanRocksLocation = occupiedLocations;
-        else Debug.LogWarning("Terrain generated, but no BoatController was found in the scene.");
-    }
-
 
 }

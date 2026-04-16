@@ -14,7 +14,7 @@ public class ThunderController : MonoBehaviour
     [SerializeField] private float minTimeBetweenStrikes = 10f;
     [SerializeField] private float maxTimeBetweenStrikes = 45f;
 
-    private weatherController weatherScript;
+    private WeatherController weatherScript;
     private bool isThunderRoutineRunning = false;
 
     void Start()
@@ -22,7 +22,7 @@ public class ThunderController : MonoBehaviour
         GameObject weatherObject = GameObject.Find("WeatherController");
         if (weatherObject != null)
         {
-            weatherScript = weatherObject.GetComponent<weatherController>();
+            weatherScript = weatherObject.GetComponent<WeatherController>();
         }
 
         StartCoroutine(ThunderRoutine());

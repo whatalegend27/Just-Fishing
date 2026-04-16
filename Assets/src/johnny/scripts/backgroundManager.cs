@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DayNightCycle : MonoBehaviour
+public class BackgroundManager : MonoBehaviour
 {
     [Header("Time Settings")]
     [Tooltip("Length of a full in-game day in real-world seconds.")]
@@ -32,16 +32,24 @@ public class DayNightCycle : MonoBehaviour
     [Tooltip("The rain sound controller.")]
     [SerializeField] private AudioSource rainSound;
 
-    private weatherController weatherControllerScript;
+    private WeatherController weatherControllerScript;
     private GameObject cloudsFront;
     private GameObject cloudsBack;
 
-    void Start()
+    public static BackgroundManager Instance { get; private set; }
+
+    void Awake()
     {
+        // Implement singleton pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         GameObject weatherControllerObject = GameObject.Find("WeatherController");
         if (weatherControllerObject != null)
         {
-            weatherControllerScript = weatherControllerObject.GetComponent<weatherController>();
+            weatherControllerScript = weatherControllerObject.GetComponent<WeatherController>();
         }
 
         cloudsFront = GameObject.Find("CloudsFront");

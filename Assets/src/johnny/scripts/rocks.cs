@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class rock : MonoBehaviour
+public class Rock : MonoBehaviour
 {
   [SerializeField] Sprite rockSprite;
 
@@ -29,7 +29,7 @@ public class rock : MonoBehaviour
 
 }
 
-public class heavyRock : rock
+public class HeavyRock : Rock
 {
   // Different sprite for heavy rock
   [SerializeField] Sprite heavyRockSprite;

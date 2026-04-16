@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boatController : MonoBehaviour
+public class BoatController : MonoBehaviour
 {
   public bool isBoatActive = false;
   public float timeBetweenDrifts = 5f; // Seconds
-  public HashSet<Vector2> oceanRocksLocation; 
 
   [SerializeField] private SpriteRenderer dialogueBoxRenderer;
 
@@ -54,20 +53,7 @@ public class boatController : MonoBehaviour
             currentPosition += driftAmount;
             
             transform.position = new Vector3(currentPosition.x, currentPosition.y, 0f);
-            CheckForCollisions();
         }
     }
 
-  private void CheckForCollisions()
-  {
-    Vector2 roundedPosition = new Vector2(Mathf.Round(currentPosition.x), Mathf.Round(currentPosition.y));
-
-    if (oceanRocksLocation != null && oceanRocksLocation.Contains(roundedPosition))
-    {
-      Debug.Log("Boat hit a rock!");
-      // dialogueBoxRenderer.enabled = true; // Show dialogue box on collision
-      // 
-      // boat.Destroy();
-    }
-  }
 }
