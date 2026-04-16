@@ -30,6 +30,8 @@ public class FishCatalogUI : MonoBehaviour
             entry.button.SetActive(false);
         }
 
+        if (FishDatabaseManager.Instance == null) return;
+
         foreach (FishData fish in FishDatabaseManager.Instance.fishDatabase)
         {
             if (!fish.fishKnown) continue;
