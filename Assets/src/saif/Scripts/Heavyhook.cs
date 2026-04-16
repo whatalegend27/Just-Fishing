@@ -2,29 +2,48 @@ using UnityEngine;
 
 namespace Saif.GamePlay
 {
-    // HeavyHook extends FishingHook and overrides AttachFish.
+    // HeavyHook extends FishingHook and overrides AttachFish to allow 2 fish.
     // Put this component on your heavy hook prefab instead of FishingHook.
     // Everything else (casting, reeling, physics) is inherited from FishingHook unchanged.
     public class HeavyHook : FishingHook
     {
         // ── DYNAMIC BINDING ───────────────────────────────────────────────────────
-        // This runs INSTEAD of FishingHook.AttachFish when the prefab is a HeavyHook.
-        // Same line of code in OnTriggerEnter2D calls AttachFish — but at runtime
-        // C# checks the actual object type and routes to this version.
-        // Remove "virtual" from FishingHook.AttachFish — this override gets ignored
-        // and the base version runs every time, proving dynamic binding is gone.
-        protected override void AttachFish(Transform fish, ref Transform slot)
+        // WITH "virtual" in FishingHook:    C# checks runtime type → this runs → 2 fish ✓
+        // WITHOUT "virtual" in FishingHook: base AttachFish always runs → 1 fish only ✓
+        //                                   proving dynamic binding is gone
+        protected override void AttachFish(Transform fish)
         {
-            slot = fish;
+            // Slot 1 — same as SmallHook
+            if (caughtFishTransform == null)
+            {
+                caughtFishTransform = fish;
+                hasCaughtFish = true;
 
-            Component movement = fish.GetComponent("FishMovement");
-            if (movement != null) (movement as MonoBehaviour).enabled = false;
+                Component movement = fish.GetComponent("FishMovement");
+                if (movement != null) (movement as MonoBehaviour).enabled = false;
 
-            fish.SetParent(this.transform);
-            fish.localPosition = Vector3.zero;
-            fish.localRotation = Quaternion.identity;
+                fish.SetParent(this.transform);
+                fish.localPosition = Vector3.zero;
+                fish.localRotation = Quaternion.identity;
 
-            Debug.Log("[HeavyHook] AttachFish — dynamic binding called the correct subclass! (max 2 fish)");
+                Debug.Log("[HeavyHook] AttachFish — slot 1 filled. Dynamic binding working!");
+                return;
+            }
+
+            // Slot 2 — HeavyHook exclusive
+            if (caughtFishTransform2 == null)
+            {
+                caughtFishTransform2 = fish;
+
+                Component movement = fish.GetComponent("FishMovement");
+                if (movement != null) (movement as MonoBehaviour).enabled = false;
+
+                fish.SetParent(this.transform);
+                fish.localPosition = Vector3.zero; // slight offset so fish don't overlap
+                fish.localRotation = Quaternion.identity;
+
+                Debug.Log("[HeavyHook] AttachFish — slot 2 filled. 2 fish caught!");
+            }
         }
     }
 }

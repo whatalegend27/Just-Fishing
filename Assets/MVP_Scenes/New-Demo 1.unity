@@ -3590,9 +3590,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 45489270}
     - target: {fileID: 4612699220916779634, guid: 6272289f377484a51ab61d16a218e0eb, type: 3}
+      propertyPath: spawn_point
+      value: 
+      objectReference: {fileID: 45489270}
+    - target: {fileID: 4612699220916779634, guid: 6272289f377484a51ab61d16a218e0eb, type: 3}
       propertyPath: debugSpawnPoint
       value: 
       objectReference: {fileID: 45489270}
+    - target: {fileID: 4612699220916779634, guid: 6272289f377484a51ab61d16a218e0eb, type: 3}
+      propertyPath: debug_spawn_point
+      value: 
+      objectReference: {fileID: 45489270}
+    - target: {fileID: 4612699220916779634, guid: 6272289f377484a51ab61d16a218e0eb, type: 3}
+      propertyPath: heavy_hook_prefab
+      value: 
+      objectReference: {fileID: 6237053374132703638, guid: bbe2656e3fc964e528aee64ed701c944, type: 3}
+    - target: {fileID: 4612699220916779634, guid: 6272289f377484a51ab61d16a218e0eb, type: 3}
+      propertyPath: small_hook_prefab
+      value: 
+      objectReference: {fileID: 2491715541690674588, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
     - target: {fileID: 7993542569173661912, guid: 6272289f377484a51ab61d16a218e0eb, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
