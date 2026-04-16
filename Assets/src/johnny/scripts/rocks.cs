@@ -4,6 +4,8 @@ public class rock : MonoBehaviour
 {
   [SerializeField] Sprite rockSprite;
 
+  // Dyanmic binding of damage amount
+  // Overriten in heavyRock to do more damage
   protected int damageAmount = 20;
   public virtual int DamageAmount => damageAmount;
 
@@ -15,6 +17,7 @@ public class rock : MonoBehaviour
     player = GameObject.FindGameObjectWithTag("Player");
   }
 
+  // Dynamic binding of collision behavior
   public virtual void OnCollisionEnter2D(Collision2D collision)
   {
     if (collision.gameObject.CompareTag("Boat"))
@@ -28,8 +31,10 @@ public class rock : MonoBehaviour
 
 public class heavyRock : rock
 {
+  // Different sprite for heavy rock
   [SerializeField] Sprite heavyRockSprite;
 
+  // Dynamic binding of damage amount
   public override int DamageAmount => damageAmount * 2; // Heavy rocks do double damage
 
   void Start()
@@ -38,6 +43,7 @@ public class heavyRock : rock
     player = GameObject.FindGameObjectWithTag("Player");
   }
 
+  // Dynamic binding of collision behavior
   public override void OnCollisionEnter2D(Collision2D collision)
   {
     if (collision.gameObject.CompareTag("Boat"))
