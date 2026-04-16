@@ -3,25 +3,22 @@ using UnityEngine;
 namespace Saif.GamePlay
 {
     // ─── DYNAMIC BINDING NOTE ────────────────────────────────────────────────────
-    // Dynamic binding is demonstrated in this script through virtual/override methods
-    // and runtime component lookups. Specifically:
-    // 1. AttachFish() is marked virtual — subclasses SmallHook and HeavyHook override
-    //    it. At runtime, C# checks the actual object type and calls the correct version.
-    //    Remove "virtual" and the base AttachFish always runs regardless of hook type.
-    // 2. GetComponent<FishMovement>() at runtime — the exact component resolved depends
-    //    on what is attached to the fish GameObject, not known until the game runs.
-    // 3. FindPlayerReference() scans all Animators at runtime to find the correct one —
-    //    the binding to the player happens dynamically when the scene loads.
+    // Dynamic binding is demonstrated through AttachFish being virtual.
+    // The 1 vs 2 fish logic lives INSIDE AttachFish so that removing "virtual"
+    // actually changes runtime behaviour:
+    //
+    // WITH "virtual":    HeavyHook.AttachFish runs → 2 fish caught
+    // WITHOUT "virtual": base AttachFish always runs → 1 fish caught (SmallHook behaviour)
+    //
+    // Other dynamic examples:
+    // 2. GetComponent("FishMovement") resolved at runtime based on what is attached.
+    // 3. FindPlayerReference() scans Animators at runtime to find the player.
     // ─────────────────────────────────────────────────────────────────────────────
     public class FishingHook : MonoBehaviour
     {
         // ── TESTING ──────────────────────────────────────────────────────────────
         [Header("TESTING - Check this to test without a player")]
         [SerializeField] private bool debugMode = false;
-
-        // ── HOOK TYPE ─────────────────────────────────────────────────────────────
-        [Header("Hook Type")]
-        [SerializeField] private bool isHeavyHook = false;
 
         // ── SPEEDS ───────────────────────────────────────────────────────────────
         [Header("Speeds")]
@@ -58,18 +55,17 @@ namespace Saif.GamePlay
         private SpriteRenderer playerSprite;
         private Transform playerTransform;
 
-        private bool hasCaughtFish = false;
+        protected bool hasCaughtFish = false;
         private bool isReadyToCast = true;
         private bool canReel = false;
         private bool animationDelayDone = false;
         private float castingTimer = 0f;
 
-        private Transform caughtFishTransform;
-        private Transform caughtFishTransform2;
+        protected Transform caughtFishTransform;
+        protected Transform caughtFishTransform2;
 
         private Vector3 debugStartPosition;
 
-        public void SetHookType(bool heavy) { isHeavyHook = heavy; }
         public void SetDebugSpawnOverride(Vector3 position) { debugSpawnOverride = position; }
 
         void Start()
@@ -259,35 +255,23 @@ namespace Saif.GamePlay
         {
             if (!collision.CompareTag("Fish")) return;
 
-            if (!isHeavyHook)
-            {
-                if (caughtFishTransform == null)
-                {
-                    AttachFish(collision.transform, ref caughtFishTransform);
-                    hasCaughtFish = true;
-                }
-            }
-            else
-            {
-                if (caughtFishTransform == null)
-                {
-                    AttachFish(collision.transform, ref caughtFishTransform);
-                    hasCaughtFish = true;
-                }
-                else if (caughtFishTransform2 == null)
-                {
-                    AttachFish(collision.transform, ref caughtFishTransform2);
-                }
-            }
+            // One call — AttachFish itself decides how many fish are allowed.
+            // WITH virtual:    the correct subclass version runs (SmallHook = 1, HeavyHook = 2)
+            // WITHOUT virtual: this base version always runs → 1 fish only, no matter the prefab
+            AttachFish(collision.transform);
         }
 
         // ── DYNAMIC BINDING ───────────────────────────────────────────────────────
-        // "protected" — subclasses SmallHook and HeavyHook can override this
-        // "virtual"   — C# will check at RUNTIME which version to call
-        // Remove "virtual" and this base version always runs, overrides are ignored
-        protected virtual void AttachFish(Transform fish, ref Transform slot)
+        // Base behaviour = SmallHook: only 1 fish allowed.
+        // HeavyHook overrides this to allow 2.
+        // Remove "virtual" → HeavyHook override is ignored → base always runs → 1 fish only.
+        protected virtual void AttachFish(Transform fish)
         {
-            slot = fish;
+            // Already holding a fish — SmallHook only takes 1
+            if (caughtFishTransform != null) return;
+
+            caughtFishTransform = fish;
+            hasCaughtFish = true;
 
             Component movement = fish.GetComponent("FishMovement");
             if (movement != null) (movement as MonoBehaviour).enabled = false;
@@ -295,10 +279,12 @@ namespace Saif.GamePlay
             fish.SetParent(this.transform);
             fish.localPosition = Vector3.zero;
             fish.localRotation = Quaternion.identity;
-            Debug.Log("[FishingHook] base AttachFish — if you see this with a SmallHook or HeavyHook prefab, virtual was removed!");
+
+            Debug.Log("[FishingHook] base AttachFish — SmallHook behaviour, 1 fish max. " +
+                      "If you see this on a HeavyHook prefab, virtual was removed!");
         }
 
-        private void ResetHook()
+        protected void ResetHook()
         {
             isReadyToCast = true;
             canReel = false;
@@ -324,7 +310,7 @@ namespace Saif.GamePlay
             }
         }
 
-        private void CollectFish()
+        protected void CollectFish()
         {
             if (caughtFishTransform != null)
             {
