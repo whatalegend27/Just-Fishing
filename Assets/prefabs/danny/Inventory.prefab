@@ -1641,7 +1641,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3310406717598246095}
   - {fileID: 6761756676307145077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1772,6 +1771,8 @@ MonoBehaviour:
   - {fileID: 8517639326593849596}
   - {fileID: 2657882805817888118}
   - {fileID: 5089067978010541137}
+  inventoryTB: {fileID: 0}
+  inventoryDescription: {fileID: 7670933354857530605}
 --- !u!1 &4616142719502202291
 GameObject:
   m_ObjectHideFlags: 0
@@ -3244,67 +3245,6 @@ MonoBehaviour:
   sellPrice: {fileID: 6685241292574229506}
   slotDescription: {fileID: 7670933354857530605}
   slotImage: {fileID: 3859241572674963255}
---- !u!1 &8848162835634275563
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3310406717598246095}
-  - component: {fileID: 9046782611977293724}
-  - component: {fileID: 8959141423715092753}
-  m_Layer: 0
-  m_Name: Gold/InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3310406717598246095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848162835634275563}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 137.45853, y: 1178.3477, z: 0}
-  m_LocalScale: {x: 1.1245989, y: 1.2435509, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8867383958016402412}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9046782611977293724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848162835634275563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2019947f02ac434429289803f921765d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  inventoryMenu: {fileID: 3701418164394267860}
-  inventoryDescription: {fileID: 7670933354857530605}
---- !u!114 &8959141423715092753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848162835634275563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab1719980a330a4dbc5821f209d0274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: DannyScripts::GoldManager
-  goldText: {fileID: 0}
-  playerGold: 100
 --- !u!1 &9101817284885971533
 GameObject:
   m_ObjectHideFlags: 0
