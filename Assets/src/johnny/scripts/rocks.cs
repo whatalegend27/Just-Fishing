@@ -1,0 +1,50 @@
+using UnityEngine;
+
+public class rock : MonoBehaviour
+{
+  [SerializeField] Sprite rockSprite;
+
+  protected int damageAmount = 20;
+  public virtual int DamageAmount => damageAmount;
+
+  protected GameObject player;
+
+  void Start()
+  {
+    GetComponent<SpriteRenderer>().sprite = rockSprite;
+    player = GameObject.FindGameObjectWithTag("Player");
+  }
+
+  public virtual void OnCollisionEnter2D(Collision2D collision)
+  {
+    if (collision.gameObject.CompareTag("Boat"))
+    {
+      Debug.Log("Boat hit a rock!");
+      //player.heath -= damageAmount;
+    }
+  }
+
+}
+
+public class heavyRock : rock
+{
+  [SerializeField] Sprite heavyRockSprite;
+
+  public override int DamageAmount => damageAmount * 2; // Heavy rocks do double damage
+
+  void Start()
+  {
+    GetComponent<SpriteRenderer>().sprite = heavyRockSprite;
+    player = GameObject.FindGameObjectWithTag("Player");
+  }
+
+  public override void OnCollisionEnter2D(Collision2D collision)
+  {
+    if (collision.gameObject.CompareTag("Boat"))
+    {
+      Debug.Log("Boat hit a heavy rock!");
+      //player.health -= damageAmount;
+    }
+  }
+
+}
