@@ -902,7 +902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6066739135198862647, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6066739135198862647, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: m_SortingLayerID
@@ -1927,11 +1927,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &1677726551 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2044670504115886169, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
-  m_PrefabInstance: {fileID: 1690344663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1684367371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2028,6 +2023,10 @@ PrefabInstance:
     - target: {fileID: 284421725259338119, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 305678260083270507, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 390112332033408115, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_Name
@@ -2292,6 +2291,10 @@ PrefabInstance:
     - target: {fileID: 1983736373031284713, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_SortingLayerID
       value: 1117883217
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025134195548943601, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2029208509881060461, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_SortingLayer
@@ -3425,6 +3428,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1117883217
       objectReference: {fileID: 0}
+    - target: {fileID: 8668400658798888858, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8721966573779831984, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_SortingLayer
       value: 10
@@ -3598,17 +3605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e72acb9c9109e040ae80f19d28e57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandleToolbox
-  scriptsToDisable: []
-  Toolboxes:
-  - {fileID: 1053015090}
-  - {fileID: 1690344672}
-  - {fileID: 1690344671}
-  - {fileID: 1690344670}
-  - {fileID: 1690344669}
-  - {fileID: 1690344668}
-  - {fileID: 1677726551}
-  TbToShow: {fileID: 1053015090}
-  TBActive: 0
+  tbShow: {fileID: 0}
+  toolboxes: []
 --- !u!114 &1708945430
 MonoBehaviour:
   m_ObjectHideFlags: 0

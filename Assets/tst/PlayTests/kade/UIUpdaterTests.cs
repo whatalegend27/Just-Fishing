@@ -36,9 +36,7 @@ public class UIUpdaterTests
       mStatBars = new GameObject( "StatBars" );
       mStatBars.SetActive( false );
 
-      mUIUpdater              = mStatBars.AddComponent<UIUpdater>();
-      mUIUpdater.healthStats  = mHealthStats;
-      mUIUpdater.arrestStats  = mArrestStats;
+      mUIUpdater               = mStatBars.AddComponent<UIUpdater>();
       mUIUpdater.healthBarFill = mHealthFill.transform;
       mUIUpdater.hungerBarFill = mHungerFill.transform;
       mUIUpdater.riskBarFill   = mRiskFill.transform;

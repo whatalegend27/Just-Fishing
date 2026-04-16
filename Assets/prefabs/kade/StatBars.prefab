@@ -139,9 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd75313df1e08089aa62f2e037dbdefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameScripts::UIUpdater
-  healthStats: {fileID: 54082391531106358, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
-  arrestStats: {fileID: 3152463301743127956, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
-  playerLevel: {fileID: 7186055436366479809, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
   healthBarFill: {fileID: 5626031908598773567}
   hungerBarFill: {fileID: 5798179263372665933}
   riskBarFill: {fileID: 746944676630068671}
