@@ -105,15 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 3663462540030147091}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 3663462540030147091}
 --- !u!61 &6778471345248642951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -309,7 +301,7 @@ GameObject:
   - component: {fileID: 3606367561257859935}
   m_Layer: 6
   m_Name: TB_Settings
-  m_TagString: Untagged
+  m_TagString: Toolbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,6 +417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5209511309963303516}
   - {fileID: 1325751116387910344}
   - {fileID: 1340952354465785238}
   - {fileID: 3374659307796808955}
@@ -539,15 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 2044670504115886169}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 284421725259338119}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 284421725259338119}
 --- !u!61 &3967812211826671298
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -699,15 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 2044670504115886169}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 5663141980573793040}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 5663141980573793040}
 --- !u!61 &2888335149835010944
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -859,15 +836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 5663141980573793040}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 5663141980573793040}
 --- !u!61 &5763685522827271997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1065,16 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  - {fileID: 2044670504115886169}
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2044670504115886169}
 --- !u!1 &1261639097889948967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,15 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 284421725259338119}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 284421725259338119}
 --- !u!61 &1057857060169221090
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1372,6 +1324,60 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1289158723943759325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5209511309963303516}
+  - component: {fileID: 9086461954307278648}
+  m_Layer: 0
+  m_Name: ToolboxHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5209511309963303516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289158723943759325}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.51892006, y: 0.12634002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8005600528638094927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9086461954307278648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289158723943759325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e72acb9c9109e040ae80f19d28e57c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Isabella_GameScripts::HandleToolbox
+  currentState: 0
+  tbShow: {fileID: 2390513168528332157}
+  toolboxes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1425455064095129140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,15 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2604203072139907012}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &625182731167588921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1637,15 +1635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 3663462540030147091}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 3663462540030147091}
 --- !u!61 &972850744896925528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1888,15 +1878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 5663141980573793040}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 5663141980573793040}
 --- !u!61 &6736125157791101419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2139,15 +2121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 5663141980573793040}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 5663141980573793040}
 --- !u!61 &823073192831378550
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2206,7 +2180,7 @@ GameObject:
   - component: {fileID: 7282839649415765496}
   m_Layer: 6
   m_Name: TB_Achievement
-  m_TagString: Untagged
+  m_TagString: Toolbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2477,16 +2451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  - {fileID: 2044670504115886169}
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2044670504115886169}
 --- !u!1 &2198209482215184487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,15 +2603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2390513168528332157}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2390513168528332157}
 --- !u!1 &2300081821424000711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,15 +2709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 3663462540030147091}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 3663462540030147091}
 --- !u!61 &915859421685102947
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2819,7 +2768,7 @@ GameObject:
   - component: {fileID: 572794344962849106}
   m_Layer: 6
   m_Name: TB_UserStats
-  m_TagString: Untagged
+  m_TagString: Toolbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2845,7 +2794,7 @@ Transform:
   - {fileID: 6499085480524365842}
   - {fileID: 2420771660598099354}
   - {fileID: 1768743535746584748}
-  - {fileID: 4345459461601763659}
+  - {fileID: 3833069582892843837}
   m_Father: {fileID: 8005600528638094927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &572794344962849106
@@ -3012,15 +2961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 3663462540030147091}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 3663462540030147091}
 --- !u!61 &4092295390692645561
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3172,15 +3113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2604203072139907012}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &5459712719133402216
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3378,16 +3311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  - {fileID: 2044670504115886169}
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2044670504115886169}
 --- !u!1 &2604203072139907012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,7 +3325,7 @@ GameObject:
   - component: {fileID: 4026166059065455665}
   m_Layer: 6
   m_Name: TB_Map
-  m_TagString: Untagged
+  m_TagString: Toolbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3503,9 +3427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes: []
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 0}
 --- !u!1 &2652423735673830902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3658,7 +3580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   sceneToLoad: Shop
-  hoverColor: {r: 0.5, g: 0.5, b: 0, a: 0}
+  hoverColor: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 0}
 --- !u!1 &2760488455170978989
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,15 +3732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2390513168528332157}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2390513168528332157}
 --- !u!1 &2775458443920398821
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,15 +3929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 4593796332903803639}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 4593796332903803639}
 --- !u!61 &8576660529669090770
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4223,7 +4129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::AudioManager
   masterMixer: {fileID: 24100000, guid: 6726bd2df61d3b745855c9180ea76dc4, type: 2}
-  hoverColor: {r: 0.20647918, g: 0.5471698, b: 0.29309547, a: 1}
 --- !u!1 &3334182137886370792
 GameObject:
   m_ObjectHideFlags: 0
@@ -4329,15 +4234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2604203072139907012}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &6808060827852996007
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4489,15 +4386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 4593796332903803639}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 4593796332903803639}
 --- !u!61 &6394266415444720136
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4556,7 +4445,7 @@ GameObject:
   - component: {fileID: 5127953825846095553}
   m_Layer: 6
   m_Name: TB_Inventory
-  m_TagString: Untagged
+  m_TagString: Toolbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4581,6 +4470,7 @@ Transform:
   - {fileID: 5785831454973304206}
   - {fileID: 871650215831395496}
   - {fileID: 2783759794877106017}
+  - {fileID: 454805535590945870}
   m_Father: {fileID: 8005600528638094927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5127953825846095553
@@ -5220,16 +5110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  - {fileID: 2044670504115886169}
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2044670504115886169}
 --- !u!1 &4181142328700795792
 GameObject:
   m_ObjectHideFlags: 0
@@ -5335,15 +5216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 2044670504115886169}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 3663462540030147091}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 3663462540030147091}
 --- !u!61 &4757695026295595199
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5527,15 +5400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 284421725259338119}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 284421725259338119}
 --- !u!61 &3781091493536258764
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5594,7 +5459,7 @@ GameObject:
   - component: {fileID: 272047118886141300}
   m_Layer: 6
   m_Name: TB_Upgrader
-  m_TagString: Untagged
+  m_TagString: Toolbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6075,15 +5940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 4593796332903803639}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 4593796332903803639}
 --- !u!61 &7205014137828347689
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6141,6 +5998,7 @@ GameObject:
   - component: {fileID: 8319351384977118877}
   - component: {fileID: 2671170928972412319}
   - component: {fileID: 7017531552773784853}
+  - component: {fileID: 5759568213385307437}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -6269,6 +6127,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5759568213385307437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876029435516322146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db98130f0f5faaf499b54e96dec855eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Isabella_GameScripts::ExitGame
 --- !u!1 &4989492689387718615
 GameObject:
   m_ObjectHideFlags: 0
@@ -6420,15 +6290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2390513168528332157}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2390513168528332157}
 --- !u!1 &5039492234140263145
 GameObject:
   m_ObjectHideFlags: 0
@@ -6580,16 +6442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  - {fileID: 2044670504115886169}
-  TbToShow: {fileID: 5039492234140263145}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2044670504115886169}
 --- !u!1 &5089632085619699259
 GameObject:
   m_ObjectHideFlags: 0
@@ -6695,15 +6548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 4593796332903803639}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 4593796332903803639}
 --- !u!61 &4837931154031103145
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6855,15 +6700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 3663462540030147091}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 3663462540030147091}
 --- !u!61 &6619932245595638159
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7015,15 +6852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 5663141980573793040}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 5663141980573793040}
 --- !u!61 &1054635315805091488
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7082,7 +6911,7 @@ GameObject:
   - component: {fileID: 8103543275126886345}
   m_Layer: 6
   m_Name: TB_MoneyAlloc
-  m_TagString: Untagged
+  m_TagString: Toolbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7273,15 +7102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2604203072139907012}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &7843223635225210945
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7479,16 +7300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  - {fileID: 2044670504115886169}
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2044670504115886169}
 --- !u!1 &6151613959387673863
 GameObject:
   m_ObjectHideFlags: 0
@@ -7640,15 +7452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2390513168528332157}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2390513168528332157}
 --- !u!1 &6175394286328963600
 GameObject:
   m_ObjectHideFlags: 0
@@ -7754,15 +7558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 284421725259338119}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 284421725259338119}
 --- !u!61 &7483033460173618933
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8100,7 +7896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::AudioManager
   masterMixer: {fileID: 24100000, guid: 6726bd2df61d3b745855c9180ea76dc4, type: 2}
-  hoverColor: {r: 0.6367924, g: 0.17421679, b: 0.17421679, a: 1}
 --- !u!1 &6658275769243297308
 GameObject:
   m_ObjectHideFlags: 0
@@ -8206,15 +8001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 4593796332903803639}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 4593796332903803639}
 --- !u!61 &3727585381519726293
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8366,15 +8153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 3663462540030147091}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 3663462540030147091}
 --- !u!61 &493276539621529268
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8573,7 +8352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SceneChanger
   sceneToLoad: MainMenu
-  hoverColor: {r: 0.6745283, g: 0.41926205, b: 0.33090067, a: 1}
+  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &6898360919819813697
 GameObject:
   m_ObjectHideFlags: 0
@@ -8679,15 +8458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 284421725259338119}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 284421725259338119}
 --- !u!61 &3184502219708487682
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8839,15 +8610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 284421725259338119}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 284421725259338119}
 --- !u!61 &4240101506576272299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9045,15 +8808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 2044670504115886169}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2390513168528332157}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2390513168528332157}
 --- !u!1 &7203526144071014490
 GameObject:
   m_ObjectHideFlags: 0
@@ -9205,16 +8960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  - {fileID: 2044670504115886169}
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2044670504115886169}
 --- !u!1 &7441257962539272529
 GameObject:
   m_ObjectHideFlags: 0
@@ -9320,15 +9066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 284421725259338119}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 284421725259338119}
 --- !u!61 &6426393535305228095
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9480,15 +9218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2604203072139907012}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &8259100897125946285
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9640,15 +9370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 4593796332903803639}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 4593796332903803639}
 --- !u!61 &4771534677741228743
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9800,15 +9522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 5663141980573793040}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 5663141980573793040}
 --- !u!61 &1278606707545641447
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9960,15 +9674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 2044670504115886169}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2044670504115886169}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 4593796332903803639}
 --- !u!61 &1563098228396767163
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10120,15 +9826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 2044670504115886169}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2604203072139907012}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &2830490966858226551
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10326,15 +10024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2390513168528332157}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2390513168528332157}
 --- !u!1 &8726439940992268996
 GameObject:
   m_ObjectHideFlags: 0
@@ -10440,15 +10130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2604203072139907012}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &8525157410666977965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10646,15 +10328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 2390513168528332157}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2390513168528332157}
 --- !u!1 &9193741862909461314
 GameObject:
   m_ObjectHideFlags: 0
@@ -10760,15 +10434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a6fadf1284c6469de9ec6228b7119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpriteSwitcher
-  Toolboxes:
-  - {fileID: 2390513168528332157}
-  - {fileID: 3663462540030147091}
-  - {fileID: 4593796332903803639}
-  - {fileID: 5663141980573793040}
-  - {fileID: 2604203072139907012}
-  - {fileID: 284421725259338119}
-  TbToShow: {fileID: 5663141980573793040}
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  tbShow: {fileID: 2604203072139907012}
 --- !u!61 &4652761904285415657
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11117,7 +10783,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1128790120914882, guid: e078153f21fa143829b5cacf771950bb, type: 3}
   m_PrefabInstance: {fileID: 1486274695194954725}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &3647283832502813345
+--- !u!1001 &4315048170818625751
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11125,29 +10791,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1325751116387910344}
     m_Modifications:
-    - target: {fileID: 1058725727782666788, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 1058725727782666788, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 1068458160164512746, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.85531247
-      objectReference: {fileID: 0}
-    - target: {fileID: 1068458160164512746, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.70625
+    - target: {fileID: 706741426700348667, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1068458160164512746, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.36389
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 1068458160164512746, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1068458160164512746, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11181,33 +10835,495 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1447054192194101974, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447054192194101974, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1117883217
+      objectReference: {fileID: 0}
+    - target: {fileID: 1482687516247852484, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1574558345227295853, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_Name
       value: StatBars
       objectReference: {fileID: 0}
-    - target: {fileID: 4547551013825373581, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.85
+    - target: {fileID: 1985242049660964160, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 4547551013825373581, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.64
+    - target: {fileID: 1985242049660964160, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1117883217
       objectReference: {fileID: 0}
-    - target: {fileID: 6061545429225314290, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.85
+    - target: {fileID: 2108330151232253156, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 6061545429225314290, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.09
+    - target: {fileID: 2108330151232253156, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1117883217
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273728555803235451, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318453434670476496, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4094810226974627569, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603382504621483961, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624299574904248768, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661932832279027824, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956415635838497940, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5898109996397424953, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5940798520684998697, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977879665173393536, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977879665173393536, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1117883217
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624576921723333105, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6624576921723333105, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1117883217
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692090393568793525, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692090393568793525, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1117883217
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703195574114492539, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695485821632631380, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811908079281216244, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7857847853601783700, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874155987999967250, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8599553981698787164, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8626876634309437283, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899009544519053159, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
---- !u!4 &4345459461601763659 stripped
+--- !u!4 &3833069582892843837 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1068458160164512746, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-  m_PrefabInstance: {fileID: 3647283832502813345}
+  m_PrefabInstance: {fileID: 4315048170818625751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9025369251029399458
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1340952354465785238}
+    m_Modifications:
+    - target: {fileID: 587261606843798873, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 659414254588863591, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659414254588863591, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659414254588863591, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659414254588863591, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659414254588863591, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 659414254588863591, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191438492462171861, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_RenderMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591182889760110955, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_Name
+      value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068396340096345966, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068396340096345966, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068396340096345966, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068396340096345966, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068396340096345966, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068396340096345966, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763496415856533406, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763496415856533406, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763496415856533406, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763496415856533406, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763496415856533406, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763496415856533406, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377461360043842702, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1629.0908
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.10829342
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.16374575
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.50703126
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 6761756676307145077, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097689938275500487, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097689938275500487, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097689938275500487, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097689938275500487, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097689938275500487, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097689938275500487, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448331499552113237, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448331499552113237, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448331499552113237, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448331499552113237, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448331499552113237, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448331499552113237, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540405739920951798, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540405739920951798, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540405739920951798, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540405739920951798, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540405739920951798, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540405739920951798, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306997423479641313, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306997423479641313, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306997423479641313, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306997423479641313, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306997423479641313, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306997423479641313, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484218706741927202, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484218706741927202, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484218706741927202, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484218706741927202, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484218706741927202, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8484218706741927202, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742926076485924301, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742926076485924301, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742926076485924301, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742926076485924301, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742926076485924301, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8742926076485924301, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.050593264
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.03356832
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.9729
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+--- !u!4 &454805535590945870 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8867383958016402412, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+  m_PrefabInstance: {fileID: 9025369251029399458}
   m_PrefabAsset: {fileID: 0}

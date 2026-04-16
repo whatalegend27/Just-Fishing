@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemScript : ScriptableObject
 {
     [SerializeField] private string itemName;
-    [SerializeField] [TextArea] public string itemDescription;
+    [SerializeField][TextArea] private string itemDescription;
     [SerializeField] private int price;
     [SerializeField] private Sprite icon;
 
@@ -12,19 +12,11 @@ public class ItemScript : ScriptableObject
     public string ItemName => itemName;
     public int Price => price;
     public Sprite Icon => icon;
+    public string ItemDescription => itemDescription;
 
-    public virtual string getDescription()
+    // public bool CanStack()
+    public virtual bool CanStack()
     {
-        return itemDescription;
+        return false;
     }
 }
-
-// public class StackableItem : ItemScript
-// {
-//     int maxStack;
-
-//     public override string getDescription()
-//     {
-//         return itemDescription + "\nStacks up to:" + maxStack;
-//     }
-// }

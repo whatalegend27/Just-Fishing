@@ -1,38 +1,17 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class NewGamer : MonoBehaviour
+// Inherit from SceneChanger instead of MonoBehaviour
+public class NewGame : SceneChanger 
 {
-    [Header("Settings")]
-    public string sceneToLoad;
-    public Color hoverColor = Color.gray;
-    private Color originalColor;
-    private SpriteRenderer spriteRenderer;
-
-    void Start()
+    // When the mouse clicks this object, the program looks for the most specific version of OnMouseDown in the hierarchy.
+    public override void OnMouseDown()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalColor = spriteRenderer.color;
-    }
-
-    // This runs when the mouse clicks the collider
-    void OnMouseDown()
-    {
+        // Perform the unique logic for a New Game
         PlayerPrefs.DeleteKey("NewsSeen");
         PlayerPrefs.Save();
+        Debug.Log("PlayerPrefs reset for New Game.");
 
-        Debug.Log("After reset: " + PlayerPrefs.GetInt("NewsSeen", 0));
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("No scene name entered on " + gameObject.name);
-        }
+        // Call the base version to handle the actual scene transition
+        base.OnMouseDown(); 
     }
-
-    // Optional: Visual feedback so you know the raycast is working
-    void OnMouseEnter() => spriteRenderer.color = hoverColor;
-    void OnMouseExit() => spriteRenderer.color = originalColor;
 }
