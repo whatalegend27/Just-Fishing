@@ -1368,7 +1368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e72acb9c9109e040ae80f19d28e57c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::HandleToolbox
-  currentState: 0
   tbShow: {fileID: 2390513168528332157}
   toolboxes:
   - {fileID: 0}
@@ -10837,11 +10836,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1447054192194101974, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_SortingLayer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1447054192194101974, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1117883217
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1482687516247852484, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_Layer
@@ -10853,19 +10848,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1985242049660964160, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_SortingLayer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1985242049660964160, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1117883217
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2108330151232253156, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_SortingLayer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2108330151232253156, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1117883217
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2273728555803235451, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_Layer
@@ -10905,27 +10892,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5977879665173393536, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_SortingLayer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5977879665173393536, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1117883217
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6624576921723333105, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_SortingLayer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6624576921723333105, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1117883217
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6692090393568793525, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_SortingLayer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6692090393568793525, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1117883217
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6703195574114492539, guid: a9f54c68488242b14840593b0734e0a6, type: 3}
       propertyPath: m_LocalPosition.z

@@ -29,10 +29,8 @@ public class riskBarTest
 
         // UIUpdater wired up
         m_UpdaterObj             = new GameObject("UIUpdater");
-        m_UIUpdater              = m_UpdaterObj.AddComponent<UIUpdater>();
-        m_UIUpdater.arrestStats  = m_ArrestStats;
-        m_UIUpdater.healthStats  = m_HealthStats;
-        m_UIUpdater.riskBarFill  = m_RiskBarFill.transform;
+        m_UIUpdater             = m_UpdaterObj.AddComponent<UIUpdater>();
+        m_UIUpdater.riskBarFill = m_RiskBarFill.transform;
     }
 
     [TearDown]
