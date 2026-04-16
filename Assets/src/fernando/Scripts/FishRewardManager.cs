@@ -18,7 +18,7 @@ public class FishRewardManager : MonoBehaviour
 
         if (fish != null && fish.catchCount == 1)
         {
-            // TODO: Replace with GoldManager.Instance.AddGold(10) once Danny adds the method
+            // TODO: Replace with GoldManager.Instance.AddGold(10) 
             Debug.Log("[FishRewardManager] First catch reward: +10 gold (placeholder)");
         }
     }
