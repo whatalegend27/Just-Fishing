@@ -60,6 +60,12 @@ public class HealthStats : MonoBehaviour
       healthVal = Mathf.Clamp( calculator.calculate( healthVal ), 0, 100 );
    }
 
+   // Applies a specific amount of damage directly to health
+   public void takeDamage( int amount )
+   {
+      healthVal = Mathf.Clamp( healthVal - amount, 0, 100 );
+   }
+
    /* Calculates hunger based on the given action.
       Valid values: "eat", "time" */
    public void calculateHunger( string action )
