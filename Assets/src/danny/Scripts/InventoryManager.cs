@@ -2,17 +2,11 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryTB;
-    [SerializeField] private GameObject inventoryDescription;
-
-
     //prevents other scripts from writing into the inventory - public to allow other scripts to access
     public static InventoryManager Instance { get; private set; }
     public event System.Action inventoryChanged;
     private const int INVENTORY_SIZE = 9;
     public InventorySlotData[] slots = new InventorySlotData[INVENTORY_SIZE];
-
-
 
 
     //public static void ResetInstance() => Instance = null;
@@ -94,28 +88,7 @@ public class InventoryManager : MonoBehaviour
             {
                 slots[i] = new InventorySlotData();
                 inventoryChanged?.Invoke();
-                inventoryDescription.SetActive(false);
                 return;
-            }
-        }
-    }
-
-
-    void Update()
-    {
-        ToggleMenu();
-    }
-
-    void ToggleMenu()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            bool isActive = inventoryTB.activeSelf;
-            inventoryTB.SetActive(!isActive); // just flip whatever state it's actually in
-
-            if (isActive) // was open, now closing
-            {
-                inventoryDescription.SetActive(false);
             }
         }
     }

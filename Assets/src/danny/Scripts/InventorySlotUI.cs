@@ -11,6 +11,7 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] private Button sellButton;
     [SerializeField] private TextMeshProUGUI sellPrice;
     private ItemScript currentItem;
+    private int currentItemQuantity;
 
     //Inventory description items
     [SerializeField] private GameObject slotDescription;
@@ -30,6 +31,7 @@ public class InventorySlotUI : MonoBehaviour
             return;
         }
         currentItem = slots.item;
+        currentItemQuantity = slots.quantity;
 
         if (!currentItem.CanStack())
         {
@@ -53,9 +55,7 @@ public class InventorySlotUI : MonoBehaviour
 
     }
 
-
-
-    //sets sell button panel to be true
+    //sets invent description panel to be true
     void OnClick()
     {
         if (currentItem == null)
@@ -65,7 +65,16 @@ public class InventorySlotUI : MonoBehaviour
         slotImage.sprite = currentItem.Icon;
         slotDescription.SetActive(true);
         sellButton.onClick.RemoveAllListeners();
-        sellButton.onClick.AddListener(() => GoldManager.Instance.SellItem(currentItem));
         sellPrice.text = "Sells for: $" + currentItem.Price;
+
+        //calls sellitem function in goldmanager and disables invent description
+        sellButton.onClick.AddListener(() =>
+        {
+            if (currentItemQuantity <= 1) // last one
+            {
+                slotDescription.SetActive(false);
+            }
+            GoldManager.Instance.SellItem(currentItem);
+        });
     }
 }
