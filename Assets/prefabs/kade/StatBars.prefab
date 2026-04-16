@@ -100,10 +100,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1068458160164512746}
-  - component: {fileID: 9176481272645797803}
-  - component: {fileID: 2394189890787172027}
-  - component: {fileID: 8725416027549489587}
-  - component: {fileID: 853101335847835346}
   - component: {fileID: 4051117278344323721}
   m_Layer: 0
   m_Name: StatBars
@@ -131,64 +127,6 @@ Transform:
   - {fileID: 6576894871793787902}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9176481272645797803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574558345227295853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 076f45ecd3fd4fd2eb4f48949b9ad799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameScripts::PlayerStats
-  gameOver: 0
---- !u!114 &2394189890787172027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574558345227295853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 470a8ba5082c67f36bec8d7b62bd3131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameScripts::ArrestStats
-  ps: {fileID: 9176481272645797803}
-  gameTime: {fileID: 0}
-  riskVal: 0
---- !u!114 &8725416027549489587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574558345227295853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032673c84f3dcd5078202047a8d2549f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameScripts::HealthStats
-  healthVal: 0
-  hungerVal: 0
-  ps: {fileID: 9176481272645797803}
-  gameTime: {fileID: 0}
---- !u!114 &853101335847835346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574558345227295853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e0e70c44ab96d9ebfa400192c54321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: GameScripts::PlayerLevel
-  level: 1
-  currentXP: 0
 --- !u!114 &4051117278344323721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd75313df1e08089aa62f2e037dbdefe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GameScripts::UIUpdater
-  healthStats: {fileID: 8725416027549489587}
-  arrestStats: {fileID: 2394189890787172027}
-  playerLevel: {fileID: 853101335847835346}
+  healthStats: {fileID: 54082391531106358, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
+  arrestStats: {fileID: 3152463301743127956, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
+  playerLevel: {fileID: 7186055436366479809, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
   healthBarFill: {fileID: 5626031908598773567}
   hungerBarFill: {fileID: 5798179263372665933}
   riskBarFill: {fileID: 746944676630068671}

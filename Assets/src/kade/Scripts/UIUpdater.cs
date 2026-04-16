@@ -30,6 +30,8 @@ public class UIUpdater : MonoBehaviour
    private float mHungerBarLeft, mHungerBarScaleX, mHungerBarWorldWidth;
    private float mRiskBarLeft,   mRiskBarScaleX,   mRiskBarWorldWidth;
 
+   private bool mReady = false;
+
    // Caches bar origins and initial stat values, subscribes to level up event
    void Start()
    {
@@ -53,6 +55,26 @@ public class UIUpdater : MonoBehaviour
          playerLevel.OnLevelUp += handleLevelUp;
          refreshBlocks( playerLevel.level );
       }
+
+      refreshUI();
+   }
+
+   // Refreshes UI with latest stat values each time the panel is opened
+   void OnEnable()
+   {
+      if ( !mReady ) return;
+
+      if ( healthStats != null )
+      {
+         mCachedHealth = healthStats.healthVal;
+         mCachedHunger = healthStats.hungerVal;
+      }
+
+      if ( arrestStats != null )
+         mCachedRisk = arrestStats.riskVal;
+
+      if ( playerLevel != null )
+         refreshBlocks( playerLevel.level );
 
       refreshUI();
    }
