@@ -12,7 +12,7 @@ namespace Saif.GamePlay
         // C# decides which version to call at RUNTIME based on the actual object type.
         // Remove "virtual" from FishingHook.AttachFish — this override gets ignored
         // and the base version runs every time, proving dynamic binding is gone.
-        protected override void AttachFish(Transform fish, ref Transform slot)
+        protected new void AttachFish(Transform fish, ref Transform slot)
         {
             slot = fish;
 

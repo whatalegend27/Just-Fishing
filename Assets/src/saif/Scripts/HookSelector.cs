@@ -1,141 +1,125 @@
+/********************************
+hook_selector.cs
+Saif Badwan
+Handles hook swapping and spawning. Implements Singleton pattern.
+********************************/
 using UnityEngine;
 
 namespace Saif.GamePlay 
 {
-    // ─── DYNAMIC BINDING NOTE ────────────────────────────────────────────────────
-    // Dynamic binding is demonstrated here through:
-    // 1. GetComponent<FishingHook>() at runtime — resolves the exact hook script
-    //    on whatever prefab was instantiated, not known until runtime
-    // 2. Instantiate(hookPrefab) — which prefab gets spawned is decided at runtime
-    //    based on isHeavyHook state — the spawned object's behavior is bound dynamically
-    // 3. Camera.main.GetComponent<CameraFollow>() — finds the camera component
-    //    at runtime, not hardcoded at compile time
-    // ─────────────────────────────────────────────────────────────────────────────
     public class HookSelector : MonoBehaviour
     {
-        // ── HOOK PREFABS ──────────────────────────────────────────────────────────
-        // Serialized so they can be assigned in the Inspector without being public
-        // The actual hook type spawned is decided at runtime — DYNAMIC BINDING
+        // PATTERN: Singleton for easy access from UI
+        public static HookSelector instance;
+
         [Header("Hook Prefabs")]
-        [SerializeField] private GameObject smallHookPrefab;
-        [SerializeField] private GameObject heavyHookPrefab;
+        [SerializeField] private GameObject small_hook_prefab;
+        [SerializeField] private GameObject heavy_hook_prefab;
 
-        // ── SPAWN POINTS ──────────────────────────────────────────────────────────
-        // spawnPoint — used in the combined scene, positioned at the rod tip
-        // debugSpawnPoint — optional, used when testing without the player scene
         [Header("Spawn Points")]
-        [SerializeField] private Transform spawnPoint;
-        [SerializeField] private Transform debugSpawnPoint;
+        [SerializeField] private Transform spawn_point;
+        [SerializeField] private Transform debug_spawn_point;
 
-        // ── PRIVATE STATE ─────────────────────────────────────────────────────────
-        // All state is private — only HookSelector manages hook spawning
-        private GameObject currentHook;   // reference to the currently active hook
-        private bool isHeavyHook = false; // tracks which hook type is active
-        private CameraFollow cameraFollow; // cached camera reference for target updates
+        private GameObject current_hook;   
+        private bool is_heavy_hook = false; 
+        private CameraFollow camera_follow; 
+
+        void Awake()
+        {
+            if( instance == null )
+            {
+                instance = this;
+            }
+        }
 
         void Start()
         {
-            // DYNAMIC BINDING: GetComponent resolves CameraFollow at runtime
-            cameraFollow = Camera.main.GetComponent<CameraFollow>();
-
-            // Spawn the small hook by default at game start
-            SpawnHook(smallHookPrefab);
+            camera_follow = Camera.main.GetComponent<CameraFollow>();
+            spawn_hook(small_hook_prefab);
         }
 
         void Update()
         {
-            // Z key toggles between hook types on keyboard
-            // Blocked if the hook is currently cast — must reel in first
             if (Input.GetKeyDown(KeyCode.Z))
-                ToggleHook();
+            {
+                toggle_hook();
+            }
         }
 
-        // ── PUBLIC TOGGLE ─────────────────────────────────────────────────────────
-        // Called by both the Z key and the mobile UI switch button
-        // Blocks the swap if the hook is currently in the water
-        public void ToggleHook()
+        public void toggle_hook()
         {
-            // DYNAMIC BINDING: GetComponent resolves FishingHook at runtime
-            FishingHook hookScript = currentHook != null
-                ? currentHook.GetComponent<FishingHook>()
+            FishingHook hook_script = (current_hook != null) 
+                ? current_hook.GetComponent<FishingHook>() 
                 : null;
 
-            // Prevent swapping while hook is cast — player must reel in first
-            if (hookScript != null && hookScript.IsHookCast) return;
-
-            if (isHeavyHook)
+            if (hook_script != null && hook_script.IsHookCast) 
             {
-                isHeavyHook = false;
-                SpawnHook(smallHookPrefab);
+                return;
+            }
+
+            if (is_heavy_hook)
+            {
+                is_heavy_hook = false;
+                spawn_hook(small_hook_prefab);
             }
             else
             {
-                isHeavyHook = true;
-                SpawnHook(heavyHookPrefab);
+                is_heavy_hook = true;
+                spawn_hook(heavy_hook_prefab);
             }
         }
 
-        // ── SPAWN HOOK ────────────────────────────────────────────────────────────
-        // Destroys the current hook and instantiates a new one at the spawn point
-        // DYNAMIC BINDING: Instantiate creates a runtime instance of the prefab
-        // The exact behavior of the spawned hook depends on which prefab is passed in
-        private void SpawnHook(GameObject hookPrefab)
+        private void spawn_hook(GameObject hook_prefab)
         {
-            // Destroy previous hook before spawning a new one
-            if (currentHook != null)
-                Destroy(currentHook);
-
-            // Use debugSpawnPoint if assigned, otherwise use the main spawnPoint
-            Transform spawnPos = (debugSpawnPoint != null) ? debugSpawnPoint : spawnPoint;
-            currentHook = Instantiate(hookPrefab, spawnPos.position, Quaternion.identity);
-
-            // Configure the spawned hook via public setters instead of direct field access
-            // This maintains encapsulation — HookSelector doesn't touch internal state directly
-            FishingHook hookScript = currentHook.GetComponent<FishingHook>();
-            if (hookScript != null)
+            if (current_hook != null)
             {
-                hookScript.SetHookType(isHeavyHook);
-                hookScript.SetDebugSpawnOverride(spawnPos.position);
+                Destroy(current_hook);
             }
 
-            // Tell the camera to follow the new hook immediately
-            // Prevents the camera from losing its target during the swap
-            if (cameraFollow != null)
-                cameraFollow.target = currentHook.transform;
+            Transform spawn_pos = (debug_spawn_point != null) ? debug_spawn_point : spawn_point;
+            current_hook = Instantiate(hook_prefab, spawn_pos.position, Quaternion.identity);
+
+            FishingHook hook_script = current_hook.GetComponent<FishingHook>();
+            if (hook_script != null)
+            {
+                // Fixed: Removed SetHookType call to stop the CS1061 error
+                hook_script.SetDebugSpawnOverride(spawn_pos.position);
+            }
+
+            if (camera_follow != null)
+            {
+                camera_follow.target = current_hook.transform;
+            }
         }
 
-        // ── UI BUTTON METHODS ─────────────────────────────────────────────────────
-        // These are kept public for UI button assignments in the Inspector
-        // Both check if the hook is cast before allowing a swap
-
-        /// <summary>
-        /// Switches to the small hook. Blocked if hook is currently cast.
-        /// Assign to UI button OnClick in the Inspector.
-        /// </summary>
-        public void SelectSmallHook()
+        public void select_small_hook()
         {
-            FishingHook hookScript = currentHook != null
-                ? currentHook.GetComponent<FishingHook>()
+            FishingHook hook_script = (current_hook != null) 
+                ? current_hook.GetComponent<FishingHook>() 
                 : null;
-            if (hookScript != null && hookScript.IsHookCast) return;
+                
+            if (hook_script != null && hook_script.IsHookCast) 
+            {
+                return;
+            }
 
-            isHeavyHook = false;
-            SpawnHook(smallHookPrefab);
+            is_heavy_hook = false;
+            spawn_hook(small_hook_prefab);
         }
 
-        /// <summary>
-        /// Switches to the heavy hook. Blocked if hook is currently cast.
-        /// Assign to UI button OnClick in the Inspector.
-        /// </summary>
-        public void SelectHeavyHook()
+        public void select_heavy_hook()
         {
-            FishingHook hookScript = currentHook != null
-                ? currentHook.GetComponent<FishingHook>()
+            FishingHook hook_script = (current_hook != null) 
+                ? current_hook.GetComponent<FishingHook>() 
                 : null;
-            if (hookScript != null && hookScript.IsHookCast) return;
+                
+            if (hook_script != null && hook_script.IsHookCast) 
+            {
+                return;
+            }
 
-            isHeavyHook = true;
-            SpawnHook(heavyHookPrefab);
+            is_heavy_hook = true;
+            spawn_hook(heavy_hook_prefab);
         }
     }
 }

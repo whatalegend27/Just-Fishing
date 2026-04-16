@@ -57,7 +57,7 @@ public class GoldManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(FlashColor(Color.red));
+           // StartCoroutine(FlashColor(Color.red));
             return false;
         }
     }
@@ -67,7 +67,7 @@ public class GoldManager : MonoBehaviour
     {
         InventoryManager.Instance.RemoveItem(item);
         playerGold += item.Price;
-        StartCoroutine(FlashColor(Color.green));
+      //  StartCoroutine(FlashColor(Color.green));
         UpdateUI();
 
     }

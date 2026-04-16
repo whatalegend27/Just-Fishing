@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AchievmentDisplay : MonoBehaviour
 {
-    public GameObject achievementUI;
+    [SerializeField] private GameObject achievementUI;
 
     void Start()
     {
