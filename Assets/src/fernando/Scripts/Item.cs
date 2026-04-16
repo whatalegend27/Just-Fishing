@@ -1,17 +1,17 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewItem", menuName = "Item")]
-
 public class Item : ScriptableObject
 {
-    public string ItemID;
-    public string Name;
-    public Rarities rarity;
-    [TextArea]
-    public string ItemDescp;
-    public Sprite itemSprite;
+    [SerializeField] private string itemID;
+    [SerializeField] private string itemName;
+    [SerializeField] private Rarities rarity;
+    [SerializeField][TextArea] private string itemDescription;
+    [SerializeField] private Sprite itemSprite;
 
-
-
-
+    public string ItemID => itemID;
+    public string ItemName => itemName;
+    public Rarities Rarity => rarity;
+    public string ItemDescription => itemDescription;
+    public Sprite ItemSprite => itemSprite;
 }

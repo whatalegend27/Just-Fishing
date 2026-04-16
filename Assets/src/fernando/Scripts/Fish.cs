@@ -1,6 +1,8 @@
 using UnityEngine;
+
 public class Fish : MonoBehaviour
 {
-    public string fishName;
-    public int catchCount;
+    [SerializeField] private string fishName;
+
+    public string FishName => fishName;
 }
