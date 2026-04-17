@@ -7,7 +7,7 @@ public class DriftTests
     public void BoatDrift_AveragesOutToZero()
     {
       GameObject testObject = new GameObject();
-      boatController testBoat = testObject.AddComponent<boatController>();
+      BoatController testBoat = testObject.AddComponent<BoatController>();
       
       int totalIterations = 10000; 
       float sumOfDriftsX = 0f;
