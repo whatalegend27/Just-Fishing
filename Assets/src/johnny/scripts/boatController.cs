@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class BoatController : MonoBehaviour
 {
-  public bool isBoatActive = false;
-  public float timeBetweenDrifts = 5f; // Seconds
 
   [SerializeField] private SpriteRenderer dialogueBoxRenderer;
-
-  private Vector2 currentPosition;
+  public bool isBoatActive = false;
+  public float timeBetweenDrifts = 5f; // Seconds
+  private Vector2 boatCurrentPosition;
 
   void Start()
   {
     if (isBoatActive)
     {
-      currentPosition = new Vector2(transform.position.x, transform.position.y);
+      boatCurrentPosition = new Vector2(transform.position.x, transform.position.y);
       StartCoroutine(DriftRoutine());
     }
   }
@@ -49,10 +48,10 @@ public class BoatController : MonoBehaviour
         {
             yield return new WaitForSeconds(timeBetweenDrifts);
 
-            Vector2 driftAmount = CalculateDriftOffset(currentPosition);
-            currentPosition += driftAmount;
+            Vector2 driftAmount = CalculateDriftOffset(boatCurrentPosition);
+            boatCurrentPosition += driftAmount;
             
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0f);
+            transform.position = new Vector3(boatCurrentPosition.x, boatCurrentPosition.y, 0f);
         }
     }
 

@@ -4,35 +4,35 @@ using UnityEngine;
 public class DriftTests
 {
     [Test]
-    public void BoatDrift_AveragesOutToZero()
+    public void boatDrift_AveragesOutToZero()
     {
-      GameObject testObject = new GameObject();
-      BoatController testBoat = testObject.AddComponent<BoatController>();
-      
-      int totalIterations = 10000; 
-      float sumOfDriftsX = 0f;
-      float sumOfDriftsY = 0f;
-      
-      Vector2 startingPos = Vector2.zero; 
+        GameObject testObject = new GameObject();
+        BoatController testBoat = testObject.AddComponent<BoatController>();
 
-      for (int i = 0; i < totalIterations; i++)
-      {
-          Vector2 appliedDrift = testBoat.CalculateDriftOffset(startingPos);
+        int totalIterations = 10000; 
+        float sumOfDriftsX = 0f;
+        float sumOfDriftsY = 0f;
 
-          sumOfDriftsX += appliedDrift.x;
-          sumOfDriftsY += appliedDrift.y;
-      }
+        Vector2 startingPos = Vector2.zero; 
 
-      Object.DestroyImmediate(testObject);
+        for (int i = 0; i < totalIterations; i++)
+        {
+            Vector2 appliedDrift = testBoat.CalculateDriftOffset(startingPos);
 
-      float averageDriftX = sumOfDriftsX / totalIterations;
-      float averageDriftY = sumOfDriftsY / totalIterations;
-      float allowedVariance = 0.05f;
+            sumOfDriftsX += appliedDrift.x;
+            sumOfDriftsY += appliedDrift.y;
+        }
 
-      Assert.AreEqual(0f, averageDriftX, allowedVariance, 
-          $"X-axis drift average of {averageDriftX} was not approximately 0.");
-          
-      Assert.AreEqual(0f, averageDriftY, allowedVariance, 
-          $"Y-axis drift average of {averageDriftY} was not approximately 0.");
+        Object.DestroyImmediate(testObject);
+
+        float averageDriftX = sumOfDriftsX / totalIterations;
+        float averageDriftY = sumOfDriftsY / totalIterations;
+        float allowedVariance = 0.05f;
+
+        Assert.AreEqual(0f, averageDriftX, allowedVariance, 
+        $"X-axis drift average of {averageDriftX} was not approximately 0.");
+
+        Assert.AreEqual(0f, averageDriftY, allowedVariance, 
+        $"Y-axis drift average of {averageDriftY} was not approximately 0.");
     }
 }
