@@ -5,6 +5,12 @@ public class PlayerStats : MonoBehaviour
 {
    public bool gameOver;
 
+   // Persists this GameObject across scene loads
+   void Awake()
+   {
+      DontDestroyOnLoad( gameObject );
+   }
+
    // Initializes game over state to false
    void Start()
    {

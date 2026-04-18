@@ -1131,7 +1131,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800.39, y: 804.83}
+  m_SizeDelta: {x: 797.65, y: 804.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5928800313168932259
 CanvasRenderer:
@@ -1184,9 +1184,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 25
-    m_Right: 25
-    m_Top: 25
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
     m_Bottom: 25
   m_ChildAlignment: 4
   m_StartCorner: 0
@@ -1641,7 +1641,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3310406717598246095}
   - {fileID: 6761756676307145077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1674,17 +1673,17 @@ RectTransform:
   m_GameObject: {fileID: 3701418164394267860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.71207607, y: 0.764648, z: 0.95581}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6377461360043842702}
   - {fileID: 4953276367883313332}
   m_Father: {fileID: 6761756676307145077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.2700195, y: -107.19}
-  m_SizeDelta: {x: -1225.47, y: -692.33}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 490, y: -292}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2165483347182657536
 CanvasRenderer:
@@ -1772,6 +1771,8 @@ MonoBehaviour:
   - {fileID: 8517639326593849596}
   - {fileID: 2657882805817888118}
   - {fileID: 5089067978010541137}
+  inventoryTB: {fileID: 0}
+  inventoryDescription: {fileID: 7670933354857530605}
 --- !u!1 &4616142719502202291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2084,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 238.2, y: -159.1}
+  m_AnchoredPosition: {x: 227.61, y: -159.1}
   m_SizeDelta: {x: 267.16, y: 238.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9059669161081327314
@@ -2297,7 +2298,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 238.2, y: -537.41504}
+  m_AnchoredPosition: {x: 227.61, y: -537.41504}
   m_SizeDelta: {x: 349.58, y: 468.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5945121654827493279
@@ -2416,9 +2417,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 2560, y: 1600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3037,8 +3038,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1088.59, y: -438.105}
-  m_SizeDelta: {x: 476.4, y: 826.21}
+  m_AnchoredPosition: {x: 1075.26, y: -427.415}
+  m_SizeDelta: {x: 455.22, y: 804.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2393541272562414652
 CanvasRenderer:
@@ -3244,67 +3245,6 @@ MonoBehaviour:
   sellPrice: {fileID: 6685241292574229506}
   slotDescription: {fileID: 7670933354857530605}
   slotImage: {fileID: 3859241572674963255}
---- !u!1 &8848162835634275563
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3310406717598246095}
-  - component: {fileID: 9046782611977293724}
-  - component: {fileID: 8959141423715092753}
-  m_Layer: 0
-  m_Name: Gold/InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3310406717598246095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848162835634275563}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 137.45853, y: 1178.3477, z: 0}
-  m_LocalScale: {x: 1.1245989, y: 1.2435509, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8867383958016402412}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9046782611977293724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848162835634275563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2019947f02ac434429289803f921765d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
-  inventoryMenu: {fileID: 3701418164394267860}
-  inventoryDescription: {fileID: 7670933354857530605}
---- !u!114 &8959141423715092753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848162835634275563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab1719980a330a4dbc5821f209d0274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: DannyScripts::GoldManager
-  goldText: {fileID: 0}
-  playerGold: 100
 --- !u!1 &9101817284885971533
 GameObject:
   m_ObjectHideFlags: 0

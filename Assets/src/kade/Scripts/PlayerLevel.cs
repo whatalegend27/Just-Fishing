@@ -27,6 +27,7 @@ public class PlayerLevel : MonoBehaviour
    void OnEnable()
    {
       FishDatabaseManager.OnFishRegistered += handleFishCaught;
+      Debug.Log( "[PlayerLevel] Subscribed to OnFishRegistered" );
    }
 
    // Unsubscribes from the fish registered event

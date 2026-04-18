@@ -2,18 +2,11 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryMenu;
-    [SerializeField] private GameObject inventoryDescription;
-    private bool menuActive = false;
-
-
     //prevents other scripts from writing into the inventory - public to allow other scripts to access
     public static InventoryManager Instance { get; private set; }
     public event System.Action inventoryChanged;
     private const int INVENTORY_SIZE = 9;
     public InventorySlotData[] slots = new InventorySlotData[INVENTORY_SIZE];
-
-
 
 
     //public static void ResetInstance() => Instance = null;
@@ -44,12 +37,14 @@ public class InventoryManager : MonoBehaviour
             return false;
         }
 
+        ItemScript currentItem = item;
+
         //if item can stack, see if its in inventory already and increase
-        if (item.CanStack())
+        if (currentItem.CanStack())
         {
             for (int i = 0; i < INVENTORY_SIZE; i++)
             {
-                if (slots[i].item != null && slots[i].item.name == item.name)
+                if (slots[i].item != null && slots[i].item.name == currentItem.name)
                 {
                     slots[i].quantity++;
                     inventoryChanged?.Invoke();
@@ -63,7 +58,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (slots[i].item == null)
             {
-                slots[i].item = item;
+                slots[i].item = currentItem;
                 slots[i].quantity = 1;
                 inventoryChanged?.Invoke();  //gives out signal for other methods to use. ? means to only give out signal if something is listening
                 return true;
@@ -88,38 +83,15 @@ public class InventoryManager : MonoBehaviour
                     return;
                 }
             }
-                //removes non-stackable/last quantity out of inventory
+            //removes non-stackable/last quantity out of inventory
             if (slots[i].item == item)
             {
                 slots[i] = new InventorySlotData();
                 inventoryChanged?.Invoke();
-                inventoryDescription.SetActive(false);
                 return;
             }
         }
     }
-
-
-    void Update()
-    {
-        ToggleMenu();
-    }
-
-    void ToggleMenu()
-    {
-        if (Input.GetKeyDown(KeyCode.T) && !menuActive)
-        {
-            inventoryMenu.SetActive(true);
-            menuActive = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.T) && menuActive)
-        {
-            inventoryMenu.SetActive(false);
-            menuActive = false;
-            inventoryDescription.SetActive(false);
-        }
-    }
-
 }
 
 
