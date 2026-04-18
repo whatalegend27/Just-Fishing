@@ -46,14 +46,16 @@ public class inGameTime : MonoBehaviour
 
          if ( hours == 21 )
          {
-            OnNightfall?.Invoke();
+            if ( OnNightfall != null )
+               OnNightfall.Invoke();
          }
 
          if ( hours == 6 && !mNewDayTriggered )
          {
             day++;
             mNewDayTriggered = true;
-            OnNewDay?.Invoke();
+            if ( OnNewDay != null )
+               OnNewDay.Invoke();
          }
          else if ( hours != 6 )
          {
@@ -71,7 +73,8 @@ public class inGameTime : MonoBehaviour
       hours = 6;
       minutes = 0;
       mNewDayTriggered = true;
-      OnNewDay?.Invoke();
+      if ( OnNewDay != null )
+         OnNewDay.Invoke();
       updateUI();
    }
 
