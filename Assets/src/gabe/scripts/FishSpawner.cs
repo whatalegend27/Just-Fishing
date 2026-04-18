@@ -13,12 +13,12 @@ public class FishSpawner : MonoBehaviour
     public float minY = -4f;
     public float maxY = 4f;
 
-    void Start()
+    protected virtual void Start()
     {
         SpawnFish();
     }
 
-    void SpawnFish()
+    protected void SpawnFish()
     {
         if (fishPrefabs == null || fishPrefabs.Count == 0)
         {
@@ -28,26 +28,46 @@ public class FishSpawner : MonoBehaviour
 
         for (int i = 0; i < numberToSpawn; i++)
         {
-            Vector2 spawnPos = new Vector2(
-                Random.Range(minX, maxX),
-                Random.Range(minY, maxY)
-            );
+            Vector2 spawnPos = GetSpawnPosition();
+            GameObject selectedPrefab = GetFishPrefab();
 
-            GameObject selectedPrefab = fishPrefabs[Random.Range(0, fishPrefabs.Count)];
-            GameObject fish = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
-
-            FishMovement movement = fish.GetComponent<FishMovement>();
-            if (movement != null)
+            if (selectedPrefab == null)
             {
-                movement.minX = minX;
-                movement.maxX = maxX;
-                movement.minY = minY;
-                movement.maxY = maxY;
+                Debug.LogWarning("Selected fish prefab was null.");
+                continue;
             }
+
+            GameObject fish = Instantiate(selectedPrefab, spawnPos, Quaternion.identity);
+            ConfigureFish(fish);
         }
     }
 
-    void OnDrawGizmosSelected()
+    protected virtual Vector2 GetSpawnPosition()
+    {
+        return new Vector2(
+            Random.Range(minX, maxX),
+            Random.Range(minY, maxY)
+        );
+    }
+
+    protected virtual GameObject GetFishPrefab()
+    {
+        return fishPrefabs[Random.Range(0, fishPrefabs.Count)];
+    }
+
+    protected virtual void ConfigureFish(GameObject fish)
+    {
+        FishMovement movement = fish.GetComponent<FishMovement>();
+        if (movement != null)
+        {
+            movement.minX = minX;
+            movement.maxX = maxX;
+            movement.minY = minY;
+            movement.maxY = maxY;
+        }
+    }
+
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
         Vector3 center = new Vector3((minX + maxX) / 2f, (minY + maxY) / 2f, 0f);

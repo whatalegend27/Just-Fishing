@@ -1,10 +1,10 @@
 {
-    "name": "gabe.scripts",
+    "name": "gabeplaytests",
     "rootNamespace": "",
     "references": [
-        "GUID:19427d17fcd801d47827388571468871",
-        "GUID:00d6d54fdf0a6400eb33f3c02957603f",
-        "GUID:31db7b72e16734481a105035e5a919d3"
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:1c28753ffa8494d62918b9fc50f07ab7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
