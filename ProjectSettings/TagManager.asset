@@ -16,6 +16,7 @@ TagManager:
   - FlirtTxt
   - InsultTxt
   - Toolbox
+  - GoldText
   layers:
   - Default
   - TransparentFX

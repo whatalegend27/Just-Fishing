@@ -131,29 +131,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toolboxes
       objectReference: {fileID: 0}
-    - target: {fileID: 390112332033408115, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1647630125292130212, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1141185931}
     - target: {fileID: 2610556493765881816, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2610556493765881816, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2610556493765881816, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 227.61
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2610556493765881816, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -537.41504
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3724898544451808534, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -249,10 +245,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5704430489673258067, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828620568651943324, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5923128139411374215, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
@@ -433,35 +425,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9091175709928843717, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091175709928843717, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091175709928843717, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1075.26
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9091175709928843717, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -427.415
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9127637849201023902, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9127637849201023902, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9127637849201023902, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 227.61
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9127637849201023902, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -159.1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -479,7 +471,6 @@ GameObject:
   - component: {fileID: 334229893}
   - component: {fileID: 334229892}
   - component: {fileID: 334229891}
-  - component: {fileID: 334229894}
   m_Layer: 0
   m_Name: Gold/InventoryManager
   m_TagString: Untagged
@@ -499,7 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab1719980a330a4dbc5821f209d0274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: DannyScripts::GoldManager
-  goldDisplay: {fileID: 1428412177}
   goldText: {fileID: 690897729}
   playerGold: 100
 --- !u!114 &334229892
@@ -514,49 +504,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2019947f02ac434429289803f921765d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
---- !u!224 &334229893
-RectTransform:
+--- !u!4 &334229893
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334229890}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 164.96916, y: 1413.7498, z: 0}
+  m_LocalScale: {x: 1.34952, y: 1.49226, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1428412178}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
---- !u!223 &334229894
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 334229890}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 1
-  m_Camera: {fileID: 1141185931}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -989656559
-  m_SortingOrder: 100
-  m_TargetDisplay: 0
 --- !u!1 &506955146
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,9 +742,9 @@ GameObject:
   - component: {fileID: 690897730}
   - component: {fileID: 690897729}
   - component: {fileID: 690897731}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Gold Text
-  m_TagString: GoldText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -796,15 +758,15 @@ RectTransform:
   m_GameObject: {fileID: 690897727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.0390625, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1428412178}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 29374, y: -29670}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 217.04, y: -72.455}
+  m_SizeDelta: {x: 351.37, y: 151.13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &690897729
 MonoBehaviour:
@@ -853,8 +815,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17000
-  m_fontSizeBase: 17000
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -863,9 +825,9 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -2.38
+  m_characterSpacing: 0
   m_characterHorizontalScale: 1
-  m_wordSpacing: -0
+  m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -892,7 +854,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -9.142654, y: 0, z: -29.926498, w: -247.92966}
+  m_margin: {x: -9.142654, y: 0, z: -29.926498, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2300,7 +2262,7 @@ GameObject:
   - component: {fileID: 1422676918}
   - component: {fileID: 1422676920}
   - component: {fileID: 1422676919}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Sack Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2321,10 +2283,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1428412178}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 16487, y: 18674}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 71.354996, y: -72.455}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1422676919
 MonoBehaviour:
@@ -2374,9 +2336,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1428412178}
   - component: {fileID: 1428412179}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Gold Display
-  m_TagString: GoldText
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2388,20 +2350,20 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428412177}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90.000275}
-  m_LocalScale: {x: 0.00526826, y: 0.0046589714, z: 0.009177407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1422676918}
   - {fileID: 690897728}
-  m_Father: {fileID: 334229893}
+  m_Father: {fileID: 2059945737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 49585.23, y: 33398.28}
-  m_Pivot: {x: 1, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1100, y: -301}
+  m_SizeDelta: {x: 424.08, y: 144.91}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1428412179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2420,7 +2382,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
+  m_Spacing: -70
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -3080,6 +3042,7 @@ RectTransform:
   - {fileID: 1363851139}
   - {fileID: 1027746406}
   - {fileID: 880124154}
+  - {fileID: 1428412178}
   - {fileID: 2068646855}
   - {fileID: 2020458164}
   m_Father: {fileID: 933277557}
@@ -3320,7 +3283,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1141185932}
-  - {fileID: 933277557}
   - {fileID: 334229893}
+  - {fileID: 933277557}
   - {fileID: 114374805}
   - {fileID: 1227337547}
