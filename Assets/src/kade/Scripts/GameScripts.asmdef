@@ -2,6 +2,7 @@
 	"name": "GameScripts",
 	"references": [
 		"Unity.TextMeshPro",
-		"Fernando.Game.Runtime"
+		"Fernando.Game.Runtime",
+		"DannyScripts"
 	]
 }
