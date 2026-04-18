@@ -8,13 +8,18 @@ public class HealthStats : MonoBehaviour
    public inGameTime gameTime;
 
    private int mLastHour;
+   private int mHungerTickHour;
 
    // Initializes health and hunger and subscribes to the new day event
    void Start()
    {
       healthVal = 100;
       hungerVal = 100;
-      mLastHour = gameTime != null ? gameTime.hours : -1;
+      if ( gameTime != null )
+         mLastHour = gameTime.hours;
+      else
+         mLastHour = 0;
+      mHungerTickHour = mLastHour;
 
       if ( gameTime != null )
       {
@@ -37,9 +42,21 @@ public class HealthStats : MonoBehaviour
       healthVal = 100;
    }
 
-   // Triggers game over if hunger or health reaches zero
+   // Decreases hunger by 5 every 8 in-game hours and triggers game over if stats hit zero
    void Update()
    {
+      if ( gameTime != null && gameTime.hours != mLastHour )
+      {
+         mLastHour = gameTime.hours;
+
+         int hoursSinceTick = ( mLastHour - mHungerTickHour + 24 ) % 24;
+         if ( hoursSinceTick >= 8 )
+         {
+            calculateHunger( "time" );
+            mHungerTickHour = mLastHour;
+         }
+      }
+
       if ( hungerVal <= 0 || healthVal <= 0 )
       {
          ps.gameOver = true;

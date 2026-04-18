@@ -87,7 +87,11 @@ public class UIUpdater : MonoBehaviour
       if ( fill == null ) return new BarData { leftEdge = 0f, scaleX = 1f, halfSprite = 0.5f };
 
       var   sr         = fill.GetComponent<SpriteRenderer>();
-      float halfSprite = ( sr != null && sr.sprite != null ) ? sr.sprite.bounds.extents.x : 0.5f;
+      float halfSprite;
+      if ( sr != null && sr.sprite != null )
+         halfSprite = sr.sprite.bounds.extents.x;
+      else
+         halfSprite = 0.5f;
       float scaleX     = fill.localScale.x;
 
       return new BarData
@@ -149,7 +153,10 @@ public class UIUpdater : MonoBehaviour
          if ( levelBlocks[i] == null ) continue;
 
          Vector3 s = levelBlocks[i].localScale;
-         s.x = i < currentLevel ? mBlockScaleX[i] : 0f;
+         if ( i < currentLevel )
+            s.x = mBlockScaleX[i];
+         else
+            s.x = 0f;
          levelBlocks[i].localScale = s;
       }
    }

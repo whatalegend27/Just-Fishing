@@ -26,6 +26,6 @@ public class EatButton : MonoBehaviour
       if ( !hasBread ) return;
 
       InventoryManager.Instance.RemoveItem( breadItem );
-      mHealthStats.hungerVal = Mathf.Clamp( mHealthStats.hungerVal + 10, 0, 100 );
+      mHealthStats.calculateHunger( "eat" );
    }
 }

@@ -39,7 +39,9 @@ public class PlayerLevel : MonoBehaviour
    // Awards XP based on which fish was caught
    private void handleFishCaught( string fishName )
    {
-      int xp = sFishXP.TryGetValue( fishName, out int val ) ? val : 10;
+      int xp;
+      if ( !sFishXP.TryGetValue( fishName, out xp ) )
+         xp = 10;
       Debug.Log( $"[PlayerLevel] Caught {fishName} — +{xp} XP" );
       addXP( xp );
    }
@@ -53,7 +55,8 @@ public class PlayerLevel : MonoBehaviour
       {
          currentXP -= xpToNextLevel;
          level++;
-         OnLevelUp?.Invoke( level );
+         if ( OnLevelUp != null )
+            OnLevelUp.Invoke( level );
          Debug.Log( $"[PlayerLevel] Leveled up! Now level {level}" );
       }
    }
