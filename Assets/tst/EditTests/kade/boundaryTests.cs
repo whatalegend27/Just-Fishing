@@ -3,34 +3,13 @@ using UnityEngine;
 
 public class boundaryTests
 {
-   // ─── Risk Threshold (from statBoundaryTest) ─────────────────────────────────
-
-   // Risk below, at, and above 100 correctly determines game over state
-   [Test]
-   [TestCase( 99,  false )]
-   [TestCase( 100, true  )]
-   [TestCase( 105, true  )]
-   public void Risk_AtThreshold_TriggersGameOver( int finalRisk, bool shouldEnd )
-   {
-      var go          = new GameObject();
-      var arrestStats = go.AddComponent<ArrestStats>();
-      arrestStats.riskVal = finalRisk;
-
-      bool isGameOver = arrestStats.riskVal >= 100;
-
-      Assert.AreEqual( shouldEnd, isGameOver,
-         $"Risk of {finalRisk} should have resulted in GameOver: {shouldEnd}" );
-
-      Object.DestroyImmediate( go );
-   }
-
    // ─── ArrestStats ────────────────────────────────────────────────────────────
 
    // Risk at exactly 0 should not trigger game over
    [Test]
    public void ArrestStats_RiskAtZero_NoGameOver()
    {
-      var go = new GameObject();
+      var go          = new GameObject();
       var arrestStats = go.AddComponent<ArrestStats>();
       arrestStats.riskVal = 0;
 
@@ -43,7 +22,7 @@ public class boundaryTests
    [Test]
    public void ArrestStats_RiskAtHundred_TriggersGameOver()
    {
-      var go = new GameObject();
+      var go          = new GameObject();
       var arrestStats = go.AddComponent<ArrestStats>();
       arrestStats.riskVal = 100;
 
@@ -56,8 +35,8 @@ public class boundaryTests
    [Test]
    public void ArrestStats_RiskNeverExceedsHundred_AfterReset()
    {
-      var go  = new GameObject();
-      var ps  = go.AddComponent<PlayerStats>();
+      var go          = new GameObject();
+      var ps          = go.AddComponent<PlayerStats>();
       var arrestStats = go.AddComponent<ArrestStats>();
       arrestStats.ps      = ps;
       arrestStats.riskVal = 95;
@@ -65,6 +44,67 @@ public class boundaryTests
       arrestStats.calculateRisk( "nightFish" ); // +10 = 105, should reset to 0 after game over check
 
       Assert.IsTrue( arrestStats.riskVal <= 100 );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // steal action adds exactly 5 risk
+   [Test]
+   public void ArrestStats_Steal_AddsExactlyFive()
+   {
+      var go          = new GameObject();
+      var arrestStats = go.AddComponent<ArrestStats>();
+      arrestStats.riskVal = 0;
+
+      arrestStats.calculateRisk( "steal" );
+
+      Assert.AreEqual( 5, arrestStats.riskVal );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // nightFish action adds exactly 10 risk
+   [Test]
+   public void ArrestStats_NightFish_AddsExactlyTen()
+   {
+      var go          = new GameObject();
+      var arrestStats = go.AddComponent<ArrestStats>();
+      arrestStats.riskVal = 0;
+
+      arrestStats.calculateRisk( "nightFish" );
+
+      Assert.AreEqual( 10, arrestStats.riskVal );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // blackMarket action adds exactly 5 risk
+   [Test]
+   public void ArrestStats_BlackMarket_AddsExactlyFive()
+   {
+      var go          = new GameObject();
+      var arrestStats = go.AddComponent<ArrestStats>();
+      arrestStats.riskVal = 0;
+
+      arrestStats.calculateRisk( "blackMarket" );
+
+      Assert.AreEqual( 5, arrestStats.riskVal );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // Multiple risk actions accumulate correctly
+   [Test]
+   public void ArrestStats_MultipleActions_AccumulateRisk()
+   {
+      var go          = new GameObject();
+      var arrestStats = go.AddComponent<ArrestStats>();
+      arrestStats.riskVal = 0;
+
+      arrestStats.calculateRisk( "steal" );       // +5
+      arrestStats.calculateRisk( "blackMarket" ); // +5
+
+      Assert.AreEqual( 10, arrestStats.riskVal );
 
       Object.DestroyImmediate( go );
    }
@@ -101,6 +141,36 @@ public class boundaryTests
       Object.DestroyImmediate( go );
    }
 
+   // takeDamage reduces health by the correct amount
+   [Test]
+   public void HealthStats_TakeDamage_ReducesHealthByAmount()
+   {
+      var go          = new GameObject();
+      var healthStats = go.AddComponent<HealthStats>();
+      healthStats.healthVal = 100;
+
+      healthStats.takeDamage( 25 );
+
+      Assert.AreEqual( 75, healthStats.healthVal );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // takeDamage clamps to 0 when damage exceeds current health
+   [Test]
+   public void HealthStats_TakeDamage_ClampsAtZero()
+   {
+      var go          = new GameObject();
+      var healthStats = go.AddComponent<HealthStats>();
+      healthStats.healthVal = 5;
+
+      healthStats.takeDamage( 999 );
+
+      Assert.AreEqual( 0, healthStats.healthVal );
+
+      Object.DestroyImmediate( go );
+   }
+
    // Hunger cannot go below 0
    [Test]
    public void HealthStats_HungerCannotGoBelowZero()
@@ -131,6 +201,36 @@ public class boundaryTests
       Object.DestroyImmediate( go );
    }
 
+   // eat increases hunger by exactly 20
+   [Test]
+   public void HealthStats_HungerEat_IncreasesBy20()
+   {
+      var go          = new GameObject();
+      var healthStats = go.AddComponent<HealthStats>();
+      healthStats.hungerVal = 50;
+
+      healthStats.calculateHunger( "eat" );
+
+      Assert.AreEqual( 70, healthStats.hungerVal );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // time decreases hunger by exactly 5
+   [Test]
+   public void HealthStats_HungerTime_DecreasesBy5()
+   {
+      var go          = new GameObject();
+      var healthStats = go.AddComponent<HealthStats>();
+      healthStats.hungerVal = 50;
+
+      healthStats.calculateHunger( "time" );
+
+      Assert.AreEqual( 45, healthStats.hungerVal );
+
+      Object.DestroyImmediate( go );
+   }
+
    // ─── StatCalculation Decorators ─────────────────────────────────────────────
 
    // Steal decorator adds exactly 5
@@ -151,6 +251,15 @@ public class boundaryTests
       Assert.AreEqual( 10, calc.calculate( 0 ) );
    }
 
+   // BlackMarket decorator adds exactly 5
+   [Test]
+   public void BlackMarketRiskDecorator_AddsExactlyFive()
+   {
+      IStatCalculator calc = new BlackMarketRiskDecorator( new BaseStatCalculator() );
+
+      Assert.AreEqual( 5, calc.calculate( 0 ) );
+   }
+
    // HurtHealth decorator removes exactly 10
    [Test]
    public void HurtHealthDecorator_RemovesExactlyTen()
@@ -160,7 +269,25 @@ public class boundaryTests
       Assert.AreEqual( 90, calc.calculate( 100 ) );
    }
 
-   // Decorators can be stacked and values accumulate correctly
+   // EatHunger decorator adds exactly 20
+   [Test]
+   public void EatHungerDecorator_AddsExactlyTwenty()
+   {
+      IStatCalculator calc = new EatHungerDecorator( new BaseStatCalculator() );
+
+      Assert.AreEqual( 70, calc.calculate( 50 ) );
+   }
+
+   // TimeHunger decorator removes exactly 5
+   [Test]
+   public void TimeHungerDecorator_RemovesExactlyFive()
+   {
+      IStatCalculator calc = new TimeHungerDecorator( new BaseStatCalculator() );
+
+      Assert.AreEqual( 45, calc.calculate( 50 ) );
+   }
+
+   // Two decorators stack and values accumulate correctly
    [Test]
    public void Decorators_CanStack_ValuesAccumulate()
    {
@@ -169,6 +296,18 @@ public class boundaryTests
                              new BaseStatCalculator() ) );
 
       Assert.AreEqual( 15, calc.calculate( 0 ) ); // 5 + 10
+   }
+
+   // Three decorators stack and all values accumulate correctly
+   [Test]
+   public void Decorators_ThreeStacked_AllValuesAccumulate()
+   {
+      IStatCalculator calc = new StealRiskDecorator(
+                             new NightFishRiskDecorator(
+                             new BlackMarketRiskDecorator(
+                             new BaseStatCalculator() ) ) );
+
+      Assert.AreEqual( 20, calc.calculate( 0 ) ); // 5 + 10 + 5
    }
 
    // ─── PlayerLevel ────────────────────────────────────────────────────────────
@@ -225,6 +364,50 @@ public class boundaryTests
       int thresholdAtTwo = level.xpToNextLevel;
 
       Assert.Greater( thresholdAtTwo, thresholdAtOne );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // XP below threshold does not level up
+   [Test]
+   public void PlayerLevel_XPBelowThreshold_NoLevelUp()
+   {
+      var go    = new GameObject();
+      var level = go.AddComponent<PlayerLevel>();
+
+      level.addXP( 99 );
+
+      Assert.AreEqual( 1, level.level );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // Enough XP to level up twice levels up correctly
+   [Test]
+   public void PlayerLevel_OverflowXP_LevelsTwice()
+   {
+      var go    = new GameObject();
+      var level = go.AddComponent<PlayerLevel>();
+
+      level.addXP( 300 ); // 100 to reach 2, 200 to reach 3
+
+      Assert.AreEqual( 3, level.level );
+
+      Object.DestroyImmediate( go );
+   }
+
+   // OnLevelUp event fires with the correct new level
+   [Test]
+   public void PlayerLevel_LevelUpEvent_FiresWithCorrectLevel()
+   {
+      var go         = new GameObject();
+      var level      = go.AddComponent<PlayerLevel>();
+      int firedLevel = -1;
+
+      level.OnLevelUp += l => firedLevel = l;
+      level.addXP( 100 );
+
+      Assert.AreEqual( 2, firedLevel );
 
       Object.DestroyImmediate( go );
    }

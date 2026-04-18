@@ -15,7 +15,10 @@ public class HealthStats : MonoBehaviour
    {
       healthVal = 100;
       hungerVal = 100;
-      mLastHour      = gameTime != null ? gameTime.hours : 0;
+      if ( gameTime != null )
+         mLastHour = gameTime.hours;
+      else
+         mLastHour = 0;
       mHungerTickHour = mLastHour;
 
       if ( gameTime != null )
