@@ -2,11 +2,13 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GoldManager : MonoBehaviour
 {
 
     public static GoldManager Instance { get; private set; }
+    [SerializeField] private GameObject goldDisplay;
     [SerializeField] private TextMeshProUGUI goldText;
     [SerializeField] private int playerGold = 100;
     private bool canAddIn;
@@ -20,7 +22,9 @@ public class GoldManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);  //persist across other scenes so gold stays updated
+        SceneManager.sceneLoaded += OnSceneLoaded; //tries to find goldtext everytime scene loaded
         UpdateUI();
     }
 
@@ -57,7 +61,6 @@ public class GoldManager : MonoBehaviour
         }
         else
         {
-           // StartCoroutine(FlashColor(Color.red));
             return false;
         }
     }
@@ -67,23 +70,39 @@ public class GoldManager : MonoBehaviour
     {
         InventoryManager.Instance.RemoveItem(item);
         playerGold += item.Price;
-      //  StartCoroutine(FlashColor(Color.green));
         UpdateUI();
 
+    }
+
+    //add gold from non-selling sources in other scenes
+    public void AddGold(int amount)
+    {
+        playerGold += amount;
+        UpdateUI();
     }
 
     //updates gold amount
     void UpdateUI()
     {
+        if (goldText == null)
+        {
+            return;
+        }
         goldText.text = playerGold.ToString();
     }
 
-    //turns gold text red for a sec and plays wiggle animation
-    IEnumerator FlashColor(Color color)
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
-        goldText.color = color;
 
-        yield return new WaitForSeconds(1f);
-        goldText.color = Color.white;
+        if (scene.name == "Shop")
+        {
+            goldDisplay.SetActive(true);
+        }
+        else
+        {
+            goldDisplay.SetActive(false);
+        }
     }
+
+
 }
