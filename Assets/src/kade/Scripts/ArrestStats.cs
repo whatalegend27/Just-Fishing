@@ -42,6 +42,12 @@ public class ArrestStats : MonoBehaviour
       }
    }
 
+   // Resets risk to its starting value
+   public void resetStats()
+   {
+      riskVal = 0;
+   }
+
    /* Calculates risk based on the given action.
       Valid values: "steal", "nightFish", "blackMarket" */
    public void calculateRisk( string action )
