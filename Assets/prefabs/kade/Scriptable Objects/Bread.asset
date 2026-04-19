@@ -16,3 +16,4 @@ MonoBehaviour:
   itemDescription: Some tasty food
   price: 10
   icon: {fileID: -4431494890709657585, guid: f067f0280fc6e146db8677f0322abd71, type: 3}
+  itemType: 6
