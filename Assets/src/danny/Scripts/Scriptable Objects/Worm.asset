@@ -16,3 +16,4 @@ MonoBehaviour:
   itemDescription: Bunch of worms
   price: 1
   icon: {fileID: 2865906195106238846, guid: cda41d57455492745bf1b8b7ba5d7b17, type: 3}
+  itemType: 3

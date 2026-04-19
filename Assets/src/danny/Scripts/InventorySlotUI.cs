@@ -16,6 +16,7 @@ public class InventorySlotUI : MonoBehaviour
     //Inventory description items
     [SerializeField] private GameObject slotDescription;
     [SerializeField] private Image slotImage;
+    [SerializeField] private GameObject eatButton;
 
     //Displays the item picture in a inventory slot
     public void SetUp(InventorySlotData slots)
@@ -45,7 +46,7 @@ public class InventorySlotUI : MonoBehaviour
         }
 
         image.sprite = currentItem.Icon;
-        //activates sell button panel when player clicks on time
+        //activates invent description panel when item clicked
         Button btn = GetComponent<Button>();
         if (btn != null)
         {
@@ -62,12 +63,20 @@ public class InventorySlotUI : MonoBehaviour
         {
             return;
         }
+
+        if (currentItem.Type == ItemScript.ItemType.Food)
+        {
+            eatButton.SetActive(true);
+        } else
+        {
+            eatButton.SetActive(false);
+        }
         slotImage.sprite = currentItem.Icon;
         slotDescription.SetActive(true);
         sellButton.onClick.RemoveAllListeners();
         sellPrice.text = "Sells for: $" + currentItem.Price;
 
-        //calls sellitem function in goldmanager and disables invent description
+        //calls sellitem function in goldmanager and disables invent description if last
         sellButton.onClick.AddListener(() =>
         {
             if (currentItemQuantity <= 1) // last one
