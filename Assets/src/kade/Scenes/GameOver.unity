@@ -602,7 +602,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 766487404}
         m_TargetAssemblyTypeName: gameOverManager, GameScripts
-        m_MethodName: LoadMainMenu
+        m_MethodName: loadMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

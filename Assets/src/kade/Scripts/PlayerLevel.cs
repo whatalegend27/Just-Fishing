@@ -23,6 +23,13 @@ public class PlayerLevel : MonoBehaviour
       { "BigBruce",      50 },
    };
 
+   // Resets level and XP to their starting values
+   public void resetStats()
+   {
+      level     = 1;
+      currentXP = 0;
+   }
+
    // Subscribes to the fish registered event
    void OnEnable()
    {
