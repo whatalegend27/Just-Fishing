@@ -16,3 +16,4 @@ MonoBehaviour:
   itemDescription: Attracts common fish
   price: 2
   icon: {fileID: 590640608084339730, guid: b5fa5efe173b7c346902bfcf2bf3e017, type: 3}
+  itemType: 3
