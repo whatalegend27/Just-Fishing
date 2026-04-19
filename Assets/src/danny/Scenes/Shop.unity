@@ -3035,8 +3035,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2059945738}
-        m_TargetAssemblyTypeName: DescriptionUI, Assembly-CSharp
-        m_MethodName: buyButton
+        m_TargetAssemblyTypeName: DescriptionUI, DannyScripts
+        m_MethodName: BuyButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3418,6 +3418,7 @@ MonoBehaviour:
   priceText: {fileID: 1027746407}
   descriptionPanel: {fileID: 2059945736}
   itemIcon: {fileID: 1219017933}
+  buyButton: {fileID: 2020458165}
 --- !u!114 &2059945739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3540,8 +3541,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2059945738}
-        m_TargetAssemblyTypeName: DescriptionUI, Assembly-CSharp
-        m_MethodName: exitButton
+        m_TargetAssemblyTypeName: DescriptionUI, DannyScripts
+        m_MethodName: ExitButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
