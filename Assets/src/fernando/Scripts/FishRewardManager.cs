@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class FishRewardManager : MonoBehaviour
 {
-    private const int CATCH_GOLD = 10;
-    private const int ITEM_REWARD_INTERVAL = 1;
+    private const int ITEM_REWARD_INTERVAL = 10;
 
     [SerializeField] private GoldManager goldManager;
     [SerializeField] private HealthRewardItem healthItem;
@@ -27,7 +26,15 @@ public class FishRewardManager : MonoBehaviour
             return;
 
         if (goldManager != null)
-            goldManager.AddGold(CATCH_GOLD);
+        {
+            FishCatchReward reward = fish.rarity switch
+            {
+                FishRarity.Rare      => new RareFishCatchReward(),
+                FishRarity.Legendary => new LegendaryFishCatchReward(),
+                _                    => new CommonFishCatchReward()
+            };
+            goldManager.AddGold(reward.Award());
+        }
 
         int total = GetTotalCatchCount();
 
@@ -49,10 +56,13 @@ public class FishRewardManager : MonoBehaviour
         ItemScript[] choices = { healthItem, riskItem };
         ItemScript chosen = choices[UnityEngine.Random.Range(0, choices.Length)];
 
-        if (chosen == null || goldManager == null)
+        if (chosen == null)
             return;
 
-        InventoryManager inventory = goldManager.GetComponent<InventoryManager>();
+        InventoryManager inventory = InventoryManager.Instance != null
+            ? InventoryManager.Instance
+            : goldManager != null ? goldManager.GetComponent<InventoryManager>() : null;
+
         if (inventory != null)
             inventory.AddItem(chosen);
     }
