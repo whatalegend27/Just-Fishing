@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class PlayerLevel : MonoBehaviour
 {
@@ -7,21 +6,17 @@ public class PlayerLevel : MonoBehaviour
    public int currentXP = 0;
 
    public event System.Action<int> OnLevelUp;
+   public event System.Action<int> OnXPGained;
 
    // XP required to reach the next level, increases by 100 each level
    public int xpToNextLevel => level * 100;
 
-   // XP awarded per fish type
-   private static readonly Dictionary<string, int> sFishXP = new()
+
+   // Runs the binding demo once on startup so it appears in the Unity console
+   void Start()
    {
-      { "CatFish",       10 },
-      { "Nemo",          20 },
-      { "OrangeFish",    15 },
-      { "ButterflyFish", 25 },
-      { "SilverFish",    20 },
-      { "SkellyFish",    30 },
-      { "BigBruce",      50 },
-   };
+      FishingRewardBindingDemo.Run();
+   }
 
    // Resets level and XP to their starting values
    public void resetStats()
@@ -43,13 +38,29 @@ public class PlayerLevel : MonoBehaviour
       FishDatabaseManager.OnFishRegistered -= handleFishCaught;
    }
 
-   // Awards XP based on which fish was caught
+   // Returns the reward object matching the fish — static type is FishingReward (dynamic type varies)
+   private FishingReward getFishingReward( string fishName )
+   {
+      switch ( fishName )
+      {
+         case "OrangeFish":                          return new CommonFishReward();
+         case "Nemo": case "ButterflyFish":
+         case "SilverFish": case "SkellyFish":       return new RareFishReward();
+         case "BigBruce":                            return new LegendaryFishReward();
+         default:                                    return new FishingReward();
+      }
+   }
+
+   // Awards XP based on which fish was caught — uses dynamic binding via FishingReward
    private void handleFishCaught( string fishName )
    {
-      int xp;
-      if ( !sFishXP.TryGetValue( fishName, out xp ) )
-         xp = 10;
+      // Static type = FishingReward, dynamic type = whichever subclass getFishingReward returns
+      FishingReward reward = getFishingReward( fishName );
+
+      // Virtual dispatch — calls the overriding getXP() on the actual runtime type
+      int xp = reward.award();
       Debug.Log( $"[PlayerLevel] Caught {fishName} — +{xp} XP" );
+      OnXPGained?.Invoke( xp );
       addXP( xp );
    }
 
