@@ -3,6 +3,7 @@ using UnityEngine;
 public class UpgradeInventoryUI : MonoBehaviour
 {
     [SerializeField] private UpgradeItemSlotUI[] slots;
+<<<<<<< HEAD
     public static UpgradeInventoryUI Instance { get; private set; }
     void Start()
     {
@@ -14,6 +15,11 @@ public class UpgradeInventoryUI : MonoBehaviour
         {
             Instance = this;
         }
+=======
+
+    void Start()
+    {
+>>>>>>> e854fd2 (Initial upgrader feature in plus game stats in main menu)
         // Start happens AFTER all Awake calls are finished.
         // This ensures InventoryManager.Instance is definitely set.
         if (InventoryManager.Instance != null)
@@ -37,9 +43,14 @@ public class UpgradeInventoryUI : MonoBehaviour
         InventoryManager.Instance.inventoryChanged -= Refresh;
     }
 
+<<<<<<< HEAD
     public void Refresh()
     {
         
+=======
+    void Refresh()
+    {
+>>>>>>> e854fd2 (Initial upgrader feature in plus game stats in main menu)
         int index = 0;
 
         foreach (var invSlot in InventoryManager.Instance.slots)

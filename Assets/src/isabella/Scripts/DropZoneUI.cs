@@ -20,15 +20,19 @@ public class DropZoneUI : MonoBehaviour, IDropHandler
             return;
         }
 
+<<<<<<< HEAD
         // 1. Grab the item that is CURRENTLY in this slot before we overwrite it
         // We'll use a helper method (added below) to find it in the Manager
         ItemScript oldItem = GetCurrentlyEquipped();
 
         // 2. Try to equip the new one
+=======
+>>>>>>> e854fd2 (Initial upgrader feature in plus game stats in main menu)
         bool success = RodUpgradeManager.Instance.TryEquip(dragged.item);
 
         if (success)
         {
+<<<<<<< HEAD
             // 3. If there was an old item, put it back in the inventory!
             if (oldItem != null)
             {
@@ -59,4 +63,13 @@ public class DropZoneUI : MonoBehaviour, IDropHandler
             _ => null
         };
     }
+=======
+            icon.sprite = dragged.item.Icon;
+            icon.color = Color.white;
+            dragged.wasDropped = true;
+
+            
+        }
+    }
+>>>>>>> e854fd2 (Initial upgrader feature in plus game stats in main menu)
 }
