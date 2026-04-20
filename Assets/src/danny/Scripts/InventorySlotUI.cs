@@ -63,14 +63,16 @@ public class InventorySlotUI : MonoBehaviour
         {
             return;
         }
-
+        
         if (currentItem.Type == ItemScript.ItemType.Food)
         {
             eatButton.SetActive(true);
-        } else
+        }
+        else
         {
             eatButton.SetActive(false);
         }
+
         slotImage.sprite = currentItem.Icon;
         slotDescription.SetActive(true);
         sellButton.onClick.RemoveAllListeners();
