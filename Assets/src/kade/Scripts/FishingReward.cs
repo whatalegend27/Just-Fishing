@@ -29,25 +29,25 @@ public class FishingReward
    public int award() => getXP();
 }
 
-// Sub class — common fish, 15 XP
+// Sub class — common fish, 15 base + 5 bonus = 20 with virtual, 15 without
 public class CommonFishReward : FishingReward
 {
    public CommonFishReward() : base( 15 ) {}
-   protected override int getXP() => mXP;
+   protected override int getXP() => mXP + 5;
 }
 
-// Sub class — rare fish, 25 XP
+// Sub class — rare fish, 25 base + 10 bonus = 35 with virtual, 25 without
 public class RareFishReward : FishingReward
 {
    public RareFishReward() : base( 25 ) {}
-   protected override int getXP() => mXP;
+   protected override int getXP() => mXP + 10;
 }
 
-// Sub class — legendary fish, 50 XP
+// Sub class — legendary fish, 50 base + 25 bonus = 75 with virtual, 50 without
 public class LegendaryFishReward : FishingReward
 {
    public LegendaryFishReward() : base( 50 ) {}
-   protected override int getXP() => mXP;
+   protected override int getXP() => mXP + 25;
 }
 
 // --- Binding Demo ---
@@ -63,9 +63,9 @@ public class FishingRewardBindingDemo
       FishingReward reward = new RareFishReward();
 
       // getXP is virtual — C# dispatches to the DYNAMIC type at runtime.
-      // RareFishReward.getXP() is called → returns mXP (25)
+      // RareFishReward.getXP() is called → returns mXP + 10 (35)
       int xp = reward.award();
-      Debug.Log( $"[BindingDemo] Dynamic type RareFishReward — award() returned {xp} (expected 25)" );
+      Debug.Log( $"[BindingDemo] Dynamic type RareFishReward — award() returned {xp} (expected 35)" );
 
       // -----------------------------------------------------------------------
       // CHANGE THE DYNAMIC TYPE
@@ -74,9 +74,9 @@ public class FishingRewardBindingDemo
       // -----------------------------------------------------------------------
       reward = new LegendaryFishReward();
 
-      // Dynamic type changed — LegendaryFishReward.getXP() is called now → returns mXP (50)
+      // Dynamic type changed — LegendaryFishReward.getXP() is called now → returns mXP + 25 (75)
       xp = reward.award();
-      Debug.Log( $"[BindingDemo] Dynamic type LegendaryFishReward — award() returned {xp} (expected 50)" );
+      Debug.Log( $"[BindingDemo] Dynamic type LegendaryFishReward — award() returned {xp} (expected 75)" );
 
       // -----------------------------------------------------------------------
       // STATIC BINDING
