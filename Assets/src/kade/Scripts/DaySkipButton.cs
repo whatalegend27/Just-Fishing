@@ -11,6 +11,7 @@ public class DaySkipButton : MonoBehaviour
       if ( confirmPopup != null )
       {
          confirmPopup.SetActive( true );
+         Time.timeScale=0f;
       }
    }
 
@@ -26,6 +27,7 @@ public class DaySkipButton : MonoBehaviour
       {
          confirmPopup.SetActive( false );
       }
+      Time.timeScale=1f;
    }
 
    // Closes the popup without changing the day when cancelled
@@ -35,5 +37,6 @@ public class DaySkipButton : MonoBehaviour
       {
          confirmPopup.SetActive( false );
       }
+      Time.timeScale=1f;
    }
 }
