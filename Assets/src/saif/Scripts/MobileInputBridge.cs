@@ -1,5 +1,6 @@
 using UnityEngine;
 using Saif.GamePlay;
+using System.Collections;
 
 public class MobileInputBridge : MonoBehaviour
 {
@@ -7,27 +8,28 @@ public class MobileInputBridge : MonoBehaviour
     private Animator playerAnimator;
     private Transform playerTransform;
     private SpriteRenderer playerSprite;
+    private HandleToolbox toolboxHandler;
 
-    public float playerMoveSpeed = 3f; // match your teammate's speed value
+    public float playerMoveSpeed = 3f;
+
+    private Coroutine moveCoroutine;
 
     private FishingHook GetHook()
     {
-        if (hook == null)
-            hook = FindFirstObjectByType<FishingHook>();
+        // Always search fresh — HookSelector destroys and respawns the hook on swap
+        hook = Object.FindFirstObjectByType<FishingHook>();
         return hook;
     }
 
     private void FindPlayer()
     {
-        if (playerTransform == null)
+        if (playerTransform != null) return;
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
         {
-            GameObject player = GameObject.FindWithTag("Player");
-            if (player != null)
-            {
-                playerTransform = player.transform;
-                playerAnimator = player.GetComponent<Animator>();
-                playerSprite = player.GetComponent<SpriteRenderer>();
-            }
+            playerTransform = player.transform;
+            playerAnimator  = player.GetComponent<Animator>();
+            playerSprite    = player.GetComponent<SpriteRenderer>();
         }
     }
 
@@ -37,107 +39,124 @@ public class MobileInputBridge : MonoBehaviour
         return playerAnimator != null && playerAnimator.GetBool("IsCasting");
     }
 
-    void Update()
-    {
-        // Only move player via mobile buttons when not casting
-        // Keyboard movement is still handled by PlayerMovement script
-    }
-
-    // ─── LEFT BUTTON ─────────────────────────────────────────────────────────────
+    // ── LEFT BUTTON ───────────────────────────────────────────────────────────
+    // Canvas: EventTrigger → PointerDown → OnLeftPress
+    //                        PointerUp   → OnLeftRelease
     public void OnLeftPress()
     {
-        if (IsCasting())
-        {
-            // Move hook left
-            GetHook()?.OnLeftPress();
-        }
-        else
-        {
-            // Move player left
-            StartCoroutine(MovePlayer(-1f));
-        }
+        if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+        moveCoroutine = StartCoroutine(MovePlayer(-1f));
     }
 
     public void OnLeftRelease()
     {
-        GetHook()?.OnLeftRelease();
-        StopAllCoroutines();
-
-        // Reset walking animation
-        if (playerAnimator != null && !IsCasting())
-            playerAnimator.SetBool("IsWalking", false);
+        if (moveCoroutine != null) { StopCoroutine(moveCoroutine); moveCoroutine = null; }
+        FindPlayer();
+        if (playerAnimator != null) playerAnimator.SetBool("IsWalking", false);
+        GetHook()?.MobileSetHorizontal(0f);
     }
 
-    // ─── RIGHT BUTTON ────────────────────────────────────────────────────────────
+    // ── RIGHT BUTTON ──────────────────────────────────────────────────────────
+    // Canvas: EventTrigger → PointerDown → OnRightPress
+    //                        PointerUp   → OnRightRelease
     public void OnRightPress()
     {
-        if (IsCasting())
-        {
-            // Move hook right
-            GetHook()?.OnRightPress();
-        }
-        else
-        {
-            // Move player right
-            StartCoroutine(MovePlayer(1f));
-        }
+        if (moveCoroutine != null) StopCoroutine(moveCoroutine);
+        moveCoroutine = StartCoroutine(MovePlayer(1f));
     }
 
     public void OnRightRelease()
     {
-        GetHook()?.OnRightRelease();
-        StopAllCoroutines();
-
-        // Reset walking animation
-        if (playerAnimator != null && !IsCasting())
-            playerAnimator.SetBool("IsWalking", false);
+        if (moveCoroutine != null) { StopCoroutine(moveCoroutine); moveCoroutine = null; }
+        FindPlayer();
+        if (playerAnimator != null) playerAnimator.SetBool("IsWalking", false);
+        GetHook()?.MobileSetHorizontal(0f);
     }
 
-    // Moves the player every frame while button is held
-    private System.Collections.IEnumerator MovePlayer(float direction)
+    private IEnumerator MovePlayer(float direction)
     {
         FindPlayer();
         while (true)
         {
-            if (playerTransform != null && !IsCasting())
+            if (playerTransform != null)
             {
-                playerTransform.Translate(Vector3.right * direction * playerMoveSpeed * Time.deltaTime);
-
-                // Flip sprite
-                if (playerSprite != null)
-                    playerSprite.flipX = direction < 0;
-
-                // Set walking animation
-                if (playerAnimator != null)
-                    playerAnimator.SetBool("IsWalking", true);
+                if (!IsCasting())
+                {
+                    // Not casting → move the player
+                    playerTransform.Translate(Vector3.right * direction * playerMoveSpeed * Time.deltaTime);
+                    if (playerSprite  != null) playerSprite.flipX = direction < 0;
+                    if (playerAnimator != null) playerAnimator.SetBool("IsWalking", true);
+                    GetHook()?.MobileSetHorizontal(0f);
+                }
+                else
+                {
+                    // Casting → move the hook sideways instead
+                    GetHook()?.MobileSetHorizontal(direction);
+                }
             }
             yield return null;
         }
     }
 
-    // ─── CAST/REEL BUTTON ────────────────────────────────────────────────────────
+    // ── CAST / REEL BUTTON ────────────────────────────────────────────────────
+    // One button — press starts cast, hold reels in, release lets canReel activate
+    // Canvas: EventTrigger → PointerDown → OnCastReelPress
+    //                        PointerUp   → OnCastReelRelease
     public void OnCastReelPress()
     {
-        Animator anim = playerAnimator;
         FindPlayer();
-        anim = playerAnimator;
+        if (playerAnimator != null && !playerAnimator.GetBool("IsCasting"))
+            playerAnimator.SetBool("IsCasting", true);
 
-        if (anim != null && !anim.GetBool("IsCasting"))
-            anim.SetBool("IsCasting", true);
-
-        GetHook()?.OnCastReelPress();
+        GetHook()?.MobileCastReelPress();
     }
 
-    public void OnCastReelRelease() { GetHook()?.OnCastReelRelease(); }
+    public void OnCastReelRelease()
+    {
+        GetHook()?.MobileCastReelRelease();
+    }
 
-    // ─── STOP CASTING ────────────────────────────────────────────────────────────
+    // ── STOP CASTING BUTTON ───────────────────────────────────────────────────
+    // Canvas: Button → OnClick → OnStopCasting
     public void OnStopCasting()
     {
         FindPlayer();
         if (playerAnimator != null)
         {
             playerAnimator.SetBool("IsCasting", false);
-            playerAnimator.SetTrigger("IsReeling 0");
+            playerAnimator.SetTrigger("IsReeling 0"); // match your Animator trigger name exactly
         }
     }
+
+    public void OnToggleToolbox()
+    {
+        // 1. Find her script in the scene
+        HandleToolbox handler = Object.FindFirstObjectByType<HandleToolbox>();
+        
+        if (handler != null)
+        {
+            // 2. Check the current state manually
+            // Since IToolboxState is the interface, we check what the instance is
+            var currentState = handler.GetCurrentState();
+
+            if (currentState.GetType().Name == "GameplayState")
+            {
+                // If we are playing, tell her script to switch to toolbox
+                handler.SetToolboxState();
+            }
+            else
+            {
+                // If the toolbox is open, tell her script to go back to gameplay
+                handler.SetGameplayState();
+            }
+        }
+    }
+
+    // ── HOOK SWAP BUTTONS ─────────────────────────────────────────────────────
+    // Canvas: SmallHook Button → OnClick → OnSelectSmallHook
+    //         HeavyHook Button → OnClick → OnSelectHeavyHook
+    //         Toggle Button    → OnClick → OnToggleHook
+    public void OnSelectSmallHook() => HookSelector.instance?.select_small_hook();
+    public void OnSelectHeavyHook() => HookSelector.instance?.select_heavy_hook();
+    public void OnToggleHook()      => HookSelector.instance?.toggle_hook();
 }
