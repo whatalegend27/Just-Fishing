@@ -4,17 +4,25 @@ public class BoatCollisionHandler : MonoBehaviour
 {
    public HealthStats healthStats;
 
-   // Detects when the boat enters a trigger collider tagged as Rock
-   void OnTriggerEnter2D( Collider2D other )
+   void OnCollisionEnter2D( Collision2D collision )
    {
-      if ( other.CompareTag( "Rock" ) )
+      if ( collision.gameObject.CompareTag( "Rock" ) )
       {
          if ( healthStats == null )
          {
             healthStats = FindAnyObjectByType<HealthStats>();
          }
 
-         int damage = Random.Range( 5, 11 );
+         rock rockComponent = collision.gameObject.GetComponent<rock>();
+         int damage;
+         if ( rockComponent != null )
+         {
+            damage = rockComponent.DamageAmount;
+         }
+         else
+         {
+            damage = Random.Range( 5, 11 );
+         }
          healthStats.takeDamage( damage );
          Debug.Log( $"[BoatCollisionHandler] Hit a rock — -{damage} HP, health now {healthStats.healthVal}" );
       }
