@@ -64,7 +64,7 @@ public class HealthStats : MonoBehaviour
    }
 
    /* Calculates health based on the given action.
-      Valid values: "hurt" */
+      Valid values: "hurt", "heal" */
    public void calculateHealth( string action )
    {
       IStatCalculator calculator = new BaseStatCalculator();
@@ -72,9 +72,16 @@ public class HealthStats : MonoBehaviour
       switch ( action )
       {
          case "hurt": calculator = new HurtHealthDecorator( calculator ); break;
+         case "heal": calculator = new HealHealthDecorator( calculator ); break;
       }
 
       healthVal = Mathf.Clamp( calculator.calculate( healthVal ), 0, 100 );
+   }
+
+   // Heals the player by 25, capped at 100
+   public void Heal()
+   {
+      calculateHealth( "heal" );
    }
 
    // Resets health and hunger to their starting values

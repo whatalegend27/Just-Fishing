@@ -73,6 +73,14 @@ public class TimeHungerDecorator : StatCalculatorDecorator
    public override int calculate( int currentValue ) => mInner.calculate( currentValue ) - 5;
 }
 
+// Increases health by 25 when healed
+public class HealHealthDecorator : StatCalculatorDecorator
+{
+   public HealHealthDecorator( IStatCalculator inner ) : base( inner ) {}
+
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) + 25;
+}
+
 // Decreases health by 10 when hurt
 public class HurtHealthDecorator : StatCalculatorDecorator
 {
