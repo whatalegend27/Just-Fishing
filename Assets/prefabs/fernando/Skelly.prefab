@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 4587488923478867597, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 490b12c0125c8324a87ced1607988b40, type: 2}
+      objectReference: {fileID: 11400000, guid: f78e67b192f9d6f4b94afcaebe477bcd, type: 2}
     - target: {fileID: 6272405525855043087, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: maxY
       value: 2

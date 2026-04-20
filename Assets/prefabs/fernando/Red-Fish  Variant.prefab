@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: fishName
       value: Red-Fish
       objectReference: {fileID: 0}
+    - target: {fileID: 7332127492191934869, guid: e26ad28ed69a547cfae840ed6e676abc, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: d7a596b82aebedd47b198061bfec48ee, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
