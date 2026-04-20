@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: fishName
       value: Green-Fish
       objectReference: {fileID: 0}
+    - target: {fileID: 4587488923478867597, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5ebc2f8e3e27eba4ab60ee7945f7ae88, type: 2}
     - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: m_Sprite
       value: 
