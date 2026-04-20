@@ -81,3 +81,17 @@ public class HurtHealthDecorator : StatCalculatorDecorator
    // Removes 10 health when the player is hurt
    public override int calculate( int currentValue ) => mInner.calculate( currentValue ) - 10;
 }
+
+// Decreases health by a specific amount
+public class TakeDamageDecorator : StatCalculatorDecorator
+{
+   private int mAmount;
+
+   public TakeDamageDecorator( IStatCalculator inner, int amount ) : base( inner )
+   {
+      mAmount = amount;
+   }
+
+   // Removes the specified amount of health
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) - mAmount;
+}

@@ -32,15 +32,6 @@ public class ArrestStats : MonoBehaviour
       calculateRisk( "nightFish" );
    }
 
-   // Triggers game over if risk reaches 100
-   void Update()
-   {
-      if ( riskVal >= 100 )
-      {
-         ps.gameOver = true;
-         riskVal = 0;
-      }
-   }
 
    // Resets risk to its starting value
    public void resetStats()
@@ -62,5 +53,11 @@ public class ArrestStats : MonoBehaviour
       }
 
       riskVal = calculator.calculate( riskVal );
+
+      if ( riskVal >= 100 )
+      {
+         if ( ps != null ) ps.gameOver = true;
+         riskVal = 0;
+      }
    }
 }
