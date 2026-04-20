@@ -87,7 +87,8 @@ public class HealthStats : MonoBehaviour
    // Applies a specific amount of damage directly to health
    public void takeDamage( int amount )
    {
-      healthVal = Mathf.Clamp( healthVal - amount, 0, 100 );
+      IStatCalculator calculator = new TakeDamageDecorator( new BaseStatCalculator(), amount );
+      healthVal = Mathf.Clamp( calculator.calculate( healthVal ), 0, 100 );
    }
 
    /* Calculates hunger based on the given action.
