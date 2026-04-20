@@ -3,23 +3,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// This script handles the typewriter effect for basic dialogues in the game.
 public class TypewriterEffect : MonoBehaviour, IPointerDownHandler
 {
-    public TMP_Text textComponent;
-    public float typingSpeed = 0.05f;
-    public GameObject dialogueBox; 
+    [Header("Text Settings")]
+    [SerializeField] private TMP_Text textComponent;
+    [SerializeField] private GameObject dialogueBox; 
 
-    [Header("Audio")]
-    public AudioClip typeSound; 
-    public float startTimeInClip = 8f; 
-    [Range(0.1f, 3f)] 
-    public float audioPitch = 1.0f; // New public variable to control speed
-    
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip typeSound;      
     private AudioSource audioSource; 
     private string fullText;
-    private bool isAnimating = false;
-    private bool isFinished = false;
+    private bool isAnimating, isFinished = false;
 
+    // Initialize variables and set up audio source
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -37,6 +34,7 @@ public class TypewriterEffect : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    //Start coroutine to animate text typing and play sound on pointer down. If text is finished, close dialogue box
     public void OnPointerDown(PointerEventData eventData)
     {
         if (isFinished)
@@ -51,6 +49,7 @@ public class TypewriterEffect : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    // Coroutine to animate text typing and play sound
     private IEnumerator TypeText()
     {
         isAnimating = true;
@@ -60,10 +59,10 @@ public class TypewriterEffect : MonoBehaviour, IPointerDownHandler
         if (typeSound != null)
         {
             audioSource.clip = typeSound;
-            audioSource.time = startTimeInClip;
+            audioSource.time = 8f;
             
             // Set the speed of the sound before playing
-            audioSource.pitch = audioPitch; 
+            audioSource.pitch = 1.0f; 
             
             audioSource.Play();
         }
@@ -71,7 +70,7 @@ public class TypewriterEffect : MonoBehaviour, IPointerDownHandler
         for (int i = 0; i < fullText.Length; i++)
         {
             textComponent.text += fullText[i];
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSeconds(0.03f);
         }
 
         audioSource.Stop();
@@ -80,6 +79,7 @@ public class TypewriterEffect : MonoBehaviour, IPointerDownHandler
         isFinished = true;
     }
 
+    // Reset the typewriter when enabled
     private void OnEnable()
     {
         isFinished = false;

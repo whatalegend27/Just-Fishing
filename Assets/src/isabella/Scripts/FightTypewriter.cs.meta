@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9af05fb634b26d64b86495368edd4faf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - textComponent: {instanceID: 0}
+  - dialogueBox: {instanceID: 0}
+  - choiceDialogue: {instanceID: 0}
+  - typeSound: {instanceID: 0}
+  - fightBtn: {instanceID: 0}
+  - flirtBtn: {instanceID: 0}
+  - insultBtn: {instanceID: 0}
+  - animator: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

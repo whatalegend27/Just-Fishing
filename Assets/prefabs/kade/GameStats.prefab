@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4636553533766675916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2196808546892400545}
+  - component: {fileID: 8578345172913616028}
+  - component: {fileID: 7186055436366479809}
+  - component: {fileID: 54082391531106358}
+  - component: {fileID: 3152463301743127956}
+  m_Layer: 0
+  m_Name: GameStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2196808546892400545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636553533766675916}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.30126, y: -0.23417, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8578345172913616028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636553533766675916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076f45ecd3fd4fd2eb4f48949b9ad799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameScripts::PlayerStats
+  gameOver: 0
+--- !u!114 &7186055436366479809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636553533766675916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e0e70c44ab96d9ebfa400192c54321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameScripts::PlayerLevel
+  level: 1
+  currentXP: 0
+--- !u!114 &54082391531106358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636553533766675916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032673c84f3dcd5078202047a8d2549f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameScripts::HealthStats
+  healthVal: 0
+  hungerVal: 0
+  ps: {fileID: 8578345172913616028}
+  gameTime: {fileID: 1083869292929275840, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
+--- !u!114 &3152463301743127956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636553533766675916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470a8ba5082c67f36bec8d7b62bd3131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameScripts::ArrestStats
+  ps: {fileID: 8578345172913616028}
+  gameTime: {fileID: 1083869292929275840, guid: a948dfcd7d772f3348aac814cb315a93, type: 3}
+  riskVal: 0

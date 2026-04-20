@@ -5,7 +5,8 @@ using System;
 public class FishDatabaseManager : MonoBehaviour
 {
     public static event Action<string> OnFishRegistered;
-    public static FishDatabaseManager Instance;
+    public static event Action OnAllFishCaught;
+    public static FishDatabaseManager Instance { get; private set; }
 
     public List<FishData> fishDatabase = new List<FishData>
     {
@@ -31,6 +32,11 @@ public class FishDatabaseManager : MonoBehaviour
         }
     }
 
+    public static void ResetInstance()
+    {
+        Instance = null;
+    }
+
     public bool RegisterFish(string fishName)
     {
         for (int i = 0; i < fishDatabase.Count; i++)
@@ -40,6 +46,10 @@ public class FishDatabaseManager : MonoBehaviour
                 fishDatabase[i].fishKnown = true;
                 fishDatabase[i].catchCount++;
                 OnFishRegistered?.Invoke(fishName);
+
+                if (fishDatabase.TrueForAll(f => f.fishKnown))
+                    OnAllFishCaught?.Invoke();
+
                 return true;
             }
         }

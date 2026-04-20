@@ -1,30 +1,24 @@
 using UnityEngine;
 
+// This script manages the dialogue flow based on player preferences, specifically checking if the news has been seen and toggling the visibility of dialogue and question boxes accordingly.
 public class HandleDialogue : MonoBehaviour
 {
-    public GameObject DialogueBox;
-    public GameObject QuestionBox;
-    void Start()
+    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private GameObject questionBox;
+
+    void Start() // Start is called before the first frame update
     {
 
-    Debug.Log("NewsSeen value: " + PlayerPrefs.GetInt("NewsSeen", 0));
-
-        if (PlayerPrefs.GetInt("NewsSeen", 0) == 1)
+        if (PlayerPrefs.GetInt("NewsSeen", 0) == 1) // Check if the news has been seen
         {
-            QuestionBox.SetActive(true);
-            DialogueBox.SetActive(false);
+            questionBox.SetActive(true);
+            dialogueBox.SetActive(false);
             return;
         }
         else
         {
-            QuestionBox.SetActive(false);
-            DialogueBox.SetActive(false);
+            questionBox.SetActive(false);
+            dialogueBox.SetActive(false);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

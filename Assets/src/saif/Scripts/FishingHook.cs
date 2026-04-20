@@ -3,25 +3,22 @@ using UnityEngine;
 namespace Saif.GamePlay
 {
     // ─── DYNAMIC BINDING NOTE ────────────────────────────────────────────────────
-    // Dynamic binding is demonstrated in this script through virtual/override methods
-    // and runtime component lookups. Specifically:
-    // 1. GetComponent<FishMovement>() at runtime — the exact component resolved depends
-    //    on what is attached to the fish GameObject, not known until the game runs.
-    // 2. The fishing physics behavior (HandleFishingPhysics) is called through a
-    //    runtime check (debugMode) — which version of the logic runs is decided
-    //    dynamically at runtime, not compile time.
-    // 3. FindPlayerReference() scans all Animators at runtime to find the correct one —
-    //    the binding to the player happens dynamically when the scene loads.
+    // Dynamic binding is demonstrated through AttachFish being virtual.
+    // The 1 vs 2 fish logic lives INSIDE AttachFish so that removing "virtual"
+    // actually changes runtime behaviour:
+    //
+    // WITH "virtual":    HeavyHook.AttachFish runs → 2 fish caught
+    // WITHOUT "virtual": base AttachFish always runs → 1 fish caught (SmallHook behaviour)
+    //
+    // Other dynamic examples:
+    // 2. GetComponent("FishMovement") resolved at runtime based on what is attached.
+    // 3. FindPlayerReference() scans Animators at runtime to find the player.
     // ─────────────────────────────────────────────────────────────────────────────
     public class FishingHook : MonoBehaviour
     {
         // ── TESTING ──────────────────────────────────────────────────────────────
         [Header("TESTING - Check this to test without a player")]
         [SerializeField] private bool debugMode = false;
-
-        // ── HOOK TYPE ─────────────────────────────────────────────────────────────
-        [Header("Hook Type")]
-        [SerializeField] private bool isHeavyHook = false;
 
         // ── SPEEDS ───────────────────────────────────────────────────────────────
         [Header("Speeds")]
@@ -50,91 +47,27 @@ namespace Saif.GamePlay
         [SerializeField] private LineRenderer line;
         [SerializeField] private SpriteRenderer hookSprite;
 
-        // ── HIDDEN INSPECTOR FIELDS ──────────────────────────────────────────────
         [HideInInspector] public Vector3 debugSpawnOverride;
 
-        // ── PUBLIC PROPERTY ───────────────────────────────────────────────────────
         public bool IsHookCast => !isReadyToCast;
 
-        // ── MOBILE INPUT STATE ────────────────────────────────────────────────────
-        // Flags set by UI buttons — merged with keyboard input in helpers below
-        private bool mobileSpaceHeld = false;
-        private bool mobileSpaceDown = false;
-        private bool mobileSpaceUp = false;
-        private float mobileHorizontal = 0f;
-
-        // ── PLAYER REFERENCES ─────────────────────────────────────────────────────
         private Animator playerAnimator;
         private SpriteRenderer playerSprite;
         private Transform playerTransform;
 
-        // ── STATE VARIABLES ───────────────────────────────────────────────────────
-        private bool hasCaughtFish = false;
+        protected bool hasCaughtFish = false;
         private bool isReadyToCast = true;
         private bool canReel = false;
         private bool animationDelayDone = false;
         private float castingTimer = 0f;
 
-        // ── FISH SLOTS ────────────────────────────────────────────────────────────
-        private Transform caughtFishTransform;
-        private Transform caughtFishTransform2;
+        protected Transform caughtFishTransform;
+        protected Transform caughtFishTransform2;
 
-        // ── DEBUG START POSITION ──────────────────────────────────────────────────
         private Vector3 debugStartPosition;
 
-        // ─── PUBLIC SETTERS ───────────────────────────────────────────────────────
+        public void SetDebugSpawnOverride(Vector3 position) { debugSpawnOverride = position; }
 
-        /// <summary>
-        /// Called by HookSelector to define what type of hook this is.
-        /// Heavy hook can catch 2 fish, small hook catches 1.
-        /// </summary>
-        public void SetHookType(bool heavy)
-        {
-            isHeavyHook = heavy;
-        }
-
-        /// <summary>
-        /// Called by HookSelector to set the debug spawn position override.
-        /// Only used when debugMode is true and there is no player in the scene.
-        /// </summary>
-        public void SetDebugSpawnOverride(Vector3 position)
-        {
-            debugSpawnOverride = position;
-        }
-
-        // ─── MOBILE INPUT METHODS ─────────────────────────────────────────────────
-        // Called by MobileInputBridge via UI button EventTriggers
-
-        // Cast/Reel button — OnPointerDown
-        public void OnCastReelPress()
-        {
-            mobileSpaceDown = true;
-            mobileSpaceHeld = true;
-        }
-
-        // Cast/Reel button — OnPointerUp
-        public void OnCastReelRelease()
-        {
-            mobileSpaceHeld = false;
-            mobileSpaceUp = true;
-        }
-
-        // Left button — OnPointerDown / OnPointerUp
-        public void OnLeftPress()  { mobileHorizontal = -1f; }
-        public void OnLeftRelease() { if (mobileHorizontal < 0) mobileHorizontal = 0f; }
-
-        // Right button — OnPointerDown / OnPointerUp
-        public void OnRightPress()  { mobileHorizontal = 1f; }
-        public void OnRightRelease() { if (mobileHorizontal > 0) mobileHorizontal = 0f; }
-
-        // ─── INPUT HELPERS ────────────────────────────────────────────────────────
-        // Merges keyboard and mobile input so all physics logic stays the same
-        private bool GetSpaceDown() => Input.GetKeyDown(KeyCode.Space) || mobileSpaceDown;
-        private bool GetSpaceHeld() => Input.GetKey(KeyCode.Space)     || mobileSpaceHeld;
-        private bool GetSpaceUp()   => Input.GetKeyUp(KeyCode.Space)   || mobileSpaceUp;
-        private float GetHorizontal() => Input.GetAxis("Horizontal")   + mobileHorizontal;
-
-        // ─────────────────────────────────────────────────────────────────────────
         void Start()
         {
             debugStartPosition = (debugSpawnOverride != Vector3.zero)
@@ -147,27 +80,14 @@ namespace Saif.GamePlay
                 FindPlayerReference();
         }
 
-        void LateUpdate()
-        {
-            if (debugMode)
-                HandleDebugMode();
-            else
-                HandleNormalMode();
-
-            // Reset one-frame mobile flags at end of frame
-            mobileSpaceDown = false;
-            mobileSpaceUp = false;
-        }
-
-        // ── DYNAMIC BINDING: FindPlayerReference ──────────────────────────────────
         private void FindPlayerReference()
         {
             GameObject playerObj = GameObject.FindWithTag("Player");
             if (playerObj != null)
             {
                 playerTransform = playerObj.transform;
-                playerAnimator  = playerObj.GetComponent<Animator>();
-                playerSprite    = playerObj.GetComponent<SpriteRenderer>();
+                playerAnimator = playerObj.GetComponent<Animator>();
+                playerSprite = playerObj.GetComponent<SpriteRenderer>();
                 return;
             }
 
@@ -180,7 +100,7 @@ namespace Saif.GamePlay
                     {
                         playerAnimator = a;
                         playerTransform = a.transform;
-                        playerSprite    = a.GetComponent<SpriteRenderer>();
+                        playerSprite = a.GetComponent<SpriteRenderer>();
                         return;
                     }
                 }
@@ -189,7 +109,6 @@ namespace Saif.GamePlay
             Debug.LogWarning("FishingHook: Could not find player with IsCasting parameter!");
         }
 
-        // ── ROD TIP POSITION ──────────────────────────────────────────────────────
         private Vector3 GetRodTipWorldPos()
         {
             if (debugMode) return debugStartPosition;
@@ -200,7 +119,14 @@ namespace Saif.GamePlay
             return playerTransform.position + offset;
         }
 
-        // ── DEBUG MODE ────────────────────────────────────────────────────────────
+        void LateUpdate()
+        {
+            if (debugMode)
+                HandleDebugMode();
+            else
+                HandleNormalMode();
+        }
+
         private void HandleDebugMode()
         {
             Vector3 rodTipPos = debugStartPosition;
@@ -210,7 +136,7 @@ namespace Saif.GamePlay
                 transform.position = rodTipPos;
                 SetVisuals(false);
 
-                if (GetSpaceDown())
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     isReadyToCast = false;
                     canReel = false;
@@ -223,7 +149,6 @@ namespace Saif.GamePlay
             HandleFishingPhysics(rodTipPos);
         }
 
-        // ── NORMAL MODE ───────────────────────────────────────────────────────────
         private void HandleNormalMode()
         {
             bool isCasting = playerAnimator != null && playerAnimator.GetBool("IsCasting");
@@ -256,7 +181,7 @@ namespace Saif.GamePlay
                 SetVisuals(true);
                 SetLineVisible(false);
 
-                if (GetSpaceDown())
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     isReadyToCast = false;
                     canReel = false;
@@ -270,16 +195,15 @@ namespace Saif.GamePlay
             HandleFishingPhysics(rodTipPos);
         }
 
-        // ── FISHING PHYSICS ───────────────────────────────────────────────────────
         private void HandleFishingPhysics(Vector3 rodTipPos)
         {
-            if (!canReel && GetSpaceUp()) canReel = true;
+            if (!canReel && Input.GetKeyUp(KeyCode.Space)) canReel = true;
 
-            float h = GetHorizontal();
+            float h = Input.GetAxis("Horizontal");
             float newX = transform.position.x;
             float newY = transform.position.y;
 
-            if (canReel && GetSpaceHeld())
+            if (canReel && Input.GetKey(KeyCode.Space))
             {
                 newY += reelSpeed * Time.deltaTime;
 
@@ -307,7 +231,6 @@ namespace Saif.GamePlay
             transform.position = new Vector3(newX, newY, transform.position.z);
         }
 
-        // ── LINE RENDERER ─────────────────────────────────────────────────────────
         private void UpdateLine(Vector3 rodTipPos)
         {
             if (line != null && line.enabled)
@@ -317,7 +240,6 @@ namespace Saif.GamePlay
             }
         }
 
-        // ── VISUALS ───────────────────────────────────────────────────────────────
         private void SetVisuals(bool visible)
         {
             if (hookSprite != null) hookSprite.enabled = visible;
@@ -329,40 +251,27 @@ namespace Saif.GamePlay
             if (line != null) line.enabled = visible;
         }
 
-        // ── FISH COLLISION ────────────────────────────────────────────────────────
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (!collision.CompareTag("Fish")) return;
 
-            if (!isHeavyHook)
-            {
-                if (caughtFishTransform == null)
-                {
-                    AttachFish(collision.transform, ref caughtFishTransform);
-                    hasCaughtFish = true;
-                    Handheld.Vibrate(); // vibrate on fish catch
-                }
-            }
-            else
-            {
-                if (caughtFishTransform == null)
-                {
-                    AttachFish(collision.transform, ref caughtFishTransform);
-                    hasCaughtFish = true;
-                    Handheld.Vibrate(); // vibrate on first fish (heavy hook)
-                }
-                else if (caughtFishTransform2 == null)
-                {
-                    AttachFish(collision.transform, ref caughtFishTransform2);
-                    Handheld.Vibrate(); // vibrate on second fish (heavy hook)
-                }
-            }
+            // One call — AttachFish itself decides how many fish are allowed.
+            // WITH virtual:    the correct subclass version runs (SmallHook = 1, HeavyHook = 2)
+            // WITHOUT virtual: this base version always runs → 1 fish only, no matter the prefab
+            AttachFish(collision.transform);
         }
 
-        // ── ATTACH FISH ───────────────────────────────────────────────────────────
-        private void AttachFish(Transform fish, ref Transform slot)
+        // ── DYNAMIC BINDING ───────────────────────────────────────────────────────
+        // Base behaviour = SmallHook: only 1 fish allowed.
+        // HeavyHook overrides this to allow 2.
+        // Remove "virtual" → HeavyHook override is ignored → base always runs → 1 fish only.
+        protected virtual void AttachFish(Transform fish)
         {
-            slot = fish;
+            // Already holding a fish — SmallHook only takes 1
+            if (caughtFishTransform != null) return;
+
+            caughtFishTransform = fish;
+            hasCaughtFish = true;
 
             Component movement = fish.GetComponent("FishMovement");
             if (movement != null) (movement as MonoBehaviour).enabled = false;
@@ -370,11 +279,12 @@ namespace Saif.GamePlay
             fish.SetParent(this.transform);
             fish.localPosition = Vector3.zero;
             fish.localRotation = Quaternion.identity;
-            Debug.Log("Fish Hooked!");
+
+            Debug.Log("[FishingHook] base AttachFish — SmallHook behaviour, 1 fish max. " +
+                      "If you see this on a HeavyHook prefab, virtual was removed!");
         }
 
-        // ── RESET ─────────────────────────────────────────────────────────────────
-        private void ResetHook()
+        protected void ResetHook()
         {
             isReadyToCast = true;
             canReel = false;
@@ -400,8 +310,7 @@ namespace Saif.GamePlay
             }
         }
 
-        // ── COLLECT FISH ──────────────────────────────────────────────────────────
-        private void CollectFish()
+        protected void CollectFish()
         {
             if (caughtFishTransform != null)
             {

@@ -3,45 +3,92 @@ using TMPro;
 
 public class inGameTime : MonoBehaviour
 {
-    public int hours = 6;
-    public int minutes = 0;
+   public int hours = 6;
+   public int minutes = 0;
+   public int day = 1;
 
-    public TextMeshProUGUI timeText;
+   public TextMeshProUGUI timeText;
+   public TextMeshProUGUI dayText;
 
-    private float _elapsed = 0f;
+   public event System.Action OnNewDay;
+   public event System.Action OnNightfall;
 
-    void Start()
-    {
-        UpdateUI();
-    }
+   private float mElapsed = 0f;
+   private bool mNewDayTriggered = false;
 
-    void Update()
-    {
-        _elapsed += Time.deltaTime;
+   // Initializes the UI on start
+   void Start()
+   {
+      updateUI();
+   }
 
-        if (_elapsed >= 1f)
-        {
-            _elapsed -= 1f;
-            AdvanceMinute();
-        }
-    }
+   // Advances time every real-world second
+   void Update()
+   {
+      mElapsed += Time.deltaTime;
 
-    private void AdvanceMinute()
-    {
-        minutes++;
+      if ( mElapsed >= 1f )
+      {
+         mElapsed -= 1f;
+         advanceMinute();
+      }
+   }
 
-        if (minutes >= 60)
-        {
-            minutes = 0;
-            hours = (hours + 1) % 24;
-        }
+   // Advances the clock by 10 minutes and checks for day and nightfall events
+   private void advanceMinute()
+   {
+      minutes += 10;
 
-        UpdateUI();
-    }
+      if ( minutes >= 60 )
+      {
+         minutes = 0;
+         hours = ( hours + 1 ) % 24;
 
-    private void UpdateUI()
-    {
-        if (timeText != null)
-            timeText.text = $"{hours:D2}:{minutes:D2}";
-    }
+         if ( hours == 21 )
+         {
+            if ( OnNightfall != null )
+               OnNightfall.Invoke();
+         }
+
+         if ( hours == 6 && !mNewDayTriggered )
+         {
+            day++;
+            mNewDayTriggered = true;
+            if ( OnNewDay != null )
+               OnNewDay.Invoke();
+         }
+         else if ( hours != 6 )
+         {
+            mNewDayTriggered = false;
+         }
+      }
+
+      updateUI();
+   }
+
+   // Increments the day by 1 and fires the OnNewDay event
+   public void incrementDay()
+   {
+      day++;
+      hours = 6;
+      minutes = 0;
+      mNewDayTriggered = true;
+      if ( OnNewDay != null )
+         OnNewDay.Invoke();
+      updateUI();
+   }
+
+   // Updates the time and day text in the UI
+   private void updateUI()
+   {
+      if ( timeText != null )
+      {
+         timeText.text = $"{hours:D2}:{minutes:D2}";
+      }
+
+      if ( dayText != null )
+      {
+         dayText.text = $"Day {day}";
+      }
+   }
 }

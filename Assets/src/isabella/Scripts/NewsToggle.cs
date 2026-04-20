@@ -4,23 +4,24 @@ using UnityEngine.EventSystems;
 
 public class NewsToggle : MonoBehaviour, IPointerDownHandler
 {
-    public GameObject NewsToMove;
-    public GameObject darkOverlay; 
-    public GameObject dialogueBox;
-    public GameObject QuestionBox;
+    [Header("News Settings")]
+    [SerializeField] private GameObject newsToMove;
+    [SerializeField] public GameObject darkOverlay; 
+    [SerializeField] public GameObject dialogueBox;
+    [SerializeField] public GameObject questionBox;
 
     [Header("Show Once Setting")]
-    public string uniqueKey = "NewsSeen"; // SAME key for both sprites
+    [SerializeField] private string uniqueKey = "NewsSeen"; // SAME key for both sprites
 
     private bool isAnimating = false;
 
+    // Check if the news has already been seen and hide it immediately if so
     void Start()
     {
-        // 🚨 If already seen → hide immediately
+        // If already seen, then hide immediately.
         if (PlayerPrefs.GetInt(uniqueKey, 0) == 1)
         {
-            NewsToMove.SetActive(false);
-            // Optional: also hide overlay if needed
+            newsToMove.SetActive(false);
             if (darkOverlay != null)
                 darkOverlay.SetActive(false);
 
@@ -28,23 +29,25 @@ public class NewsToggle : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    // Handle click/tap on the news item
     public void OnPointerDown(PointerEventData eventData)
     {
         if (!isAnimating)
         {
-            QuestionBox.SetActive(false); // Hide question box if it's visible
+            questionBox.SetActive(false); // Hide question box if it's visible
             StartCoroutine(AnimateAndHide());
         }
     }
 
+    // Coroutine to animate the news item and then hide it
     IEnumerator AnimateAndHide()
     {
         isAnimating = true;
 
-        Vector3 startScale = NewsToMove.transform.localScale;
+        Vector3 startScale = newsToMove.transform.localScale;
         Vector3 targetScale = new Vector3(2, 2, 2);
 
-        Vector3 startPos = NewsToMove.transform.position;
+        Vector3 startPos = newsToMove.transform.position;
         Vector3 targetPos = new Vector3(20, 20, 0);
 
         float duration = 2f;
@@ -55,20 +58,20 @@ public class NewsToggle : MonoBehaviour, IPointerDownHandler
             time += Time.deltaTime;
             float t = time / duration;
 
-            NewsToMove.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
-            NewsToMove.transform.position = Vector3.Lerp(startPos, targetPos, t);
+            newsToMove.transform.localScale = Vector3.Lerp(startScale, targetScale, t);
+            newsToMove.transform.position = Vector3.Lerp(startPos, targetPos, t);
 
             yield return null;
         }
 
         // Hide after animation
-        NewsToMove.SetActive(false);
+        newsToMove.SetActive(false);
 
-        // 🚨 Mark as seen FOREVER
+        // Mark as seen FOREVER
         PlayerPrefs.SetInt(uniqueKey, 1);
         PlayerPrefs.Save();
 
-        if (NewsToMove.CompareTag("Job"))
+        if (newsToMove.CompareTag("Job"))
         {
             if (darkOverlay != null)
                 darkOverlay.SetActive(false);

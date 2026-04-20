@@ -29,10 +29,8 @@ public class riskBarTest
 
         // UIUpdater wired up
         m_UpdaterObj             = new GameObject("UIUpdater");
-        m_UIUpdater              = m_UpdaterObj.AddComponent<UIUpdater>();
-        m_UIUpdater.arrestStats  = m_ArrestStats;
-        m_UIUpdater.healthStats  = m_HealthStats;
-        m_UIUpdater.riskBarFill  = m_RiskBarFill.transform;
+        m_UIUpdater             = m_UpdaterObj.AddComponent<UIUpdater>();
+        m_UIUpdater.riskBarFill = m_RiskBarFill.transform;
     }
 
     [TearDown]
@@ -59,7 +57,7 @@ public class riskBarTest
     {
         yield return null;
 
-        m_ArrestStats.CalculateRisk("steal");
+        m_ArrestStats.calculateRisk("steal");
         yield return null;
 
         Assert.AreEqual(0.05f, m_RiskBarFill.transform.localScale.x, 0.001f,
@@ -72,7 +70,7 @@ public class riskBarTest
     {
         yield return null;
 
-        m_ArrestStats.CalculateRisk("nightFish");
+        m_ArrestStats.calculateRisk("nightFish");
         yield return null;
 
         Assert.AreEqual(0.10f, m_RiskBarFill.transform.localScale.x, 0.001f,
@@ -85,9 +83,9 @@ public class riskBarTest
     {
         yield return null;
 
-        m_ArrestStats.CalculateRisk("steal");
-        m_ArrestStats.CalculateRisk("nightFish");
-        m_ArrestStats.CalculateRisk("blackMarket");
+        m_ArrestStats.calculateRisk("steal");
+        m_ArrestStats.calculateRisk("nightFish");
+        m_ArrestStats.calculateRisk("blackMarket");
         yield return null;
 
         Assert.AreEqual(0.20f, m_RiskBarFill.transform.localScale.x, 0.001f,
@@ -101,7 +99,7 @@ public class riskBarTest
         yield return null;
 
         for (int i = 0; i < 10; i++)
-            m_ArrestStats.CalculateRisk("nightFish");
+            m_ArrestStats.calculateRisk("nightFish");
 
         yield return null;
         yield return null;

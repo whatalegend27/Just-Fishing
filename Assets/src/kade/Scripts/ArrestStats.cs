@@ -2,33 +2,62 @@ using UnityEngine;
 
 public class ArrestStats : MonoBehaviour
 {
-    public PlayerStats ps;
-    public int riskVal;
+   public PlayerStats ps;
+   public inGameTime gameTime;
+   public int riskVal;
 
-    void Start()
-    {
-        riskVal = 0;
-    }
+   // Initializes risk and subscribes to the nightfall event
+   void Start()
+   {
+      riskVal = 0;
 
-    void Update()
-    {
-        if (riskVal >= 100)
-        {
-            ps.gameOver = true;
-            riskVal = 0;
-        }
-    }
+      if ( gameTime != null )
+      {
+         gameTime.OnNightfall += onNightfall;
+      }
+   }
 
-    // CalculateRisk(action), more info in README
-    public void CalculateRisk(string action)
-    {
-        IStatCalculator calculator = new BaseStatCalculator();
-        switch (action)
-        {
-            case "steal":       calculator = new StealRiskDecorator(calculator); break;
-            case "nightFish":   calculator = new NightFishRiskDecorator(calculator); break;
-            case "blackMarket": calculator = new BlackMarketRiskDecorator(calculator); break;
-        }
-        riskVal = calculator.Calculate(riskVal);
-    }
+   // Unsubscribes from the nightfall event on destroy
+   void OnDestroy()
+   {
+      if ( gameTime != null )
+      {
+         gameTime.OnNightfall -= onNightfall;
+      }
+   }
+
+   // Triggers night fish risk when nightfall event fires
+   private void onNightfall()
+   {
+      calculateRisk( "nightFish" );
+   }
+
+
+   // Resets risk to its starting value
+   public void resetStats()
+   {
+      riskVal = 0;
+   }
+
+   /* Calculates risk based on the given action.
+      Valid values: "steal", "nightFish", "blackMarket" */
+   public void calculateRisk( string action )
+   {
+      IStatCalculator calculator = new BaseStatCalculator();
+
+      switch ( action )
+      {
+         case "steal":       calculator = new StealRiskDecorator( calculator ); break;
+         case "nightFish":   calculator = new NightFishRiskDecorator( calculator ); break;
+         case "blackMarket": calculator = new BlackMarketRiskDecorator( calculator ); break;
+      }
+
+      riskVal = calculator.calculate( riskVal );
+
+      if ( riskVal >= 100 )
+      {
+         if ( ps != null ) ps.gameOver = true;
+         riskVal = 0;
+      }
+   }
 }

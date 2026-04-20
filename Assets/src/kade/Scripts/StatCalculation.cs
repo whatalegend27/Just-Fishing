@@ -1,72 +1,97 @@
 // --- Decorator Pattern ---
 
+/* Interface for all stat calculators.
+   Each implementation applies a transformation to the current value. */
 public interface IStatCalculator
 {
-    int Calculate(int currentValue);
+   int calculate( int currentValue );
 }
 
+// Base calculator — returns the value unchanged
 public class BaseStatCalculator : IStatCalculator
 {
-    public int Calculate(int currentValue) => currentValue;
+   // Returns the current value with no modification
+   public int calculate( int currentValue ) => currentValue;
 }
 
+/* Abstract decorator that wraps another IStatCalculator.
+   Subclasses apply their own modification on top. */
 public abstract class StatCalculatorDecorator : IStatCalculator
 {
-    protected IStatCalculator inner;
-    public StatCalculatorDecorator(IStatCalculator inner) { this.inner = inner; }
-    public abstract int Calculate(int currentValue);
+   protected IStatCalculator mInner;
+
+   public StatCalculatorDecorator( IStatCalculator inner )
+   {
+      mInner = inner;
+   }
+
+   public abstract int calculate( int currentValue );
 }
 
+// Increases risk by 5 for a steal action
 public class StealRiskDecorator : StatCalculatorDecorator
 {
-    public StealRiskDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 5;
+   public StealRiskDecorator( IStatCalculator inner ) : base( inner ) {}
+
+   // Adds 5 risk for stealing
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) + 5;
 }
 
+// Increases risk by 10 for night fishing
 public class NightFishRiskDecorator : StatCalculatorDecorator
 {
-    public NightFishRiskDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 10;
+   public NightFishRiskDecorator( IStatCalculator inner ) : base( inner ) {}
+
+   // Adds 10 risk for night fishing
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) + 10;
 }
 
+// Increases risk by 5 for black market use
 public class BlackMarketRiskDecorator : StatCalculatorDecorator
 {
-    public BlackMarketRiskDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 5;
+   public BlackMarketRiskDecorator( IStatCalculator inner ) : base( inner ) {}
+
+   // Adds 5 risk for using the black market
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) + 5;
 }
 
+// Increases hunger by 20 for eating
 public class EatHungerDecorator : StatCalculatorDecorator
 {
-    public EatHungerDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 20;
+   public EatHungerDecorator( IStatCalculator inner ) : base( inner ) {}
+
+   // Adds 20 hunger for eating
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) + 20;
 }
 
+// Decreases hunger by 5 over time
 public class TimeHungerDecorator : StatCalculatorDecorator
 {
-    public TimeHungerDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) - 5;
+   public TimeHungerDecorator( IStatCalculator inner ) : base( inner ) {}
+
+   // Removes 5 hunger as time passes
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) - 5;
 }
 
-public class RestExhaustionDecorator : StatCalculatorDecorator
-{
-    public RestExhaustionDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) + 20;
-}
-
-public class FishExhaustionDecorator : StatCalculatorDecorator
-{
-    public FishExhaustionDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) - 5;
-}
-
-public class StealExhaustionDecorator : StatCalculatorDecorator
-{
-    public StealExhaustionDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) - 10;
-}
-
+// Decreases health by 10 when hurt
 public class HurtHealthDecorator : StatCalculatorDecorator
 {
-    public HurtHealthDecorator(IStatCalculator inner) : base(inner) {}
-    public override int Calculate(int currentValue) => inner.Calculate(currentValue) - 10;
+   public HurtHealthDecorator( IStatCalculator inner ) : base( inner ) {}
+
+   // Removes 10 health when the player is hurt
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) - 10;
+}
+
+// Decreases health by a specific amount
+public class TakeDamageDecorator : StatCalculatorDecorator
+{
+   private int mAmount;
+
+   public TakeDamageDecorator( IStatCalculator inner, int amount ) : base( inner )
+   {
+      mAmount = amount;
+   }
+
+   // Removes the specified amount of health
+   public override int calculate( int currentValue ) => mInner.calculate( currentValue ) - mAmount;
 }
