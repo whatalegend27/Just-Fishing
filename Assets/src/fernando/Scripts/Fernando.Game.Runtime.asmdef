@@ -1,6 +1,7 @@
 {
 	"name": "Fernando.Game.Runtime",
 	"references": [
-		"Unity.TextMeshPro"
+		"Unity.TextMeshPro",
+		"GUID:19427d17fcd801d47827388571468871"
 	]
 }
