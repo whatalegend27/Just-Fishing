@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EatButton : MonoBehaviour
@@ -15,17 +16,21 @@ public class EatButton : MonoBehaviour
    // Called by the button's OnClick event
    public void onEat()
    {
-      if ( InventoryManager.Instance == null || mHealthStats == null ) return;
+      if (/*InventoryManager.Instance == null || */ mHealthStats == null)
+      {
+         Debug.Log("mHealthStat is null");
+         return;
+      }
 
       // Check the player actually has bread before consuming it
       bool hasBread = false;
-      foreach ( var slot in InventoryManager.Instance.slots )
+      foreach (var slot in InventoryManager.Instance.slots)
       {
-         if ( slot.item == breadItem && slot.quantity > 0 ) { hasBread = true; break; }
+         if (slot.item == breadItem && slot.quantity > 0) { hasBread = true; break; }
       }
-      if ( !hasBread ) return;
+      if (!hasBread) return;
 
-      InventoryManager.Instance.RemoveItem( breadItem );
-      mHealthStats.calculateHunger( "eat" );
+      InventoryManager.Instance.RemoveItem(breadItem);
+      mHealthStats.calculateHunger("eat");
    }
 }
