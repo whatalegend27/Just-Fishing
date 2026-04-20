@@ -17,6 +17,10 @@ PrefabInstance:
       value: Skelly
       objectReference: {fileID: 0}
     - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4887830516967030277, guid: 1b19ded15edcd4689aa829f4e3460f56, type: 3}
