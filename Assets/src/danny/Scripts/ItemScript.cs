@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemScript : ScriptableObject
 {
 
-    public enum ItemType { None, Rod, Lure, Bait, Weight, Clothes , Food, Potions }
+    public enum ItemType { None, Rod, Lure, Bait, Weight, Clothes , Food, Potions, Fish }
     [SerializeField] private string itemName;
     [SerializeField][TextArea] private string itemDescription;
     [SerializeField] private int price;
