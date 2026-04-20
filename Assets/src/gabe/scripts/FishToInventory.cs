@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class FishToInventory : MonoBehaviour
 {
-    [Header("Database of fish items")]
-    [SerializeField] private ItemScript[] fishItems;
-
     private Fish fish;
     private bool wasCaughtByHook = false;
 
@@ -32,11 +29,11 @@ public class FishToInventory : MonoBehaviour
         if (!wasCaughtByHook) return;
         if (fish == null) return;
 
-        ItemScript item = FindMatchingItem(fish.FishName);
+        ItemScript item = fish.ItemData;
 
         if (item == null)
         {
-            Debug.LogWarning($"No ItemScript found for fish name: {fish.FishName}");
+            Debug.LogWarning($"{gameObject.name} is missing ItemScript reference on Fish.");
             return;
         }
 
@@ -56,19 +53,6 @@ public class FishToInventory : MonoBehaviour
         {
             Debug.Log($"{fish.FishName} added to inventory.");
         }
-    }
-
-    private ItemScript FindMatchingItem(string fishName)
-    {
-        foreach (ItemScript item in fishItems)
-        {
-            if (item != null && item.ItemName == fishName)
-            {
-                return item;
-            }
-        }
-
-        return null;
     }
 
     private bool IsAttachedToFishingHook()
