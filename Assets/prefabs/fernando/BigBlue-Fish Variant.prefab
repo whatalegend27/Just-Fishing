@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: fishName
       value: BigBlue-Fish
       objectReference: {fileID: 0}
+    - target: {fileID: 4587488923478867597, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: b6f98dfac0d5a7444b4da43362b06f95, type: 2}
     - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: m_Sprite
       value: 

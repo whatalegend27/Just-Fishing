@@ -85,12 +85,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692d82335fa048c4a82e8d0befd44500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishMovement
-  speed: 2
+  minSpeed: 1.5
+  maxSpeed: 2.5
+  turnSpeed: 2
   directionChangeTime: 2
+  verticalWiggleAmount: 0.3
+  verticalWiggleSpeed: 2
   minX: -8
   maxX: 8
   minY: -15
   maxY: 3
+  spriteFacesRight: 1
 --- !u!114 &2502002780785232090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fish
   fishName: Silver-Fish
+  itemData: {fileID: 11400000, guid: 58d455ad2500d5e4287c9ad6394c25d0, type: 2}
 --- !u!212 &480894984295681529
 SpriteRenderer:
   serializedVersion: 2
@@ -162,7 +168,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -902428673
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3584539691043722105, guid: 24fce383d49a64a03ba9379dcc18d7e1, type: 3}
