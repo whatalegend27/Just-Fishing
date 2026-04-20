@@ -1629,6 +1629,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!224 &978046323 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9091175709928843717, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+  m_PrefabInstance: {fileID: 114374805}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &983586842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,6 +2272,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154237424}
   m_CullTransparentMesh: 1
+--- !u!114 &1219017933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1087915609389551174, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
+  m_PrefabInstance: {fileID: 114374805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1227337544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,6 +2441,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267294805}
   m_CullTransparentMesh: 1
+--- !u!1 &1358136839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7719496194921583733, guid: e093d2a239d424214a6996be9d3bd4c0, type: 3}
+  m_PrefabInstance: {fileID: 1432367180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1358136840 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4103083728479399476, guid: e093d2a239d424214a6996be9d3bd4c0, type: 3}
+  m_PrefabInstance: {fileID: 1432367180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1363851138
 GameObject:
   m_ObjectHideFlags: 0
