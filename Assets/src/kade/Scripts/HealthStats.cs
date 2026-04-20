@@ -77,10 +77,18 @@ public class HealthStats : MonoBehaviour
       healthVal = Mathf.Clamp( calculator.calculate( healthVal ), 0, 100 );
    }
 
+   // Resets health and hunger to their starting values
+   public void resetStats()
+   {
+      healthVal = 100;
+      hungerVal = 100;
+   }
+
    // Applies a specific amount of damage directly to health
    public void takeDamage( int amount )
    {
-      healthVal = Mathf.Clamp( healthVal - amount, 0, 100 );
+      IStatCalculator calculator = new TakeDamageDecorator( new BaseStatCalculator(), amount );
+      healthVal = Mathf.Clamp( calculator.calculate( healthVal ), 0, 100 );
    }
 
    /* Calculates hunger based on the given action.
