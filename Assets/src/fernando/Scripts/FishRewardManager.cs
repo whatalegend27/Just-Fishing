@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FishRewardManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class FishRewardManager : MonoBehaviour
     [SerializeField] private HealthRewardItem healthItem;
     [SerializeField] private RiskReductionItem riskItem;
     [SerializeField] private Button useButton;
+    [SerializeField] private string sharkFishName = "BigBruce";
+    [SerializeField] private string sharkSceneName = "SharkFight";
     [SerializeField] private GameObject inventoryDescription;
 
     private IHealable mHealthStats;
@@ -88,6 +91,12 @@ public class FishRewardManager : MonoBehaviour
     // Awards gold based on rarity and grants a random item every ITEM_REWARD_INTERVAL catches
     private void OnFishRegistered(string fishName)
     {
+        if (fishName == sharkFishName)
+        {
+            SceneManager.LoadScene(sharkSceneName);
+            return;
+        }
+
         FishData fish = GetFishData(fishName);
 
         if (fish == null)
