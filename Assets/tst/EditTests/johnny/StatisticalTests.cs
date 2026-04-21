@@ -4,15 +4,15 @@ using UnityEngine;
 public class StatisticalTests
 {
     private GameObject testObject;
-    private weatherController testWeather;
-    private terrainGenerator testTerrain;
+    private WeatherController testWeather;
+    private TerrainGenerator testTerrain;
 
     [SetUp]
     public void Setup()
     {
         testObject = new GameObject();
-        testWeather = testObject.AddComponent<weatherController>();
-        testTerrain = testObject.AddComponent<terrainGenerator>();
+        testWeather = testObject.AddComponent<WeatherController>();
+        testTerrain = testObject.AddComponent<TerrainGenerator>();
     }
 
     [TearDown]

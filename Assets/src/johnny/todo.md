@@ -1,7 +1,13 @@
-## As of April 15
+# Johnny's To-Do List
 
-~~1. Add dynamic binding to code (sun/moon)~~
-2. Write prefab document
-3. Check for static binding in preexisting code
-4. 30 test cases
-5. Document written code
+## Very Soon / Today
+- 30 test cases
+- Write prefab document
+
+# Later / This Week
+- Document written code
+
+## Completed
+- ~~Add dynamic binding to code (sun/moon)~~
+- ~~Add patterns to code~~
+- ~~Check for static binding in preexisting code~~

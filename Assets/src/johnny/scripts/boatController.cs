@@ -2,21 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boatController : MonoBehaviour
+public class BoatController : MonoBehaviour
 {
-  public bool isBoatActive = false;
-  public float timeBetweenDrifts = 5f; // Seconds
-  public HashSet<Vector2> oceanRocksLocation; 
 
   [SerializeField] private SpriteRenderer dialogueBoxRenderer;
-
-  private Vector2 currentPosition;
+  public bool isBoatActive = false;
+  public float timeBetweenDrifts = 5f; // Seconds
+  private Vector2 boatCurrentPosition;
 
   void Start()
   {
     if (isBoatActive)
     {
-      currentPosition = new Vector2(transform.position.x, transform.position.y);
+      boatCurrentPosition = new Vector2(transform.position.x, transform.position.y);
       StartCoroutine(DriftRoutine());
     }
   }
@@ -50,24 +48,11 @@ public class boatController : MonoBehaviour
         {
             yield return new WaitForSeconds(timeBetweenDrifts);
 
-            Vector2 driftAmount = CalculateDriftOffset(currentPosition);
-            currentPosition += driftAmount;
+            Vector2 driftAmount = CalculateDriftOffset(boatCurrentPosition);
+            boatCurrentPosition += driftAmount;
             
-            transform.position = new Vector3(currentPosition.x, currentPosition.y, 0f);
-            CheckForCollisions();
+            transform.position = new Vector3(boatCurrentPosition.x, boatCurrentPosition.y, 0f);
         }
     }
 
-  private void CheckForCollisions()
-  {
-    Vector2 roundedPosition = new Vector2(Mathf.Round(currentPosition.x), Mathf.Round(currentPosition.y));
-
-    if (oceanRocksLocation != null && oceanRocksLocation.Contains(roundedPosition))
-    {
-      Debug.Log("Boat hit a rock!");
-      // dialogueBoxRenderer.enabled = true; // Show dialogue box on collision
-      // 
-      // boat.Destroy();
-    }
-  }
 }

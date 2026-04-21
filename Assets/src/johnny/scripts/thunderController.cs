@@ -14,15 +14,13 @@ public class ThunderController : MonoBehaviour
     [SerializeField] private float minTimeBetweenStrikes = 10f;
     [SerializeField] private float maxTimeBetweenStrikes = 45f;
 
-    private weatherController weatherScript;
-    private bool isThunderRoutineRunning = false;
-
+    private WeatherController weatherScript;
     void Start()
     {
         GameObject weatherObject = GameObject.Find("WeatherController");
         if (weatherObject != null)
         {
-            weatherScript = weatherObject.GetComponent<weatherController>();
+            weatherScript = weatherObject.GetComponent<WeatherController>();
         }
 
         StartCoroutine(ThunderRoutine());
@@ -30,15 +28,12 @@ public class ThunderController : MonoBehaviour
 
     IEnumerator ThunderRoutine()
     {
-        isThunderRoutineRunning = true;
-
         while (true)
         {
             if (weatherScript != null && (weatherScript.GetCurrentWeather() == "Stormy"))
             {
                 float waitTime = Random.Range(minTimeBetweenStrikes, maxTimeBetweenStrikes);
                 yield return new WaitForSeconds(waitTime);
-
                 PlayRandomThunder();
             }
             else
@@ -48,16 +43,18 @@ public class ThunderController : MonoBehaviour
         }
     }
 
+    /* Instance of copyright violation. Original thunder sounds are from Minecraft
+    but the pitch is modulated so it could be argued that it's fair use. */
     void PlayRandomThunder()
     {
         if (thunderSounds.Count > 0 && audioSource != null)
         {
-            AudioClip clip = thunderSounds[Random.Range(0, thunderSounds.Count)];
+            AudioClip thunder = thunderSounds[Random.Range(0, thunderSounds.Count)];
             
             audioSource.volume = Random.Range(minVolume, maxVolume);
             audioSource.pitch = Random.Range(0.8f, 1.2f);
             
-            audioSource.PlayOneShot(clip);
+            audioSource.PlayOneShot(thunder);
         }
     }
 }

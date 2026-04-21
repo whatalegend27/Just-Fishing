@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class rock : MonoBehaviour
+public class Rock : MonoBehaviour
 {
   [SerializeField] Sprite rockSprite;
 
@@ -23,13 +23,18 @@ public class rock : MonoBehaviour
     if (collision.gameObject.CompareTag("Boat"))
     {
       Debug.Log("Boat hit a rock!");
-      //player.heath -= damageAmount;
     }
+  }
+
+  public void DestroyRock()
+  {
+    Debug.Log("Rock destroyed!");
+    Destroy(gameObject);
   }
 
 }
 
-public class heavyRock : rock
+public class HeavyRock : Rock
 {
   // Different sprite for heavy rock
   [SerializeField] Sprite heavyRockSprite;
@@ -49,8 +54,14 @@ public class heavyRock : rock
     if (collision.gameObject.CompareTag("Boat"))
     {
       Debug.Log("Boat hit a heavy rock!");
-      //player.health -= damageAmount;
     }
+  }
+
+  // Static binding of destruction behavior
+  public new void DestroyRock()
+  {
+    Debug.Log("Heavy rock destroyed!");
+    Destroy(gameObject);
   }
 
 }
