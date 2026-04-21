@@ -29,6 +29,8 @@ public class BackgroundManager : MonoBehaviour
             return;
         }
 
+        Instance = this;
+
         // Binds the WeatherController script to check for weather conditions
         GameObject weatherControllerObject = GameObject.Find("WeatherController");
         if (weatherControllerObject != null)
@@ -218,7 +220,7 @@ public class BackgroundManagerData
     public SpriteRenderer BackdropRenderer => backdropRenderer;
     public ParticleSystem RainRenderer => rainRenderer;
     public GameObject CloudsFront => cloudsFront;
-    public GameObject CloudsBack => CloudsBack;
+    public GameObject CloudsBack => cloudsBack;
 
     // Sun movement
     public Transform SunTransform => sunTransform;
