@@ -16,22 +16,26 @@ public class ToggleButton : MonoBehaviour
 
     private GameObject currentFish;
 
+    // Subscribes to the fish registered event
     private void OnEnable()
     {
         FishDatabaseManager.OnFishRegistered += UpdateCatchCount;
     }
 
+    // Unsubscribes from the fish registered event
     private void OnDisable()
     {
         FishDatabaseManager.OnFishRegistered -= UpdateCatchCount;
     }
 
+    // Hides all fish displays on startup
     private void Start()
     {
         foreach (FishDisplayEntry entry in fishDisplays)
             if (entry.fishDisplay != null) entry.fishDisplay.SetActive(false);
     }
 
+    // Refreshes the catch count label if the currently shown fish matches the registered one
     private void UpdateCatchCount(string fishName)
     {
         if (currentFish == null) return;
@@ -51,6 +55,7 @@ public class ToggleButton : MonoBehaviour
         }
     }
 
+    // Toggles the display panel for the given fish, closing any previously open one
     public void OnFishButtonClicked(string fishName)
     {
         foreach (FishDisplayEntry entry in fishDisplays)

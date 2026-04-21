@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArrestStats : MonoBehaviour
+public class ArrestStats : MonoBehaviour, IRiskReducible
 {
    public PlayerStats ps;
    public inGameTime gameTime;
@@ -32,6 +32,12 @@ public class ArrestStats : MonoBehaviour
       calculateRisk( "nightFish" );
    }
 
+
+   // Reduces risk by a given amount, clamped to 0
+   public void ReduceRisk( int amount )
+   {
+      riskVal = Mathf.Max( 0, riskVal - amount );
+   }
 
    // Resets risk to its starting value
    public void resetStats()

@@ -8,16 +8,19 @@ public class FishRewardManager : MonoBehaviour
     [SerializeField] private HealthRewardItem healthItem;
     [SerializeField] private RiskReductionItem riskItem;
 
+    // Subscribes to the fish registered event
     private void OnEnable()
     {
         FishDatabaseManager.OnFishRegistered += OnFishRegistered;
     }
 
+    // Unsubscribes from the fish registered event
     private void OnDisable()
     {
         FishDatabaseManager.OnFishRegistered -= OnFishRegistered;
     }
 
+    // Awards gold based on rarity and grants a random item every ITEM_REWARD_INTERVAL catches
     private void OnFishRegistered(string fishName)
     {
         FishData fish = GetFishData(fishName);
@@ -29,9 +32,9 @@ public class FishRewardManager : MonoBehaviour
         {
             FishCatchReward reward = fish.rarity switch
             {
-                FishRarity.Rare      => new RareFishCatchReward(),
+                FishRarity.Rare => new RareFishCatchReward(),
                 FishRarity.Legendary => new LegendaryFishCatchReward(),
-                _                    => new CommonFishCatchReward()
+                _ => new CommonFishCatchReward()
             };
             goldManager.AddGold(reward.Award());
         }
@@ -42,6 +45,7 @@ public class FishRewardManager : MonoBehaviour
             AwardRandomItem();
     }
 
+    // Sums catch counts across all fish in the database
     private static int GetTotalCatchCount()
     {
         if (FishDatabaseManager.Instance == null) return 0;
@@ -51,6 +55,7 @@ public class FishRewardManager : MonoBehaviour
         return total;
     }
 
+    // Picks a random item from the reward pool and adds it to the inventory
     private void AwardRandomItem()
     {
         ItemScript[] choices = { healthItem, riskItem };
@@ -67,6 +72,7 @@ public class FishRewardManager : MonoBehaviour
             inventory.AddItem(chosen);
     }
 
+    // Looks up a FishData entry by name; returns null if not found
     private static FishData GetFishData(string fishName)
     {
         if (FishDatabaseManager.Instance == null) return null;
