@@ -4,7 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Isabella_GameScripts"
+        "Isabella_GameScripts",
+        "DannyScripts"
     ],
     "includePlatforms": [
         "Editor"
