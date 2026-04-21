@@ -57,3 +57,24 @@ public class DescriptionUI : MonoBehaviour
         }
     }
 }
+
+
+/*Class Diagrams:
+
+Singleton:
+singleton has static instane with arrow pointing to itself
+
+--------
+| singleton |
+| ______   |
+| instance|
+---------
+
+Private Data Class:
+main class diamonds to line arrow to data class
+private variable is of data class type
+
+private variables are in data class
+getters in data class
+
+*/
