@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d234356792f11e439804c359b65fe1f, type: 3}
   m_Name: SkellyItem
   m_EditorClassIdentifier: DannyScripts::ItemScript
-  itemName: 
-  itemDescription: 
+  itemName: Skelly
+  itemDescription: The Skelly Item
   price: 0
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: -4887830516967030277, guid: 1b19ded15edcd4689aa829f4e3460f56, type: 3}
+  itemType: 8
+  attractionValue: 0
