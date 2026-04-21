@@ -9,11 +9,16 @@ public class InventoryManager : MonoBehaviour
     public InventorySlotData[] slots = new InventorySlotData[INVENTORY_SIZE];
 
 
-    //public static void ResetInstance() => Instance = null;
+    public static void ResetInstance() => Instance = null;
 
     //Initalizes each inventory slot to be empty
     private void Awake()
     {
+        for (int i = 0; i < INVENTORY_SIZE; i++)
+        {
+            slots[i] = new InventorySlotData();
+        }
+
         //Creation of singleton so only one inventory exists
         if (Instance != null && Instance != this)
         {
@@ -21,11 +26,12 @@ public class InventoryManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-        for (int i = 0; i < INVENTORY_SIZE; i++)
+
+        if (Application.isPlaying)
         {
-            slots[i] = new InventorySlotData();
+            DontDestroyOnLoad(gameObject);
         }
+
     }
 
     //adds item to inventory 
