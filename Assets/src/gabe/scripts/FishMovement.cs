@@ -1,127 +1,221 @@
 using UnityEngine;
 
+// This script controls how each fish moves in the water.
+// The fish swims smoothly, changes direction occasionally,
+// wiggles slightly up and down, stays inside boundaries,
+// and flips to face the direction it is moving.
 public class FishMovement : MonoBehaviour
 {
+    // ===== BASIC MOVEMENT SETTINGS =====
     [Header("Movement")]
+
     public float minSpeed = 1.5f;
+
     public float maxSpeed = 2.5f;
+
+    // higher = faster turning
     public float turnSpeed = 2f;
+
     public float directionChangeTime = 2.5f;
 
+
+    // ===== NATURAL SWIMMING SETTINGS =====
     [Header("Swim Motion")]
+
     public float verticalWiggleAmount = 0.3f;
+
     public float verticalWiggleSpeed = 2f;
 
+
+    // ===== MOVEMENT AREA LIMITS =====
     [Header("Movement Bounds")]
+
     public float minX = -8f;
+
     public float maxX = 8f;
-    public float minY = -9f;
-    public float maxY = 3f;
 
-    [Header("Sprite Direction")]
-    public bool spriteFacesRight = true;
+    public float minY = -4f;
 
-    private Vector2 currentDirection;
-    private Vector2 targetDirection;
-    private float currentSpeed;
-    private float directionTimer;
-    private float wiggleOffset;
+    public float maxY = 4f;
 
+
+    // ===== PRIVATE DATA CLASS =====
+    // Groups all runtime movement values together.
+    // These values change frequently during gameplay,
+    // one structure for organization.
+    private FishState state = new FishState();
+
+
+    // This class stores the fish's current movement condition.
+    private class FishState
+    {
+
+        public Vector2 currentDirection;
+
+        public Vector2 targetDirection;
+
+        public float currentSpeed;
+
+
+        public float directionTimer;
+
+
+        public float wiggleOffset;
+    }
+
+    // Runs once when the fish is first created
     void Start()
     {
-        wiggleOffset = Random.Range(0f, 10f);
+        // Randomize wiggle timing , don't move identically
+        state.wiggleOffset = Random.Range(0f, 10f);
+
         PickNewDirection(true);
     }
 
+
     void Update()
     {
-        directionTimer -= Time.deltaTime;
-        if (directionTimer <= 0f)
+        // Decrease direction timer
+        state.directionTimer -= Time.deltaTime;
+
+        // When timer reaches 0, new direction
+        if (state.directionTimer <= 0f)
         {
             PickNewDirection(false);
         }
 
-        currentDirection = Vector2.Lerp(
-            currentDirection,
-            targetDirection,
+        // Smoothly rotate current direction toward the target direction
+        // prevent sharp robotic turning
+        state.currentDirection = Vector2.Lerp(
+            state.currentDirection,
+            state.targetDirection,
             turnSpeed * Time.deltaTime
         ).normalized;
 
-        Vector2 move = currentDirection;
-        move.y += Mathf.Sin(Time.time * verticalWiggleSpeed + wiggleOffset) * verticalWiggleAmount;
 
-        transform.Translate(move.normalized * currentSpeed * Time.deltaTime, Space.World);
+
+        Vector2 move = state.currentDirection;
+
+        // create a natural swimming wiggle
+        move.y += Mathf.Sin(
+            Time.time * verticalWiggleSpeed + state.wiggleOffset
+        ) * verticalWiggleAmount;
+
+
+        transform.Translate(
+            move.normalized * state.currentSpeed * Time.deltaTime,
+            Space.World
+        );
+
 
         KeepInsideBounds();
+
         FlipSprite();
     }
 
+
+    // ===== PICK NEW DIRECTION =====
     void PickNewDirection(bool forceInitialDirection)
     {
+        // prevents spinning in random circles
         float horizontal = forceInitialDirection
             ? (Random.value < 0.5f ? -1f : 1f)
-            : Mathf.Sign(currentDirection.x == 0 ? (Random.value < 0.5f ? -1f : 1f) : currentDirection.x);
 
+            : Mathf.Sign(
+                state.currentDirection.x == 0
+                ? (Random.value < 0.5f ? -1f : 1f)
+                : state.currentDirection.x
+              );
+
+
+        // Small vertical movement
         float vertical = Random.Range(-0.4f, 0.4f);
 
-        targetDirection = new Vector2(horizontal, vertical).normalized;
 
-        currentSpeed = Random.Range(minSpeed, maxSpeed);
-        directionTimer = directionChangeTime + Random.Range(-0.5f, 0.5f);
+        // Set the new desired direction
+        state.targetDirection = new Vector2(horizontal, vertical).normalized;
 
+
+        // Choose a random speed within allowed range
+        state.currentSpeed = Random.Range(minSpeed, maxSpeed);
+
+
+        // Reset timer until next direction change
+        state.directionTimer =
+            directionChangeTime + Random.Range(-0.5f, 0.5f);
+
+
+        // If this is the first direction, apply immediately
         if (forceInitialDirection)
         {
-            currentDirection = targetDirection;
+            state.currentDirection = state.targetDirection;
         }
     }
 
+
+    // ===== KEEP FISH INSIDE BOUNDS =====
     void KeepInsideBounds()
     {
         Vector3 pos = transform.position;
 
+
+        // Horizontal boundary check
         if (pos.x < minX)
         {
+            // move fish back inside
             pos.x = minX;
-            targetDirection.x = Mathf.Abs(targetDirection.x);
-            currentDirection.x = Mathf.Abs(currentDirection.x);
-        }
-        else if (pos.x > maxX)
-        {
-            pos.x = maxX;
-            targetDirection.x = -Mathf.Abs(targetDirection.x);
-            currentDirection.x = -Mathf.Abs(currentDirection.x);
+
+            // force fish to swim right
+            state.targetDirection.x = Mathf.Abs(state.targetDirection.x);
+            state.currentDirection.x = Mathf.Abs(state.currentDirection.x);
         }
 
+        else if (pos.x > maxX)
+        {
+            // move fish back inside
+            pos.x = maxX;
+
+            // force fish to swim left
+            state.targetDirection.x = -Mathf.Abs(state.targetDirection.x);
+            state.currentDirection.x = -Mathf.Abs(state.currentDirection.x);
+        }
+
+
+        // Vertical boundary check
         if (pos.y < minY)
         {
             pos.y = minY;
-            targetDirection.y = Mathf.Abs(targetDirection.y);
-            currentDirection.y = Mathf.Abs(currentDirection.y);
+
+            // push fish upward
+            state.targetDirection.y = Mathf.Abs(state.targetDirection.y);
+            state.currentDirection.y = Mathf.Abs(state.currentDirection.y);
         }
+
         else if (pos.y > maxY)
         {
             pos.y = maxY;
-            targetDirection.y = -Mathf.Abs(targetDirection.y);
-            currentDirection.y = -Mathf.Abs(currentDirection.y);
+
+            // push fish downward
+            state.targetDirection.y = -Mathf.Abs(state.targetDirection.y);
+            state.currentDirection.y = -Mathf.Abs(state.currentDirection.y);
         }
 
+
+        // Apply corrected position
         transform.position = pos;
     }
 
+
+    // ===== SPRITE FLIPPING =====
+    //is now redunant, sprites fixed
     void FlipSprite()
     {
-        Vector3 scale = transform.localScale;
-        float absX = Mathf.Abs(scale.x);
+        // If moving right, face right
+        if (state.currentDirection.x > 0.05f)
+            transform.localScale = new Vector3(1f, 1f, 1f);
 
-        if (currentDirection.x > 0.05f)
-        {
-            scale.x = spriteFacesRight ? absX : -absX;
-        }
-        else if (currentDirection.x < -0.05f)
-        {
-            scale.x = spriteFacesRight ? -absX : absX;
-        }
-
-        transform.localScale = scale;
+        // If moving left, face left
+        else if (state.currentDirection.x < -0.05f)
+            transform.localScale = new Vector3(-1f, 1f, 1f);
     }
 }

@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: ButterFly Fish
   itemDescription: The Butterfly Fish item
   price: 10
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: 8107871626100986435, guid: 6b7cf7604a3814dea9b8b4008f597fbd, type: 3}
+  itemType: 8
+  attractionValue: 0
