@@ -6,22 +6,22 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MVP_Scenes/Home.unity
-    guid: 9815ecfa37c9aa24b8a750ca3f02479b
-  - enabled: 1
-    path: Assets/MVP_Scenes/GameOver.unity
-    guid: 68c16417629a7db46bb2a964cbccbdac
-  - enabled: 1
     path: Assets/MVP_Scenes/MainMenu.unity
     guid: 637dbe7659cfe8f44bfa4a876814358b
   - enabled: 1
-    path: Assets/MVP_Scenes/SharkFight.unity
-    guid: e4702aa96a272864e81b62d7dc81e3c8
+    path: Assets/MVP_Scenes/Home.unity
+    guid: 9815ecfa37c9aa24b8a750ca3f02479b
+  - enabled: 1
+    path: Assets/MVP_Scenes/Shop.unity
+    guid: 96e61149c22d49b4eb19a9f0e60c1399
   - enabled: 1
     path: Assets/MVP_Scenes/New-Demo 3.unity
     guid: aa826a85f89a86d479f795d62b75ea69
   - enabled: 1
-    path: Assets/MVP_Scenes/Shop.unity
-    guid: 96e61149c22d49b4eb19a9f0e60c1399
+    path: Assets/MVP_Scenes/SharkFight.unity
+    guid: e4702aa96a272864e81b62d7dc81e3c8
+  - enabled: 1
+    path: Assets/MVP_Scenes/GameOver.unity
+    guid: 7e4855373b17af0429ebfac5dad9fddd
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
