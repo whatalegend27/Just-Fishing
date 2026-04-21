@@ -30,6 +30,7 @@ public class InventorySlotUI : MonoBehaviour
             quantityText.text = "";
             image.sprite = null;
             image.color = new Color(0.8f, 0.8f, 0.8f);
+            if (slotDescription != null) slotDescription.SetActive(false);
             return;
         }
         currentItem = slots.item;

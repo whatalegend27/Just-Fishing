@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &465463801632751120
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.30806
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 111182618938221375, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666523360999849102, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: m_Name
+      value: BIG BRUCE SPAWNER Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: bounds.maxY
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: bounds.minY
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: numberToSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: fishPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: 'fishPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8004341632305014029, guid: 715c0845bd5e04009a97a1ecfa700d95, type: 3}
+    - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
+      propertyPath: 'fishPrefabs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8004341632305014029, guid: 715c0845bd5e04009a97a1ecfa700d95, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
