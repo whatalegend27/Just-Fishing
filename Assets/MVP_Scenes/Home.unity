@@ -1823,6 +1823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gold_InventoryManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6180024683454519590, guid: 2570a548c366ca740887f26e7e904fb9, type: 3}
+      propertyPath: playerGold
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
