@@ -20,10 +20,7 @@ public class RodUpgradeManager : MonoBehaviour
         }
 
         Instance = this;
-<<<<<<< HEAD
         DontDestroyOnLoad(gameObject);
-=======
->>>>>>> e854fd2 (Initial upgrader feature in plus game stats in main menu)
     }
 
     public bool TryEquip(ItemScript item)
