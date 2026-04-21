@@ -1,15 +1,18 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FishRewardManager : MonoBehaviour
 {
-    private const int ITEM_REWARD_INTERVAL = 1;
+    private const int ITEM_REWARD_INTERVAL = 10;
 
     [SerializeField] private GoldManager goldManager;
     [SerializeField] private HealthRewardItem healthItem;
     [SerializeField] private RiskReductionItem riskItem;
     [SerializeField] private Button useButton;
-
+    [SerializeField] private GameObject inventoryDescription;
+    [SerializeField] private string sharkFishName = "BigBruce";
+    [SerializeField] private string sharkSceneName = "SharkFight";
     private IHealable mHealthStats;
     private IRiskReducible mArrestStats;
 
@@ -18,39 +21,22 @@ public class FishRewardManager : MonoBehaviour
     {
         foreach (var mb in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
         {
-            if (mHealthStats  == null && mb is IHealable h)      mHealthStats  = h;
-            if (mArrestStats  == null && mb is IRiskReducible r)  mArrestStats  = r;
-            if (mHealthStats  != null && mArrestStats != null) break;
+            if (mHealthStats == null && mb is IHealable h) mHealthStats = h;
+            if (mArrestStats == null && mb is IRiskReducible r) mArrestStats = r;
+            if (mHealthStats != null && mArrestStats != null) break;
         }
     }
 
-    // Subscribes to events
+    // Subscribes to fish registered event
     private void OnEnable()
     {
         FishDatabaseManager.OnFishRegistered += OnFishRegistered;
-        if (InventoryManager.Instance != null)
-            InventoryManager.Instance.inventoryChanged += RefreshButtons;
     }
 
-    // Unsubscribes from events
+    // Unsubscribes from fish registered event
     private void OnDisable()
     {
         FishDatabaseManager.OnFishRegistered -= OnFishRegistered;
-        if (InventoryManager.Instance != null)
-            InventoryManager.Instance.inventoryChanged -= RefreshButtons;
-    }
-
-    // Performs initial button visibility pass after all singletons are ready
-    private void Start()
-    {
-        RefreshButtons();
-    }
-
-    // Shows the button when either item is in inventory
-    private void RefreshButtons()
-    {
-        if (useButton != null)
-            useButton.gameObject.SetActive(HasItem(healthItem) || HasItem(riskItem));
     }
 
     // Returns true if the given item exists in inventory with quantity > 0
@@ -65,11 +51,13 @@ public class FishRewardManager : MonoBehaviour
     // Consumes the first available item (health checked before risk) and applies its stat change
     public void UseItem()
     {
+        if (InventoryManager.Instance == null) return;
+
         StackableItem item = HasItem(healthItem) ? healthItem
-                           : HasItem(riskItem)   ? (StackableItem)riskItem
+                           : HasItem(riskItem) ? (StackableItem)riskItem
                            : null;
 
-        if (item == null || InventoryManager.Instance == null) return;
+        if (item == null) return;
 
         InventoryManager.Instance.RemoveItem(item);
 
@@ -82,11 +70,20 @@ public class FishRewardManager : MonoBehaviour
                 mArrestStats?.ReduceRisk(risk.RiskReduction);
                 break;
         }
+
+        if (!HasItem(healthItem) && !HasItem(riskItem) && inventoryDescription != null)
+            inventoryDescription.SetActive(false);
     }
 
     // Awards gold based on rarity and grants a random item every ITEM_REWARD_INTERVAL catches
     private void OnFishRegistered(string fishName)
     {
+        if (fishName == sharkFishName)
+        {
+            SceneManager.LoadScene(sharkSceneName);
+            return;
+        }
+
         FishData fish = GetFishData(fishName);
 
         if (fish == null)
@@ -94,12 +91,17 @@ public class FishRewardManager : MonoBehaviour
 
         if (goldManager != null)
         {
+            // Static type = FishCatchReward (declared type, never changes)
+            // Dynamic type = whichever subclass is assigned based on rarity (set at runtime)
             FishCatchReward reward = fish.rarity switch
             {
-                FishRarity.Rare      => new RareFishCatchReward(),
-                FishRarity.Legendary => new LegendaryFishCatchReward(),
-                _                    => new CommonFishCatchReward()
+                FishRarity.Rare => new RareFishCatchReward(),       // dynamic type: RareFishCatchReward
+                FishRarity.Legendary => new LegendaryFishCatchReward(),  // dynamic type: LegendaryFishCatchReward
+                _ => new CommonFishCatchReward()       // dynamic type: CommonFishCatchReward
             };
+
+            // Award() is statically bound — FishCatchReward.Award() is always called here.
+            // Inside Award(), GetGold() is dynamically bound — the override on the actual runtime type is called.
             goldManager.AddGold(reward.Award());
         }
 

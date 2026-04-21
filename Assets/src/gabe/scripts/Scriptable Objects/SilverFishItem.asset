@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d234356792f11e439804c359b65fe1f, type: 3}
   m_Name: SilverFishItem
   m_EditorClassIdentifier: DannyScripts::ItemScript
-  itemName: SIlver Fish
-  itemDescription: The SIlver Fish Item
+  itemName: SIlver-Fish
+  itemDescription: The Silver-Fish Item
   price: 10
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: -3584539691043722105, guid: 24fce383d49a64a03ba9379dcc18d7e1, type: 3}
+  itemType: 8
+  attractionValue: 0

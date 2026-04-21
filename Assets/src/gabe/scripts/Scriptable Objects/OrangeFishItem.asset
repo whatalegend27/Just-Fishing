@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Orange Fish
   itemDescription: The Orange Fish item
   price: 10
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: -8325687355653718045, guid: d8f9a99bec6074e59bfede94771db87f, type: 3}
+  itemType: 8
+  attractionValue: 0

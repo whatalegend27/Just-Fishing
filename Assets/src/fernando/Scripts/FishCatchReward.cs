@@ -2,6 +2,27 @@
 // Sub Classes:    CommonFishCatchReward, RareFishCatchReward, LegendaryFishCatchReward
 // Virtual Method: GetGold()
 
+/* Static vs Dynamic Binding Demo
+   Static type is always FishCatchReward (the declared variable type — never changes).
+   Dynamic type is set at runtime depending on fish rarity.
+
+   Setting static and dynamic type:
+      FishCatchReward reward = new RareFishCatchReward();
+      // static type  = FishCatchReward
+      // dynamic type = RareFishCatchReward  →  GetGold() returns mGold + 15
+
+      reward = new LegendaryFishCatchReward();
+      // static type  = FishCatchReward  (unchanged)
+      // dynamic type = LegendaryFishCatchReward  →  GetGold() returns mGold + 40
+
+   Dynamically bound — GetGold() is virtual:
+      reward = new RareFishCatchReward()      →  RareFishCatchReward.GetGold()      called
+      reward = new LegendaryFishCatchReward() →  LegendaryFishCatchReward.GetGold() called
+
+   Statically bound — Award() is NOT virtual:
+      In both cases above, Award() always resolves to FishCatchReward.Award().
+      Award() then internally calls GetGold(), where dynamic dispatch takes over. */
+
 public class FishCatchReward
 {
     protected int mGold;
@@ -11,7 +32,7 @@ public class FishCatchReward
 
     // Returns the gold amount; overridden by subclasses to add bonuses
     protected virtual int GetGold() => mGold;
-    // Computes and returns the final gold reward
+    // Statically bound — always resolves to this base class method regardless of dynamic type
     public int Award() => GetGold();
 }
 

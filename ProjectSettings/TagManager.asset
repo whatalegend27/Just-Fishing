@@ -17,6 +17,7 @@ TagManager:
   - InsultTxt
   - Toolbox
   - GoldText
+  - ChoiceTxt
   layers:
   - Default
   - TransparentFX

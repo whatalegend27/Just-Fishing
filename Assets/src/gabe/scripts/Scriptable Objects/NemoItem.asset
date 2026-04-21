@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Nemo
   itemDescription: The Nemo Fish Item
   price: 10
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: 6220862411133610240, guid: 2b9e6927d80b645578a6b412380322e2, type: 3}
+  itemType: 8
+  attractionValue: 0

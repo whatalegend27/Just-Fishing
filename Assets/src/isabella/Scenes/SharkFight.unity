@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 592873072}
   - component: {fileID: 592873075}
   - component: {fileID: 592873076}
+  - component: {fileID: 592873077}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -609,6 +610,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: GameScripts::SharkFightManager
   healthStats: {fileID: 0}
+--- !u!114 &592873077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592873071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44fb5352b5384144885f99b1566b5598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Isabella_GameScripts::SharkHandler
+  animator: {fileID: 859069398}
+  ChoiceDialogue: {fileID: 2144885730}
+  FlirtDialogue: {fileID: 1693239440}
+  InsultDialogue: {fileID: 1533032213}
+  FightDialogue: {fileID: 388641757}
+  flirtTexts:
+  - 'Nikolai: Big Bruce, your teeth are so sharp and pearly white. They compare to
+    even the shiniest pearls in the ocean.'
+  - 'Nikolai: Big Bruce, they say the moonlight hitting the water is the most beautiful
+    sight at sea, but it doesn''t hold a candle to the way the light catches your
+    scales.'
+  - "Nikolai: I have seen many beasts in these waters, Bruce, but none with a gaze
+    as piercing as yours. There\u2019s a strength in those eyes that makes even the
+    roughest storm feel like a gentle breeze."
+  insultTexts:
+  - 'Nikolai: Big Bruce, you couldn''t even eat a jellyfish with that bite. '
+  - "Nikolai: They say you're the terror of the tides. I\u2019ve caught boots with
+    more bite than you've got in that whole mouth! "
+  - "Nikolai: You call yourself a predator, Bruce?You\u2019re less like a shark and
+    more like an overgrown guppy."
+  fightTexts:
+  - Nikolai pulls as hard as he can against Big Bruce, trying his best to reel him
+    in.
+  - The sea churns red as the line cuts into Nikolai's palms. He plants his boots
+    against the freezing hull, every muscle screaming as Big Bruce thrashes..
+  - "Wood splinters under the pressure of the beast's weight. It's no longer a catch\u2014it\u2019s
+    a battle of wills between man and monster."
+  flirtTypewriter: {fileID: 1747333163}
+  insultTypewriter: {fileID: 1787475760}
+  fightTypewriter: {fileID: 496130979}
 --- !u!1 &713623857
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +664,6 @@ GameObject:
   - component: {fileID: 713623859}
   - component: {fileID: 713623860}
   - component: {fileID: 713623862}
-  - component: {fileID: 713623861}
   m_Layer: 0
   m_Name: InsultBtn
   m_TagString: InsultBtn
@@ -750,23 +792,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.984375, y: 0.984375}
   m_EdgeRadius: 0
---- !u!114 &713623861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713623857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fb5352b5384144885f99b1566b5598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Isabella_GameScripts::SharkHandler
-  animator: {fileID: 859069398}
-  ChoiceDialogue: {fileID: 2144885730}
-  FlirtDialogue: {fileID: 1693239440}
-  InsultDialogue: {fileID: 1533032213}
-  FightDialogue: {fileID: 388641757}
 --- !u!114 &713623862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,7 +836,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 713623861}
+      - m_Target: {fileID: 592873077}
         m_TargetAssemblyTypeName: SharkHandler, Isabella_GameScripts
         m_MethodName: OnInsultClicked
         m_Mode: 1
@@ -834,7 +859,6 @@ GameObject:
   - component: {fileID: 721827504}
   - component: {fileID: 721827505}
   - component: {fileID: 721827506}
-  - component: {fileID: 721827508}
   - component: {fileID: 721827507}
   m_Layer: 0
   m_Name: FightBtn
@@ -1008,7 +1032,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 721827508}
+      - m_Target: {fileID: 592873077}
         m_TargetAssemblyTypeName: SharkHandler, Isabella_GameScripts
         m_MethodName: OnFightClicked
         m_Mode: 1
@@ -1020,23 +1044,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &721827508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 721827503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fb5352b5384144885f99b1566b5598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Isabella_GameScripts::SharkHandler
-  animator: {fileID: 859069398}
-  ChoiceDialogue: {fileID: 2144885730}
-  FlirtDialogue: {fileID: 1693239440}
-  InsultDialogue: {fileID: 1533032213}
-  FightDialogue: {fileID: 388641757}
 --- !u!1 &814393722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,7 +1058,7 @@ GameObject:
   - component: {fileID: 814393726}
   m_Layer: 5
   m_Name: FightTxt
-  m_TagString: FightTxt
+  m_TagString: ChoiceTxt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2189,7 +2196,6 @@ GameObject:
   - component: {fileID: 1869489286}
   - component: {fileID: 1869489287}
   - component: {fileID: 1869489289}
-  - component: {fileID: 1869489290}
   m_Layer: 0
   m_Name: FlirtBtn
   m_TagString: FlirtBtn
@@ -2362,7 +2368,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1869489290}
+      - m_Target: {fileID: 592873077}
         m_TargetAssemblyTypeName: SharkHandler, Isabella_GameScripts
         m_MethodName: OnFlirtClicked
         m_Mode: 1
@@ -2374,23 +2380,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1869489290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869489284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fb5352b5384144885f99b1566b5598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Isabella_GameScripts::SharkHandler
-  animator: {fileID: 859069398}
-  ChoiceDialogue: {fileID: 2144885730}
-  FlirtDialogue: {fileID: 1693239440}
-  InsultDialogue: {fileID: 1533032213}
-  FightDialogue: {fileID: 388641757}
 --- !u!1 &1915914226
 GameObject:
   m_ObjectHideFlags: 0

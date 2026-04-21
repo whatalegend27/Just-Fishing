@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Red Fish
   itemDescription: The Red Fish Item
   price: 10
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: 6659853465499674065, guid: 24fce383d49a64a03ba9379dcc18d7e1, type: 3}
+  itemType: 8
+  attractionValue: 0

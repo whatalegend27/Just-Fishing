@@ -3,13 +3,14 @@ using UnityEngine;
 public class ArrestStats : MonoBehaviour, IRiskReducible
 {
    public PlayerStats ps;
-   public inGameTime gameTime;
+   private inGameTime gameTime;
    public int riskVal;
 
    // Initializes risk and subscribes to the nightfall event
    void Start()
    {
       riskVal = 0;
+      gameTime = FindAnyObjectByType<inGameTime>();
 
       if ( gameTime != null )
       {

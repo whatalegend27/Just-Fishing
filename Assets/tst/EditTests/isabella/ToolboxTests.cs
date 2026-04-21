@@ -1,11 +1,13 @@
 using NUnit.Framework;
 using UnityEngine;
 
+// Tests for HandleToolbox state management and functionality
 public class ToolboxTests
 {
     private HandleToolbox toolbox;
     private GameObject testToolbox;
 
+    // Setup method to initialize the HandleToolbox and test toolboxes before each test
     [SetUp]
     public void Setup()
     {
@@ -25,6 +27,7 @@ public class ToolboxTests
         toolbox.SetGameplayState();
     }
 
+    // Test that opening the toolbox transitions to ToolboxState and pauses the game
     [Test]
     public void StateTransition_GameplayToToolbox()
     {
@@ -36,6 +39,7 @@ public class ToolboxTests
         Assert.AreEqual(0f, Time.timeScale);
     }
 
+    // Test that closing the toolbox transitions back to GameplayState and resumes the game
     [Test]
     public void Only_One_Toolbox_Active_In_Toolbox_State()
     {
@@ -52,6 +56,7 @@ public class ToolboxTests
         Assert.AreEqual(1, activeCount);
     }
 
+    // Test that closing the toolbox transitions back to GameplayState and resumes the game
     [Test]
     public void Stress_Test_State_Toggling()
     {

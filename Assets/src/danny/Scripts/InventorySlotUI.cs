@@ -17,6 +17,7 @@ public class InventorySlotUI : MonoBehaviour
     [SerializeField] private GameObject slotDescription;
     [SerializeField] private Image slotImage;
     [SerializeField] private GameObject eatButton;
+    [SerializeField] private GameObject useButton;
 
     //Displays the item picture in a inventory slot
     public void SetUp(InventorySlotData slots)
@@ -29,6 +30,7 @@ public class InventorySlotUI : MonoBehaviour
             quantityText.text = "";
             image.sprite = null;
             image.color = new Color(0.8f, 0.8f, 0.8f);
+            if (slotDescription != null) slotDescription.SetActive(false);
             return;
         }
         currentItem = slots.item;
@@ -59,18 +61,24 @@ public class InventorySlotUI : MonoBehaviour
     //sets invent description panel to be true
     void OnClick()
     {
+        //shows nothing if no item
         if (currentItem == null)
         {
             return;
         }
         
-        if (currentItem.Type == ItemScript.ItemType.Food)
+        useButton.SetActive(false);
+        eatButton.SetActive(false);
+
+        //actives certain buttons based on item type
+        switch (currentItem.Type)
         {
-            eatButton.SetActive(true);
-        }
-        else
-        {
-            eatButton.SetActive(false);
+            case ItemScript.ItemType.Food:
+                eatButton.SetActive(true);
+                break;
+            case ItemScript.ItemType.Potions:
+                useButton.SetActive(true);
+                break;
         }
 
         slotImage.sprite = currentItem.Icon;

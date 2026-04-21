@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Sand Fish
   itemDescription: The Sand Fish Item
   price: 10
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: -3181080845797850791, guid: 24fce383d49a64a03ba9379dcc18d7e1, type: 3}
+  itemType: 8
+  attractionValue: 0

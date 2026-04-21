@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: Cat Fish
   itemDescription: The Cat Fish item
   price: 10
-  icon: {fileID: 0}
-  itemType: 0
+  icon: {fileID: 3466652502813292153, guid: 81ac378a0a0bd44c7bb607d09e21850c, type: 3}
+  itemType: 8
+  attractionValue: 0

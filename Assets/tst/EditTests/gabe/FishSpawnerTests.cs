@@ -16,18 +16,22 @@ public class FishSpawnerTests
         spawnerObject = new GameObject("FishSpawner");
         spawner = spawnerObject.AddComponent<TestFishSpawner>();
 
-        // Create fish prefab
+        // Create fish prefab with FishMovement component
+        // This simulates a real fish prefab used in the game
         fishPrefab = new GameObject("FishPrefab");
         fishPrefab.AddComponent<FishMovement>();
 
-        // Set default bounds through reflection
+        // Set default spawn bounds using reflection
+        // because bounds is stored in a private data class
         SetSpawnerBounds(spawner, -8f, 8f, -4f, 4f);
     }
 
     [TearDown]
     public void TearDown()
     {
-        FishMovement[] allFish = Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+        // Remove all FishMovement objects created during tests
+        FishMovement[] allFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
         foreach (FishMovement fish in allFish)
         {
@@ -37,10 +41,19 @@ public class FishSpawnerTests
             }
         }
 
+        // Remove spawner object
         if (spawnerObject != null)
             Object.DestroyImmediate(spawnerObject);
     }
 
+    // ------------------------------------------------------------
+    // Test 1
+    // Ensures xpawn fish creates the correct number of fish objects.
+    // Confirms that the loop runs the expected number of times
+    // and insatntate is being called correctly.
+    // Expected result:
+    // 5 fish created + 1 original prefab object = 6 total objects.
+    // ------------------------------------------------------------
     [Test]
     public void SpawnFish_SpawnsCorrectNumberOfFish()
     {
@@ -49,12 +62,19 @@ public class FishSpawnerTests
 
         spawner.CallSpawnFish();
 
-        FishMovement[] spawnedFish = Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+        FishMovement[] spawnedFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
-        // 1 prefab + 5 spawned copies = 6
         Assert.AreEqual(6, spawnedFish.Length);
     }
 
+    // ------------------------------------------------------------
+    // Test 2
+    // Verifies that all spawned fish appear within the defined bounds.
+    // Confirms GetSpawnPosition() correctly generates positions
+    // inside minX, maxX, minY, maxY.
+    // Prevents fish from spawning outside the playable area.
+    // ------------------------------------------------------------
     [Test]
     public void SpawnFish_SpawnedFishAreWithinBounds()
     {
@@ -65,10 +85,12 @@ public class FishSpawnerTests
 
         spawner.CallSpawnFish();
 
-        FishMovement[] spawnedFish = Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+        FishMovement[] spawnedFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
         foreach (FishMovement fish in spawnedFish)
         {
+            // ignore the original prefab object
             if (fish.gameObject == fishPrefab)
                 continue;
 
@@ -81,6 +103,13 @@ public class FishSpawnerTests
         }
     }
 
+    // ------------------------------------------------------------
+    // Test 3
+    // Ensures ConfigureFish() correctly transfers spawn bounds
+    // to the FishMovement component on each spawned fish.
+    // Confirms that each fish receives the correct movement limits.
+    // Prevents bugs where fish move outside their allowed area.
+    // ------------------------------------------------------------
     [Test]
     public void ConfigureFish_SetsFishMovementBoundsCorrectly()
     {
@@ -91,7 +120,8 @@ public class FishSpawnerTests
 
         spawner.CallSpawnFish();
 
-        FishMovement[] spawnedFish = Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+        FishMovement[] spawnedFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
         FishMovement spawned = null;
 
@@ -105,12 +135,20 @@ public class FishSpawnerTests
         }
 
         Assert.IsNotNull(spawned);
+
         Assert.AreEqual(-10f, spawned.minX);
         Assert.AreEqual(10f, spawned.maxX);
         Assert.AreEqual(-3f, spawned.minY);
         Assert.AreEqual(3f, spawned.maxY);
     }
 
+    // ------------------------------------------------------------
+    // Test 4
+    // Ensures that if no prefabs are assigned,
+    // SpawnFish() does not create any fish.
+    // Confirms the safety check prevents errors
+    // when fishPrefabs list is empty.
+    // ------------------------------------------------------------
     [Test]
     public void SpawnFish_WithEmptyPrefabList_SpawnsNothing()
     {
@@ -119,12 +157,18 @@ public class FishSpawnerTests
 
         spawner.CallSpawnFish();
 
-        FishMovement[] spawnedFish = Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+        FishMovement[] spawnedFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
-        // only the prefab from setup exists
         Assert.AreEqual(1, spawnedFish.Length);
     }
 
+    // ------------------------------------------------------------
+    // Test 5
+    // Ensures that if a null prefab exists in the list,
+    // SpawnFish() safely skips that spawn attempt.
+    // Confirms null checking prevents runtime errors.
+    // ------------------------------------------------------------
     [Test]
     public void SpawnFish_WithNullPrefab_SkipsThatSpawn()
     {
@@ -133,12 +177,18 @@ public class FishSpawnerTests
 
         spawner.CallSpawnFish();
 
-        FishMovement[] spawnedFish = Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+        FishMovement[] spawnedFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
-        // only the prefab from setup exists
         Assert.AreEqual(1, spawnedFish.Length);
     }
 
+    // ------------------------------------------------------------
+    // Test 6
+    // Verifies that when numberToSpawn = 0,
+    // SpawnFish() does not create any objects.
+    // Confirms the loop correctly handles zero iterations.
+    // ------------------------------------------------------------
     [Test]
     public void SpawnFish_WithZeroNumberToSpawn_SpawnsNothing()
     {
@@ -147,34 +197,86 @@ public class FishSpawnerTests
 
         spawner.CallSpawnFish();
 
-        FishMovement[] spawnedFish = Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+        FishMovement[] spawnedFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
 
-        // only the prefab from setup exists
         Assert.AreEqual(1, spawnedFish.Length);
     }
 
-    private void SetSpawnerBounds(FishSpawner spawnerInstance, float minX, float maxX, float minY, float maxY)
+    // ------------------------------------------------------------
+    // Test 7 (Stress Test)
+    // This test repeatedly spawns a very large number of fish
+    // to simulate heavy load on the game.
+    //
+    // Checks that FishSpawner can handle many objects
+    // Helps identify performance limits
+    // Ensures no crashes occur under stress
+    // Can reveal memory or spawning inefficiencies
+    //
+    // NOTE:
+    // Unity Test Runner does not directly expose FPS values,
+    // If the editor slows down significantly, this indicates
+    // the approximate limit where performance begins to drop.
+    //
+    // ------------------------------------------------------------
+    [Test]
+    public void StressTest_SpawnManyFish_UntilPerformanceDrops()
+        {
+            spawner.fishPrefabs = new List<GameObject> { fishPrefab };
+
+            // very large spawn count to simulate heavy load
+            spawner.numberToSpawn = 2000;
+
+            // spawn fish multiple times
+            for (int i = 0; i < 5; i++)
+                {
+                spawner.CallSpawnFish();
+            }
+
+            FishMovement[] spawnedFish =
+            Object.FindObjectsByType<FishMovement>(FindObjectsSortMode.None);
+
+            Debug.Log("Stress Test Fish Count: " + spawnedFish.Length);
+        // ensure fish were actually created
+    Assert.Greater(spawnedFish.Length, 0);
+}
+
+    // ------------------------------------------------------------
+    // Helper Method
+    // Uses reflection to modify the private spawn bounds data class.
+    // Allow tests to control spawn boundaries even though
+    // bounds is stored as a private field.
+    // ------------------------------------------------------------
+    private void SetSpawnerBounds(
+        FishSpawner spawnerInstance,
+        float minX,
+        float maxX,
+        float minY,
+        float maxY)
     {
-        // Get the private field "bounds"
-        FieldInfo boundsField = typeof(FishSpawner).GetField("bounds", BindingFlags.NonPublic | BindingFlags.Instance);
-        Assert.IsNotNull(boundsField, "Could not find private field 'bounds' on FishSpawner.");
+        FieldInfo boundsField =
+            typeof(FishSpawner).GetField(
+                "bounds",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+
+        Assert.IsNotNull(boundsField,
+            "Could not find private field 'bounds'.");
 
         object boundsObject = boundsField.GetValue(spawnerInstance);
-        Assert.IsNotNull(boundsObject, "The 'bounds' object is null.");
 
-        // Get the private nested class type
         System.Type boundsType = boundsObject.GetType();
 
-        // Set its fields
-        FieldInfo minXField = boundsType.GetField("minX", BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo maxXField = boundsType.GetField("maxX", BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo minYField = boundsType.GetField("minY", BindingFlags.Public | BindingFlags.Instance);
-        FieldInfo maxYField = boundsType.GetField("maxY", BindingFlags.Public | BindingFlags.Instance);
+        FieldInfo minXField =
+            boundsType.GetField("minX");
 
-        Assert.IsNotNull(minXField);
-        Assert.IsNotNull(maxXField);
-        Assert.IsNotNull(minYField);
-        Assert.IsNotNull(maxYField);
+        FieldInfo maxXField =
+            boundsType.GetField("maxX");
+
+        FieldInfo minYField =
+            boundsType.GetField("minY");
+
+        FieldInfo maxYField =
+            boundsType.GetField("maxY");
 
         minXField.SetValue(boundsObject, minX);
         maxXField.SetValue(boundsObject, maxX);

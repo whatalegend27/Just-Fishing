@@ -16,4 +16,5 @@ MonoBehaviour:
   itemDescription: The Big Blue fish item
   price: 10
   icon: {fileID: 9141540868571459340, guid: 24fce383d49a64a03ba9379dcc18d7e1, type: 3}
-  itemType: 0
+  itemType: 8
+  attractionValue: 0

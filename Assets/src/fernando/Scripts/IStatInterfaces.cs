@@ -7,3 +7,8 @@ public interface IRiskReducible
 {
     void ReduceRisk(int amount);
 }
+
+public interface IDamageable
+{
+    void TakeDamage(int amount);
+}
