@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthStats : MonoBehaviour, IHealable
+public class HealthStats : MonoBehaviour, IHealable, IDamageable
 {
    public int healthVal;
    public int hungerVal;
@@ -90,6 +90,9 @@ public class HealthStats : MonoBehaviour, IHealable
       healthVal = 100;
       hungerVal = 100;
    }
+
+   // IDamageable implementation — forwards to takeDamage
+   public void TakeDamage( int amount ) => takeDamage( amount );
 
    // Applies a specific amount of damage directly to health
    public void takeDamage( int amount )
