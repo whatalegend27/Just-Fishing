@@ -3,6 +3,7 @@
 	"references": [
 		"Unity.TextMeshPro",
 		"Fernando.Game.Runtime",
-		"DannyScripts"
+		"DannyScripts",
+		"boatController"
 	]
 }

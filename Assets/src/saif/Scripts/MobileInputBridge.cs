@@ -135,20 +135,25 @@ public class MobileInputBridge : MonoBehaviour
         
         if (handler != null)
         {
-            // 2. Check the current state manually
-            // Since IToolboxState is the interface, we check what the instance is
+            // 2. Check the current state
             var currentState = handler.GetCurrentState();
 
-            if (currentState.GetType().Name == "GameplayState")
+            // If the current state is Gameplay, we want to open the toolbox
+            // We use her new 'defaultToolbox' reference she added
+            if (currentState is GameplayState)
             {
-                // If we are playing, tell her script to switch to toolbox
-                handler.SetToolboxState();
+                // She changed the method name to OpenToolbox
+                handler.OpenToolbox(handler.defaultToolbox);
             }
             else
             {
-                // If the toolbox is open, tell her script to go back to gameplay
+                // If already in a toolbox state, go back to gameplay
                 handler.SetGameplayState();
             }
+        }
+        else
+        {
+            Debug.LogWarning("MobileInputBridge: HandleToolbox script not found in scene!");
         }
     }
 

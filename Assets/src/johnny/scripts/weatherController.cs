@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class weatherController : MonoBehaviour
+public class WeatherController : MonoBehaviour
 {
     private readonly Dictionary<string, float> weatherEffects = new Dictionary<string, float>
     {
@@ -13,8 +13,16 @@ public class weatherController : MonoBehaviour
 
     [SerializeField] private string currentWeather = "Sunny"; // Default weather condition
 
-    private void Start()
+    public static WeatherController Instance { get; private set; }
+
+    private void Awake()
     {
+        // Implement singleton pattern
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         ChangeWeather();
     }
     public string GetCurrentWeather()

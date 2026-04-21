@@ -519,6 +519,7 @@ GameObject:
   - component: {fileID: 592873073}
   - component: {fileID: 592873072}
   - component: {fileID: 592873075}
+  - component: {fileID: 592873076}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -595,6 +596,19 @@ MonoBehaviour:
   flirtDialogue: {fileID: 1693239440}
   insultDialogue: {fileID: 1533032213}
   fightDialogue: {fileID: 388641757}
+--- !u!114 &592873076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592873071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ab2bdeeebe3a079a5758f5e1302dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameScripts::SharkFightManager
+  healthStats: {fileID: 0}
 --- !u!1 &713623857
 GameObject:
   m_ObjectHideFlags: 0

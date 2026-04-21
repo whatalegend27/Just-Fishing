@@ -12,16 +12,19 @@ public class FishCatalogUI : MonoBehaviour
 
     [SerializeField] private List<FishButtonEntry> fishButtons;
 
+    // Subscribes to the fish registered event
     private void OnEnable()
     {
         FishDatabaseManager.OnFishRegistered += ShowButton;
     }
 
+    // Unsubscribes from the fish registered event
     private void OnDisable()
     {
         FishDatabaseManager.OnFishRegistered -= ShowButton;
     }
 
+    // Hides all buttons then re-shows any fish already known from a previous session
     void Start()
     {
         foreach (FishButtonEntry entry in fishButtons)
@@ -47,6 +50,7 @@ public class FishCatalogUI : MonoBehaviour
         }
     }
 
+    // Makes the catalog button visible for the newly registered fish
     private void ShowButton(string fishName)
     {
         foreach (FishButtonEntry entry in fishButtons)
