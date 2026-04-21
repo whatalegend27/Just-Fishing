@@ -23,8 +23,13 @@ public class Rock : MonoBehaviour
     if (collision.gameObject.CompareTag("Boat"))
     {
       Debug.Log("Boat hit a rock!");
-      //player.heath -= damageAmount;
     }
+  }
+
+  public void DestroyRock()
+  {
+    Debug.Log("Rock destroyed!");
+    Destroy(gameObject);
   }
 
 }
@@ -49,8 +54,14 @@ public class HeavyRock : Rock
     if (collision.gameObject.CompareTag("Boat"))
     {
       Debug.Log("Boat hit a heavy rock!");
-      //player.health -= damageAmount;
     }
+  }
+
+  // Static binding of destruction behavior
+  public new void DestroyRock()
+  {
+    Debug.Log("Heavy rock destroyed!");
+    Destroy(gameObject);
   }
 
 }
