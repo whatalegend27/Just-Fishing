@@ -19,6 +19,7 @@ public class FishDatabaseManager : MonoBehaviour
         new FishData { fishName = "BigBruce",       fishKnown = false },
     };
 
+    // Enforces singleton and persists across scene loads
     void Awake()
     {
         if (Instance == null)
@@ -32,11 +33,13 @@ public class FishDatabaseManager : MonoBehaviour
         }
     }
 
+    // Clears the singleton reference, used in tests to reset state between runs
     public static void ResetInstance()
     {
         Instance = null;
     }
 
+    // Marks a fish as known, increments its catch count, and fires events; returns false if not found
     public bool RegisterFish(string fishName)
     {
         for (int i = 0; i < fishDatabase.Count; i++)

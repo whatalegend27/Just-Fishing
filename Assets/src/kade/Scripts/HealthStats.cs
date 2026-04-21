@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthStats : MonoBehaviour
+public class HealthStats : MonoBehaviour, IHealable
 {
    public int healthVal;
    public int hungerVal;

@@ -47,15 +47,29 @@ MonoBehaviour:
   fishDatabase:
   - fishName: CatFish
     fishKnown: 1
+    catchCount: 0
+    rarity: 0
   - fishName: Nemo
     fishKnown: 1
+    catchCount: 0
+    rarity: 1
   - fishName: OrangeFish
     fishKnown: 1
+    catchCount: 0
+    rarity: 0
   - fishName: Butterfly
     fishKnown: 1
+    catchCount: 0
+    rarity: 1
   - fishName: SilverFish
     fishKnown: 1
+    catchCount: 0
+    rarity: 0
   - fishName: SkellyFish
     fishKnown: 1
+    catchCount: 0
+    rarity: 1
   - fishName: BigBruce
     fishKnown: 1
+    catchCount: 0
+    rarity: 2
