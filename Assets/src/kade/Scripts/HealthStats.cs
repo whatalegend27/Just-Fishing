@@ -5,7 +5,7 @@ public class HealthStats : MonoBehaviour, IHealable
    public int healthVal;
    public int hungerVal;
    public PlayerStats ps;
-   public inGameTime gameTime;
+   private inGameTime gameTime;
 
    private int mLastHour;
    private int mHungerTickHour;
@@ -15,6 +15,8 @@ public class HealthStats : MonoBehaviour, IHealable
    {
       healthVal = 100;
       hungerVal = 100;
+      gameTime = FindAnyObjectByType<inGameTime>();
+
       if ( gameTime != null )
          mLastHour = gameTime.hours;
       else
