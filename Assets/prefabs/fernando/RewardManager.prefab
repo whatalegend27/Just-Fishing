@@ -47,3 +47,4 @@ MonoBehaviour:
   goldManager: {fileID: 6180024683454519590, guid: 2570a548c366ca740887f26e7e904fb9, type: 3}
   healthItem: {fileID: 11400000, guid: 3382510b631364205b5f223c09be9c2e, type: 2}
   riskItem: {fileID: 11400000, guid: 58a0d99ab818e4d948e32a6fc464742d, type: 2}
+  useButton: {fileID: 8883535601208390701, guid: 78558e16a139249f2a6fea9c887df911, type: 3}

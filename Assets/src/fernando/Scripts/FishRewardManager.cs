@@ -1,23 +1,87 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishRewardManager : MonoBehaviour
 {
-    private const int ITEM_REWARD_INTERVAL = 10;
+    private const int ITEM_REWARD_INTERVAL = 1;
 
     [SerializeField] private GoldManager goldManager;
     [SerializeField] private HealthRewardItem healthItem;
     [SerializeField] private RiskReductionItem riskItem;
+    [SerializeField] private Button useButton;
 
-    // Subscribes to the fish registered event
+    private IHealable mHealthStats;
+    private IRiskReducible mArrestStats;
+
+    // Finds IHealable and IRiskReducible implementations in the scene at startup
+    private void Awake()
+    {
+        foreach (var mb in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None))
+        {
+            if (mHealthStats  == null && mb is IHealable h)      mHealthStats  = h;
+            if (mArrestStats  == null && mb is IRiskReducible r)  mArrestStats  = r;
+            if (mHealthStats  != null && mArrestStats != null) break;
+        }
+    }
+
+    // Subscribes to events
     private void OnEnable()
     {
         FishDatabaseManager.OnFishRegistered += OnFishRegistered;
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.inventoryChanged += RefreshButtons;
     }
 
-    // Unsubscribes from the fish registered event
+    // Unsubscribes from events
     private void OnDisable()
     {
         FishDatabaseManager.OnFishRegistered -= OnFishRegistered;
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.inventoryChanged -= RefreshButtons;
+    }
+
+    // Performs initial button visibility pass after all singletons are ready
+    private void Start()
+    {
+        RefreshButtons();
+    }
+
+    // Shows the button when either item is in inventory
+    private void RefreshButtons()
+    {
+        if (useButton != null)
+            useButton.gameObject.SetActive(HasItem(healthItem) || HasItem(riskItem));
+    }
+
+    // Returns true if the given item exists in inventory with quantity > 0
+    private bool HasItem(StackableItem item)
+    {
+        if (InventoryManager.Instance == null || item == null) return false;
+        foreach (InventorySlotData slot in InventoryManager.Instance.slots)
+            if (slot.item == item && slot.quantity > 0) return true;
+        return false;
+    }
+
+    // Consumes the first available item (health checked before risk) and applies its stat change
+    public void UseItem()
+    {
+        StackableItem item = HasItem(healthItem) ? healthItem
+                           : HasItem(riskItem)   ? (StackableItem)riskItem
+                           : null;
+
+        if (item == null || InventoryManager.Instance == null) return;
+
+        InventoryManager.Instance.RemoveItem(item);
+
+        switch (item)
+        {
+            case HealthRewardItem:
+                mHealthStats?.Heal();
+                break;
+            case RiskReductionItem risk:
+                mArrestStats?.ReduceRisk(risk.RiskReduction);
+                break;
+        }
     }
 
     // Awards gold based on rarity and grants a random item every ITEM_REWARD_INTERVAL catches
@@ -32,9 +96,9 @@ public class FishRewardManager : MonoBehaviour
         {
             FishCatchReward reward = fish.rarity switch
             {
-                FishRarity.Rare => new RareFishCatchReward(),
+                FishRarity.Rare      => new RareFishCatchReward(),
                 FishRarity.Legendary => new LegendaryFishCatchReward(),
-                _ => new CommonFishCatchReward()
+                _                    => new CommonFishCatchReward()
             };
             goldManager.AddGold(reward.Award());
         }
@@ -76,11 +140,6 @@ public class FishRewardManager : MonoBehaviour
     private static FishData GetFishData(string fishName)
     {
         if (FishDatabaseManager.Instance == null) return null;
-        foreach (FishData fish in FishDatabaseManager.Instance.fishDatabase)
-        {
-            if (fish.fishName == fishName)
-                return fish;
-        }
-        return null;
+        return FishDatabaseManager.Instance.fishDatabase.Find(f => f.fishName == fishName);
     }
 }
