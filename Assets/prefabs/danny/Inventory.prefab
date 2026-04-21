@@ -3623,6 +3623,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6037227600102162953, guid: e093d2a239d424214a6996be9d3bd4c0, type: 3}
+      propertyPath: inventoryDescription
+      value: 
+      objectReference: {fileID: 7670933354857530605}
     - target: {fileID: 7719496194921583733, guid: e093d2a239d424214a6996be9d3bd4c0, type: 3}
       propertyPath: m_Name
       value: EatButton
