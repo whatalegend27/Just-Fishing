@@ -3,9 +3,17 @@ using UnityEngine;
 public class UpgradeInventoryUI : MonoBehaviour
 {
     [SerializeField] private UpgradeItemSlotUI[] slots;
-
+    public static UpgradeInventoryUI Instance { get; private set; }
     void Start()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
         // Start happens AFTER all Awake calls are finished.
         // This ensures InventoryManager.Instance is definitely set.
         if (InventoryManager.Instance != null)
@@ -29,8 +37,9 @@ public class UpgradeInventoryUI : MonoBehaviour
         InventoryManager.Instance.inventoryChanged -= Refresh;
     }
 
-    void Refresh()
+    public void Refresh()
     {
+        
         int index = 0;
 
         foreach (var invSlot in InventoryManager.Instance.slots)
