@@ -5,7 +5,7 @@ public class EatButton : MonoBehaviour
 {
    // Assign the Bread ScriptableObject asset in the Inspector
    public ItemScript breadItem;
-
+   [SerializeField] GameObject inventoryDescription;
    private HealthStats mHealthStats;
 
    void Awake()
@@ -16,7 +16,7 @@ public class EatButton : MonoBehaviour
    // Called by the button's OnClick event
    public void onEat()
    {
-      if (/*InventoryManager.Instance == null || */ mHealthStats == null)
+      if (InventoryManager.Instance == null ||  mHealthStats == null)
       {
          Debug.Log("mHealthStat is null");
          return;
@@ -28,7 +28,11 @@ public class EatButton : MonoBehaviour
       {
          if (slot.item == breadItem && slot.quantity > 0) { hasBread = true; break; }
       }
-      if (!hasBread) return;
+      if (!hasBread)
+      {
+         inventoryDescription.SetActive(false);
+         return;
+      }
 
       InventoryManager.Instance.RemoveItem(breadItem);
       mHealthStats.calculateHunger("eat");
