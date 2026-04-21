@@ -1,0 +1,86 @@
+Scripts
+ 1. Fish is Caught
+  - A fish GameObject with FishCaughtTrigger detects the player collider
+  - Calls FishDatabaseManager.RegisterFish(fishName)
+  - Fish is marked as known, catch count incremented
+  - OnFishRegistered event fires
+
+  ---
+  2. Reward Manager Responds (FishRewardManager.OnFishRegistered)
+  - If fish is BigBruce → load SharkFight scene, stop here
+  - Otherwise, determine rarity → create CommonFishCatchReward, RareFishCatchReward, or
+  LegendaryFishCatchReward (dynamic binding picks the right GetGold())
+  - Gold awarded via GoldManager.AddGold()
+  - Every 10 catches → AwardRandomItem() picks randomly between HealthRewardItem or
+  RiskReductionItem and adds to inventory
+
+  ---
+  3. Catalog Updates (FishCatalogUI + ToggleButton)
+  - OnFishRegistered also triggers FishCatalogUI.ShowButton() — reveals the fish's
+  catalog button
+  - If the catalog is open, ToggleButton.UpdateCatchCount() refreshes the catch counter
+  label
+
+  ---
+  4. Player Uses an Item (FishRewardManager.UseItem)
+  - Player opens inventory, clicks a slot with a potion → InventorySlotUI.OnClick()
+  shows the description panel and Use button
+  - Player clicks Use → UseItem() checks health item first, then risk
+  - Item removed from inventory → inventoryChanged fires → InventorySlotUI.SetUp() hides
+   the description panel on the now-empty slot
+  - Switch applies the stat: IHealable.Heal() (+25 health) or
+  IRiskReducible.ReduceRisk() (−10 risk)
+
+  ---
+  5. Shark Encounter (when BigBruce is caught)
+  - SceneManager.LoadScene("SharkFight") transitions to the shark scene
+  - Player makes a choice via Isabella's SharkHandler (flirt / insult / fight)
+  - Fight outcome calls SharkFightManager.onSharkAttack() → HealthStats.takeDamage()
+
+
+
+Patterns
+
+
+Singleton — FishDatabaseManager                                                       
+  +---------------------------+                                                         
+  |    FishDatabaseManager    |                                                         
+  +---------------------------+                                                         
+  | - sInstance               |                                                         
+  +---------------------------+                                                         
+  | + sInstance : getInstance |                                                         
+  | + registerFish()          |                             
+  | + resetInstance()         |                                                         
+  +---------------------------+
+          |                                                                             
+          | uses itself                                     
+          v                                                                             
+  +---------------------------+                             
+  |    FishDatabaseManager    |  <-- same class, only one ever exists
+  +---------------------------+                                      
+                                                                                        
+  ---
+  Decorator — FishCatchReward                                                           
+  +----------------------+                                  
+  |    FishCatchReward   |  <-- Super Class (static type)                               
+  +----------------------+                                  
+  | # mGold : int        |                                                              
+  +----------------------+
+  | + Award()            |  <-- statically bound                                        
+  | # GetGold()          |  <-- virtual (dynamically bound)                             
+  +----------+-----------+                                 
+             |                                                                          
+             | inherits                                     
+       +-----+------+----------+                                                        
+       |            |           |                           
+  +----+-----+ +----+-----+ +---+------+                                                
+  |  Common  | |   Rare   | |Legendary |
+  |  Reward  | |  Reward  | |  Reward  |                                                
+  +----------+ +----------+ +----------+                                                
+  | base: 10 | | base: 25 | | base: 50 |                                                
+  +----------+ +----------+ +----------+                                                
+  | GetGold()| | GetGold()| | GetGold()|                    
+  | mGold    | | mGold+15 | | mGold+40 |                                                
+  +----------+ +----------+ +----------+                    
+                                                   
+
