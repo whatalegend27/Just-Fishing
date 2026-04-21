@@ -11,6 +11,9 @@ public class ItemScript : ScriptableObject
     [SerializeField] private Sprite icon;
     [SerializeField] private ItemType itemType;
 
+    //for Isabella
+    public int attractionValue;
+
     //Getters that return values
     public string ItemName => itemName;
     public int Price => price;
