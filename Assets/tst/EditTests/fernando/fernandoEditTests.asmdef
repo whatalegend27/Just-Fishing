@@ -4,7 +4,8 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Fernando.Game.Runtime"
+        "Fernando.Game.Runtime",
+        "GUID:19427d17fcd801d47827388571468871"
     ],
     "includePlatforms": [
         "Editor"

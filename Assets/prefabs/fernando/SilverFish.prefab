@@ -16,6 +16,26 @@ PrefabInstance:
       propertyPath: fishName
       value: SilverFish
       objectReference: {fileID: 0}
+    - target: {fileID: 4587488923478867597, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 58d455ad2500d5e4287c9ad6394c25d0, type: 2}
+    - target: {fileID: 6272405525855043087, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: maxY
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6272405525855043087, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: minY
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: m_Sprite
       value: 

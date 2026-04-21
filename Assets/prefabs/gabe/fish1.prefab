@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2214464867185973898}
   - component: {fileID: 1199635025318103599}
   - component: {fileID: 6641770298640509024}
+  - component: {fileID: 6588920074908116177}
+  - component: {fileID: 4567650203455989326}
   m_Layer: 0
   m_Name: fish1
   m_TagString: Untagged
@@ -90,7 +92,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6641770298640509024
 MonoBehaviour:
@@ -104,9 +106,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 692d82335fa048c4a82e8d0befd44500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishMovement
-  speed: 2
+  minSpeed: 1.5
+  maxSpeed: 2.5
+  turnSpeed: 2
   directionChangeTime: 2
+  verticalWiggleAmount: 0.3
+  verticalWiggleSpeed: 2
   minX: -8
   maxX: 8
   minY: -4
   maxY: 4
+--- !u!114 &6588920074908116177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075479357044026299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f85cd0368ed334db790ae01f96c1a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: gabe.scripts::FishSpawner
+  fishPrefabs: []
+  numberToSpawn: 10
+  minX: -8
+  maxX: 8
+  minY: -4
+  maxY: 4
+--- !u!114 &4567650203455989326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075479357044026299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5278c3b3d1708374cafd2d7c21c589fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: gabe.scripts::FishToInventory
+  fishItems: []

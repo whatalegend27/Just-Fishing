@@ -20,6 +20,18 @@ PrefabInstance:
       propertyPath: fishName
       value: OrangeFish
       objectReference: {fileID: 0}
+    - target: {fileID: 4587488923478867597, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 205bd27e5c4df264b91ee3557ffd251b, type: 2}
+    - target: {fileID: 6272405525855043087, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: maxY
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6272405525855043087, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: minY
+      value: -14
+      objectReference: {fileID: 0}
     - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: m_Sprite
       value: 

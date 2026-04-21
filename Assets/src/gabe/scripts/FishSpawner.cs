@@ -3,15 +3,21 @@ using UnityEngine;
 
 public class FishSpawner : MonoBehaviour
 {
+    [System.Serializable]
+    private class SpawnBounds
+    {
+        public float minX = -8f;
+        public float maxX = 8f;
+        public float minY = -9f;
+        public float maxY = 3f;
+    }
+
     [Header("Fish Setup")]
     public List<GameObject> fishPrefabs;
     public int numberToSpawn = 10;
 
     [Header("Spawn Bounds")]
-    public float minX = -8f;
-    public float maxX = 8f;
-    public float minY = -4f;
-    public float maxY = 4f;
+    [SerializeField] private SpawnBounds bounds = new SpawnBounds();
 
     protected virtual void Start()
     {
@@ -45,8 +51,8 @@ public class FishSpawner : MonoBehaviour
     protected virtual Vector2 GetSpawnPosition()
     {
         return new Vector2(
-            Random.Range(minX, maxX),
-            Random.Range(minY, maxY)
+            Random.Range(bounds.minX, bounds.maxX),
+            Random.Range(bounds.minY, bounds.maxY)
         );
     }
 
@@ -60,18 +66,28 @@ public class FishSpawner : MonoBehaviour
         FishMovement movement = fish.GetComponent<FishMovement>();
         if (movement != null)
         {
-            movement.minX = minX;
-            movement.maxX = maxX;
-            movement.minY = minY;
-            movement.maxY = maxY;
+            movement.minX = bounds.minX;
+            movement.maxX = bounds.maxX;
+            movement.minY = bounds.minY;
+            movement.maxY = bounds.maxY;
         }
     }
 
     protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
-        Vector3 center = new Vector3((minX + maxX) / 2f, (minY + maxY) / 2f, 0f);
-        Vector3 size = new Vector3(maxX - minX, maxY - minY, 0f);
+        Vector3 center = new Vector3(
+            (bounds.minX + bounds.maxX) / 2f,
+            (bounds.minY + bounds.maxY) / 2f,
+            0f
+        );
+
+        Vector3 size = new Vector3(
+            bounds.maxX - bounds.minX,
+            bounds.maxY - bounds.minY,
+            0f
+        );
+
         Gizmos.DrawWireCube(center, size);
     }
 }
