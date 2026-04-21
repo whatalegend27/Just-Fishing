@@ -4,6 +4,7 @@ using UnityEngine;
 public class ToolboxTests
 {
     private HandleToolbox toolbox;
+    private GameObject testToolbox;
 
     [SetUp]
     public void Setup()
@@ -13,27 +14,24 @@ public class ToolboxTests
 
         toolbox.toolboxes = new GameObject[]
         {
-            new GameObject(),
-            new GameObject(),
-            new GameObject()
+            new GameObject("TB1"),
+            new GameObject("TB2"),
+            new GameObject("TB3")
         };
 
-        toolbox.tbShow = toolbox.toolboxes[0];
+        testToolbox = toolbox.toolboxes[0];
 
-        // Initialize to Gameplay state
+        // Start in gameplay
         toolbox.SetGameplayState();
     }
 
     [Test]
     public void StateTransition_GameplayToToolbox()
     {
-        // Assert initial state
         Assert.IsInstanceOf<GameplayState>(toolbox.GetCurrentState());
 
-        // Act
-        toolbox.SetToolboxState();
+        toolbox.OpenToolbox(testToolbox);
 
-        // Assert
         Assert.IsInstanceOf<ToolboxState>(toolbox.GetCurrentState());
         Assert.AreEqual(0f, Time.timeScale);
     }
@@ -41,12 +39,14 @@ public class ToolboxTests
     [Test]
     public void Only_One_Toolbox_Active_In_Toolbox_State()
     {
-        toolbox.SetToolboxState();
+        toolbox.OpenToolbox(testToolbox);
 
         int activeCount = 0;
+
         foreach (GameObject tb in toolbox.toolboxes)
         {
-            if (tb.activeSelf) activeCount++;
+            if (tb.activeSelf)
+                activeCount++;
         }
 
         Assert.AreEqual(1, activeCount);
@@ -58,7 +58,7 @@ public class ToolboxTests
         for (int i = 0; i < 1000; i++)
         {
             if (toolbox.GetCurrentState() is GameplayState)
-                toolbox.SetToolboxState();
+                toolbox.OpenToolbox(testToolbox);
             else
                 toolbox.SetGameplayState();
         }

@@ -20,6 +20,7 @@ public class RodUpgradeManager : MonoBehaviour
         }
 
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public bool TryEquip(ItemScript item)
