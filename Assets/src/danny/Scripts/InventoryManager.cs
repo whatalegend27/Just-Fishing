@@ -26,12 +26,7 @@ public class InventoryManager : MonoBehaviour
             return;
         }
         Instance = this;
-
-        if (Application.isPlaying)
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-
+        DontDestroyOnLoad(gameObject);
     }
 
     //adds item to inventory 

@@ -12,6 +12,7 @@ public class FishRewardManager : MonoBehaviour
     [SerializeField] private Button useButton;
     [SerializeField] private string sharkFishName = "BigBruce";
     [SerializeField] private string sharkSceneName = "SharkFight";
+    [SerializeField] private GameObject inventoryDescription;
 
     private IHealable mHealthStats;
     private IRiskReducible mArrestStats;
