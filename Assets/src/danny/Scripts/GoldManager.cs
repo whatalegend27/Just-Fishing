@@ -26,13 +26,9 @@ public class GoldManager : MonoBehaviour
         }
         Instance = this;
 
-        if (Application.isPlaying)
-        {
-            transform.SetParent(null);
-            DontDestroyOnLoad(gameObject);  //persist across other scenes so gold stays updated
-            SceneManager.sceneLoaded += OnSceneLoaded; //sees if the shop scene is loaded
-        }
-
+        transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);  //persist across other scenes so gold stays updated
+        SceneManager.sceneLoaded += OnSceneLoaded; //sees if the shop scene is loaded
         UpdateUI();
     }
 

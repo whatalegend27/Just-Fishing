@@ -16,6 +16,7 @@ public class EatButton : MonoBehaviour
    public void onEat()
    {
       if (InventoryManager.Instance == null || mHealthStats == null) return;
+      if (InventoryManager.Instance == null || mHealthStats == null) return;
 
       // Check the player actually has bread before consuming it
       bool hasBread = false;

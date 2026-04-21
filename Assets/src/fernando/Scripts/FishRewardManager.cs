@@ -9,6 +9,7 @@ public class FishRewardManager : MonoBehaviour
     [SerializeField] private HealthRewardItem healthItem;
     [SerializeField] private RiskReductionItem riskItem;
     [SerializeField] private Button useButton;
+    [SerializeField] private GameObject inventoryDescription;
 
     private IHealable mHealthStats;
     private IRiskReducible mArrestStats;
