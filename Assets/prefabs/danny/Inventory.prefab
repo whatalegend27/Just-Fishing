@@ -3634,13 +3634,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6037227600102162953, guid: e093d2a239d424214a6996be9d3bd4c0, type: 3}
-<<<<<<< Updated upstream
-=======
       propertyPath: descriptionPanel
       value: 
       objectReference: {fileID: 7670933354857530605}
     - target: {fileID: 6037227600102162953, guid: e093d2a239d424214a6996be9d3bd4c0, type: 3}
->>>>>>> Stashed changes
       propertyPath: inventoryDescription
       value: 
       objectReference: {fileID: 7670933354857530605}

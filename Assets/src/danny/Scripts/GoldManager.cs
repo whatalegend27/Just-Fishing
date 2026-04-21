@@ -10,7 +10,7 @@ public class GoldManager : MonoBehaviour
     public static GoldManager Instance { get; private set; }
     [SerializeField] private GameObject goldDisplay;
     [SerializeField] private TextMeshProUGUI goldText;
-    [SerializeField] private int playerGold = 10;
+    private int playerGold = 10;
     private bool canAddIn;
 
     public int PlayerGold => playerGold;
