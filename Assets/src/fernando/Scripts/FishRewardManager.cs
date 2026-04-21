@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class FishRewardManager : MonoBehaviour
 {
-    private const int ITEM_REWARD_INTERVAL = 1;
+    private const int ITEM_REWARD_INTERVAL = 10;
 
     [SerializeField] private GoldManager goldManager;
     [SerializeField] private HealthRewardItem healthItem;
@@ -54,7 +54,7 @@ public class FishRewardManager : MonoBehaviour
         if (InventoryManager.Instance == null) return;
 
         StackableItem item = HasItem(healthItem) ? healthItem
-                           : HasItem(riskItem)   ? (StackableItem)riskItem
+                           : HasItem(riskItem) ? (StackableItem)riskItem
                            : null;
 
         if (item == null) return;
@@ -91,12 +91,17 @@ public class FishRewardManager : MonoBehaviour
 
         if (goldManager != null)
         {
+            // Static type = FishCatchReward (declared type, never changes)
+            // Dynamic type = whichever subclass is assigned based on rarity (set at runtime)
             FishCatchReward reward = fish.rarity switch
             {
-                FishRarity.Rare => new RareFishCatchReward(),
-                FishRarity.Legendary => new LegendaryFishCatchReward(),
-                _ => new CommonFishCatchReward()
+                FishRarity.Rare => new RareFishCatchReward(),       // dynamic type: RareFishCatchReward
+                FishRarity.Legendary => new LegendaryFishCatchReward(),  // dynamic type: LegendaryFishCatchReward
+                _ => new CommonFishCatchReward()       // dynamic type: CommonFishCatchReward
             };
+
+            // Award() is statically bound — FishCatchReward.Award() is always called here.
+            // Inside Award(), GetGold() is dynamically bound — the override on the actual runtime type is called.
             goldManager.AddGold(reward.Award());
         }
 
