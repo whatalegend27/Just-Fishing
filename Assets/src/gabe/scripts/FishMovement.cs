@@ -15,8 +15,8 @@ public class FishMovement : MonoBehaviour
     [Header("Movement Bounds")]
     public float minX = -8f;
     public float maxX = 8f;
-    public float minY = -4f;
-    public float maxY = 4f;
+    public float minY = -9f;
+    public float maxY = 3f;
 
     [Header("Sprite Direction")]
     public bool spriteFacesRight = true;

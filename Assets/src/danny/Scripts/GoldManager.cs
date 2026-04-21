@@ -10,8 +10,11 @@ public class GoldManager : MonoBehaviour
     public static GoldManager Instance { get; private set; }
     [SerializeField] private GameObject goldDisplay;
     [SerializeField] private TextMeshProUGUI goldText;
-    [SerializeField] private int playerGold = 100;
+    [SerializeField] private int playerGold = 10;
     private bool canAddIn;
+
+    public int PlayerGold => playerGold;
+    public static void ResetInstance() => Instance = null; //used for testing
 
     private void Awake()
     {
@@ -22,9 +25,14 @@ public class GoldManager : MonoBehaviour
             return;
         }
         Instance = this;
-        transform.SetParent(null);
-        DontDestroyOnLoad(gameObject);  //persist across other scenes so gold stays updated
-        SceneManager.sceneLoaded += OnSceneLoaded; //tries to find goldtext everytime scene loaded
+
+        if (Application.isPlaying)
+        {
+            transform.SetParent(null);
+            DontDestroyOnLoad(gameObject);  //persist across other scenes so gold stays updated
+            SceneManager.sceneLoaded += OnSceneLoaded; //sees if the shop scene is loaded
+        }
+
         UpdateUI();
     }
 
@@ -91,6 +99,7 @@ public class GoldManager : MonoBehaviour
         goldText.text = playerGold.ToString();
     }
 
+    //activates gold amount whenever shop is loaded
     void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
 
