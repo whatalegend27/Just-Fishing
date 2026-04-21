@@ -3,22 +3,21 @@ using UnityEngine;
 public class HandleToolbox : MonoBehaviour
 {
     [Header("Toolbox Settings")]
-    public GameObject tbShow;
     public GameObject[] toolboxes;
+    public GameObject defaultToolbox; // 👈 ADD THIS
 
     private IToolboxState currentState;
 
-    // Reuse instances (important for consistency)
-    private IToolboxState gameplayState = new GameplayState();
-    private IToolboxState toolboxState = new ToolboxState();
+    private readonly IToolboxState gameplayState = new GameplayState();
 
     void Start()
     {
         toolboxes = GameObject.FindGameObjectsWithTag("Toolbox");
-        SetState(gameplayState);
-        foreach (GameObject toolbox in toolboxes){
+
+        foreach (GameObject toolbox in toolboxes)
             toolbox.SetActive(false);
-        }
+
+        SetState(gameplayState);
     }
 
     void Update()
@@ -26,10 +25,17 @@ public class HandleToolbox : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             if (currentState is GameplayState)
-                SetState(toolboxState);
+                SetState(new ToolboxState(defaultToolbox)); // 👈 DEFAULT OPEN
             else
                 SetState(gameplayState);
         }
+    }
+
+    public void SetGameplayState() => SetState(gameplayState);
+
+    public void OpenToolbox(GameObject toolbox)
+    {
+        SetState(new ToolboxState(toolbox));
     }
 
     public void SetState(IToolboxState newState)
@@ -41,13 +47,5 @@ public class HandleToolbox : MonoBehaviour
         currentState.Enter(this);
     }
 
-    // 👇 REQUIRED for testing
-    public IToolboxState GetCurrentState()
-    {
-        return currentState;
-    }
-
-    // 👇 Optional helpers (nice for tests / clarity)
-    public void SetGameplayState() => SetState(gameplayState);
-    public void SetToolboxState() => SetState(toolboxState);
+    public IToolboxState GetCurrentState() => currentState;
 }
