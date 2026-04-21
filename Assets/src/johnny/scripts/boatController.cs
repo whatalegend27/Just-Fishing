@@ -1,23 +1,26 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BoatController : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer dialogueBoxRenderer;
+    public bool isBoatActive = false;
+    public float timeBetweenDrifts = 5f; // Seconds
+    private Vector2 boatCurrentPosition;
 
-  [SerializeField] private SpriteRenderer dialogueBoxRenderer;
-  public bool isBoatActive = false;
-  public float timeBetweenDrifts = 5f; // Seconds
-  private Vector2 boatCurrentPosition;
+    public float Speed { get; set; } = 0f;
+    public float CurrentForce { get; set; } = 0f;
+    public float WindForce { get; set; } = 0f;
+    // -------------------------------------------------------------------------
 
-  void Start()
-  {
-    if (isBoatActive)
+    void Start()
     {
-      boatCurrentPosition = new Vector2(transform.position.x, transform.position.y);
-      StartCoroutine(DriftRoutine());
+        if (isBoatActive)
+        {
+            boatCurrentPosition = new Vector2(transform.position.x, transform.position.y);
+            StartCoroutine(DriftRoutine());
+        }
     }
-  }
 
     // Public for testing purposes, but could be private in the final version
     public Vector2 CalculateDriftOffset(Vector2 startPosition)
@@ -26,10 +29,15 @@ public class BoatController : MonoBehaviour
         Vector2 proposedPosition;
         int failsafe = 0;
 
+        float baseDrift = 2f;
+        float driftIntensity = baseDrift + Mathf.Abs(Speed) + Mathf.Abs(CurrentForce) + Mathf.Abs(WindForce);
+        
+        driftIntensity = Mathf.Clamp(driftIntensity, 0f, 15f);
+
         do
         {
-            float driftX = Random.Range(-2f, 2f);
-            float driftY = Random.Range(-2f, 2f);
+            float driftX = Random.Range(-driftIntensity, driftIntensity);
+            float driftY = Random.Range(-driftIntensity, driftIntensity);
             driftOffset = new Vector2(driftX, driftY);
             
             proposedPosition = startPosition + driftOffset;
@@ -54,5 +62,4 @@ public class BoatController : MonoBehaviour
             transform.position = new Vector3(boatCurrentPosition.x, boatCurrentPosition.y, 0f);
         }
     }
-
 }
