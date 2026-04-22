@@ -1111,6 +1111,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7005e116d4d6647af949b34e3a0cf54d, type: 3}
+--- !u!95 &664619435 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 621163668176052440, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
+  m_PrefabInstance: {fileID: 832404789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &687212388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,10 +1418,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c42e53f30335147aa35b0a742783e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemoController
-  mode: 1
-  fishingHook: {fileID: 1737437918}
+  mode: 2
+  playerAnimator: {fileID: 664619435}
+  hookSearchInterval: 0.5
+  castDelay: 1
   sinkTime: 2.5
+  noCatchWaitTime: 4
   waitBetweenCasts: 2
+  horizontalChangeInterval: 0.75
 --- !u!4 &793155665
 Transform:
   m_ObjectHideFlags: 0
@@ -1587,7 +1596,7 @@ PrefabInstance:
       objectReference: {fileID: 1053015090}
     - target: {fileID: 8283729168369420294, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8283729168369420294, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: Toolboxes.Array.size
@@ -5559,17 +5568,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1737437918 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -78892518706941883, guid: bbe2656e3fc964e528aee64ed701c944, type: 3}
-  m_PrefabInstance: {fileID: 1869167622}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d0999bfa3774d8a81acec9af101a8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Saif.GamePlay::Saif.GamePlay.HeavyHook
 --- !u!1001 &1751663766
 PrefabInstance:
   m_ObjectHideFlags: 0
