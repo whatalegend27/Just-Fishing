@@ -5,6 +5,8 @@
 *Copyright © 2026 Starfish Studios*
 *Licensed under the MIT License.*
 
+Unity version 6000.3.10f1 
+
 
 ---
 
