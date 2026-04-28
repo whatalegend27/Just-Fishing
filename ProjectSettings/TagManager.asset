@@ -18,6 +18,7 @@ TagManager:
   - Toolbox
   - GoldText
   - ChoiceTxt
+  - Bait
   layers:
   - Default
   - TransparentFX

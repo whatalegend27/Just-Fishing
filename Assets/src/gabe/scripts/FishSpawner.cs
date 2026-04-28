@@ -15,7 +15,6 @@ using UnityEngine;
 //3: this script calls the virtual methods
 
 
-
 // This script is responsible for spawning fish into the scene
 // Picks random prefabs, places them within defined spawn area
 // then configs their movement bounds so stay inside that area
