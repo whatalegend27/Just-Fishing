@@ -1,7 +1,9 @@
 {
     "name": "Saif.GamePlay",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:19427d17fcd801d47827388571468871"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
