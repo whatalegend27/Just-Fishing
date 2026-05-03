@@ -55,7 +55,7 @@ public class BackgroundManager : MonoBehaviour
         float timePercentage = currentTimeInDay / settings.DayDuration;
 
         // Update background colors. Gradient is determined using Unity's built-in editor.
-        Color currentColor = settings.TimeColors.Evaluate(timePercentage);
+        Color currentColor = settings.TimeColors.savedGradient.Evaluate(timePercentage);
         foreach (SpriteRenderer renderer in settings.BackgroundRenderers)
         {
             if (renderer != null)
@@ -65,7 +65,7 @@ public class BackgroundManager : MonoBehaviour
         }
         if (settings.BackdropRenderer != null)
         {
-            settings.BackdropRenderer.color = settings.BackdropColors.Evaluate(timePercentage);
+            settings.BackdropRenderer.color = settings.BackdropColors.savedGradient.Evaluate(timePercentage);
         }
 
         // Adjust visuals based on weather conditions
@@ -147,7 +147,7 @@ public class BackgroundManager : MonoBehaviour
             {
                 float currentX = Mathf.Lerp(settings.SunrisePoint.position.x, settings.SunsetPoint.position.x, timePercentage);
                 float baseY = Mathf.Lerp(settings.SunrisePoint.position.y, settings.SunsetPoint.position.y, timePercentage);
-                float heightOffset = settings.SunArcHeight.Evaluate(timePercentage);
+                float heightOffset = settings.SunArcHeight.savedCurve.Evaluate(timePercentage);
                 settings.SunTransform.position = new Vector3(currentX, baseY + heightOffset, settings.SunTransform.position.z);
             }
         }
@@ -183,8 +183,8 @@ public class BackgroundManagerData
 
     [Header("Color Shifting")]
     [Tooltip("Sets the colors for midnight (0.0), sunrise (0.25), noon (0.5), sunset (0.75), and midnight (1.0).")]
-    [SerializeField] private Gradient timeColors;
-    [SerializeField] private Gradient backdropColors;
+    [SerializeField] private GradientData timeColors;
+    [SerializeField] private GradientData backdropColors;
 
     [Header("Rendering")]
     [Tooltip("The renderers for the sky, rain, and clouds.")]
@@ -201,7 +201,7 @@ public class BackgroundManagerData
     [Tooltip("Where the sun ends.")]
     [SerializeField] private Transform sunsetPoint;
     [Tooltip("Controls the height of the sun's arc throughout the day.")]
-    [SerializeField] private AnimationCurve sunArcHeight;
+    [SerializeField] private CurveData sunArcHeight;
 
     [Header("Rain Settings")]
     [Tooltip("The rain sound controller.")]
@@ -212,8 +212,8 @@ public class BackgroundManagerData
     public float DayDuration => dayDuration;
 
     // Color shifting
-    public Gradient TimeColors => timeColors;
-    public Gradient BackdropColors => backdropColors;
+    public GradientData TimeColors => timeColors;
+    public GradientData BackdropColors => backdropColors;
 
     // Rendering
     public SpriteRenderer[] BackgroundRenderers => backgroundRenderers;
@@ -226,7 +226,7 @@ public class BackgroundManagerData
     public Transform SunTransform => sunTransform;
     public Transform SunrisePoint => sunrisePoint;
     public Transform SunsetPoint => sunsetPoint;
-    public AnimationCurve SunArcHeight => sunArcHeight;
+    public CurveData SunArcHeight => sunArcHeight;
 
     // Rain settings
     public AudioSource RainSound => rainSound;
