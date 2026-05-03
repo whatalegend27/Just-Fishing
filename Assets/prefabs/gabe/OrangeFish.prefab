@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: minY
       value: -14
       objectReference: {fileID: 0}
+    - target: {fileID: 6272405525855043087, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
+      propertyPath: baitFollowSpeedMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6685172212496919265, guid: 6d58f0a1aeae846b5b6b53aada1c955a, type: 3}
       propertyPath: m_Sprite
       value: 
