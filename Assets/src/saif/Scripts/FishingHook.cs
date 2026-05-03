@@ -32,6 +32,7 @@ namespace Saif.GamePlay // Organizing my code into a specific "Saif" folder/name
         [HideInInspector] public Vector3 debugSpawnOverride; // A public variable hidden from the Unity UI
 
         public bool IsHookCast => !isReadyToCast; // A "Getter" property to tell other scripts if we are currently fishing
+        public bool HasFishAttached => hasCaughtFish;
 
         private Animator playerAnimator;     // Private reference to the player's animation controller
         private SpriteRenderer playerSprite; // Private reference to the player's image (for flipping)
