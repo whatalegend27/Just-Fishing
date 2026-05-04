@@ -263,6 +263,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2450550158803091587, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
   m_PrefabInstance: {fileID: 832404789}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &362952917 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4366601060849347950, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+  m_PrefabInstance: {fileID: 3738106105462932300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &365972437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -924,6 +929,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!4 &825783720 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6047608942261375162, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+  m_PrefabInstance: {fileID: 3738106105462932300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &832404789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1192,11 +1202,19 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e71515c4eeec746e18c93a722347bb12, type: 3}
     - target: {fileID: 6186213602563156308, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6186213602563156308, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: m_SortingLayerID
-      value: -574097823
+      value: -902428673
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497673541299130137, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+      propertyPath: m_SortingLayer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6497673541299130137, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -902428673
       objectReference: {fileID: 0}
     - target: {fileID: 6497673541299130137, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
@@ -1231,6 +1249,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c94a1ab7b48d43d5828fbd0baea234a, type: 3}
+--- !u!212 &937448930 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4126601119295254133, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+  m_PrefabInstance: {fileID: 3738106105462932300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &966581619
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1780,6 +1803,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!4 &1483742199 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5697047543885691860, guid: f36fef32207331546b69f7d41f8fa392, type: 3}
+  m_PrefabInstance: {fileID: 365972437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1582887260
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,6 +3408,62 @@ PrefabInstance:
       propertyPath: backdropRenderer
       value: 
       objectReference: {fileID: 757179622}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.rainSound
+      value: 
+      objectReference: {fileID: 1764153985}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.cloudsBack
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.timeColors
+      value: 
+      objectReference: {fileID: 11400000, guid: 77ab2c5d341ea4e8aa3c6c2fdd7a9454, type: 2}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.cloudsFront
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.sunsetPoint
+      value: 
+      objectReference: {fileID: 362952917}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.rainRenderer
+      value: 
+      objectReference: {fileID: 84742705}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.sunArcHeight
+      value: 
+      objectReference: {fileID: 11400000, guid: 1657a0a599ff54c0f96c4c7ad6158e4a, type: 2}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.sunTransform
+      value: 
+      objectReference: {fileID: 1483742199}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.sunrisePoint
+      value: 
+      objectReference: {fileID: 825783720}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.backdropColors
+      value: 
+      objectReference: {fileID: 11400000, guid: 98e911aa01cc24e1f95ef66d26d70b49, type: 2}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.backdropRenderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: settings.backgroundRenderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: 'settings.backgroundRenderers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 937448930}
+    - target: {fileID: 1339736588442444489, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
+      propertyPath: 'settings.backgroundRenderers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 937448930}
     - target: {fileID: 3464753811624846925, guid: 6e1ac66ddfec74a0e8d32968eaf02d70, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.9972346
