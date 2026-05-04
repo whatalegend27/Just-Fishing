@@ -18,6 +18,7 @@ TagManager:
   - Toolbox
   - GoldText
   - ChoiceTxt
+  - Bait
   layers:
   - Default
   - TransparentFX
@@ -70,11 +71,11 @@ TagManager:
   - name: Player
     uniqueID: 3720869473
     locked: 0
-  - name: Fish
-    uniqueID: 3392538623
-    locked: 0
   - name: BoatBody
     uniqueID: 2795959219
+    locked: 0
+  - name: Fish
+    uniqueID: 3392538623
     locked: 0
   - name: Dialogue
     uniqueID: 2390049529
