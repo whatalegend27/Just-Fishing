@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: RiskReductionItem
   m_EditorClassIdentifier: Fernando.Game.Runtime::RiskReductionItem
   itemName: Risk Vial
-  itemDescription: 'sneaky, remove all risk
+  itemDescription: 'sneaky, sneak
 
 '
   price: 100
   icon: {fileID: -3910597312296140689, guid: a1e12b3f9f2ba43bfa69de88fc75976f, type: 3}
   itemType: 0
   attractionValue: 0
-  riskReduction: 100
+  riskReduction: 10
