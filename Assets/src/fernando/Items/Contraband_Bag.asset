@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d234356792f11e439804c359b65fe1f, type: 3}
   m_Name: Contraband_Bag
   m_EditorClassIdentifier: DannyScripts::ItemScript
-  itemName: 
-  itemDescription: 
-  price: 0
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: Contraband Bag
+  itemDescription: 'sneaky, remove all risk
+
+'
+  price: 250
+  icon: {fileID: 2257421112335068817, guid: 846bd906ba8294809872fa4be7fb3c31, type: 3}
+  itemType: 5
   attractionValue: 0
