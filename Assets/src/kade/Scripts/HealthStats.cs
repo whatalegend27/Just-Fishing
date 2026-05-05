@@ -86,6 +86,12 @@ public class HealthStats : MonoBehaviour, IHealable, IDamageable
       calculateHealth( "heal" );
    }
 
+   // Heals the player by a specific amount, capped at 100
+   public void HealByAmount( int amount )
+   {
+      healthVal = Mathf.Clamp( healthVal + amount, 0, 100 );
+   }
+
    // Resets health and hunger to their starting values
    public void resetStats()
    {
