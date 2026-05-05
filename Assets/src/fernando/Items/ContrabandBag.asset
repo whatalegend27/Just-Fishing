@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d234356792f11e439804c359b65fe1f, type: 3}
-  m_Name: Contraband_Bag
-  m_EditorClassIdentifier: DannyScripts::ItemScript
-  itemName: Contraband Bag
+  m_Script: {fileID: 11500000, guid: 5b37e8b6d55444814a2af2f833079001, type: 3}
+  m_Name: ContrabandBag
+  m_EditorClassIdentifier: Fernando.Game.Runtime::RiskReductionItem
+  itemName: ContrabandBag
   itemDescription: 'sneaky, remove all risk
 
 '
-  price: 250
+  price: 500
   icon: {fileID: 2257421112335068817, guid: 846bd906ba8294809872fa4be7fb3c31, type: 3}
   itemType: 5
   attractionValue: 0
+  riskReduction: 100
