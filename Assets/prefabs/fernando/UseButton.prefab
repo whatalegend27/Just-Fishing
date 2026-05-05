@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6842677221386724567}
   - component: {fileID: 6146581260199638000}
   - component: {fileID: 8883535601208390701}
+  - component: {fileID: 4237434017488315575}
   m_Layer: 5
   m_Name: UseButton
   m_TagString: Untagged
@@ -121,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6474829561255355789, guid: 83e1ca3bf5a7242d69dc25796344b2fb, type: 3}
-        m_TargetAssemblyTypeName: FishRewardManager, Fernando.Game.Runtime
-        m_MethodName: UseItem
+      - m_Target: {fileID: 4237434017488315575}
+        m_TargetAssemblyTypeName: UseButton, GameScripts
+        m_MethodName: OnUse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -133,6 +134,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4237434017488315575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408176341646066061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b87e8f337c62cc8ebc1bb3a7df25428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameScripts::UseButton
+  healthItem: {fileID: 11400000, guid: 3382510b631364205b5f223c09be9c2e, type: 2}
+  riskItem: {fileID: 11400000, guid: 58a0d99ab818e4d948e32a6fc464742d, type: 2}
 --- !u!1 &5631554489078361343
 GameObject:
   m_ObjectHideFlags: 0
