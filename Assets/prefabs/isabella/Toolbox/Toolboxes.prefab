@@ -11320,6 +11320,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7849624421861519621, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
+      propertyPath: contrabandBag
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ab6181e22abe4c9e85cac99820cc6be, type: 2}
     - target: {fileID: 8306997423479641313, guid: d02b3d5ff8167934e99d3517644c4967, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

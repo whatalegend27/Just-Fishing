@@ -4,6 +4,7 @@ public class UseButton : MonoBehaviour
 {
     [SerializeField] private HealthRewardItem healthItem;
     [SerializeField] private RiskReductionItem riskItem;
+    [SerializeField] private RiskReductionItem contrabandBag;
     private HealthStats mHealthStats;
     private ArrestStats mArrestStats;
     private GameObject inventoryDescription;
@@ -27,8 +28,9 @@ public class UseButton : MonoBehaviour
     {
         if (InventoryManager.Instance == null) return;
 
-        StackableItem item = HasItem(healthItem) ? (StackableItem)healthItem
-                           : HasItem(riskItem)   ? (StackableItem)riskItem
+        StackableItem item = HasItem(healthItem)     ? (StackableItem)healthItem
+                           : HasItem(riskItem)      ? (StackableItem)riskItem
+                           : HasItem(contrabandBag) ? (StackableItem)contrabandBag
                            : null;
 
         if (item == null) return;
@@ -45,7 +47,7 @@ public class UseButton : MonoBehaviour
                 break;
         }
 
-        if (!HasItem(healthItem) && !HasItem(riskItem) && inventoryDescription != null)
+        if (!HasItem(healthItem) && !HasItem(riskItem) && !HasItem(contrabandBag) && inventoryDescription != null)
             inventoryDescription.SetActive(false);
     }
 

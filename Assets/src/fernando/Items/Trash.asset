@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399c1a620dfd78147b35fc1ce06158f8, type: 3}
   m_Name: Trash
   m_EditorClassIdentifier: DannyScripts::StackableItem
-  itemName: 
-  itemDescription: 
-  price: 0
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: Trash
+  itemDescription: basically worthless
+  price: 5
+  icon: {fileID: 7858980336673299937, guid: b613b1c1491ba43138285884db54055c, type: 3}
+  itemType: 4
   attractionValue: 0
