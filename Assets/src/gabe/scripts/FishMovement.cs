@@ -1,111 +1,153 @@
 using UnityEngine;
+using Saif.GamePlay;
 
-// Base class that ALL fish types use.
-// This defines general movement behavior.
-// Subclasses (like FastFishMovement) will override parts of this.
 public class FishMovement : MonoBehaviour
 {
     // ===== BASIC MOVEMENT SETTINGS =====
     [Header("Movement")]
-
     public float minSpeed = 1.5f;
     public float maxSpeed = 2.5f;
-
-    // How fast the fish turns (higher = smoother/faster turning)
     public float turnSpeed = 2f;
-
     public float directionChangeTime = 2.5f;
-
 
     // ===== NATURAL SWIMMING SETTINGS =====
     [Header("Swim Motion")]
-
     public float verticalWiggleAmount = 0.3f;
-
     public float verticalWiggleSpeed = 2f;
-
 
     // ===== MOVEMENT AREA LIMITS =====
     [Header("Movement Bounds")]
-
     public float minX = -8f;
     public float maxX = 8f;
     public float minY = -4f;
     public float maxY = 4f;
 
+    // ===== BAIT FOLLOW SETTINGS =====
+    [Header("Bait Following")]
+    public bool followBait = true;
+    public float baitDetectionRange = 5f;
+    public float baitFollowSpeedMultiplier = 1.4f;
+
+    private HookBait targetBait;
 
     // ===== PRIVATE DATA CLASS =====
-    // Holds all runtime values for movement.
-    // Keeps things clean and organized instead of many separate variables.
     private FishState state = new FishState();
 
     private class FishState
     {
-        public Vector2 currentDirection; // where fish currently moving
-        public Vector2 targetDirection;  // where fish want to move
-        public float currentSpeed;       // current movement speed
-        public float directionTimer;     // countdown to direction change
-        public float wiggleOffset;       // fish don't wiggle identically
+        public Vector2 currentDirection;
+        public Vector2 targetDirection;
+        public float currentSpeed;
+        public float directionTimer;
+        public float wiggleOffset;
     }
 
-
-    // ==== START =====
+    // ===== START =====
     void Start()
     {
-        //all fish don't wiggle the same
         state.wiggleOffset = Random.Range(0f, 10f);
-
-        // Pick the first direction immediately
         PickNewDirection(true);
-    }
 
+        // Find bait in scene
+        targetBait = Object.FindFirstObjectByType<HookBait>();
+    }
 
     // ===== UPDATE =====
     void Update()
     {
-        // Count down until we change direction
+        if (ShouldFollowBait())
+        {
+            FollowBait();
+        }
+        else
+        {
+            NormalSwimMovement();
+        }
+
+        KeepInsideBounds();
+        FlipSprite();
+    }
+
+    // ===== NORMAL MOVEMENT =====
+    void NormalSwimMovement()
+    {
         state.directionTimer -= Time.deltaTime;
 
-        // If timer runs out, pick a new direction
         if (state.directionTimer <= 0f)
         {
             PickNewDirection(false);
         }
 
-        // Smoothly rotate toward target direction
-        // This prevents sharp robotic turning
         state.currentDirection = Vector2.Lerp(
             state.currentDirection,
             state.targetDirection,
             turnSpeed * Time.deltaTime
         ).normalized;
 
-        // Base movement direction
         Vector2 move = state.currentDirection;
 
-        // Add vertical wiggle to simulate swimming
         move.y += Mathf.Sin(
             Time.time * verticalWiggleSpeed + state.wiggleOffset
         ) * verticalWiggleAmount;
 
-        // Move the fish
         transform.Translate(
             move.normalized * state.currentSpeed * Time.deltaTime,
             Space.World
         );
-
-        // Keep fish inside boundaries
-        KeepInsideBounds();
-
-        // Flip sprite to match direction
-        FlipSprite();
     }
 
+    // ===== CHECK IF SHOULD FOLLOW BAIT =====
+    bool ShouldFollowBait()
+    {
+        if (!followBait) return false;
+        if (targetBait == null) return false;
+
+        // Get the bait sprite renderer WITHOUT modifying HookBait
+        SpriteRenderer baitSprite = targetBait.GetComponent<SpriteRenderer>();
+
+        if (baitSprite == null) return false;
+        if (!baitSprite.enabled) return false;
+
+        float distanceToBait = Vector2.Distance(
+            transform.position,
+            targetBait.GetBaitWorldPosition()
+        );
+
+        return distanceToBait <= baitDetectionRange;
+    }
+
+    // ===== FOLLOW BAIT =====
+    void FollowBait()
+    {
+        Vector2 baitPosition = targetBait.GetBaitWorldPosition();
+        Vector2 fishPosition = transform.position;
+
+        Vector2 directionToBait = (baitPosition - fishPosition).normalized;
+
+        state.currentDirection = Vector2.Lerp(
+            state.currentDirection,
+            directionToBait,
+            turnSpeed * Time.deltaTime
+        ).normalized;
+
+        Vector2 move = state.currentDirection;
+
+        // keep wiggle so it still looks natural
+        move.y += Mathf.Sin(
+            Time.time * verticalWiggleSpeed + state.wiggleOffset
+        ) * verticalWiggleAmount;
+
+        float baitSpeed = state.currentSpeed * baitFollowSpeedMultiplier;
+
+        transform.Translate(
+            move.normalized * baitSpeed * Time.deltaTime,
+            Space.World
+        );
+    }
 
     // ===== PICK NEW DIRECTION =====
     void PickNewDirection(bool forceInitialDirection)
     {
-        // Choose horizontal direction (left/right)
         float horizontal = forceInitialDirection
             ? (Random.value < 0.5f ? -1f : 1f)
             : Mathf.Sign(
@@ -114,52 +156,39 @@ public class FishMovement : MonoBehaviour
                 : state.currentDirection.x
               );
 
-        // Small vertical variation
         float vertical = Random.Range(-0.4f, 0.4f);
 
-        // Set new target direction
         state.targetDirection = new Vector2(horizontal, vertical).normalized;
 
-        // ===== DYNAMIC BINDING HAPPENS HERE =====
-        // This calls ChooseSpeed(), BUT:
-        // If the object is a subclass (FastFishMovement),
-        // it will call the OVERRIDDEN version instead.
+        // ===== DYNAMIC BINDING =====
         state.currentSpeed = ChooseSpeed();
 
-        // Reset timer for next direction change
         state.directionTimer =
             directionChangeTime + Random.Range(-0.5f, 0.5f);
 
-        // Apply immediately if first time
         if (forceInitialDirection)
         {
             state.currentDirection = state.targetDirection;
         }
     }
 
-
     // ===== DYNAMIC METHOD =====
-    // This is VIRTUAL → can be overridden by subclasses
-    // Default behavior: normal fish speed
     protected virtual float ChooseSpeed()
     {
         return Random.Range(minSpeed, maxSpeed);
     }
 
-
-    // ===== KEEP FISH INSIDE BOUNDS =====
+    // ===== KEEP INSIDE BOUNDS =====
     void KeepInsideBounds()
     {
         Vector3 pos = transform.position;
 
-        // Left boundary
         if (pos.x < minX)
         {
             pos.x = minX;
             state.targetDirection.x = Mathf.Abs(state.targetDirection.x);
             state.currentDirection.x = Mathf.Abs(state.currentDirection.x);
         }
-        // Right boundary
         else if (pos.x > maxX)
         {
             pos.x = maxX;
@@ -167,14 +196,12 @@ public class FishMovement : MonoBehaviour
             state.currentDirection.x = -Mathf.Abs(state.currentDirection.x);
         }
 
-        // Bottom boundary
         if (pos.y < minY)
         {
             pos.y = minY;
             state.targetDirection.y = Mathf.Abs(state.targetDirection.y);
             state.currentDirection.y = Mathf.Abs(state.currentDirection.y);
         }
-        // Top boundary
         else if (pos.y > maxY)
         {
             pos.y = maxY;
@@ -185,10 +212,7 @@ public class FishMovement : MonoBehaviour
         transform.position = pos;
     }
 
-
-    // ===== STATICALLY BOUND METHOD =====
-    // NOT virtual → cannot be overridden
-    // Always uses THIS version, even in subclasses
+    // ===== FLIP SPRITE =====
     void FlipSprite()
     {
         if (state.currentDirection.x > 0.05f)
