@@ -1190,7 +1190,7 @@ PrefabInstance:
     - target: {fileID: 8283729168369420294, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: 'Toolboxes.Array.data[3]'
       value: 
-      objectReference: {fileID: 1690344670}
+      objectReference: {fileID: 0}
     - target: {fileID: 8283729168369420294, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: 'Toolboxes.Array.data[4]'
       value: 
@@ -5183,11 +5183,6 @@ GameObject:
 --- !u!1 &1690344669 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2604203072139907012, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
-  m_PrefabInstance: {fileID: 1690344663}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1690344670 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5663141980573793040, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
   m_PrefabInstance: {fileID: 1690344663}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1690344671 stripped
