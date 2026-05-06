@@ -912,6 +912,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54082391531106358, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
+      propertyPath: healthVal
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2196808546892400545, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -961,6 +965,119 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9fca56c2015e8312b7ca79e2748e661, type: 3}
+--- !u!1001 &971614873
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[0].rarity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[2].rarity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[3].rarity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[6].rarity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[3].fishName
+      value: ButterflyFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[5].fishName
+      value: SkellyFish
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[0].fishKnown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[1].fishKnown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[2].fishKnown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[3].fishKnown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[4].fishKnown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[5].fishKnown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[6].fishKnown
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968930051004431433, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: fishDatabase.Array.data[0].catchCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.9210701
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1967402
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959810003097245136, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8212736862655728242, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
+      propertyPath: m_Name
+      value: FishDBManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 603aa15fc6b5e4f62b5c0d9436192625, type: 3}
 --- !u!1 &995579041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,3 +1566,4 @@ SceneRoots:
   - {fileID: 636744100}
   - {fileID: 484534359}
   - {fileID: 917935727}
+  - {fileID: 971614873}
