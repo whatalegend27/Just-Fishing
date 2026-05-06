@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d234356792f11e439804c359b65fe1f, type: 3}
+  m_Name: Weight
+  m_EditorClassIdentifier: DannyScripts::ItemScript
+  itemName: Weight
+  itemDescription: fish come here
+  price: 25
+  icon: {fileID: 6232808109541940170, guid: eb77ea069efe5154bbe2e4827882a06b, type: 3}
+  itemType: 4
+  attractionValue: 0
