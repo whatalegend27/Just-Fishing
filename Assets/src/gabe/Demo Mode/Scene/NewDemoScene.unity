@@ -1158,6 +1158,58 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3663462540030147091, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
   m_PrefabInstance: {fileID: 2108243603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &743993205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743993207}
+  - component: {fileID: 743993206}
+  m_Layer: 0
+  m_Name: DemoController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &743993206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743993205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7c42e53f30335147aa35b0a742783e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoController
+  mode: 1
+  playerAnimator: {fileID: 1107862964}
+  hookSearchInterval: 0.5
+  castDelay: 1
+  sinkTime: 2.5
+  noCatchWaitTime: 4
+  waitBetweenCasts: 2
+  horizontalChangeInterval: 0.75
+--- !u!4 &743993207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743993205}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 299.37778, y: 160.72108, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &754692068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,6 +2261,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!95 &1107862964 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 621163668176052440, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
+  m_PrefabInstance: {fileID: 832404789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1157719244 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 600044080406531435, guid: a27f35de26959444f89683c5e1c392e7, type: 3}
@@ -6836,3 +6893,4 @@ SceneRoots:
   - {fileID: 1547355866230880831}
   - {fileID: 482274718}
   - {fileID: 1436188707}
+  - {fileID: 743993207}
