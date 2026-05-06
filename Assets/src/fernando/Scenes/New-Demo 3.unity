@@ -5616,12 +5616,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
       propertyPath: fishPrefabs.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7855437599626288770, guid: 048e2dacfd2444899a01dd6b042229ab, type: 3}
       propertyPath: 'fishPrefabs.Array.data[6]'
       value: 
-      objectReference: {fileID: 8004341632305014029, guid: 715c0845bd5e04009a97a1ecfa700d95, type: 3}
+      objectReference: {fileID: 1268671515642626340, guid: 5ae4a459d26b4dd478fd170bbc1abed4, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
