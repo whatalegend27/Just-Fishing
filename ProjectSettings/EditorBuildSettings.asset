@@ -16,6 +16,9 @@ EditorBuildSettings:
     guid: 96e61149c22d49b4eb19a9f0e60c1399
   - enabled: 1
     path: Assets/MVP_Scenes/New-Demo 3.unity
+    guid: 3d8832fedc42448a2bb99c054402ff61
+  - enabled: 0
+    path: Assets/MVP_Scenes/slop.unity
     guid: aa826a85f89a86d479f795d62b75ea69
   - enabled: 1
     path: Assets/MVP_Scenes/SharkFight.unity

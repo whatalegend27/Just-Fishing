@@ -18,6 +18,6 @@ MonoBehaviour:
 '
   price: 500
   icon: {fileID: 2257421112335068817, guid: 846bd906ba8294809872fa4be7fb3c31, type: 3}
-  itemType: 5
+  itemType: 7
   attractionValue: 0
   riskReduction: 100

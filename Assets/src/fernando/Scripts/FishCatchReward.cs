@@ -27,7 +27,7 @@ public class FishCatchReward
 {
     protected int mGold;
 
-    public FishCatchReward()           { mGold = 10; }
+    public FishCatchReward() { mGold = 10; }
     protected FishCatchReward(int gold) { mGold = gold; }
 
     // Returns the gold amount; overridden by subclasses to add bonuses
@@ -39,7 +39,7 @@ public class FishCatchReward
 // Common fish — base gold only
 public class CommonFishCatchReward : FishCatchReward
 {
-    public CommonFishCatchReward() : base(10) {}
+    public CommonFishCatchReward() : base(10) { }
     // Returns base gold with no bonus
     protected override int GetGold() => mGold;
 }
@@ -47,7 +47,7 @@ public class CommonFishCatchReward : FishCatchReward
 // Rare fish — base + 15 bonus
 public class RareFishCatchReward : FishCatchReward
 {
-    public RareFishCatchReward() : base(25) {}
+    public RareFishCatchReward() : base(25) { }
     // Returns base gold plus 15 rare bonus
     protected override int GetGold() => mGold + 15;
 }
@@ -55,7 +55,7 @@ public class RareFishCatchReward : FishCatchReward
 // Legendary fish — base + 40 bonus
 public class LegendaryFishCatchReward : FishCatchReward
 {
-    public LegendaryFishCatchReward() : base(50) {}
+    public LegendaryFishCatchReward() : base(50) { }
     // Returns base gold plus 40 legendary bonus
     protected override int GetGold() => mGold + 40;
 }
