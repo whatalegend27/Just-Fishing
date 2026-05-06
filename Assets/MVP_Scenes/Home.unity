@@ -2398,7 +2398,7 @@ PrefabInstance:
     - target: {fileID: 3186535430419601965, guid: fb0be78a30cd243589dbac0087698b4b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2013978119}
+      objectReference: {fileID: 8233812120200709965, guid: 43d38a08619b448deb3063e0f0692728, type: 3}
     - target: {fileID: 3186535430419601965, guid: fb0be78a30cd243589dbac0087698b4b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnToggleToolbox
@@ -2572,17 +2572,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.1133332, y: 1.31}
   m_EdgeRadius: 0
---- !u!114 &2013978119 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1833735040528985256, guid: 43d38a08619b448deb3063e0f0692728, type: 3}
-  m_PrefabInstance: {fileID: 520895970}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0a83022095b46ad8bfe325650c2e21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Saif.GamePlay::MobileInputBridge
 --- !u!1001 &2042956100
 PrefabInstance:
   m_ObjectHideFlags: 0

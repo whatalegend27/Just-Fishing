@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1517734482665608953}
-  - component: {fileID: 1833735040528985256}
+  - component: {fileID: 8233812120200709965}
   m_Layer: 0
   m_Name: MobileInputBridge
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1833735040528985256
+--- !u!114 &8233812120200709965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
