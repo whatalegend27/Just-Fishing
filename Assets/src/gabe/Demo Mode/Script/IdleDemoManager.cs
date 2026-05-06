@@ -1,25 +1,50 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class IdleDemoSceneLoader : MonoBehaviour
+public class IdleDemoManager : MonoBehaviour
 {
-    [Header("Demo Scene")]
+    [Header("Scene Names")]
+    public string gameplaySceneName = "FishingScene";
     public string demoSceneName = "DemoScene";
 
-    [Header("Idle Time")]
-    public float idleTimeBeforeDemo = 120f; // 2 minutes
+    [Header("Idle Settings")]
+    public float idleTimeBeforeDemo = 120f;
 
     private float idleTimer;
 
     void Update()
     {
-        if (Input.anyKeyDown || Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        bool playerInput =
+            Input.anyKeyDown ||
+            Input.GetMouseButtonDown(0) ||
+            Input.GetMouseButtonDown(1);
+
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        // =========================
+        // DEMO SCENE LOGIC
+        // =========================
+        if (currentScene == demoSceneName)
         {
-            idleTimer = 0f;
+            if (playerInput)
+            {
+                SceneManager.LoadScene(gameplaySceneName);
+            }
+
             return;
         }
 
-        idleTimer += Time.deltaTime;
+        // =========================
+        // NORMAL GAMEPLAY LOGIC
+        // =========================
+        if (playerInput)
+        {
+            idleTimer = 0f;
+        }
+        else
+        {
+            idleTimer += Time.deltaTime;
+        }
 
         if (idleTimer >= idleTimeBeforeDemo)
         {
