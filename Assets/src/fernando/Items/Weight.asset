@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d234356792f11e439804c359b65fe1f, type: 3}
-  m_Name: Contraband_Bag
+  m_Name: Weight
   m_EditorClassIdentifier: DannyScripts::ItemScript
-  itemName: 
-  itemDescription: 
-  price: 0
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: Weight
+  itemDescription: fish come here
+  price: 25
+  icon: {fileID: 6232808109541940170, guid: eb77ea069efe5154bbe2e4827882a06b, type: 3}
+  itemType: 4
   attractionValue: 0

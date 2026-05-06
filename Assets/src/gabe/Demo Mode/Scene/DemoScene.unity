@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c42e53f30335147aa35b0a742783e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemoController
-  mode: 2
+  mode: 1
   playerAnimator: {fileID: 664619435}
   hookSearchInterval: 0.5
   castDelay: 1
@@ -1617,7 +1617,7 @@ PrefabInstance:
     - target: {fileID: 8283729168369420294, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: 'Toolboxes.Array.data[3]'
       value: 
-      objectReference: {fileID: 1690344670}
+      objectReference: {fileID: 0}
     - target: {fileID: 8283729168369420294, guid: d858661123d55fb449e1bfacfcc76ede, type: 3}
       propertyPath: 'Toolboxes.Array.data[4]'
       value: 
@@ -5480,11 +5480,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2604203072139907012, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
   m_PrefabInstance: {fileID: 1690344663}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1690344670 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5663141980573793040, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
-  m_PrefabInstance: {fileID: 1690344663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1690344671 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4593796332903803639, guid: 3702dac31b1ff5f498637f6e250dfcf9, type: 3}
@@ -5563,6 +5558,53 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1719302379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719302381}
+  - component: {fileID: 1719302380}
+  m_Layer: 0
+  m_Name: IdleDemoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1719302380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719302379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee25346de3e1b5408afbdcab1fb4ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleDemoManager
+  gameplaySceneName: FishingScene
+  demoSceneName: DemoScene
+  idleTimeBeforeDemo: 10
+--- !u!4 &1719302381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719302379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 299.37778, y: 160.72108, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6641,3 +6683,4 @@ SceneRoots:
   - {fileID: 1054486017}
   - {fileID: 1169218199}
   - {fileID: 793155665}
+  - {fileID: 1719302381}

@@ -57,7 +57,7 @@ MonoBehaviour:
     fishKnown: 1
     catchCount: 0
     rarity: 0
-  - fishName: Butterfly
+  - fishName: ButterflyFish
     fishKnown: 1
     catchCount: 0
     rarity: 1

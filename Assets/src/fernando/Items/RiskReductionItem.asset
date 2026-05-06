@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RiskReductionItem
   m_EditorClassIdentifier: Fernando.Game.Runtime::RiskReductionItem
   itemName: Risk Vial
-  itemDescription: 'risk bro risk
+  itemDescription: 'sneaky, sneak
 
 '
   price: 100

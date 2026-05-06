@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b37e8b6d55444814a2af2f833079001, type: 3}
+  m_Name: ContrabandBag
+  m_EditorClassIdentifier: Fernando.Game.Runtime::RiskReductionItem
+  itemName: ContrabandBag
+  itemDescription: 'sneaky, remove all risk
+
+'
+  price: 500
+  icon: {fileID: 2257421112335068817, guid: 846bd906ba8294809872fa4be7fb3c31, type: 3}
+  itemType: 7
+  attractionValue: 0
+  riskReduction: 100

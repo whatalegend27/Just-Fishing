@@ -82,8 +82,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -989656559
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 6dd91408b809d48cbbbea55eeae57deb, type: 3}
@@ -205,8 +205,8 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -989656559
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Positions:
@@ -290,7 +290,7 @@ MonoBehaviour:
   surfaceLevel: 1.77
   leftBorder: -3
   rightBorder: 3
-  rodTipOffset: {x: 0, y: 0, z: 0}
+  rodTipOffset: {x: 0.4, y: 0, z: 0}
   castAnimationDelay: 0.5
   line: {fileID: 2325375141864423753}
   hookSprite: {fileID: 7386509837638992552}
@@ -314,6 +314,14 @@ PrefabInstance:
     - target: {fileID: 1796998825148701646, guid: bfbf6bcff87434861a316c70a3dc06c5, type: 3}
       propertyPath: baitOffset.y
       value: -0.128
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627627752829829731, guid: bfbf6bcff87434861a316c70a3dc06c5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4627627752829829731, guid: bfbf6bcff87434861a316c70a3dc06c5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -989656559
       objectReference: {fileID: 0}
     - target: {fileID: 4648986832465785437, guid: bfbf6bcff87434861a316c70a3dc06c5, type: 3}
       propertyPath: m_LocalPosition.x
