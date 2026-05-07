@@ -3132,7 +3132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
   sceneToLoad: Shop
-  hoverColor: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 0}
+  hoverColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2760488455170978989
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,7 +4083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SceneChanger
   sceneToLoad: New-Demo 3
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+  hoverColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3791248899604388072
 GameObject:
   m_ObjectHideFlags: 0
@@ -5609,7 +5609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Isabella_GameScripts::SceneChanger
   sceneToLoad: Home
-  hoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+  hoverColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4855770451293340424
 GameObject:
   m_ObjectHideFlags: 0
