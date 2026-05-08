@@ -4,6 +4,8 @@
 
 A game by **Starfish Studios**. Written using Unity.
 
+*This game is a part of a project for a CS course. As the course has been completed, this repository has been archived and all development has permanently ceased.*
+
 ## Development Team
 - **TL1:** Johnathan Van Vliet
 - **TL2:** Isabella Evans
